@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Interactive Video</title>
+  </head>
+  <body style="margin: 0">
+    <div
+      id="video1-container"
+      style="display: flex; width: 100vw; height: 100vh"
+    >
+      <canvas id="video1"></canvas>
+    </div>
+    <script src="main.js"></script>
+    <script>
+      window.onload = () => {
+        const container = document.getElementById("video1-container");
+        const element = document.getElementById("video1");
+        const url = "https://api.npoint.io/6148a0392664cd6c6aa1";
+        const InteractiveVideoInstance = new InteractiveVideo(
+          container,
+          element,
+          url
+        );
+      };
+    </script>
+  </body>
+</html>
