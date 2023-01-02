@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="konva.js"></script>
+    <title>Konva Curved editable text demo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="display: flex; align-items:center; gap:20px;">
+        <input type="range" oninput="updateTextCurve(event)" min="-100" max="100" value="0" step="1"
+            style="width:400px; height: 50px;">
+        <button onclick="toggleCurveVisibility()">Toggle Curve Path Visibility</button>
+    </div>
+    <div id="container"></div>
+    <script>
+
+        let toggleCurveVisibility = () => {
+            let visibility = textNode.getAttr('showCurvePath')
+            textNode.setAttr('showCurvePath', !visibility)
+        }
+        let updateTextCurve = (event) => {
+            let value = Number(event.target.value)
+            if (value < 0) {
+                textNode.setAttr('curveDirection', -1)
+            } else {
+                textNode.setAttr('curveDirection', 1)
+            }
+            let min = 50
+            let max = 3000
+
+            let radius = value === 0 ? 0 : Math.max(min, max - Math.round(min + (max - min) / 100 * Math.abs(value)))
+            textNode.setAttr('curveRadius', radius)
+            textNode.computeText()
+        }
+
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+
+        var stage = new Konva.Stage({
+            container: 'container',
+            width: width,
+            height: height,
+        });
+
+        var layer = new Konva.Layer();
+        stage.add(layer);
+
+        var textNode = new Konva.CurvedText({
+            x: stage.width() / 2 - 100,
+            y: stage.height() / 2 - 100,
+            fill: 'black',
+            width: 300,
+            height: 50,
+            text: 'Curved editable text for konva.js',
+            fontFamily: 'Georgia',
+            fontSize: 40,
+            showCurvePath: true,
+            curveRadius: 200,
+            curveDirection: 1
+        })
+        layer.add(textNode);
+
+        var tr = new Konva.Transformer({
+            nodes: [textNode],
+            shouldOverdrawWholeArea: true,
+            enabledAnchors: ['top-left', 'top-right', 'bottom-left', 'bottom-right'],
+        });
+
+        // super experimental
+        tr.on('dblclick dbltap', () => {
+            // tr.hide();
+            textNode.setAttr('_editingMode', true)
+
+            // create textarea over canvas with absolute position
+            // first we need to find position for textarea
+            // how to find it?
+
+            // at first lets find position of text node relative to the stage:
+            var textPosition = textNode.absolutePosition();
+
+            // so position of textarea will be the sum of positions above:
+            var areaPosition = {
+                x: stage.container().offsetLeft + textNode.absolutePosition().x,
+                y: stage.container().offsetTop + textNode.absolutePosition().y,
+            };
+
+            // create textarea and style it
+            var textarea = document.createElement('textarea');
+            document.body.appendChild(textarea);
+
+            // apply many styles to match text on canvas as close as possible
+            // remember that text rendering on canvas and on the textarea can be different
+            // and sometimes it is hard to make it 100% the same. But we will try...
+            textarea.value = textNode.text();
+            textarea.style.position = 'absolute';
+            textarea.style.top = areaPosition.y + 'px';
+            textarea.style.left = areaPosition.x + 'px';
+            textarea.style.width = textNode.width() * textNode.getAbsoluteScale().x + 'px';
+            textarea.style.height =
+                textNode.height() * textNode.getAbsoluteScale().y + 5 + 'px';
+            textarea.style.fontSize = textNode.fontSize() * textNode.getAbsoluteScale().x + 'px';
+            textarea.style.border = 'none';
+            textarea.style.padding = '0px';
+            textarea.style.margin = '0px';
+            textarea.style.overflow = 'hidden';
+            textarea.style.background = 'none';
+            textarea.style.outline = 'none';
+            textarea.style.resize = 'none';
+            textarea.style.lineHeight = 1;
+            textarea.style.fontFamily = textNode.fontFamily();
+            textarea.style.transformOrigin = 'left top';
+            textarea.style.textAlign = 'center';
+            textarea.style.color = textNode.fill();
+            rotation = textNode.rotation();
+            var transform = '';
+            if (rotation) {
+                transform += 'rotateZ(' + rotation + 'deg)';
+            }
+
+            var px = 0;
+            // also we need to slightly move textarea on firefox
+            // because it jumps a bit
+            var isFirefox =
+                navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+            if (isFirefox) {
+                px += 2 + Math.round(textNode.fontSize() / 20);
+            }
+            transform += 'translateY(-' + px + 'px)';
+
+            textarea.style.transform = transform;
+
+            // reset height
+            textarea.style.height = 'auto';
+            // after browsers resized it we can set actual value
+            textarea.style.height = textarea.scrollHeight + 3 + 'px';
+
+            textarea.focus();
+
+            function removeTextarea() {
+                textarea.parentNode.removeChild(textarea);
+                window.removeEventListener('click', handleOutsideClick);
+                textNode.setAttr('_editingMode', false)
+                tr.show();
+                tr.forceUpdate();
+            }
+
+            function setTextareaWidth(newWidth) {
+                if (!newWidth) {
+                    // set width for placeholder
+                    newWidth = textNode.placeholder.length * textNode.fontSize();
+                }
+                // some extra fixes on different browsers
+                var isSafari = /^((?!chrome|android).)*safari/i.test(
+                    navigator.userAgent
+                );
+                var isFirefox =
+                    navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+                if (isSafari || isFirefox) {
+                    newWidth = Math.ceil(newWidth);
+                }
+
+                var isEdge =
+                    document.documentMode || /Edge/.test(navigator.userAgent);
+                if (isEdge) {
+                    newWidth += 1;
+                }
+                textarea.style.width = newWidth + 'px';
+            }
+
+            textarea.addEventListener('keydown', function (e) {
+                // hide on enter
+                // but don't hide on shift + enter
+                if (e.keyCode === 13 && !e.shiftKey) {
+                    textNode.setText(textarea.value);
+                    removeTextarea();
+                }
+                // on esc do not set value back to node
+                if (e.keyCode === 27) {
+                    removeTextarea();
+                }
+                textNode.setText(textarea.value);
+                let scale = textNode.getAbsoluteScale().x;
+                textarea.style.top = stage.container().offsetTop + textNode.absolutePosition().y + 'px';
+                textarea.style.left = stage.container().offsetLeft + textNode.absolutePosition().x + 'px';
+                textarea.style.width = textNode.width() * textNode.getAbsoluteScale().x + textNode.fontSize() / 2 + 'px';
+                textarea.style.height =
+                    textNode.height() * textNode.getAbsoluteScale().y + 5 + 'px';
+                textarea.style.height = 'auto';
+                textarea.style.height =
+                    textarea.scrollHeight + textNode.fontSize() + 'px';
+            });
+
+            function handleOutsideClick(e) {
+                if (e.target !== textarea) {
+                    textNode.setText(textarea.value);
+                    removeTextarea();
+                }
+            }
+            setTimeout(() => {
+                window.addEventListener('click', handleOutsideClick);
+            });
+        });
+        // super experimental
+
+        layer.add(tr);
+
+
+
+    </script>
+</body>
+
+</html>
