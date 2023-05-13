@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<style type="text/css">
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body,
+  html {
+    height: 100%;
+  }
+
+  #canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<canvas id="canvas"></canvas>
+
+<script type="text/javascript">
+window.onload = function() {
+  paper.install(window)
+  paper.setup(document.getElementById('canvas'))
+
+  // set up some options and the dat.gui panel
+  var options = {
+    drawWidth: 10,
+    eraseWidth: 50,
+    drawColor: '#000000',
+    toolSelect: 'draw',
+    clearCanvas: function() {
+      topLayer.removeChildren()
+    }
+  }
+
+  var gui = new dat.GUI()
+  gui.addColor(options, 'drawColor')
+  gui.add(options, 'drawWidth', 5, 50)
+  gui.add(options, 'eraseWidth', 1, 100)
+  gui.add(options, 'toolSelect', ['draw', 'erase']).onChange(function(value) {
+    if (value === 'erase') {
+      eraseTool.activate()
+    } else {
+      drawTool.activate()
+    }
+  })
+  gui.add(options, 'clearCanvas')
+
+  // this layer holds the background pattern
+  var bottomLayer = new Layer()
+
+  var cols = 10,
+    viewport = project.view.bounds,
+    colWidth = viewport.width / cols,
+    colHeight = viewport.height
+
+  for (var i = 0; i < cols; i++) {
+    new Path.Rectangle({
+      point: [i * 2 * colWidth, 0],
+      size: [colWidth, colHeight],
+      fillColor: '#eee'
+    })
+  }
+
+  // new layer for drawing and erasing on
+  var topLayer = new Layer()
+
+  // tool for drawing simple strokes on topLayer
+  var drawTool = new Tool()
+  drawTool.minDistance = 5
+
+  drawTool.onMouseDown = function(event) {
+    drawPath = new Path({
+      strokeColor: options.drawColor,
+      strokeWidth: options.drawWidth * view.pixelRatio,
+      strokeCap: 'round',
+      strokeJoin: 'round'
+    })
+  }
+
+  drawTool.onMouseDrag = function(event) {
+    drawPath.add(event.point)
+  }
+
+  drawTool.onMouseUp = function(event) {
+    drawPath.selected = true
+    drawPath.simplify(10);
+  }
+
+
+  var eraseTool = new Tool()
+  eraseTool.minDistance = 10
+
+  var path, tmpGroup, mask
+
+  eraseTool.onMouseDown = function(event) {
+    path = new Path({
+      strokeWidth: options.eraseWidth * view.pixelRatio,
+      strokeCap: 'round',
+      strokeJoin: 'round',
+      strokeColor: 'white'
+    })
+
+    // learned about this blend stuff from this issue on the paperjs repo:
+    // https://github.com/paperjs/paper.js/issues/1313
+
+    // move everything on the active layer into a group with 'source-out' blend
+    tmpGroup = new Group({
+      children: topLayer.removeChildren(),
+      blendMode: 'source-out',
+      insert: false
+    })
+
+    // combine the path and group in another group with a blend of 'source-over'
+    mask = new Group({
+      children: [path, tmpGroup],
+      blendMode: 'source-over'
+    })
+  }
+
+  eraseTool.onMouseDrag = function(event) {
+    // onMouseDrag simply adds points to the path
+    path.add(event.point)
+  }
+
+  eraseTool.onMouseUp = function(event) {
+    // simplify the path first, to make the following perform better
+    path.simplify()
+
+    var eraseRadius = (options.eraseWidth * view.pixelRatio) / 2
+
+    // find the offset path on each side of the line
+    // this uses routines in the offset.js file
+    var outerPath = OffsetUtils.offsetPath(path, eraseRadius)
+    var innerPath = OffsetUtils.offsetPath(path, -eraseRadius)
+    path.remove() // done w/ this now
+
+    outerPath.insert = false
+    innerPath.insert = false
+    innerPath.reverse() // reverse one path so we can combine them end-to-end
+
+    // create a new path and connect the two offset paths into one shape
+    var deleteShape = new Path({
+      closed: true,
+      insert: false
+    })
+    deleteShape.addSegments(outerPath.segments)
+    deleteShape.addSegments(innerPath.segments)
+
+    // create round endcaps for the shape
+    // as they aren't included in the offset paths
+    var endCaps = new CompoundPath({
+      children: [
+        new Path.Circle({
+          center: path.firstSegment.point,
+          radius: eraseRadius
+        }),
+        new Path.Circle({
+          center: path.lastSegment.point,
+          radius: eraseRadius
+        })
+      ],
+      insert: false
+    })
+
+    // unite the shape with the endcaps
+    // this also removes all overlaps from the stroke
+    deleteShape = deleteShape.unite(endCaps)
+    deleteShape.simplify()
+
+    // grab all the items from the tmpGroup in the mask group
+    var items = tmpGroup.getItems({ overlapping: deleteShape.bounds })
+
+    items.forEach(function(item) {
+      var result = item.subtract(deleteShape, {
+        trace: false,
+        insert: false
+      }) // probably need to detect closed vs open path and tweak these settings
+
+      if (result.children) {
+        // if result is compoundShape, yoink the individual paths out
+        item.parent.insertChildren(item.index, result.removeChildren())
+        item.remove()
+      } else {
+        if (result.length === 0) {
+          // a fully erased path will still return a 0-length path object
+          item.remove()
+        } else {
+          item.replaceWith(result)
+        }
+      }
+    })
+
+    topLayer.addChildren(tmpGroup.removeChildren())
+    mask.remove()
+  }
+}
+</script>
+
+<script type="text/javascript" src="https://unpkg.com/paper@0.11.5/dist/paper-full.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.3/dat.gui.min.js"></script>
+<script type="text/javascript" src="offset.js"></script>
