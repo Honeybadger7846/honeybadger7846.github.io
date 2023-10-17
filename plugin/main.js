@@ -198,9 +198,14 @@ class FrameConfigurator {
         selection.onMouseLeave = () => {
             if (this.wrapperEl) this.wrapperEl.style.cursor = 'default'
         }
-        selection.mouseDragEvent = (event, absolute) => {
+        selection.mouseDragEvent = (event) => {
             if (selection.data.locked) return
-            selection.position = absolute ? event.point : selection.position.add(event.delta)
+            const validTransformation = typeof selection.isWithinBounds === 'function' ? selection.isWithinBounds() : true
+            selection.position = selection.position.add(event.delta)
+            const validTransformationAfter = typeof selection.isWithinBounds === 'function' ? selection.isWithinBounds() : true
+            if (validTransformation && validTransformation !== validTransformationAfter) {
+                selection.position = selection.position.subtract(event.delta)
+            }
             this.updateResizeHandles(selection)
             selection.emit('modified', event.delta)
         }
@@ -403,7 +408,7 @@ class FrameConfigurator {
             bgImage.on('load', () => {
                 this.wallSize = wallSize
                 this.fitToScreen()
-                this.drawRuler(bgImage)
+                //this.drawRuler(bgImage)
                 resolve()
             })
             bgImage.on('error', () => {
@@ -424,25 +429,30 @@ class FrameConfigurator {
             frameImage.scale(frameImage.bounds.size.width / this.canvas.view.bounds.size.width / 2)
             frameImage.position = this.canvas.view.center
             frameImage.on('modified', (delta) => {
-                cool.position = cool.position.add(delta)
+                //cool.position = cool.position.add(delta)
                 clipFrame.bounds = cool.bounds
+               // console.log(cool.isInside(frameImage.bounds))
             })
+            frameImage.isWithinBounds = () => {
+                return cool.isInside(frameImage.bounds)
+            }
             let cool = new paper.Frame({
-                posX:frameImage.position.x,
-                posY: frameImage.position.y,
+                position: frameImage.position,
                 width: frameImage.bounds.size.width,
                 height: frameImage.bounds.size.height,
-                length: 4 / this.pxPerCm,
+                length: 5 / this.pxPerCm,
                 strokeColor: 'green',
-                strokeWidth: 4 / this.pxPerCm,
+                strokeWidth: 10 / this.pxPerCm,
                 locked: false,
-                configurator: this,
                 src: 'https://i.imgur.com/YbGvFms.png',
                 data: { type: 'frame', pane: 'frame', focusable: true, id: '1' }
             })
             cool.on('modified', () => {
                 clipFrame.bounds = cool.bounds
             })
+            cool.isWithinBounds = () => {
+                return cool.isInside(frameImage.bounds)
+            }
             const clipFrame = new paper.Path.Rectangle({
                 from: cool.bounds.topLeft,
                 to: cool.bounds.bottomRight,
@@ -522,9 +532,14 @@ window.addEventListener('load', () => {
         }
         reader.readAsDataURL(event.target.files[0])
     })
+    document.getElementById('add-artwork').addEventListener('click', () => {
+        configurator.addFrame('https://i.imgur.com/sP1bZ3N.jpg')
+    })
+    /*
     document.getElementById('change-wall').addEventListener('click', () => {
         configurator.interface.setStep(1)
     })
+    */
     document.getElementById('prev-step').addEventListener('click', () => {
         configurator.interface.setStep(configurator.interface.stepIndex - 1)
     })

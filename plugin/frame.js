@@ -5,18 +5,14 @@ paper.Frame = paper.Item.extend(
         _canApplyMatrix: false,
         _canScaleStroke: true,
         _size: null, // width, height
-        posX: null,
-        posY: null,
         src: null,
         _image: null,
         _serializeFields: {
-            posX: null,
-            posY: null,
             src: null,
         },
         initialize: function Frame(props) {
             props.size = [props.width, props.height]
-            this._initialize(props, new paper.Point(props.posX, props.posY))
+            this._initialize(props, new paper.Point(props.position))
             if (props.src) {
                 this._image = new Image()
                 this._image.src = props.src
