@@ -1,3 +1,40 @@
+const environments = [
+    {
+        src: 'https://i.imgur.com/KPFoL2H.jpg',
+        size: 500
+    },
+    {
+        src: 'https://i.imgur.com/vbxptoG.jpg',
+        size: 400
+    },
+    {
+        src: 'https://i.imgur.com/gjx2cEd.jpg',
+        size: 300
+    }
+]
+
+const frames = [
+    {
+        id: '7021C',
+        src: 'https://i.imgur.com/HWppjlF.png',
+        length: 2,
+        offset: 0.6
+    },
+    {
+        id: '6180zj',
+        src: 'https://i.imgur.com/tkRo50f.jpg',
+        length: 8.1,
+        offset: 0.9
+    },
+    {
+        id: '7455TO',
+        src: 'https://i.imgur.com/YbGvFms.png',
+        length: 5.6,
+        offset: 0.8
+    }
+]
+
+
 const defaultWallSize = 300 // cm
 const selectionPaneList = {
     'frame': {
@@ -9,10 +46,15 @@ const selectionPaneList = {
                 width: Math.round(activeSelection.bounds.width * configurator.pxPerCm),
                 height: Math.round(activeSelection.bounds.height * configurator.pxPerCm)
             }
-            this.el.innerHTML = `${size.width}x${size.height} cm`
+            console.log(`${size.width}x${size.height} cm`)
+            // this.el.innerHTML = `${size.width}x${size.height} cm`
         }
     },
     'background': {
+        update: function (configurator) {
+        }
+    },
+    'scale': {
         update: function (configurator) {
         }
     }
@@ -29,6 +71,7 @@ class Interface {
         this.setStep(1)
     }
     updateSelectionPane(pane) {
+        if (!pane) pane = 'background' // default if no selection
         const paneCollection = document.getElementsByClassName('selection-pane-item')
         for (let i = 0; i < paneCollection.length; i++) {
             paneCollection[i].style.display = 'none'
@@ -74,15 +117,11 @@ class FrameConfigurator {
             })
         })
         this.canvas.resizeObserver.observe(wrapperEl)
+        this.initZoom()
         this.initSelection()
     }
     haveArtwork() {
         return this.canvas.project.activeLayer.children.find(child => child.data?.type === 'frame-image')
-    }
-    updatePixelsPerCm() {
-        const bgImage = this.canvas.project.activeLayer.children.find(child => child.data?.type === 'bg-image')
-        if (!bgImage) return
-        this.pxPerCm = this.wallSize / bgImage.bounds.size.width
     }
     fitToScreen() {
         this.canvas.view.update()
@@ -99,7 +138,6 @@ class FrameConfigurator {
             this.canvas.view.scale(scaleRatio)
         }
         this.updateActiveSelection()
-        this.updatePixelsPerCm()
         return this
     }
     focus() {
@@ -119,6 +157,69 @@ class FrameConfigurator {
     }
     updateDrawings() {
         this.drawings = this.canvas.project.activeLayer.children.filter(child => child.data?.type === 'frame-image' || child.data?.type === 'frame')
+    }
+    initZoom() {
+        let minZoom = 0.1
+        let maxZoom = 10
+        let onPointerDown = {
+            zoomDistanceStart: null,
+            zoomDistanceEnd: null
+        }
+        if (!this.wrapperEl) throw new Error('No canvas container element')
+        this.wrapperEl.addEventListener('wheel', (event) => {
+            event.preventDefault()
+            event.stopImmediatePropagation()
+            if (!this.canvas) return
+            let zoomFactor = 1.1
+            let oldZoom = this.canvas.view.zoom
+            let oldCenter = this.canvas.view.center
+            let mousePosition = this.canvas.view.viewToProject(new paper.Point(event.offsetX, event.offsetY))
+            let step = Math.abs(event.deltaY) > 30 ? event.deltaY < 0 ?
+                oldZoom - (oldZoom * zoomFactor) :
+                oldZoom - (oldZoom / zoomFactor) : event.deltaY * 0.01
+            let zoomValue = this.canvas.view.zoom - step
+            this.canvas.view.zoom = Math.max(minZoom, Math.min(zoomValue, maxZoom))
+            if (this.selectionTool) {
+                this.selectionTool.minDistance = 1 / Math.max(1, this.canvas.view.zoom)
+            }
+            this.updateThickness()
+            this.canvas.view.center = this.canvas.view.center.add(mousePosition.subtract(oldCenter).multiply(1 - (oldZoom / this.canvas.view.zoom)))
+            if (this.activeSelection) {
+                this.updateResizeHandles(this.activeSelection)
+            }
+        })
+        this.wrapperEl.addEventListener('touchstart', (event) => {
+            if (event.touches.length == 2) {
+                let dx = event.touches[0].pageX - event.touches[1].pageX;
+                let dy = event.touches[0].pageY - event.touches[1].pageY;
+                onPointerDown.zoomDistanceEnd = onPointerDown.zoomDistanceStart = Math.sqrt(
+                    dx * dx + dy * dy
+                )
+            }
+        })
+        this.wrapperEl.addEventListener('touchmove', (event) => {
+            if (event.touches.length == 2) {
+                let dx = event.touches[0].pageX - event.touches[1].pageX
+                let dy = event.touches[0].pageY - event.touches[1].pageY
+                onPointerDown.zoomDistanceEnd = Math.sqrt(dx * dx + dy * dy)
+                let factor =
+                    onPointerDown.zoomDistanceStart / onPointerDown.zoomDistanceEnd
+                onPointerDown.zoomDistanceStart = onPointerDown.zoomDistanceEnd
+                this.canvas.view.zoom = Math.max(minZoom, Math.min(this.canvas.view.zoom / factor, maxZoom))
+                this.updateThickness()
+                this.canvas.view.zoom._needsUpdate = true
+                this.canvas.view.zoom.update()
+                if (this.activeSelection) {
+                    this.updateResizeHandles(this.activeSelection)
+                }
+            }
+        })
+        this.wrapperEl.addEventListener('touchend', () => {
+            onPointerDown.zoomDistanceStart = onPointerDown.zoomDistanceEnd = 0
+        })
+        return this
+    }
+    updateThickness() {
     }
     getResizeHandles() {
         return [{
@@ -176,13 +277,17 @@ class FrameConfigurator {
         this.updateResizeHandles(this.activeSelection)
     }
     discardActiveSelection() {
-        if (!this.activeSelection) return
-        this.unFocus()
-        this.removeResizeHandles(this.activeSelection)
+        if (this.activeSelection) {
+            this.unFocus()
+            this.removeResizeHandles(this.activeSelection)
+        }
         this.activeSelection = null
-        this.interface.updateSelectionPane(this.activeSelection)
+        // hide scale line when we click somewhere on canvas outside of handles
+        if (this.scale) this.removeDrawing(this.scale)
+        if (this.interface) this.interface.updateSelectionPane(this.activeSelection)
     }
     createResizeHandles(selection) {
+        if (selection?.data?.type === 'line') return
         this.removeResizeHandles(selection)
         if (!selection?.data) return
         if (selection.data?.disableResize) return
@@ -244,7 +349,6 @@ class FrameConfigurator {
                 let diffY = yHandles.includes(handle.name) ? shiftKey || isDotCircle ? handleBounds.width / originalBounds.height : handleBounds.height / originalBounds.height : 1
                 if ((xHandles.includes(handle.name) || yHandles.includes(handle.name) || centerXHandles.includes(handle.name) || centerYHandles.includes(handle.name)) && isText) {
                     selection.scale(diffX, selection.bounds[handle.opposite])
-                    console.log("AICI?")
                 } else if (centerXHandles.includes(handle.name) && (shiftKey || isDotCircle)) {
                     selection.scale(diffX, selection.bounds[handle.opposite])
                 } else if (centerYHandles.includes(handle.name) && (shiftKey || isDotCircle)) {
@@ -255,7 +359,7 @@ class FrameConfigurator {
                 }
                 if (selection.data.type === 'frame') {
                     selection.setSize(new paper.Size(selection._size.width * selection.scaling.x, selection._size.height * selection.scaling.y))
-                    selection.scaling = {x:1, y:1}
+                    selection.scaling = { x: 1, y: 1 }
                     selection.emit('modified')
                 }
                 this.updateResizeHandles(selection)
@@ -304,7 +408,7 @@ class FrameConfigurator {
             this.selectionTool._hitResult = { item: hitResult?.item }
             // if no hit detection, set activeSelectionHandler flag && remove activeSelection if any
             if (!this.selectionTool?._hitResult?.item) {
-                if (this.activeSelection) this.discardActiveSelection()
+                this.discardActiveSelection()
                 console.log('handle case when no hit detection and/or activeSelection')
                 return
             }
@@ -342,6 +446,11 @@ class FrameConfigurator {
         }
 
         this.selectionTool.onMouseDrag = (event) => {
+            // handle pan
+            if (!this.selectionTool._hitResult?.item && this.selectionTool._mouseDown) {
+                this.canvas.view.center = this.canvas.view.center.add(event.downPoint.subtract(event.point))
+                return
+            }
             // trigger internal drawing/handle events
             if (typeof this.selectionTool?._hitResult?.item?.mouseDragEvent === 'function') {
                 this.selectionTool._hitResult.item.mouseDragEvent(event)
@@ -359,7 +468,191 @@ class FrameConfigurator {
             delete this.selectionTool._hitResult
             delete this.selectionTool._mouseDown
         }
+
+        this.lineTool = new paper.Tool({
+            minDistance: 1 / Math.max(1, this.canvas.view.zoom),
+            name: 'Line'
+        })
+        this.lineTool.onMouseDown = (event) => {
+            if (this.lineTool.shouldFinishNext) return
+            if (this.scale) this.removeDrawing(this.scale)
+            this.lineTool.path = new paper.Path({
+                segments: [event.point, event.point],
+                strokeColor: '#037171',
+                strokeWidth: 1 / this.canvas.view.zoom,
+                strokeCap: 'round',
+                strokeJoin: 'round',
+                data: {
+                    type: 'line'
+                }
+            });
+            this.createPathHandles(this.lineTool.path, true)
+            this.scale = this.lineTool.path
+        }
+        this.lineTool.onMouseMove = (event) => {
+            if (this.lineTool.path) {
+                this.lineTool.path.lastSegment.point = event.point
+                this.updateHandlesPosition(this.lineTool.path)
+                this.updatePathText(this.lineTool.path)
+            }
+        }
+        this.lineTool.onMouseUp = () => {
+            if (this.lineTool.shouldFinishNext) {
+                this.setPxPerCm(this.wallSize / this.lineTool.path.length)
+                this.updatePathText(this.lineTool.path)
+                this.interface.updateSelectionPane('scale')
+                this.selectionTool.activate()
+                delete this.lineTool.path
+                delete this.lineTool.shouldFinishNext
+            } else {
+                this.lineTool.shouldFinishNext = true
+            }
+        }
     }
+    createPathHandles(path, ignorePixelsPerUnit) {
+        const handleSize = 10
+        if (Array.isArray(path._handles)) {
+            path._handles.forEach(handle => {
+                handle.remove()
+            })
+        }
+        let firstSegmentHandle = new paper.Path.Rectangle({
+            point: path.firstSegment.point,
+            size: [handleSize / this.canvas.view.zoom, handleSize / this.canvas.view.zoom],
+            fillColor: 'rgba(255,255,255, 0.001)',
+            strokeColor: path.strokeColor,
+            strokeWidth: 1 / this.canvas.view.zoom,
+            visible: true,
+            ref: path,
+            data: {
+                type: 'handle'
+            }
+        })
+        firstSegmentHandle.position = path.firstSegment.point
+        firstSegmentHandle.onMouseEnter = () => {
+            this.wrapperEl.style.cursor = 'move'
+        }
+        firstSegmentHandle.onMouseLeave = () => {
+            this.wrapperEl.style.cursor = 'default'
+        }
+        firstSegmentHandle.onMouseDown = () => {
+            this.interface.updateSelectionPane('scale')
+        }
+        firstSegmentHandle.mouseDragEvent = (event) => {
+            if (path.data.locked) return
+            let position = event.point
+            path.firstSegment.point = position
+            firstSegmentHandle.position = position
+            if (!ignorePixelsPerUnit) {
+                // this.measureLength = path.length
+                // console.log('scaleLength:', this.measureLength)
+            }
+            //  !ignorePixelsPerUnit && this.setPixelsPerUnit()
+            // this.updateDrawingRealLength(path, !ignorePixelsPerUnit)
+            this.updatePathText(path)
+        }
+        firstSegmentHandle.mouseUpEvent = () => {
+            //   this.snapshot()
+            this.setPxPerCm(this.wallSize / path.length)
+        }
+
+        let secondSegmentHandle = new paper.Path.Rectangle({
+            point: path.lastSegment.point,
+            size: [handleSize / this.canvas.view.zoom, handleSize / this.canvas.view.zoom],
+            fillColor: 'rgba(255,255,255, 0.001)',
+            strokeColor: path.strokeColor,
+            strokeWidth: 1 / this.canvas.view.zoom,
+            visible: true,
+            ref: path,
+            data: {
+                type: 'handle'
+            }
+        })
+        secondSegmentHandle.position = path.lastSegment.point
+        secondSegmentHandle.onMouseDown = () => {
+            this.interface.updateSelectionPane('scale')
+        }
+        secondSegmentHandle.onMouseEnter = () => {
+            this.wrapperEl.style.cursor = 'move'
+        }
+        secondSegmentHandle.onMouseLeave = () => {
+            this.wrapperEl.style.cursor = 'default'
+        }
+        secondSegmentHandle.mouseDragEvent = (event) => {
+            if (path.data.locked) return
+            let position = event.point
+            path.lastSegment.point = position
+            secondSegmentHandle.position = position
+           // if (!ignorePixelsPerUnit) {
+            //    this.measureLength = path.length
+           //     console.log('scaleLength:', this.measureLength)
+           // }
+            //!ignorePixelsPerUnit && this.setPixelsPerUnit()
+            //this.updateDrawingRealLength(path, !ignorePixelsPerUnit)
+            this.updatePathText(path)
+        }
+        secondSegmentHandle.mouseUpEvent = () => {
+            //   this.snapshot()
+            this.setPxPerCm(this.wallSize / path.length)
+        }
+        path._handles = [firstSegmentHandle, secondSegmentHandle]
+        this.updatePathText(path)
+        // this.updateThickness()
+    }
+    updateHandlesPosition(path) {
+        if (path._handles) {
+            path.segments.forEach((segment, index) => {
+                path._handles[index].position = segment.point
+            })
+        }
+    }
+    updatePathText(path) {
+        if (path.data.type !== 'line') return
+        if (path._text) path._text.remove()
+        let position = new paper.Point(0, 0)
+        path._text = this.canvas.project.activeLayer.insertChild(this.canvas.project.activeLayer.children.length - 1, new paper.PointText({
+            point: position,
+            content: `${this.wallSize} cm`,
+            locked: true,
+            fillColor: '#037171', //path.strokeColor,
+            fontSize: 40,
+            justification: 'center',
+            ref: path,
+            visible: path.visible,
+            data: {
+                type: 'util'
+            }
+        }))
+        if (Array.isArray(path.curves) && path.curves[0]) {
+            let vector = path.segments[1].point.subtract(path.segments[0].point)
+            path._text.rotate(-path._text.rotation + vector.angle)
+            let visibleText = Math.abs(path._text.rotation) > 90
+            if (visibleText) {
+                path._text.rotate(180)
+            }
+            let center = path.curves[0].getLocationAtTime(0.5).point
+            // y-value measure text
+            let vector2 = center.add(new paper.Point(25, 0)).subtract(center)
+            vector2.angle = visibleText ? vector.angle + 90 : vector.angle - 90
+            position = center.add(vector2)
+        }
+        path._text.position = position
+
+    }
+    removeDrawing(drawing) {
+          if (Array.isArray(drawing._handles)) {
+            drawing._handles.forEach(handle => {
+              handle.remove()
+            })
+          }
+          if (drawing._text) drawing._text.remove()
+          if (drawing._dot) drawing._dot.remove()
+          if (drawing._leftLine) drawing._leftLine.remove()
+          if (drawing._rightLine) drawing._rightLine.remove()
+          if (drawing._topLine) drawing._topLine.remove()
+          if (drawing._bottomLine) drawing._bottomLine.remove()
+          drawing.remove()
+      }
     drawRuler(bg) {
         if (!bg) return
         const offset = bg.bounds.width * 0.05
@@ -402,11 +695,14 @@ class FrameConfigurator {
             const bgImage = this.canvas.project.activeLayer.insertChild(0, new paper.Raster({
                 source: src,
                 crossOrigin: 'anonymous',
+                locked: true,
                 position: [0, 0],
                 data: { type: 'bg-image', pane: 'background', focusable: false, disableResize: true }
             }))
             bgImage.on('load', () => {
                 this.wallSize = wallSize
+                document.getElementById('wall-size').value = wallSize
+                this.setPxPerCm(this.wallSize / bgImage.bounds.size.width)
                 this.fitToScreen()
                 //this.drawRuler(bgImage)
                 resolve()
@@ -426,12 +722,12 @@ class FrameConfigurator {
             data: { type: 'frame-image', pane: 'artwork', focusable: true, id: 1 }
         })
         frameImage.on('load', () => {
-            frameImage.scale(frameImage.bounds.size.width / this.canvas.view.bounds.size.width / 2)
+            frameImage.scale((150 / this.pxPerCm) / frameImage.bounds.size.width)
             frameImage.position = this.canvas.view.center
             frameImage.on('modified', (delta) => {
                 //cool.position = cool.position.add(delta)
                 clipFrame.bounds = cool.bounds
-               // console.log(cool.isInside(frameImage.bounds))
+                // console.log(cool.isInside(frameImage.bounds))
             })
             frameImage.isWithinBounds = () => {
                 return cool.isInside(frameImage.bounds)
@@ -440,11 +736,12 @@ class FrameConfigurator {
                 position: frameImage.position,
                 width: frameImage.bounds.size.width,
                 height: frameImage.bounds.size.height,
-                length: 5 / this.pxPerCm,
+                length: 8.1,
                 strokeColor: 'green',
-                strokeWidth: 10 / this.pxPerCm,
+                strokeWidth: 16.2 / this.pxPerCm,
+                pxPerCm: this.pxPerCm,
                 locked: false,
-                src: 'https://i.imgur.com/YbGvFms.png',
+                src: null,
                 data: { type: 'frame', pane: 'frame', focusable: true, id: '1' }
             })
             cool.on('modified', () => {
@@ -457,53 +754,85 @@ class FrameConfigurator {
                 from: cool.bounds.topLeft,
                 to: cool.bounds.bottomRight,
                 locked: true,
-                data: {type: 'clip', id: '1'}
+                data: { type: 'clip', id: '1' }
             })
             //view.emit('autoNumbering', this.numberingId)
             clippedGroup.addChild(clipFrame)
             clippedGroup.addChild(frameImage)
             clippedGroup.clipped = true
-            //this.setActiveSelection(cool)
+            this.setActiveSelection(cool)
             this.canvas.view.update()
         })
+    }
+    setPxPerCm(value) {
+        this.pxPerCm = value
+        this.updateFrames()
+    }
+    updateFrames() {
+        const frames = this.canvas.project.activeLayer.children.filter(child => child.data?.type === 'frame')
+        frames && frames.forEach(frame => {
+        frame.pxPerCm = this.pxPerCm
+        frame.strokeWidth = frame.length / frame.pxPerCm
+        frame.updatePattern()
+        frame._changed(9)
+        })
+        this.canvas.view.update()
     }
 }
 window.addEventListener('load', () => {
     const configurator = new FrameConfigurator(document.getElementById('canvas'), document.getElementById('wrapper'))
-    // upload wall
-    document.getElementById('wall-drop-zone').addEventListener('drop', (event) => {
-        event.preventDefault()
-        if (event.dataTransfer.items) {
-            [...event.dataTransfer.items].forEach(item => {
-                if (item.kind === 'file') {
-                    const file = item.getAsFile()
-                    const reader = new FileReader()
-                    reader.onload = (event) => {
-                        const wallSize = Number(document.getElementById('wall-size')?.value ?? defaultWallSize)
-                        configurator.setBgImage(event.target.result, wallSize).then(() => {
-                             configurator.interface.setStep(configurator.haveArtwork() ? 3 : 2)
-                        })
-                    }
-                    reader.readAsDataURL(file)
-                }
+    // add environments
+    environments.forEach(environment => {
+        const wrapper = document.getElementById('environment-list')
+        const itemDiv = document.createElement('div')
+        itemDiv.classList.add('environment-item')
+        const imageEl = document.createElement('img')
+        imageEl.setAttribute('src', environment.src)
+        imageEl.classList.add('environment-image')
+        itemDiv.appendChild(imageEl)
+        itemDiv.addEventListener('click', () => {
+            configurator.setBgImage(environment.src, environment.size).then(() => {
+                configurator.interface.setStep(configurator.haveArtwork() ? 3 : 2)
             })
-        }
+        })
+        wrapper.appendChild(itemDiv)
     })
-    document.getElementById('wall-drop-zone').addEventListener('dragover', (event) => {
-        event.preventDefault()
+    // add frames
+    frames.forEach(frame => {
+        const wrapper = document.getElementById('frame-list')
+        const itemDiv = document.createElement('div')
+        itemDiv.classList.add('frame-item')
+        const imageEl = document.createElement('img')
+        imageEl.setAttribute('src', frame.src)
+        imageEl.classList.add('frame-image')
+        itemDiv.appendChild(imageEl)
+        itemDiv.addEventListener('click', () => {
+            if (typeof configurator.activeSelection?.setFrame === 'function') {
+                configurator.activeSelection.setFrame({
+                    src: frame.src,
+                    length: frame.length / configurator.pxPerCm,
+                    offset: frame.offset / configurator.pxPerCm
+                })
+            }
+            // configurator.setBgImage(environment.src, environment.size).then(() => {
+            //   configurator.interface.setStep(configurator.haveArtwork() ? 3 : 2)
+            //  })
+        })
+        wrapper.appendChild(itemDiv)
     })
+    // upload wall
     document.getElementById('wall-file-upload').addEventListener('change', (event) => {
         event.preventDefault()
         const reader = new FileReader()
         reader.onload = (event) => {
-            const wallSize = Number(document.getElementById('wall-size')?.value ?? defaultWallSize)
-            configurator.setBgImage(event.target.result, wallSize).then(() => {
+            configurator.setBgImage(event.target.result, defaultWallSize).then(() => {
                 configurator.interface.setStep(configurator.haveArtwork() ? 3 : 2)
             })
         }
         reader.readAsDataURL(event.target.files[0])
     })
     // upload artwork
+    /*
     document.getElementById('image-drop-zone').addEventListener('drop', (event) => {
         event.preventDefault()
         if (event.dataTransfer.items) {
@@ -523,6 +852,7 @@ window.addEventListener('load', () => {
     document.getElementById('image-drop-zone').addEventListener('dragover', (event) => {
         event.preventDefault()
     })
+    */
     document.getElementById('image-file-upload').addEventListener('change', (event) => {
         event.preventDefault()
         const reader = new FileReader()
@@ -540,6 +870,17 @@ window.addEventListener('load', () => {
         configurator.interface.setStep(1)
     })
     */
+    document.getElementById('wall-size').addEventListener('change', (event) => {
+        console.log(event.target.value)
+        configurator.wallSize = parseInt(event.target.value)
+        if (configurator.scale) {
+            configurator.setPxPerCm(configurator.wallSize / configurator.scale.length)
+            configurator.updatePathText(configurator.scale)
+        }
+    })
+    document.getElementById('change-wall-size').addEventListener('click', () => {
+        configurator.lineTool.activate()
+    })
     document.getElementById('prev-step').addEventListener('click', () => {
         configurator.interface.setStep(configurator.interface.stepIndex - 1)
     })

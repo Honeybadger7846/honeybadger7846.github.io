@@ -13,14 +13,41 @@ paper.Frame = paper.Item.extend(
         initialize: function Frame(props) {
             props.size = [props.width, props.height]
             this._initialize(props, new paper.Point(props.position))
-            if (props.src) {
-                this._image = new Image()
-                this._image.src = props.src
-                this._image.crossOrigin = 'anonymous'
-                this._image.onload = () => {
-                    this._image.loaded = true
-                    this._changed(9)
-                }
+            if (props.src) this.setFrame(props)
+        },
+        updatePattern: function() {
+            if (!this._image?.loaded) return
+            this.patternCanvas = document.createElement("canvas");
+            const patternContext = this.patternCanvas.getContext("2d");
+
+            // Give the pattern a width and height of 50
+            this.patternCanvas.width = Math.ceil((this.length / this.pxPerCm ));
+            this.patternCanvas.height = Math.ceil((this.length / this.pxPerCm ) / (this._image.width / this._image.height));
+            var hRatio = this.patternCanvas.width / this._image.width;
+            var vRatio = this.patternCanvas.height / this._image.height;
+            var ratio = Math.min(hRatio, vRatio);
+            patternContext.drawImage(this._image, 0, 0, this._image.width, this._image.height, 0, 0, Math.ceil(this._image.width * ratio), Math.ceil(this._image.height * ratio))
+        },
+        setFrame: function (options) {
+            this.length = options.length
+            this.offset = options.offset
+            this._image = new Image()
+            this._image.src = options.src
+            this._image.crossOrigin = 'anonymous'
+            this._image.onload = () => {
+                this._image.loaded = true
+                this._changed(9)
+              this.updatePattern()
+                /*
+                patternContext.drawImage(
+                    this._image,
+                    0, // + x
+                   0, // + y
+                   patternCanvas.width, // newWidth
+                   patternCanvas.height // newHeight
+                  )
+                  */
+
             }
         },
         getSize: function () {
@@ -51,67 +78,13 @@ paper.Frame = paper.Item.extend(
         _draw: function (ctx, param, viewMatrix) {
             this._setStyles(ctx, param, viewMatrix)
 
-            if (this.src && this._image?.loaded) {
-                // get the scale
-                // it is the min of the 2 ratios
-                let scale_factor = Math.min(
-                    this._size.width / this._image.width,
-                    this._size.height / this._image.height
-                )
-
-                // Lets get the new width and height based on the scale factor
-                let newWidth = this._image.width * scale_factor
-                let newHeight = this._image.height * scale_factor
-
-                // get the top left position of the image
-                // in order to center the image within the canvas
-                let x = this._size.width / 2 - newWidth / 2
-                let y = this._size.height / 2 - newHeight / 2
-
-                // When drawing the image, we have to scale down the image
-                // width and height in order to fit within the canvas
-                /*
-                ctx.drawImage(
-                  this._image,
-                  -this._size.width / 2, // + x
-                  -this._size.height / 2, // + y
-                  this._size.width, // newWidth
-                  this._size.height // newHeight
-                )
-                */
-                // Create a pattern, offscreen
-                const patternCanvas = document.createElement("canvas");
-                const patternContext = patternCanvas.getContext("2d");
-
-                // Give the pattern a width and height of 50
-                patternCanvas.width = this.length;
-                patternCanvas.height = this.length / (this._image.width / this._image.height);
-                var hRatio = patternCanvas.width / this._image.width;
-                var vRatio = patternCanvas.height / this._image.height;
-                var ratio = Math.min(hRatio, vRatio);
-                var centerShift_x = 0// (patternCanvas.width - this._image.width * ratio) / 2;
-                var centerShift_y = 0 //(patternCanvas.height - this._image.height * ratio) / 2;
-                patternContext.drawImage(this._image, 0, 0, this._image.width, this._image.height, centerShift_x, centerShift_y, this._image.width * ratio, this._image.height * ratio)
-                /*
-                patternContext.drawImage(
-                    this._image,
-                    0, // + x
-                   0, // + y
-                   patternCanvas.width, // newWidth
-                   patternCanvas.height // newHeight
-                  )
-                  */
-                ctx.fillStyle = ctx.createPattern(patternCanvas, 'repeat')
-                ctx.shadowColor = 'rgba(0,0,0,0.6)';
-                ctx.shadowBlur = 20;
-                ctx.shadowOffsetX = 10;
-                ctx.shadowOffsetY = 10;
+                ctx.fillStyle = this.patternCanvas ? ctx.createPattern(this.patternCanvas, 'repeat') : 'rgba(0,0,0,0)'
                 // left side
                 ctx.save()
                 ctx.beginPath();
                 ctx.moveTo(-this._size.width / 2, -this._size.height / 2);
-                ctx.lineTo(-this._size.width / 2 + this.length, -this._size.height / 2 + this.length);
-                ctx.lineTo(-this._size.width / 2 + this.length, this._size.height / 2 - this.length);
+                ctx.lineTo(-this._size.width / 2 + (this.length / this.pxPerCm ), -this._size.height / 2 + (this.length / this.pxPerCm ));
+                ctx.lineTo(-this._size.width / 2 + (this.length / this.pxPerCm ), this._size.height / 2 - (this.length / this.pxPerCm ));
                 ctx.lineTo(-this._size.width / 2,this._size.height / 2);
                 ctx.closePath();
                 ctx.translate(-this._size.width / 2, 0)
@@ -123,8 +96,8 @@ paper.Frame = paper.Item.extend(
                 ctx.beginPath();
                 ctx.moveTo(-this._size.width / 2, -this._size.height / 2);
                 ctx.lineTo(this._size.width / 2, -this._size.height / 2);
-                ctx.lineTo(this._size.width / 2 - this.length, -this._size.height / 2 + this.length);
-                ctx.lineTo(-this._size.width / 2 + this.length,-this._size.height / 2 + this.length);
+                ctx.lineTo(this._size.width / 2 - (this.length / this.pxPerCm ), -this._size.height / 2 + (this.length / this.pxPerCm ));
+                ctx.lineTo(-this._size.width / 2 + (this.length / this.pxPerCm ),-this._size.height / 2 + (this.length / this.pxPerCm ));
                 ctx.closePath();
                 ctx.translate(0, -this._size.height / 2)
                 ctx.rotate((90 * Math.PI) / 180)
@@ -132,10 +105,14 @@ paper.Frame = paper.Item.extend(
                 ctx.restore()
                 // right side
                 ctx.save()
+                ctx.shadowColor = 'rgba(0,0,0,0.6)';
+                ctx.shadowBlur = 20;
+                ctx.shadowOffsetX = 10;
+                ctx.shadowOffsetY = 10;
                 ctx.beginPath();
                 ctx.moveTo(this._size.width / 2, -this._size.height / 2);
-                ctx.lineTo(this._size.width / 2 - this.length, -this._size.height / 2 + this.length);
-                ctx.lineTo(this._size.width / 2 - this.length, this._size.height / 2 - this.length);
+                ctx.lineTo(this._size.width / 2 - (this.length / this.pxPerCm ), -this._size.height / 2 + (this.length / this.pxPerCm ));
+                ctx.lineTo(this._size.width / 2 - (this.length / this.pxPerCm ), this._size.height / 2 - (this.length / this.pxPerCm ));
                 ctx.lineTo(this._size.width / 2,this._size.height / 2);
                 ctx.closePath();
                 ctx.translate(this._size.width / 2, 0)
@@ -144,17 +121,20 @@ paper.Frame = paper.Item.extend(
                 ctx.restore()
                 // bottom side
                 ctx.save()
+                ctx.shadowColor = 'rgba(0,0,0,0.6)';
+                ctx.shadowBlur = 20;
+                ctx.shadowOffsetX = 10;
+                ctx.shadowOffsetY = 10;
                 ctx.beginPath();
                 ctx.moveTo(this._size.width / 2, this._size.height / 2);
-                ctx.lineTo(this._size.width / 2 - this.length, this._size.height / 2 - this.length);
-                ctx.lineTo(-this._size.width / 2 + this.length, this._size.height / 2 - this.length);
+                ctx.lineTo(this._size.width / 2 - (this.length / this.pxPerCm ), this._size.height / 2 - (this.length / this.pxPerCm ));
+                ctx.lineTo(-this._size.width / 2 + (this.length / this.pxPerCm ), this._size.height / 2 - (this.length / this.pxPerCm ));
                 ctx.lineTo(-this._size.width / 2,this._size.height / 2);
                 ctx.closePath();
                 ctx.translate(0, this._size.height / 2)
                 ctx.rotate((-90 * Math.PI) / 180)
                 ctx.fill();
                 ctx.restore()
-            }
         },
         _getBounds: function (matrix, options) {
             let rect = new paper.Rectangle(this._size).setCenter(0, 0),

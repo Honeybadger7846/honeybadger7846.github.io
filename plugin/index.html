@@ -183,7 +183,84 @@
 
     button:disabled,
     button[disabled] {
-      opacity:0.7;
+      opacity: 0.7;
+    }
+
+    .custom-file-upload {
+      border: 1px solid #ccc;
+      display: inline-block;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+
+    .environment-list {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      width:100%;
+      height:auto;
+    }
+
+    .environment-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 150px;
+      height: 100px;
+      font-size: 100px;
+      font-weight: bolder;
+      color: #037171;
+      border: 1px solid #037171;
+      border-radius: 3px;
+      padding: 10px;
+      filter: grayscale(1);
+    }
+
+    .environment-item:hover {
+      opacity: 0.7;
+      filter: none;
+      cursor: pointer;
+    }
+
+    .environment-image {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+
+    .frame-list {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      width:100%;
+      height:auto;
+    }
+
+    .frame-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+      font-size: 100px;
+      font-weight: bolder;
+      color: #037171;
+      padding: 10px;
+    }
+
+    .frame-item:hover {
+      opacity: 0.7;
+      cursor: pointer;
+    }
+
+    .frame-image {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
     }
   </style>
   <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
@@ -194,27 +271,45 @@
     <!-- canvas is always active and it's step 3 -->
     <canvas id="canvas"></canvas>
     <!-- steps -->
-    <div class="step-item" step-index="1">
-      <h1>Upload wall</h1>
-      <div id="wall-drop-zone" class="drop-zone">
-        <input type="file" id="wall-file-upload" accept="image/png, image/jpeg" />
+    <div class="step-item" style="background-color: #fff;" step-index="1">
+      <h1 style="font-family: system-ui; margin-bottom:20px;">Select Environment</h1>
+      <div id="environment-list" class="environment-list">
+        <label class="environment-item" style="text-align:center;">
+          <input style="display:none;" type="file" id="wall-file-upload" accept="image/png, image/jpeg" />
+          &#x2b;
+        </label>
       </div>
     </div>
+    <div class="step-item" step-index="2">
+      <div class="environment-list">
+        <label class="environment-item" style="text-align:center; width:50%; max-width:300px; height:auto;">
+          <input style="display:none;" type="file" id="image-file-upload" accept="image/png, image/jpeg" />
+          &#x2b;
+        </label>
+      </div>
+    </div>
+    <!--
     <div class="step-item" step-index="2">
       <h1>Upload artwork</h1>
       <div id="image-drop-zone" class="drop-zone">
         <input type="file" id="image-file-upload" accept="image/png, image/jpeg" />
       </div>
     </div>
+  -->
     <!-- active selection pane -->
-    <div class="selection-pane-item" id="selection-frame-pane" type="frame"></div>
-    <div class="selection-pane-item" id="selection-background-pane" type="background">
-      <button id="add-artwork">New Artwork</button>
-      <div>
-        <label for="wall-size" style="display:inline-flex; gap:10px; margin-right: 10px;">Length <input id="wall-size" type="number" min="0"
-          value="300" style="width:50px; text-align:center;" />cm</label>
-        <button id="change-wall-size">Set size</button>
+    <div class="selection-pane-item" id="selection-frame-pane" type="frame">
+      <div id="frame-list" class="frame-list">
       </div>
+    </div>
+    <div class="selection-pane-item" style="justify-content:center; gap:20px;" id="selection-background-pane" type="background">
+      <button id="add-artwork">Add Frame</button>
+      <div>
+        <button id="change-wall-size">Set wall scale</button>
+      </div>
+    </div>
+    <div class="selection-pane-item" id="selection-scale-pane" type="scale">
+      <label for="wall-size" style="display:inline-flex; gap:10px; margin-right: 10px;">Length <input id="wall-size"
+        type="number" min="0" value="300" style="width:50px; text-align:center;" />cm</label>
     </div>
     <!-- steps pane -->
     <div id="steps-pane">
