@@ -34,6 +34,11 @@ const frames = [
     }
 ]
 
+const uuidv4 = () => {
+    return '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, c =>
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    )
+}
 
 const defaultWallSize = 300 // cm
 const selectionPaneList = {
@@ -142,9 +147,10 @@ class FrameConfigurator {
     }
     focus() {
         if (!this.activeSelection || !this.activeSelection?.data?.focusable) return
+        const uuid = this.activeSelection?.data?.uuid
         this.canvas.project.activeLayer.children.forEach(child => {
-            if (!(child instanceof paper.Group) && child !== this.activeSelection && child.data?.type !== 'handle') {
-                child.opacity = 0.5
+            if (child.data?.uuid !== uuid && child.data?.type !== 'handle') {
+                child.opacity = 0.3
             }
         })
     }
@@ -190,6 +196,9 @@ class FrameConfigurator {
         })
         this.wrapperEl.addEventListener('touchstart', (event) => {
             if (event.touches.length == 2) {
+                event.preventDefault()
+                event.stopImmediatePropagation()
+                this.discardActiveSelection()
                 let dx = event.touches[0].pageX - event.touches[1].pageX;
                 let dy = event.touches[0].pageY - event.touches[1].pageY;
                 onPointerDown.zoomDistanceEnd = onPointerDown.zoomDistanceStart = Math.sqrt(
@@ -199,6 +208,8 @@ class FrameConfigurator {
         })
         this.wrapperEl.addEventListener('touchmove', (event) => {
             if (event.touches.length == 2) {
+                event.preventDefault()
+                event.stopImmediatePropagation()
                 let dx = event.touches[0].pageX - event.touches[1].pageX
                 let dy = event.touches[0].pageY - event.touches[1].pageY
                 onPointerDown.zoomDistanceEnd = Math.sqrt(dx * dx + dy * dy)
@@ -267,6 +278,7 @@ class FrameConfigurator {
     setActiveSelection(drawing) {
         this.discardActiveSelection()
         this.activeSelection = drawing
+        this.activeSelection._validDragBeforeMouseUp = true // needed for dragging before releasing mouse
         this.createResizeHandles(this.activeSelection)
         this.updateDrawings()
         this.focus()
@@ -280,6 +292,7 @@ class FrameConfigurator {
         if (this.activeSelection) {
             this.unFocus()
             this.removeResizeHandles(this.activeSelection)
+            this.activeSelection._validDragBeforeMouseUp = false // needed for dragging before releasing mouse
         }
         this.activeSelection = null
         // hide scale line when we click somewhere on canvas outside of handles
@@ -296,6 +309,7 @@ class FrameConfigurator {
         }
         selection.onMouseUp = () => {
             if (this.wrapperEl) this.wrapperEl.style.cursor = 'grab'
+            selection._validDragBeforeMouseUp = false // needed for dragging before releasing mouse
         }
         selection.onMouseDrag = () => {
             if (this.wrapperEl) this.wrapperEl.style.cursor = 'grabbing'
@@ -305,14 +319,8 @@ class FrameConfigurator {
         }
         selection.mouseDragEvent = (event) => {
             if (selection.data.locked) return
-            const validTransformation = typeof selection.isWithinBounds === 'function' ? selection.isWithinBounds() : true
-            selection.position = selection.position.add(event.delta)
-            const validTransformationAfter = typeof selection.isWithinBounds === 'function' ? selection.isWithinBounds() : true
-            if (validTransformation && validTransformation !== validTransformationAfter) {
-                selection.position = selection.position.subtract(event.delta)
-            }
+            selection.applyBoundsTransformation?.(event.delta)
             this.updateResizeHandles(selection)
-            selection.emit('modified', event.delta)
         }
         const handleRadius = 5
         const handles = this.getResizeHandles()
@@ -357,11 +365,7 @@ class FrameConfigurator {
                 } else {
                     selection.scale(diffX, diffY, selection.bounds[handle.opposite])
                 }
-                if (selection.data.type === 'frame') {
-                    selection.setSize(new paper.Size(selection._size.width * selection.scaling.x, selection._size.height * selection.scaling.y))
-                    selection.scaling = { x: 1, y: 1 }
-                    selection.emit('modified')
-                }
+                selection.applyBoundsTransformation?.({ x: 0, y: 0 })
                 this.updateResizeHandles(selection)
                 // update interface size
                 this.interface.updateSelectionPane(selection.data?.pane)
@@ -403,7 +407,7 @@ class FrameConfigurator {
                 segments: true,
                 stroke: true,
                 fill: true,
-                tolerance: 10 / Math.max(1, this.canvas.view.zoom)
+                tolerance: 30 / Math.max(1, this.canvas.view.zoom)
             })
             this.selectionTool._hitResult = { item: hitResult?.item }
             // if no hit detection, set activeSelectionHandler flag && remove activeSelection if any
@@ -583,10 +587,10 @@ class FrameConfigurator {
             let position = event.point
             path.lastSegment.point = position
             secondSegmentHandle.position = position
-           // if (!ignorePixelsPerUnit) {
+            // if (!ignorePixelsPerUnit) {
             //    this.measureLength = path.length
-           //     console.log('scaleLength:', this.measureLength)
-           // }
+            //     console.log('scaleLength:', this.measureLength)
+            // }
             //!ignorePixelsPerUnit && this.setPixelsPerUnit()
             //this.updateDrawingRealLength(path, !ignorePixelsPerUnit)
             this.updatePathText(path)
@@ -640,19 +644,19 @@ class FrameConfigurator {
 
     }
     removeDrawing(drawing) {
-          if (Array.isArray(drawing._handles)) {
+        if (Array.isArray(drawing._handles)) {
             drawing._handles.forEach(handle => {
-              handle.remove()
+                handle.remove()
             })
-          }
-          if (drawing._text) drawing._text.remove()
-          if (drawing._dot) drawing._dot.remove()
-          if (drawing._leftLine) drawing._leftLine.remove()
-          if (drawing._rightLine) drawing._rightLine.remove()
-          if (drawing._topLine) drawing._topLine.remove()
-          if (drawing._bottomLine) drawing._bottomLine.remove()
-          drawing.remove()
-      }
+        }
+        if (drawing._text) drawing._text.remove()
+        if (drawing._dot) drawing._dot.remove()
+        if (drawing._leftLine) drawing._leftLine.remove()
+        if (drawing._rightLine) drawing._rightLine.remove()
+        if (drawing._topLine) drawing._topLine.remove()
+        if (drawing._bottomLine) drawing._bottomLine.remove()
+        drawing.remove()
+    }
     drawRuler(bg) {
         if (!bg) return
         const offset = bg.bounds.width * 0.05
@@ -713,56 +717,110 @@ class FrameConfigurator {
         })
     }
     addFrame(src) {
-        const clippedGroup = new paper.Group()
-
-        const frameImage = new paper.Raster({
+        const frames = this.canvas.project.activeLayer.children.filter(child => child.data?.type === 'frame')
+        const lastFrame = frames[frames?.length - 1]
+        const uuid = uuidv4()
+        let cool = new paper.Frame({
+            position: lastFrame ? lastFrame.position.add(new paper.Point(lastFrame.bounds.size.width * 1.2, 0)) : this.canvas.view.center,
+            width: 126 / this.pxPerCm,
+            height: 100 / this.pxPerCm,
+            length: 4,
+            strokeColor: 'green',
+            strokeWidth: 16 / this.pxPerCm,
+            pxPerCm: this.pxPerCm,
+            locked: false,
+            src: null,
+            data: { type: 'frame', pane: 'frame', focusable: true, uuid: uuid }
+        })
+        cool.applyBoundsTransformation = (offset) => {
+            // dragging if before mouse up
+            if (cool._validDragBeforeMouseUp) {
+                cool.position = cool.position.add(offset)
+                frameImage.position = frameImage.position.add(offset)
+                // clipFrame should have same bounds
+                clipFrame.bounds = cool.bounds
+                return
+            }
+            // x axis
+            if (cool.bounds.left + offset.x > frameImage.bounds.left && cool.bounds.right + offset.x < frameImage.bounds.right) {
+                cool.position = cool.position.add(new paper.Point(offset.x, 0))
+            }
+            // y axis
+            if (cool.bounds.top + offset.y > frameImage.bounds.top && cool.bounds.bottom + offset.y < frameImage.bounds.bottom) {
+                cool.position = cool.position.add(new paper.Point(0, offset.y))
+            }
+           // console.log(frameImage.bounds.right, cool.bounds.right)
+            if (frameImage.bounds.right < cool.bounds.right) {
+                //cool.setSize(frameImage.bounds.right - cool.bounds.left, cool.bounds.size.height)
+                //cool.scale(1)
+            }
+            // size
+            if (cool.bounds.size.width > frameImage.bounds.size.width || cool.bounds.size.height > frameImage.bounds.size.height) {
+                cool.fitBounds(frameImage.bounds)
+            }
+            // clipFrame should have same bounds
+            clipFrame.bounds = cool.bounds
+        }
+        cool.on('modified', () => {
+            clipFrame.bounds = cool.bounds
+        })
+        cool.isWithinBounds = () => {
+            return cool.isInside(frameImage.bounds)
+        }
+        const frameImage = this.canvas.project.activeLayer.insertChild(cool.index, new paper.Raster({
             source: src,
             crossOrigin: 'anonymous',
             position: [0, 0],
-            data: { type: 'frame-image', pane: 'artwork', focusable: true, id: 1 }
-        })
+            blendMode: 'source-atop',
+            data: { type: 'frame-image', pane: 'artwork', focusable: true, uuid: uuid }
+        }))
         frameImage.on('load', () => {
-            frameImage.scale((150 / this.pxPerCm) / frameImage.bounds.size.width)
-            frameImage.position = this.canvas.view.center
+            frameImage.fitBounds(cool.bounds, true)
+            frameImage.position = cool.position
             frameImage.on('modified', (delta) => {
                 //cool.position = cool.position.add(delta)
                 clipFrame.bounds = cool.bounds
                 // console.log(cool.isInside(frameImage.bounds))
             })
-            frameImage.isWithinBounds = () => {
+            frameImage.applyBoundsTransformation = (offset) => {
+                // dragging if before mouse up
+                if (frameImage._validDragBeforeMouseUp) {
+                    frameImage.position = frameImage.position.add(offset)
+                    cool.position = cool.position.add(offset)
+                    // clipFrame should have same bounds
+                    clipFrame.bounds = cool.bounds
+                    return
+                }
+                // x axis
+                if (frameImage.bounds.left + offset.x < cool.bounds.left && frameImage.bounds.right + offset.x > cool.bounds.right) {
+                    frameImage.position = frameImage.position.add(new paper.Point(offset.x, 0))
+                }
+                // y axis
+                if (frameImage.bounds.top + offset.y < cool.bounds.top && frameImage.bounds.bottom + offset.y > cool.bounds.bottom) {
+                    frameImage.position = frameImage.position.add(new paper.Point(0, offset.y))
+                }
+                // size
+                if (frameImage.bounds.size.width < cool.bounds.size.width || frameImage.bounds.size.height < cool.bounds.size.height) {
+                    frameImage.fitBounds(cool.bounds, true)
+                    //frameImage.bounds = cool.bounds
+                }
+            }
+            frameImage.isWithinBounds = (offset) => {
                 return cool.isInside(frameImage.bounds)
             }
-            let cool = new paper.Frame({
-                position: frameImage.position,
-                width: frameImage.bounds.size.width,
-                height: frameImage.bounds.size.height,
-                length: 8.1,
-                strokeColor: 'green',
-                strokeWidth: 16.2 / this.pxPerCm,
-                pxPerCm: this.pxPerCm,
-                locked: false,
-                src: null,
-                data: { type: 'frame', pane: 'frame', focusable: true, id: '1' }
-            })
-            cool.on('modified', () => {
-                clipFrame.bounds = cool.bounds
-            })
-            cool.isWithinBounds = () => {
-                return cool.isInside(frameImage.bounds)
-            }
-            const clipFrame = new paper.Path.Rectangle({
-                from: cool.bounds.topLeft,
-                to: cool.bounds.bottomRight,
-                locked: true,
-                data: { type: 'clip', id: '1' }
-            })
-            //view.emit('autoNumbering', this.numberingId)
-            clippedGroup.addChild(clipFrame)
-            clippedGroup.addChild(frameImage)
-            clippedGroup.clipped = true
             this.setActiveSelection(cool)
+            this.canvas.view.center = cool.position
             this.canvas.view.update()
         })
+        const clipFrame = this.canvas.project.activeLayer.insertChild(frameImage.index, new paper.Path.Rectangle({
+            from: cool.bounds.topLeft,
+            to: cool.bounds.bottomRight,
+            fillColor: '#fff',
+            locked: true,
+            clipRef: frameImage,
+            data: { type: 'clip', uuid: uuid }
+        }))
+        frameImage.clipRef = clipFrame
     }
     setPxPerCm(value) {
         this.pxPerCm = value
@@ -771,10 +829,9 @@ class FrameConfigurator {
     updateFrames() {
         const frames = this.canvas.project.activeLayer.children.filter(child => child.data?.type === 'frame')
         frames && frames.forEach(frame => {
-        frame.pxPerCm = this.pxPerCm
-        frame.strokeWidth = frame.length / frame.pxPerCm
-        frame.updatePattern()
-        frame._changed(9)
+            frame.pxPerCm = this.pxPerCm
+            frame.strokeWidth = frame.length / frame.pxPerCm
+            frame._changed(9)
         })
         this.canvas.view.update()
     }
@@ -810,8 +867,10 @@ window.addEventListener('load', () => {
             if (typeof configurator.activeSelection?.setFrame === 'function') {
                 configurator.activeSelection.setFrame({
                     src: frame.src,
-                    length: frame.length / configurator.pxPerCm,
-                    offset: frame.offset / configurator.pxPerCm
+                    length: frame.length,
+                    offset: frame.offset,
+                    pxPerCm: configurator.pxPerCm,
+                    strokeWidth: frame.length / configurator.pxPerCm,
                 })
             }
             // configurator.setBgImage(environment.src, environment.size).then(() => {
@@ -828,6 +887,18 @@ window.addEventListener('load', () => {
             configurator.setBgImage(event.target.result, defaultWallSize).then(() => {
                 configurator.interface.setStep(configurator.haveArtwork() ? 3 : 2)
             })
+        }
+        reader.readAsDataURL(event.target.files[0])
+    })
+    document.getElementById('frame-file-upload').addEventListener('change', (event) => {
+        event.preventDefault()
+        const reader = new FileReader()
+        reader.onload = (event) => {
+            if (typeof configurator.activeSelection?.setFrame === 'function') {
+                configurator.activeSelection.setFrame({
+                    src: event.target.result
+                })
+            }
         }
         reader.readAsDataURL(event.target.files[0])
     })

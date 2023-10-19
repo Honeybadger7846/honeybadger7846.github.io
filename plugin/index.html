@@ -281,6 +281,7 @@
       </div>
     </div>
     <div class="step-item" step-index="2">
+      <h1 style="font-family: system-ui; margin-bottom:20px;">Upload Artwork</h1>
       <div class="environment-list">
         <label class="environment-item" style="text-align:center; width:50%; max-width:300px; height:auto;">
           <input style="display:none;" type="file" id="image-file-upload" accept="image/png, image/jpeg" />
@@ -299,10 +300,14 @@
     <!-- active selection pane -->
     <div class="selection-pane-item" id="selection-frame-pane" type="frame">
       <div id="frame-list" class="frame-list">
+        <label for="frame-file-upload" class="frame-item" style="text-align:center;">
+          <input style="display:none;" type="file" id="frame-file-upload" accept="image/png, image/jpeg" />
+          &#x2b;
+        </label>
       </div>
     </div>
     <div class="selection-pane-item" style="justify-content:center; gap:20px;" id="selection-background-pane" type="background">
-      <button id="add-artwork">Add Frame</button>
+      <button id="add-artwork">Add New Artwork</button>
       <div>
         <button id="change-wall-size">Set wall scale</button>
       </div>

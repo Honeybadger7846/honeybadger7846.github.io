@@ -6,48 +6,43 @@ paper.Frame = paper.Item.extend(
         _canScaleStroke: true,
         _size: null, // width, height
         src: null,
+        length: null,
+        offset: null,
         _image: null,
         _serializeFields: {
             src: null,
+            length: null,
+            offset: null
         },
         initialize: function Frame(props) {
             props.size = [props.width, props.height]
             this._initialize(props, new paper.Point(props.position))
             if (props.src) this.setFrame(props)
+            // https://i.imgur.com/4fRVhjt.png // green
+            // https://i.imgur.com/0kFsOHE.png // blue
+            this.setPass({ src: 'https://i.imgur.com/0kFsOHE.png', passLength: 15 })
         },
-        updatePattern: function() {
-            if (!this._image?.loaded) return
-            this.patternCanvas = document.createElement("canvas");
-            const patternContext = this.patternCanvas.getContext("2d");
-
-            // Give the pattern a width and height of 50
-            this.patternCanvas.width = Math.ceil((this.length / this.pxPerCm ));
-            this.patternCanvas.height = Math.ceil((this.length / this.pxPerCm ) / (this._image.width / this._image.height));
-            var hRatio = this.patternCanvas.width / this._image.width;
-            var vRatio = this.patternCanvas.height / this._image.height;
-            var ratio = Math.min(hRatio, vRatio);
-            patternContext.drawImage(this._image, 0, 0, this._image.width, this._image.height, 0, 0, Math.ceil(this._image.width * ratio), Math.ceil(this._image.height * ratio))
+        setPass: function (options) {
+            if (options.passLength) this.passLength = options.passLength
+            this._passImage = new Image()
+            this._passImage.src = options.src
+            this._passImage.crossOrigin = 'anonymous'
+            this._passImage.onload = () => {
+                this._passImage.loaded = true
+                this._changed(9)
+            }
         },
         setFrame: function (options) {
-            this.length = options.length
-            this.offset = options.offset
+            if (options.length) this.length = options.length
+            if (options.offset) this.offset = options.offset
+            if (options.pxPerCm) this.pxPerCm = options.pxPerCm
+            if (options.strokeWidth) this.strokeWidth = options.strokeWidth
             this._image = new Image()
             this._image.src = options.src
             this._image.crossOrigin = 'anonymous'
             this._image.onload = () => {
                 this._image.loaded = true
                 this._changed(9)
-              this.updatePattern()
-                /*
-                patternContext.drawImage(
-                    this._image,
-                    0, // + x
-                   0, // + y
-                   patternCanvas.width, // newWidth
-                   patternCanvas.height // newHeight
-                  )
-                  */
-
             }
         },
         getSize: function () {
@@ -77,64 +72,169 @@ paper.Frame = paper.Item.extend(
         },
         _draw: function (ctx, param, viewMatrix) {
             this._setStyles(ctx, param, viewMatrix)
-
-                ctx.fillStyle = this.patternCanvas ? ctx.createPattern(this.patternCanvas, 'repeat') : 'rgba(0,0,0,0)'
+            const zoom = this.getView()?.zoom || 1
+            const sideLength = this.length / this.pxPerCm
+            const minScaling = Math.min(this.scaling.x, this.scaling.y)
+            // draw pass
+            if (this._passImage?.loaded && this.passLength) {
+                const passLength = this.passLength / this.pxPerCm
+                // top shadow
+                ctx.save()
+                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
+                ctx.shadowColor = 'rgba(0,0,0,0.6)'
+                ctx.shadowBlur = 3 * zoom
+                ctx.shadowOffsetY = 3 * zoom
+                ctx.fillStyle = '#000'
+                ctx.beginPath()
+                ctx.rect(-this._size.width / 2 * this.scaling.x, -this._size.height / 2 * this.scaling.y, this._size.width * this.scaling.x, passLength)
+                ctx.closePath()
+                ctx.fill()
+                ctx.restore()
+                // bottom shadow
+                ctx.save()
+                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
+                ctx.shadowColor = 'rgba(0,0,0,0.6)'
+                ctx.shadowBlur = 3 * zoom
+                ctx.shadowOffsetY = -3 * zoom
+                ctx.fillStyle = '#000'
+                ctx.beginPath()
+                ctx.rect(-this._size.width / 2 * this.scaling.x, this._size.height / 2 * this.scaling.y -passLength, this._size.width * this.scaling.x, passLength)
+                ctx.closePath()
+                ctx.fill()
+                ctx.restore()
+                // left shadow
+                ctx.save()
+                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
+                ctx.shadowColor = 'rgba(0,0,0,0.6)'
+                ctx.shadowBlur = 3 * zoom
+                ctx.shadowOffsetX = 3 * zoom
+                ctx.fillStyle = '#000'
+                ctx.beginPath()
+                ctx.rect(-this._size.width / 2 * this.scaling.x, -this._size.height / 2 * this.scaling.y + passLength, passLength, this._size.height * this.scaling.y - passLength * 2)
+                ctx.closePath()
+                ctx.fill()
+                ctx.restore()
+                // right shadow
+                ctx.save()
+                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
+                ctx.shadowColor = 'rgba(0,0,0,0.6)'
+                ctx.shadowBlur = 3 * zoom
+                ctx.shadowOffsetX = -3 * zoom
+                ctx.fillStyle = '#000'
+                ctx.beginPath()
+                ctx.rect(this._size.width / 2 * this.scaling.x - passLength, -this._size.height / 2 * this.scaling.y + passLength, passLength, this._size.height * this.scaling.y - passLength * 2)
+                ctx.closePath()
+                ctx.fill()
+                ctx.restore()
+                // top pass
+                ctx.save()
+                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
+                ctx.beginPath()
+                ctx.rect(-this._size.width / 2 * this.scaling.x, -this._size.height / 2 * this.scaling.y, this._size.width * this.scaling.x, passLength)
+                ctx.closePath()
+                ctx.fillStyle = ctx.createPattern(this._passImage, 'repeat')
+                ctx.scale(passLength / this._passImage.width, passLength / this._passImage.width)
+                ctx.fill()
+                ctx.restore()
+                // bottom pass
+                ctx.save()
+                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
+                ctx.beginPath()
+                ctx.rect(-this._size.width / 2 * this.scaling.x, this._size.height / 2 * this.scaling.y -passLength, this._size.width * this.scaling.x, passLength)
+                ctx.closePath()
+                ctx.fillStyle = ctx.createPattern(this._passImage, 'repeat')
+                ctx.scale(passLength / this._passImage.width, passLength / this._passImage.width)
+                ctx.fill()
+                ctx.restore()
+                // left pass
+                ctx.save()
+                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
+                ctx.beginPath()
+                ctx.rect(-this._size.width / 2 * this.scaling.x, -this._size.height / 2 * this.scaling.y, passLength, this._size.height * this.scaling.y)
+                ctx.closePath()
+                ctx.fillStyle = ctx.createPattern(this._passImage, 'repeat')
+                ctx.scale(passLength / this._passImage.width, passLength / this._passImage.width)
+                ctx.fill()
+                ctx.restore()
+                // right pass
+                ctx.save()
+                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
+                ctx.beginPath()
+                ctx.rect(this._size.width / 2 * this.scaling.x - passLength, -this._size.height / 2 * this.scaling.y, passLength, this._size.height * this.scaling.y)
+                ctx.closePath()
+                ctx.fillStyle = ctx.createPattern(this._passImage, 'repeat')
+                ctx.scale(passLength / this._passImage.width, passLength / this._passImage.width)
+                ctx.fill()
+                ctx.restore()
+            }
+            // draw shadow layer
+            ctx.save()
+            ctx.lineWidth = sideLength
+            ctx.strokeStyle = '#000'
+            ctx.shadowColor = 'rgba(0,0,0,0.6)'
+            ctx.shadowBlur = sideLength * zoom
+            ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
+            ctx.strokeRect(-this._size.width / 2 * this.scaling.x, -this._size.height / 2 * this.scaling.y, this._size.width * this.scaling.x, this._size.height * this.scaling.y)
+            ctx.restore()
+            // draw frame
+            if (this._image?.loaded) {
+                ctx.fillStyle = ctx.createPattern(this._image, 'repeat')
                 // left side
                 ctx.save()
-                ctx.beginPath();
-                ctx.moveTo(-this._size.width / 2, -this._size.height / 2);
-                ctx.lineTo(-this._size.width / 2 + (this.length / this.pxPerCm ), -this._size.height / 2 + (this.length / this.pxPerCm ));
-                ctx.lineTo(-this._size.width / 2 + (this.length / this.pxPerCm ), this._size.height / 2 - (this.length / this.pxPerCm ));
-                ctx.lineTo(-this._size.width / 2,this._size.height / 2);
-                ctx.closePath();
-                ctx.translate(-this._size.width / 2, 0)
-                //ctx.rotate((-180 * Math.PI) / 180)
-                ctx.fill();
+                ctx.beginPath()
+                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
+                ctx.moveTo(-this._size.width * this.scaling.x / 2 - sideLength / 2, -this._size.height * this.scaling.y / 2 - sideLength / 2)
+                ctx.lineTo(-this._size.width * this.scaling.x / 2 + sideLength / 2, -this._size.height * this.scaling.y / 2 + sideLength / 2)
+                ctx.lineTo(-this._size.width * this.scaling.x / 2 + sideLength / 2, this._size.height * this.scaling.y / 2 - sideLength / 2)
+                ctx.lineTo(-this._size.width * this.scaling.x / 2 - sideLength / 2, this._size.height * this.scaling.y / 2 + sideLength / 2)
+                ctx.closePath()
+                ctx.translate(-this._size.width * this.scaling.x / 2 - sideLength / 2, 0)
+                ctx.scale(sideLength / this._image.width, sideLength / this._image.width)
+                ctx.fill()
                 ctx.restore()
                 // top side
                 ctx.save()
-                ctx.beginPath();
-                ctx.moveTo(-this._size.width / 2, -this._size.height / 2);
-                ctx.lineTo(this._size.width / 2, -this._size.height / 2);
-                ctx.lineTo(this._size.width / 2 - (this.length / this.pxPerCm ), -this._size.height / 2 + (this.length / this.pxPerCm ));
-                ctx.lineTo(-this._size.width / 2 + (this.length / this.pxPerCm ),-this._size.height / 2 + (this.length / this.pxPerCm ));
-                ctx.closePath();
-                ctx.translate(0, -this._size.height / 2)
+                ctx.beginPath()
+                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
+                ctx.moveTo(-this._size.width * this.scaling.x / 2 - sideLength / 2, -this._size.height * this.scaling.y / 2 - sideLength / 2)
+                ctx.lineTo(this._size.width * this.scaling.x / 2 + sideLength / 2, -this._size.height * this.scaling.y / 2 - sideLength / 2)
+                ctx.lineTo(this._size.width * this.scaling.x / 2 - sideLength / 2, -this._size.height * this.scaling.y / 2 + sideLength / 2)
+                ctx.lineTo(-this._size.width * this.scaling.x / 2 + sideLength / 2, -this._size.height * this.scaling.y / 2 + sideLength / 2)
+                ctx.closePath()
+                ctx.translate(0, -this._size.height * this.scaling.y / 2 - sideLength / 2)
                 ctx.rotate((90 * Math.PI) / 180)
-                ctx.fill();
+                ctx.scale(sideLength / this._image.width, sideLength / this._image.width)
+                ctx.fill()
                 ctx.restore()
                 // right side
                 ctx.save()
-                ctx.shadowColor = 'rgba(0,0,0,0.6)';
-                ctx.shadowBlur = 20;
-                ctx.shadowOffsetX = 10;
-                ctx.shadowOffsetY = 10;
-                ctx.beginPath();
-                ctx.moveTo(this._size.width / 2, -this._size.height / 2);
-                ctx.lineTo(this._size.width / 2 - (this.length / this.pxPerCm ), -this._size.height / 2 + (this.length / this.pxPerCm ));
-                ctx.lineTo(this._size.width / 2 - (this.length / this.pxPerCm ), this._size.height / 2 - (this.length / this.pxPerCm ));
-                ctx.lineTo(this._size.width / 2,this._size.height / 2);
-                ctx.closePath();
-                ctx.translate(this._size.width / 2, 0)
+                ctx.beginPath()
+                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
+                ctx.moveTo(this._size.width * this.scaling.x / 2 + sideLength / 2, -this._size.height * this.scaling.y / 2 - sideLength / 2)
+                ctx.lineTo(this._size.width * this.scaling.x / 2 - sideLength / 2, -this._size.height * this.scaling.y / 2 + sideLength / 2)
+                ctx.lineTo(this._size.width * this.scaling.x / 2 - sideLength / 2, this._size.height * this.scaling.y / 2 - sideLength / 2)
+                ctx.lineTo(this._size.width * this.scaling.x / 2 + sideLength / 2, this._size.height * this.scaling.y / 2 + sideLength / 2)
+                ctx.closePath()
+                ctx.translate(this._size.width * this.scaling.x / 2 + sideLength / 2, 0)
                 ctx.rotate((-180 * Math.PI) / 180)
-                ctx.fill();
+                ctx.scale(sideLength / this._image.width, sideLength / this._image.width)
+                ctx.fill()
                 ctx.restore()
                 // bottom side
                 ctx.save()
-                ctx.shadowColor = 'rgba(0,0,0,0.6)';
-                ctx.shadowBlur = 20;
-                ctx.shadowOffsetX = 10;
-                ctx.shadowOffsetY = 10;
-                ctx.beginPath();
-                ctx.moveTo(this._size.width / 2, this._size.height / 2);
-                ctx.lineTo(this._size.width / 2 - (this.length / this.pxPerCm ), this._size.height / 2 - (this.length / this.pxPerCm ));
-                ctx.lineTo(-this._size.width / 2 + (this.length / this.pxPerCm ), this._size.height / 2 - (this.length / this.pxPerCm ));
-                ctx.lineTo(-this._size.width / 2,this._size.height / 2);
-                ctx.closePath();
-                ctx.translate(0, this._size.height / 2)
+                ctx.beginPath()
+                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
+                ctx.moveTo(this._size.width * this.scaling.x / 2 + sideLength / 2, this._size.height * this.scaling.y / 2 + sideLength / 2)
+                ctx.lineTo(this._size.width * this.scaling.x / 2 - sideLength / 2, this._size.height * this.scaling.y / 2 - sideLength / 2)
+                ctx.lineTo(-this._size.width * this.scaling.x / 2 + sideLength / 2, this._size.height * this.scaling.y / 2 - sideLength / 2)
+                ctx.lineTo(-this._size.width * this.scaling.x / 2 - sideLength / 2, this._size.height * this.scaling.y / 2 + sideLength / 2)
+                ctx.closePath()
+                ctx.translate(0, this._size.height * this.scaling.y / 2 + sideLength / 2)
                 ctx.rotate((-90 * Math.PI) / 180)
-                ctx.fill();
+                ctx.scale(sideLength / this._image.width, sideLength / this._image.width)
+                ctx.fill()
                 ctx.restore()
+            }
         },
         _getBounds: function (matrix, options) {
             let rect = new paper.Rectangle(this._size).setCenter(0, 0),
