@@ -33,6 +33,58 @@ const frames = [
         offset: 0.8
     }
 ]
+const steps = [
+    {
+        name: 'select-wall',
+        el: 'selection-frame-pane',
+        activateAction: function(configurator) {
+
+        },
+        nextAction: function(configurator) {
+
+        }
+    },
+    {
+        name: 'measure-wall',
+        el:null,
+        activateAction: function(configurator) {
+
+        },
+        nextAction: function(configurator) {
+            
+        }
+    },
+    {
+        name: 'select-artwork',
+        el:null,
+        activateAction: function(configurator) {
+
+        },
+        nextAction: function(configurator) {
+            
+        }
+    },
+    {
+        name: 'select-frame',
+        el:null,
+        activateAction: function(configurator) {
+
+        },
+        nextAction: function(configurator) {
+            
+        }
+    },
+    {
+        name: 'select-pass',
+        el:null,
+        activateAction: function(configurator) {
+
+        },
+        nextAction: function(configurator) {
+            
+        }
+    }
+]
 
 const uuidv4 = () => {
     return '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, c =>
@@ -43,7 +95,6 @@ const uuidv4 = () => {
 const defaultWallSize = 300 // cm
 const selectionPaneList = {
     'frame': {
-        el: document.getElementById('selection-frame-pane'),
         update: function (configurator) {
             const activeSelection = configurator.activeSelection
             if (!activeSelection) return
@@ -71,7 +122,7 @@ class Interface {
         this.steps = 6
         this.stepsPane = document.getElementById('steps-pane')
         this.stepsCounter = document.getElementById('steps-counter')
-        this.prevStepBtn = document.getElementById('prev-step')
+        //this.prevStepBtn = document.getElementById('prev-step')
         this.nextStepBtn = document.getElementById('next-step')
         this.setStep(1)
     }
@@ -88,7 +139,7 @@ class Interface {
     }
     setStep(index) {
         this.stepIndex = Math.max(Math.min(index, this.steps), 1)
-        this.prevStepBtn.disabled = this.stepIndex < 2
+        //this.prevStepBtn.disabled = this.stepIndex < 2
         this.nextStepBtn.textContent = this.stepIndex >= this.steps ? 'Finish' : 'Next'
         this.configurator.discardActiveSelection()
         const stepCollection = document.getElementsByClassName('step-item')
@@ -109,6 +160,8 @@ class FrameConfigurator {
         this.wallSize = 300 // cm
         this.pxPerCm = 10
         this.interface = new Interface(this)
+        this.minZoom = 0.1
+        this.maxZoom = 10
         this.canvas = new paper.PaperScope
         this.canvas.setup(canvasEl)
         // frame resize
@@ -133,7 +186,7 @@ class FrameConfigurator {
         let viewBounds = this.canvas.view.bounds
         let layerBounds = this.canvas.project.activeLayer?.firstChild?.bounds
         if (layerBounds?.width > 0) {
-            let scaleRatio = Math.min(
+            let scaleRatio = Math.max(
                 viewBounds.width / layerBounds.width,
                 viewBounds.height / layerBounds.height
             )
@@ -141,6 +194,7 @@ class FrameConfigurator {
                 viewBounds.center.subtract(layerBounds.center)
             )
             this.canvas.view.scale(scaleRatio)
+            this.minZoom = scaleRatio
         }
         this.updateActiveSelection()
         return this
@@ -164,9 +218,39 @@ class FrameConfigurator {
     updateDrawings() {
         this.drawings = this.canvas.project.activeLayer.children.filter(child => child.data?.type === 'frame-image' || child.data?.type === 'frame')
     }
+    panView(offset) {
+        // experimental
+        const bgImage = this.canvas.project.activeLayer.children.find(child => child.data?.type === 'bg-image')
+        const viewBounds = this.canvas.view.bounds
+        if (!bgImage) return
+        // x axis
+        if (viewBounds.left + offset.x > bgImage.bounds.left && viewBounds.right + offset.x < bgImage.bounds.right) {
+            this.canvas.view.center = this.canvas.view.center.add(new paper.Point(offset.x, 0))
+        }
+        // x axis left
+        if (viewBounds.left < bgImage.bounds.left) {
+            this.canvas.view.center = this.canvas.view.center.subtract(new paper.Point(viewBounds.left - bgImage.bounds.left, 0))
+        }
+        // x axis right
+        if (viewBounds.right > bgImage.bounds.right) {
+            this.canvas.view.center = this.canvas.view.center.subtract(new paper.Point(viewBounds.right - bgImage.bounds.right, 0))
+        }
+        // y axis
+        if (viewBounds.top + offset.y > bgImage.bounds.top && viewBounds.bottom + offset.y < bgImage.bounds.bottom) {
+            this.canvas.view.center = this.canvas.view.center.add(new paper.Point(0, offset.y))
+        }
+        // y axis top
+        if (viewBounds.top < bgImage.bounds.top) {
+            this.canvas.view.center = this.canvas.view.center.subtract(new paper.Point(viewBounds.top - bgImage.bounds.top, 0))
+        }
+        // y axis bottom
+        if (viewBounds.bottom > bgImage.bounds.bottom) {
+            this.canvas.view.center = this.canvas.view.center.subtract(new paper.Point(viewBounds.bottom - bgImage.bounds.bottom, 0))
+        }
+        // experimental
+        //this.canvas.view.center = this.canvas.view.center.add(offset)
+    }
     initZoom() {
-        let minZoom = 0.1
-        let maxZoom = 10
         let onPointerDown = {
             zoomDistanceStart: null,
             zoomDistanceEnd: null
@@ -184,12 +268,13 @@ class FrameConfigurator {
                 oldZoom - (oldZoom * zoomFactor) :
                 oldZoom - (oldZoom / zoomFactor) : event.deltaY * 0.01
             let zoomValue = this.canvas.view.zoom - step
-            this.canvas.view.zoom = Math.max(minZoom, Math.min(zoomValue, maxZoom))
+            this.canvas.view.zoom = Math.max(this.minZoom, Math.min(zoomValue, this.maxZoom))
             if (this.selectionTool) {
                 this.selectionTool.minDistance = 1 / Math.max(1, this.canvas.view.zoom)
             }
             this.updateThickness()
-            this.canvas.view.center = this.canvas.view.center.add(mousePosition.subtract(oldCenter).multiply(1 - (oldZoom / this.canvas.view.zoom)))
+            this.panView(mousePosition.subtract(oldCenter).multiply(1 - (oldZoom / this.canvas.view.zoom)))
+            //this.canvas.view.center = this.canvas.view.center.add(mousePosition.subtract(oldCenter).multiply(1 - (oldZoom / this.canvas.view.zoom)))
             if (this.activeSelection) {
                 this.updateResizeHandles(this.activeSelection)
             }
@@ -279,6 +364,7 @@ class FrameConfigurator {
         this.discardActiveSelection()
         this.activeSelection = drawing
         this.activeSelection._validDragBeforeMouseUp = true // needed for dragging before releasing mouse
+        this.activeSelection._selected = true // needed for internal draw logic such as clip region, etc.
         this.createResizeHandles(this.activeSelection)
         this.updateDrawings()
         this.focus()
@@ -293,6 +379,7 @@ class FrameConfigurator {
             this.unFocus()
             this.removeResizeHandles(this.activeSelection)
             this.activeSelection._validDragBeforeMouseUp = false // needed for dragging before releasing mouse
+            this.activeSelection._selected = false // needed for internal draw logic such as clip region, etc.
         }
         this.activeSelection = null
         // hide scale line when we click somewhere on canvas outside of handles
@@ -309,10 +396,14 @@ class FrameConfigurator {
         }
         selection.onMouseUp = () => {
             if (this.wrapperEl) this.wrapperEl.style.cursor = 'grab'
-            selection._validDragBeforeMouseUp = false // needed for dragging before releasing mouse
+            if (!selection._validDraggingBeforeMouseUp) {
+                selection._validDragBeforeMouseUp = false // needed for dragging before releasing mouse
+            }
+            selection._validDraggingBeforeMouseUp = false
         }
         selection.onMouseDrag = () => {
             if (this.wrapperEl) this.wrapperEl.style.cursor = 'grabbing'
+            selection._validDraggingBeforeMouseUp = true // needed for dragging before releasing mouse
         }
         selection.onMouseLeave = () => {
             if (this.wrapperEl) this.wrapperEl.style.cursor = 'default'
@@ -452,7 +543,8 @@ class FrameConfigurator {
         this.selectionTool.onMouseDrag = (event) => {
             // handle pan
             if (!this.selectionTool._hitResult?.item && this.selectionTool._mouseDown) {
-                this.canvas.view.center = this.canvas.view.center.add(event.downPoint.subtract(event.point))
+                this.panView(event.downPoint.subtract(event.point))
+                //this.canvas.view.center = this.canvas.view.center.add(event.downPoint.subtract(event.point))
                 return
             }
             // trigger internal drawing/handle events
@@ -737,8 +829,11 @@ class FrameConfigurator {
             if (cool._validDragBeforeMouseUp) {
                 cool.position = cool.position.add(offset)
                 frameImage.position = frameImage.position.add(offset)
-                // clipFrame should have same bounds
-                clipFrame.bounds = cool.bounds
+                // update clip region
+                frameImage.setClip({
+                    size: cool.bounds.size,
+                    offset: cool.position.subtract(frameImage.position)
+                })
                 return
             }
             // x axis
@@ -749,7 +844,7 @@ class FrameConfigurator {
             if (cool.bounds.top + offset.y > frameImage.bounds.top && cool.bounds.bottom + offset.y < frameImage.bounds.bottom) {
                 cool.position = cool.position.add(new paper.Point(0, offset.y))
             }
-           // console.log(frameImage.bounds.right, cool.bounds.right)
+            // console.log(frameImage.bounds.right, cool.bounds.right)
             if (frameImage.bounds.right < cool.bounds.right) {
                 //cool.setSize(frameImage.bounds.right - cool.bounds.left, cool.bounds.size.height)
                 //cool.scale(1)
@@ -758,37 +853,31 @@ class FrameConfigurator {
             if (cool.bounds.size.width > frameImage.bounds.size.width || cool.bounds.size.height > frameImage.bounds.size.height) {
                 cool.fitBounds(frameImage.bounds)
             }
-            // clipFrame should have same bounds
-            clipFrame.bounds = cool.bounds
+            // update clip region
+            frameImage.setClip({
+                size: cool.bounds.size,
+                offset: cool.position.subtract(frameImage.position)
+            })
         }
-        cool.on('modified', () => {
-            clipFrame.bounds = cool.bounds
-        })
-        cool.isWithinBounds = () => {
-            return cool.isInside(frameImage.bounds)
-        }
-        const frameImage = this.canvas.project.activeLayer.insertChild(cool.index, new paper.Raster({
-            source: src,
-            crossOrigin: 'anonymous',
+        const frameImage = this.canvas.project.activeLayer.insertChild(cool.index, new paper.Artwork({
+            src: src,
             position: [0, 0],
-            blendMode: 'source-atop',
+            fillColor: 'green',
             data: { type: 'frame-image', pane: 'artwork', focusable: true, uuid: uuid }
         }))
         frameImage.on('load', () => {
             frameImage.fitBounds(cool.bounds, true)
             frameImage.position = cool.position
-            frameImage.on('modified', (delta) => {
-                //cool.position = cool.position.add(delta)
-                clipFrame.bounds = cool.bounds
-                // console.log(cool.isInside(frameImage.bounds))
-            })
             frameImage.applyBoundsTransformation = (offset) => {
                 // dragging if before mouse up
                 if (frameImage._validDragBeforeMouseUp) {
                     frameImage.position = frameImage.position.add(offset)
                     cool.position = cool.position.add(offset)
-                    // clipFrame should have same bounds
-                    clipFrame.bounds = cool.bounds
+                    // update clip region
+                    frameImage.setClip({
+                        size: cool.bounds.size,
+                        offset: cool.position.subtract(frameImage.position)
+                    })
                     return
                 }
                 // x axis
@@ -804,23 +893,19 @@ class FrameConfigurator {
                     frameImage.fitBounds(cool.bounds, true)
                     //frameImage.bounds = cool.bounds
                 }
-            }
-            frameImage.isWithinBounds = (offset) => {
-                return cool.isInside(frameImage.bounds)
+                // update clip region
+                frameImage.setClip({
+                    size: cool.bounds.size,
+                    offset: cool.position.subtract(frameImage.position)
+                })
             }
             this.setActiveSelection(cool)
-            this.canvas.view.center = cool.position
             this.canvas.view.update()
         })
-        const clipFrame = this.canvas.project.activeLayer.insertChild(frameImage.index, new paper.Path.Rectangle({
-            from: cool.bounds.topLeft,
-            to: cool.bounds.bottomRight,
-            fillColor: '#fff',
-            locked: true,
-            clipRef: frameImage,
-            data: { type: 'clip', uuid: uuid }
-        }))
-        frameImage.clipRef = clipFrame
+        frameImage.setClip({
+            size: cool.bounds.size,
+            offset: cool.position.subtract(frameImage.position)
+        })
     }
     setPxPerCm(value) {
         this.pxPerCm = value
@@ -952,9 +1037,9 @@ window.addEventListener('load', () => {
     document.getElementById('change-wall-size').addEventListener('click', () => {
         configurator.lineTool.activate()
     })
-    document.getElementById('prev-step').addEventListener('click', () => {
-        configurator.interface.setStep(configurator.interface.stepIndex - 1)
-    })
+    //document.getElementById('prev-step').addEventListener('click', () => {
+     //   configurator.interface.setStep(configurator.interface.stepIndex - 1)
+   // })
     document.getElementById('next-step').addEventListener('click', () => {
         configurator.interface.setStep(configurator.interface.stepIndex + 1)
     })
