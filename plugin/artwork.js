@@ -15,14 +15,17 @@ paper.Artwork = paper.Item.extend(
         initialize: function Artwork(props) {
             props.size = [props.width || 1, props.height || 1]
             this._initialize(props, new paper.Point(props.position))
+            this.setSrc(props.src, true)
+        },
+        setSrc: function (src, load) {
             this._image = new Image()
-            this._image.src = props.src
+            this._image.src = src
             this._image.crossOrigin = 'anonymous'
             this._image.onload = () => {
                 this._image.loaded = true
                 this.setSize(this._image.width, this._image.height)
                 this._changed(9)
-                this.emit('load')
+                load && this.emit('load')
             }
         },
         getSize: function () {

@@ -20,10 +20,15 @@ paper.Frame = paper.Item.extend(
             if (props.src) this.setFrame(props)
             // https://i.imgur.com/4fRVhjt.png // green
             // https://i.imgur.com/0kFsOHE.png // blue
-            this.setPass({ src: 'https://i.imgur.com/0kFsOHE.png', passLength: 15 })
+            //this.setPass({ src: 'https://i.imgur.com/0kFsOHE.png', passLength: 15 })
         },
         setPass: function (options) {
-            if (options.passLength) this.passLength = options.passLength
+            if (!options.passLength || options.passLength === 0) {
+                delete this._passImage
+                this._changed(9)
+                return
+            }
+            this.passLength = options.passLength
             this._passImage = new Image()
             this._passImage.src = options.src
             this._passImage.crossOrigin = 'anonymous'
@@ -170,7 +175,7 @@ paper.Frame = paper.Item.extend(
             // draw shadow layer
             ctx.save()
             ctx.lineWidth = sideLength
-            ctx.strokeStyle = '#000'
+            ctx.strokeStyle = 'rgba(0,0,0,0)'
             ctx.shadowColor = 'rgba(0,0,0,0.6)'
             ctx.shadowBlur = sideLength * zoom
             ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)

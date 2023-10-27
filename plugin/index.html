@@ -207,20 +207,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 150px;
-      height: 100px;
+      width: 100%;
+      max-width: 300px;
+      height: 100%;
+      max-height: 200px;
       font-size: 100px;
       font-weight: bolder;
       color: #037171;
-      border: 1px solid #037171;
+      border: 1px solid #000;
       border-radius: 3px;
       padding: 10px;
-      filter: grayscale(1);
     }
 
     .environment-item:hover {
       opacity: 0.7;
-      filter: none;
+      border: 1px solid #037171;
       cursor: pointer;
     }
 
@@ -271,8 +272,8 @@
     <!-- canvas is always active and it's step 3 -->
     <canvas id="canvas"></canvas>
     <!-- steps -->
-    <div class="step-item" style="background-color: #fff;" step-index="1">
-      <h1 style="font-family: system-ui; margin-bottom:20px;">Select Environment</h1>
+    <div class="step-item" id="select-environment" style="background-color: #fff;" step-index="1">
+      <h1 style="font-family: system-ui; margin-bottom:20px; color:#037171;">Select Environment</h1>
       <div id="environment-list" class="environment-list">
         <label class="environment-item" style="text-align:center;">
           <input style="display:none;" type="file" id="wall-file-upload" accept="image/png, image/jpeg" />
@@ -280,8 +281,8 @@
         </label>
       </div>
     </div>
-    <div class="step-item" step-index="2">
-      <h1 style="font-family: system-ui; margin-bottom:20px;">Upload Artwork</h1>
+    <div class="step-item" id="select-artwork" step-index="2">
+      <h1 style="font-family: system-ui; margin-bottom:20px; color:#037171;">Upload Artwork</h1>
       <div class="environment-list">
         <label class="environment-item" style="text-align:center; width:50%; max-width:300px; height:auto;">
           <input style="display:none;" type="file" id="image-file-upload" accept="image/png, image/jpeg" />
@@ -298,12 +299,24 @@
     </div>
   -->
     <!-- active selection pane -->
-    <div class="selection-pane-item" id="selection-frame-pane" type="frame">
+    <div class="selection-pane-item" type="artwork">
+      <div id="artwork-list" class="frame-list">
+        <label for="artwork-file-upload" class="frame-item" style="text-align:center;">
+          <input style="display:none;" type="file" id="artwork-file-upload" accept="image/png, image/jpeg" />
+          &#x2b;
+        </label>
+      </div>
+    </div>
+    <div class="selection-pane-item" type="frame">
       <div id="frame-list" class="frame-list">
         <label for="frame-file-upload" class="frame-item" style="text-align:center;">
           <input style="display:none;" type="file" id="frame-file-upload" accept="image/png, image/jpeg" />
           &#x2b;
         </label>
+      </div>
+    </div>
+    <div class="selection-pane-item" type="pass">
+      <div id="pass-list" class="frame-list">
       </div>
     </div>
     <div class="selection-pane-item" style="justify-content:center; gap:20px;" id="selection-background-pane" type="background">

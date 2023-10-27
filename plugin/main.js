@@ -12,7 +12,20 @@ const environments = [
         size: 300
     }
 ]
-
+const artworks = [
+    {
+        src: 'https://i.imgur.com/zooN3dR.jpg',
+    },
+    {
+        src: 'https://i.imgur.com/TDCbxIR.jpg',
+    },
+    {
+        src: 'https://i.imgur.com/3z8rW8T.jpg',
+    },
+    {
+        src: 'https://i.imgur.com/pTDCClv.jpg',
+    }
+]
 const frames = [
     {
         id: '7021C',
@@ -33,56 +46,56 @@ const frames = [
         offset: 0.8
     }
 ]
+const pass = [
+    {
+        src: 'https://i.imgur.com/QDs68dd.png',
+        passLength: 0
+    },
+    {
+        src: 'https://i.imgur.com/0kFsOHE.png',
+        passLength: 15
+    },
+    {
+        src: 'https://i.imgur.com/4fRVhjt.png',
+        passLength: 20
+    }
+]
 const steps = [
     {
         name: 'select-wall',
-        el: 'selection-frame-pane',
-        activateAction: function(configurator) {
-
-        },
-        nextAction: function(configurator) {
-
+        el: 'select-environment',
+        activateAction: function (configurator) {
         }
     },
     {
         name: 'measure-wall',
-        el:null,
-        activateAction: function(configurator) {
-
+        el: null,
+        activateAction: function (configurator) {
+            configurator.lineTool.activate()
         },
-        nextAction: function(configurator) {
-            
-        }
+        pane: 'scale'
     },
     {
         name: 'select-artwork',
-        el:null,
-        activateAction: function(configurator) {
-
-        },
-        nextAction: function(configurator) {
-            
+        el: 'select-artwork',
+        activateAction: function (configurator) {
+            configurator.selectionTool.activate()
+            if (configurator.scale) configurator.removeDrawing(configurator.scale)
         }
     },
     {
         name: 'select-frame',
-        el:null,
-        activateAction: function(configurator) {
-
+        el: null,
+        activateAction: function (configurator) {
         },
-        nextAction: function(configurator) {
-            
-        }
+        pane: 'frame'
     },
     {
         name: 'select-pass',
-        el:null,
-        activateAction: function(configurator) {
-
+        el: null,
+        activateAction: function (configurator) {
         },
-        nextAction: function(configurator) {
-            
-        }
+        pane: 'pass'
     }
 ]
 
@@ -119,37 +132,42 @@ const selectionPaneList = {
 class Interface {
     constructor(configurator) {
         this.configurator = configurator
-        this.steps = 6
+        this.steps = steps.length
         this.stepsPane = document.getElementById('steps-pane')
         this.stepsCounter = document.getElementById('steps-counter')
         //this.prevStepBtn = document.getElementById('prev-step')
         this.nextStepBtn = document.getElementById('next-step')
-        this.setStep(1)
+        this.setStep(0)
     }
     updateSelectionPane(pane) {
-        if (!pane) pane = 'background' // default if no selection
+        if (!pane) pane = steps[this.stepIndex]?.pane
         const paneCollection = document.getElementsByClassName('selection-pane-item')
         for (let i = 0; i < paneCollection.length; i++) {
             paneCollection[i].style.display = 'none'
             if (paneCollection[i].getAttribute('type') === pane) {
                 paneCollection[i].style.display = 'flex'
-                selectionPaneList[pane].update(this.configurator)
+                if (selectionPaneList[pane]) selectionPaneList[pane].update(this.configurator)
             }
         }
     }
     setStep(index) {
-        this.stepIndex = Math.max(Math.min(index, this.steps), 1)
+        this.stepIndex = Math.max(Math.min(index, this.steps), 0)
+        console.log(this.stepIndex)
+        const step = steps[this.stepIndex]
         //this.prevStepBtn.disabled = this.stepIndex < 2
         this.nextStepBtn.textContent = this.stepIndex >= this.steps ? 'Finish' : 'Next'
         this.configurator.discardActiveSelection()
         const stepCollection = document.getElementsByClassName('step-item')
         for (let i = 0; i < stepCollection.length; i++) {
             stepCollection[i].style.display = 'none'
-            if (Number(stepCollection[i].getAttribute('step-index')) === this.stepIndex) {
-                stepCollection[i].style.display = 'flex'
-            }
         }
-        this.stepsCounter.innerHTML = `Step: ${this.stepIndex} / ${this.steps}`
+        if (step) {
+            const stepEl = document.getElementById(step.el)
+            console.log(stepEl)
+            if (stepEl) stepEl.style.display = 'flex'
+            step.activateAction(this.configurator)
+        }
+        this.stepsCounter.innerHTML = `Step: ${this.stepIndex + 1} / ${this.steps + 1}`
     }
 }
 class FrameConfigurator {
@@ -186,7 +204,7 @@ class FrameConfigurator {
         let viewBounds = this.canvas.view.bounds
         let layerBounds = this.canvas.project.activeLayer?.firstChild?.bounds
         if (layerBounds?.width > 0) {
-            let scaleRatio = Math.max(
+            let scaleRatio = Math.min(
                 viewBounds.width / layerBounds.width,
                 viewBounds.height / layerBounds.height
             )
@@ -194,7 +212,7 @@ class FrameConfigurator {
                 viewBounds.center.subtract(layerBounds.center)
             )
             this.canvas.view.scale(scaleRatio)
-            this.minZoom = scaleRatio
+            //this.minZoom = scaleRatio
         }
         this.updateActiveSelection()
         return this
@@ -219,6 +237,8 @@ class FrameConfigurator {
         this.drawings = this.canvas.project.activeLayer.children.filter(child => child.data?.type === 'frame-image' || child.data?.type === 'frame')
     }
     panView(offset) {
+        this.canvas.view.center = this.canvas.view.center.add(offset)
+        return
         // experimental
         const bgImage = this.canvas.project.activeLayer.children.find(child => child.data?.type === 'bg-image')
         const viewBounds = this.canvas.view.bounds
@@ -280,7 +300,7 @@ class FrameConfigurator {
             }
         })
         this.wrapperEl.addEventListener('touchstart', (event) => {
-            if (event.touches.length == 2) {
+            if (event.touches.length > 1) {
                 event.preventDefault()
                 event.stopImmediatePropagation()
                 this.discardActiveSelection()
@@ -292,7 +312,7 @@ class FrameConfigurator {
             }
         })
         this.wrapperEl.addEventListener('touchmove', (event) => {
-            if (event.touches.length == 2) {
+            if (event.touches.length > 1) {
                 event.preventDefault()
                 event.stopImmediatePropagation()
                 let dx = event.touches[0].pageX - event.touches[1].pageX
@@ -301,13 +321,11 @@ class FrameConfigurator {
                 let factor =
                     onPointerDown.zoomDistanceStart / onPointerDown.zoomDistanceEnd
                 onPointerDown.zoomDistanceStart = onPointerDown.zoomDistanceEnd
-                this.canvas.view.zoom = Math.max(minZoom, Math.min(this.canvas.view.zoom / factor, maxZoom))
+                this.canvas.view.zoom = Math.max(this.minZoom, Math.min(this.canvas.view.zoom / factor, this.maxZoom))
                 this.updateThickness()
                 this.canvas.view.zoom._needsUpdate = true
+                this.discardActiveSelection()
                 this.canvas.view.zoom.update()
-                if (this.activeSelection) {
-                    this.updateResizeHandles(this.activeSelection)
-                }
             }
         })
         this.wrapperEl.addEventListener('touchend', () => {
@@ -364,7 +382,7 @@ class FrameConfigurator {
         this.discardActiveSelection()
         this.activeSelection = drawing
         this.activeSelection._validDragBeforeMouseUp = true // needed for dragging before releasing mouse
-        this.activeSelection._selected = true // needed for internal draw logic such as clip region, etc.
+        this.activeSelection._selected = false // needed for internal draw logic such as clip region, etc.
         this.createResizeHandles(this.activeSelection)
         this.updateDrawings()
         this.focus()
@@ -382,8 +400,6 @@ class FrameConfigurator {
             this.activeSelection._selected = false // needed for internal draw logic such as clip region, etc.
         }
         this.activeSelection = null
-        // hide scale line when we click somewhere on canvas outside of handles
-        if (this.scale) this.removeDrawing(this.scale)
         if (this.interface) this.interface.updateSelectionPane(this.activeSelection)
     }
     createResizeHandles(selection) {
@@ -398,6 +414,9 @@ class FrameConfigurator {
             if (this.wrapperEl) this.wrapperEl.style.cursor = 'grab'
             if (!selection._validDraggingBeforeMouseUp) {
                 selection._validDragBeforeMouseUp = false // needed for dragging before releasing mouse
+                selection._selected = true // needed for internal draw logic such as clip region, etc.
+                selection._changed(9)
+                this.canvas.view.update()
             }
             selection._validDraggingBeforeMouseUp = false
         }
@@ -413,7 +432,7 @@ class FrameConfigurator {
             selection.applyBoundsTransformation?.(event.delta)
             this.updateResizeHandles(selection)
         }
-        const handleRadius = 5
+        const handleRadius = 15
         const handles = this.getResizeHandles()
         selection._handles = []
         handles.forEach(handle => {
@@ -455,6 +474,15 @@ class FrameConfigurator {
                     selection.scale(diffY, selection.bounds[handle.opposite])
                 } else {
                     selection.scale(diffX, diffY, selection.bounds[handle.opposite])
+                    if (selection.frameImage) {
+                        selection.frameImage.scale(diffX, selection.bounds[handle.opposite])
+                        const checkBounds = new paper.Rectangle(selection.bounds.topLeft.subtract(30, 30), selection.bounds.bottomRight.add(30, 30))
+                        if (!selection.isInside(selection.frameImage.bounds)) {
+                            selection.frameImage.fitBounds(checkBounds, true)
+                        }
+                        //console.log(selection.isInside(selection.frameImage.bounds))
+                    }
+                    console.log("AICI?")
                 }
                 selection.applyBoundsTransformation?.({ x: 0, y: 0 })
                 this.updateResizeHandles(selection)
@@ -464,6 +492,46 @@ class FrameConfigurator {
             selection._handles.push(handleEl)
 
         })
+        // create name
+        selection._nameText = new paper.PointText({
+            point: selection.bounds.topCenter.subtract(new paper.Point(0, 45 / this.canvas.view.zoom)),
+            content: selection.data?.name,
+            locked: true,
+            fillColor: '#037171', //path.strokeColor,
+            fontSize: 15 / this.canvas.view.zoom,
+            justification: 'center',
+            ref: selection,
+            visible: selection.visible,
+            data: {
+                type: 'handle'
+            }
+        })
+        selection._nameText.position = selection.bounds.topCenter.subtract(new paper.Point(0, 30 / this.canvas.view.zoom))
+        // create drag handle for frame
+        if (selection?.data?.type === 'frame') {
+            selection._dragHandle = new paper.Path.Circle({
+                center: this.getClosestVisibleBound(selection),
+                radius: 30 / this.canvas.view.zoom,
+                fillColor: '#037171',
+                strokeColor: '#fff',
+                strokeWidth: 1 / this.canvas.view.zoom,
+                ref: selection,
+                data: {
+                    type: 'handle'
+                }
+            })
+            selection._dragHandle.onMouseEnter = () => {
+                this.wrapperEl.style.cursor = 'move'
+            }
+            selection._dragHandle.onMouseLeave = () => {
+                this.wrapperEl.style.cursor = 'default'
+            }
+            selection._dragHandle.mouseDragEvent = (event) => {
+                if (selection.data.locked) return
+                selection.applyBoundsTransformation?.(event.delta)
+                this.updateResizeHandles(selection)
+            }
+        }
     }
     updateResizeHandles(selection) {
         if (Array.isArray(selection._handles)) {
@@ -473,6 +541,12 @@ class FrameConfigurator {
                 handle.position = selection.bounds[handles[index].name]
             })
         }
+        if (selection._nameText) {
+            selection._nameText.position = selection.bounds.topCenter.subtract(new paper.Point(0, 30 / this.canvas.view.zoom))
+        }
+        if (selection._dragHandle) {
+            selection._dragHandle.position = this.getClosestVisibleBound(selection)
+        }
     }
     removeResizeHandles(selection) {
         if (Array.isArray(selection._handles)) {
@@ -480,6 +554,21 @@ class FrameConfigurator {
                 handle.remove()
             })
         }
+        if (selection._nameText) {
+            selection._nameText.remove()
+        }
+        if (selection._dragHandle) {
+            selection._dragHandle.remove()
+        }
+    }
+    getClosestVisibleBound(selection) {
+        if (!selection) return new paper.Point(0, 0)
+        const boundsList = [selection.bounds.topRight.add(new paper.Point( 45 / this.canvas.view.zoom, -45 / this.canvas.view.zoom)),
+     selection.bounds.topLeft.add(new paper.Point( -45 / this.canvas.view.zoom, -45 / this.canvas.view.zoom)),
+      selection.bounds.bottomRight.add(new paper.Point( 45 / this.canvas.view.zoom, 45 / this.canvas.view.zoom)),
+       selection.bounds.bottomLeft.add(new paper.Point( -45 / this.canvas.view.zoom, 45 / this.canvas.view.zoom))]
+        const closestVisible = boundsList.find(bound => bound.isInside(this.canvas.view.bounds))
+        return closestVisible
     }
     isSelectableDrawing(drawing) {
         if (!drawing?.data) return
@@ -606,7 +695,7 @@ class FrameConfigurator {
         }
     }
     createPathHandles(path, ignorePixelsPerUnit) {
-        const handleSize = 10
+        const handleSize = 20
         if (Array.isArray(path._handles)) {
             path._handles.forEach(handle => {
                 handle.remove()
@@ -711,7 +800,7 @@ class FrameConfigurator {
             content: `${this.wallSize} cm`,
             locked: true,
             fillColor: '#037171', //path.strokeColor,
-            fontSize: 40,
+            fontSize: 20 / this.canvas.view.zoom,
             justification: 'center',
             ref: path,
             visible: path.visible,
@@ -728,7 +817,7 @@ class FrameConfigurator {
             }
             let center = path.curves[0].getLocationAtTime(0.5).point
             // y-value measure text
-            let vector2 = center.add(new paper.Point(25, 0)).subtract(center)
+            let vector2 = center.add(new paper.Point(20 / this.canvas.view.zoom, 20 / this.canvas.view.zoom)).subtract(center)
             vector2.angle = visibleText ? vector.angle + 90 : vector.angle - 90
             position = center.add(vector2)
         }
@@ -822,20 +911,21 @@ class FrameConfigurator {
             pxPerCm: this.pxPerCm,
             locked: false,
             src: null,
-            data: { type: 'frame', pane: 'frame', focusable: true, uuid: uuid }
+            data: { type: 'frame', pane: 'frame', focusable: true, uuid: uuid, name: `Lucrare 1` }
         })
         cool.applyBoundsTransformation = (offset) => {
             // dragging if before mouse up
-            if (cool._validDragBeforeMouseUp) {
-                cool.position = cool.position.add(offset)
-                frameImage.position = frameImage.position.add(offset)
-                // update clip region
-                frameImage.setClip({
-                    size: cool.bounds.size,
-                    offset: cool.position.subtract(frameImage.position)
-                })
-                return
-            }
+            // if (cool._validDragBeforeMouseUp) {
+            cool.position = cool.position.add(offset)
+            frameImage.position = frameImage.position.add(offset)
+            // update clip region
+            frameImage.setClip({
+                size: cool.bounds.size,
+                offset: cool.position.subtract(frameImage.position)
+            })
+            return
+            // }
+            /*
             // x axis
             if (cool.bounds.left + offset.x > frameImage.bounds.left && cool.bounds.right + offset.x < frameImage.bounds.right) {
                 cool.position = cool.position.add(new paper.Point(offset.x, 0))
@@ -851,24 +941,31 @@ class FrameConfigurator {
             }
             // size
             if (cool.bounds.size.width > frameImage.bounds.size.width || cool.bounds.size.height > frameImage.bounds.size.height) {
-                cool.fitBounds(frameImage.bounds)
+                // cool.fitBounds(frameImage.bounds)
             }
             // update clip region
             frameImage.setClip({
                 size: cool.bounds.size,
                 offset: cool.position.subtract(frameImage.position)
             })
+            */
         }
         const frameImage = this.canvas.project.activeLayer.insertChild(cool.index, new paper.Artwork({
             src: src,
             position: [0, 0],
             fillColor: 'green',
-            data: { type: 'frame-image', pane: 'artwork', focusable: true, uuid: uuid }
+            data: { type: 'frame-image', pane: 'artwork', focusable: true, uuid: uuid, name: `Lucrare 1` }
         }))
         frameImage.on('load', () => {
             frameImage.fitBounds(cool.bounds, true)
             frameImage.position = cool.position
+            cool.frameImage = frameImage // experimental
             frameImage.applyBoundsTransformation = (offset) => {
+                // size
+                if (!cool.isInside(frameImage.bounds)) {
+                    const bounds = new paper.Rectangle(cool.bounds.topLeft.subtract(30, 30), cool.bounds.bottomRight.add(30, 30))
+                    frameImage.fitBounds(bounds, true)
+                }
                 // dragging if before mouse up
                 if (frameImage._validDragBeforeMouseUp) {
                     frameImage.position = frameImage.position.add(offset)
@@ -887,11 +984,6 @@ class FrameConfigurator {
                 // y axis
                 if (frameImage.bounds.top + offset.y < cool.bounds.top && frameImage.bounds.bottom + offset.y > cool.bounds.bottom) {
                     frameImage.position = frameImage.position.add(new paper.Point(0, offset.y))
-                }
-                // size
-                if (frameImage.bounds.size.width < cool.bounds.size.width || frameImage.bounds.size.height < cool.bounds.size.height) {
-                    frameImage.fitBounds(cool.bounds, true)
-                    //frameImage.bounds = cool.bounds
                 }
                 // update clip region
                 frameImage.setClip({
@@ -934,8 +1026,30 @@ window.addEventListener('load', () => {
         itemDiv.appendChild(imageEl)
         itemDiv.addEventListener('click', () => {
             configurator.setBgImage(environment.src, environment.size).then(() => {
-                configurator.interface.setStep(configurator.haveArtwork() ? 3 : 2)
+                configurator.interface.setStep(2)
+                //configurator.interface.setStep(configurator.haveArtwork() ? 3 : 2)
             })
+        })
+        wrapper.appendChild(itemDiv)
+    })
+    // add artworks
+    artworks.forEach(artwork => {
+        const wrapper = document.getElementById('artwork-list')
+        const itemDiv = document.createElement('div')
+        itemDiv.classList.add('frame-item')
+        const imageEl = document.createElement('img')
+        imageEl.setAttribute('src', artwork.src)
+        imageEl.classList.add('frame-image')
+        itemDiv.appendChild(imageEl)
+        itemDiv.addEventListener('click', () => {
+            if (typeof configurator.activeSelection?.setSrc === 'function') {
+                configurator.activeSelection.setSrc(artwork.src)
+            } else {
+                const artworkEl = configurator.canvas.project.activeLayer.children.find(child => child.data?.type === 'frame-image')
+                if (artworkEl) {
+                    artworkEl.setSrc(artwork.src)
+                }
+            }
         })
         wrapper.appendChild(itemDiv)
     })
@@ -957,10 +1071,42 @@ window.addEventListener('load', () => {
                     pxPerCm: configurator.pxPerCm,
                     strokeWidth: frame.length / configurator.pxPerCm,
                 })
+            } else {
+                const frameEl = configurator.canvas.project.activeLayer.children.find(child => child.data?.type === 'frame')
+                if (frameEl) {
+                    frameEl.setFrame({
+                        src: frame.src,
+                        length: frame.length,
+                        offset: frame.offset,
+                        pxPerCm: configurator.pxPerCm,
+                        strokeWidth: frame.length / configurator.pxPerCm,
+                    })
+                    configurator.setActiveSelection(frameEl)
+                }
             }
             // configurator.setBgImage(environment.src, environment.size).then(() => {
             //   configurator.interface.setStep(configurator.haveArtwork() ? 3 : 2)
             //  })
+        })
+        wrapper.appendChild(itemDiv)
+    })
+    // add pass
+    pass.forEach(pas => {
+        const wrapper = document.getElementById('pass-list')
+        const itemDiv = document.createElement('div')
+        itemDiv.classList.add('frame-item')
+        const imageEl = document.createElement('img')
+        imageEl.setAttribute('src', pas.src)
+        imageEl.classList.add('frame-image')
+        itemDiv.appendChild(imageEl)
+        itemDiv.addEventListener('click', () => {
+            const frameEl = configurator.canvas.project.activeLayer.children.find(child => child.data?.type === 'frame')
+                if (frameEl) {
+                    frameEl.setPass({
+                        src: pas.src,
+                        passLength: pas.passLength
+                    })
+                }
         })
         wrapper.appendChild(itemDiv)
     })
@@ -970,7 +1116,8 @@ window.addEventListener('load', () => {
         const reader = new FileReader()
         reader.onload = (event) => {
             configurator.setBgImage(event.target.result, defaultWallSize).then(() => {
-                configurator.interface.setStep(configurator.haveArtwork() ? 3 : 2)
+                configurator.interface.setStep(1)
+                //configurator.interface.setStep(configurator.haveArtwork() ? 3 : 2)
             })
         }
         reader.readAsDataURL(event.target.files[0])
@@ -1038,8 +1185,8 @@ window.addEventListener('load', () => {
         configurator.lineTool.activate()
     })
     //document.getElementById('prev-step').addEventListener('click', () => {
-     //   configurator.interface.setStep(configurator.interface.stepIndex - 1)
-   // })
+    //   configurator.interface.setStep(configurator.interface.stepIndex - 1)
+    // })
     document.getElementById('next-step').addEventListener('click', () => {
         configurator.interface.setStep(configurator.interface.stepIndex + 1)
     })
