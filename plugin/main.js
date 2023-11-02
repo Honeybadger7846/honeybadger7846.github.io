@@ -1103,7 +1103,10 @@ class FrameConfigurator {
     updatePaintingName(name) {
         const painting = this.activeSelection
         if (!painting) return
-        painting.data.name = name.trim()
+        const paintingItems = this.canvas.project.activeLayer.children.filter(child => child.data?.uuid === painting.data.uuid) ?? []
+        paintingItems.forEach(item => {
+            item.data.name = name.trim()
+        })
         this.updateActiveSelection()
     }
     getPaintings() {
@@ -1111,7 +1114,6 @@ class FrameConfigurator {
     }
     removePainting(painting) {
         const paintingItem = painting ?? this.activeSelection
-        console.log("WTF?")
         if (!paintingItem) return
         if (confirm(`Are you sure you want to remove ${paintingItem.data.name} ?`)) {
             this.discardActiveSelection()
