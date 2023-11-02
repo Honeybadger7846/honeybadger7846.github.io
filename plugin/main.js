@@ -1,3 +1,10 @@
+
+const uuidv4 = () => {
+    return '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, c =>
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    )
+}
+
 const environments = [
     {
         src: 'https://i.imgur.com/KPFoL2H.jpg',
@@ -15,15 +22,19 @@ const environments = [
 const artworks = [
     {
         src: 'https://i.imgur.com/zooN3dR.jpg',
+        id: uuidv4()
     },
     {
         src: 'https://i.imgur.com/TDCbxIR.jpg',
+        id: uuidv4()
     },
     {
         src: 'https://i.imgur.com/3z8rW8T.jpg',
+        id: uuidv4()
     },
     {
         src: 'https://i.imgur.com/pTDCClv.jpg',
+        id: uuidv4()
     }
 ]
 const frames = [
@@ -71,6 +82,7 @@ const steps = [
         name: 'measure-wall',
         el: null,
         activateAction: function (configurator) {
+            configurator.showMeasureInfo()
             configurator.lineTool.activate()
         },
         pane: 'scale'
@@ -81,31 +93,20 @@ const steps = [
         activateAction: function (configurator) {
             configurator.selectionTool.activate()
             if (configurator.scale) configurator.removeDrawing(configurator.scale)
+            document.getElementById('scale-confirm').style.display = 'none'
         }
     },
     {
-        name: 'select-frame',
+        name: 'configurator',
         el: null,
         activateAction: function (configurator) {
+            document.getElementById('painting-options').style.display = 'flex'
         },
-        pane: 'frame'
-    },
-    {
-        name: 'select-pass',
-        el: null,
-        activateAction: function (configurator) {
-        },
-        pane: 'pass'
+        pane: 'background', //'frame'
     }
 ]
-
-const uuidv4 = () => {
-    return '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, c =>
-        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    )
-}
-
-const defaultWallSize = 300 // cm
+const defaultWallSize = 300
+const defaultPaintingSize = { width: 120, height: 80 }
 const selectionPaneList = {
     'frame': {
         update: function (configurator) {
@@ -121,6 +122,8 @@ const selectionPaneList = {
     },
     'background': {
         update: function (configurator) {
+            console.log("HAPPENS BG")
+            if (configurator.scale) configurator.removeDrawing(configurator.scale)
         }
     },
     'scale': {
@@ -128,15 +131,16 @@ const selectionPaneList = {
         }
     }
 }
+const defaultPane = 'background'
 
 class Interface {
     constructor(configurator) {
         this.configurator = configurator
         this.steps = steps.length
         this.stepsPane = document.getElementById('steps-pane')
-        this.stepsCounter = document.getElementById('steps-counter')
-        //this.prevStepBtn = document.getElementById('prev-step')
-        this.nextStepBtn = document.getElementById('next-step')
+        this.stepIndex = 0
+        //this.stepsPaintingOptions = document.getElementById('painting-options')
+        //this.nextStepBtn = document.getElementById('next-step')
         this.setStep(0)
     }
     updateSelectionPane(pane) {
@@ -149,13 +153,33 @@ class Interface {
                 if (selectionPaneList[pane]) selectionPaneList[pane].update(this.configurator)
             }
         }
+        this.updatePaintingSelectionOptions()
+        this.updatePaintingOptions(pane)
+    }
+    updatePaintingSelectionOptions() {
+       // if (this.configurator.activeSelection) {
+            document.getElementById('painting-name-options').style.display = this.configurator.activeSelection ? 'flex' : 'none'
+            document.getElementById('painting-selection-options').style.display = this.configurator.activeSelection ? 'flex' : 'none'
+            if (this.configurator.activeSelection) {
+                document.getElementById('painting-name-options').innerHTML = this.configurator.activeSelection.data?.name
+            }
+        //}
+    }
+    updatePaintingOptions(pane) {
+        const paintingOptionsCollection = document.getElementsByClassName('painting-options-item')
+        //const activePane = this.configurator.activeSelection?.data?.pane
+        for (let i = 0; i < paintingOptionsCollection.length; i++) {
+            paintingOptionsCollection[i].style.color = '#000'
+            if (paintingOptionsCollection[i].getAttribute('type') === pane) {
+                paintingOptionsCollection[i].style.color = '#037171'
+                if (selectionPaneList[pane]) selectionPaneList[pane].update(this.configurator)
+            }
+        }
     }
     setStep(index) {
         this.stepIndex = Math.max(Math.min(index, this.steps), 0)
         console.log(this.stepIndex)
         const step = steps[this.stepIndex]
-        //this.prevStepBtn.disabled = this.stepIndex < 2
-        this.nextStepBtn.textContent = this.stepIndex >= this.steps ? 'Finish' : 'Next'
         this.configurator.discardActiveSelection()
         const stepCollection = document.getElementsByClassName('step-item')
         for (let i = 0; i < stepCollection.length; i++) {
@@ -167,7 +191,20 @@ class Interface {
             if (stepEl) stepEl.style.display = 'flex'
             step.activateAction(this.configurator)
         }
-        this.stepsCounter.innerHTML = `Step: ${this.stepIndex + 1} / ${this.steps + 1}`
+        //this.stepsCounter.innerHTML = `Step: ${this.stepIndex + 1} / ${this.steps + 1}`
+    }
+    addArtworkItem(artwork) {
+            const wrapper = document.getElementById('artwork-list')
+            const itemDiv = document.createElement('div')
+            itemDiv.classList.add('frame-item')
+            const imageEl = document.createElement('img')
+            imageEl.setAttribute('src', artwork.src)
+            imageEl.classList.add('frame-image')
+            itemDiv.appendChild(imageEl)
+            itemDiv.addEventListener('click', () => {
+                this.configurator.setArtwork(artwork)
+            })
+            wrapper.appendChild(itemDiv)
     }
 }
 class FrameConfigurator {
@@ -197,7 +234,7 @@ class FrameConfigurator {
         this.initSelection()
     }
     haveArtwork() {
-        return this.canvas.project.activeLayer.children.find(child => child.data?.type === 'frame-image')
+        return this.canvas.project.activeLayer.children.find(child => child.data?.type === 'artwork')
     }
     fitToScreen() {
         this.canvas.view.update()
@@ -234,7 +271,7 @@ class FrameConfigurator {
         })
     }
     updateDrawings() {
-        this.drawings = this.canvas.project.activeLayer.children.filter(child => child.data?.type === 'frame-image' || child.data?.type === 'frame')
+        this.drawings = this.canvas.project.activeLayer.children.filter(child => child.data?.type === 'artwork' || child.data?.type === 'frame')
     }
     panView(offset) {
         this.canvas.view.center = this.canvas.view.center.add(offset)
@@ -455,7 +492,7 @@ class FrameConfigurator {
             }
             handleEl.mouseDragEvent = (event) => {
                 let isDotCircle = selection.data.type === 'dotCircle' // only allow resizing same aspect ratio
-                let isText = selection.data?.type === 'frame-image' //(selection.rotation !== 0 || selection.data?.matrixRotation !== 0) || selection.data.type === 'text' // only allow resizing same aspect ratio
+                let isText = selection.data?.type === 'artwork' //(selection.rotation !== 0 || selection.data?.matrixRotation !== 0) || selection.data.type === 'text' // only allow resizing same aspect ratio
                 let xHandles = ['topLeft', 'topRight', 'bottomRight', 'bottomLeft', 'leftCenter', 'rightCenter']
                 let yHandles = ['topLeft', 'topRight', 'bottomRight', 'bottomLeft', 'topCenter', 'bottomCenter']
                 let centerXHandles = ['leftCenter', 'rightCenter']
@@ -463,24 +500,26 @@ class FrameConfigurator {
                 let originalBounds = new paper.Rectangle(selection.bounds.topLeft, selection.bounds.bottomRight)
                 let handleBounds = new paper.Rectangle(selection.bounds[handle.opposite], event.point)
                 let shiftKey = paper.Key.isDown('shift')
-                let diffX = xHandles.includes(handle.name) ? handleBounds.width / originalBounds.width : 1
-                let diffY = yHandles.includes(handle.name) ? shiftKey || isDotCircle ? handleBounds.width / originalBounds.height : handleBounds.height / originalBounds.height : 1
+                let diffX = xHandles.includes(handle.name) && handleBounds.width / originalBounds.width
+                let diffY = yHandles.includes(handle.name) && handleBounds.height / originalBounds.height
+                /*
                 if ((xHandles.includes(handle.name) || yHandles.includes(handle.name) || centerXHandles.includes(handle.name) || centerYHandles.includes(handle.name)) && isText) {
                     selection.scale(diffX, selection.bounds[handle.opposite])
-                } else if (centerXHandles.includes(handle.name) && (shiftKey || isDotCircle)) {
-                    selection.scale(diffX, selection.bounds[handle.opposite])
-                } else if (centerYHandles.includes(handle.name) && (shiftKey || isDotCircle)) {
-                    diffY = handleBounds.height / originalBounds.height
-                    selection.scale(diffY, selection.bounds[handle.opposite])
+                } else
+                */
+                const uniScaling = selection.data?.uniScaling
+                if (centerXHandles.includes(handle.name) && diffX) {
+                    selection.scale(diffX, uniScaling ? diffX : 1, selection.bounds[handle.opposite])
+                } else if (centerYHandles.includes(handle.name) && diffY) {
+                    selection.scale(uniScaling ? diffY : 1, diffY, selection.bounds[handle.opposite])
                 } else {
-                    selection.scale(diffX, diffY, selection.bounds[handle.opposite])
-                    if (selection.frameImage) {
-                        selection.frameImage.scale(diffX, selection.bounds[handle.opposite])
+                    selection.scale(diffX ?? diffY, selection.bounds[handle.opposite])
+                    if (selection.artwork) {
+                        selection.artwork.scale(diffX ?? diffY, selection.bounds[handle.opposite])
                         const checkBounds = new paper.Rectangle(selection.bounds.topLeft.subtract(30, 30), selection.bounds.bottomRight.add(30, 30))
-                        if (!selection.isInside(selection.frameImage.bounds)) {
-                            selection.frameImage.fitBounds(checkBounds, true)
+                        if (!selection.isInside(selection.artwork.bounds)) {
+                            selection.artwork.fitBounds(checkBounds, true)
                         }
-                        //console.log(selection.isInside(selection.frameImage.bounds))
                     }
                     console.log("AICI?")
                 }
@@ -542,10 +581,11 @@ class FrameConfigurator {
             })
         }
         if (selection._nameText) {
+            selection._nameText.content = selection.data.name
             selection._nameText.position = selection.bounds.topCenter.subtract(new paper.Point(0, 30 / this.canvas.view.zoom))
         }
         if (selection._dragHandle) {
-            selection._dragHandle.position = this.getClosestVisibleBound(selection)
+            selection._dragHandle.position = this.getClosestVisibleBound(selection) ?? selection._dragHandle.position
         }
     }
     removeResizeHandles(selection) {
@@ -563,16 +603,16 @@ class FrameConfigurator {
     }
     getClosestVisibleBound(selection) {
         if (!selection) return new paper.Point(0, 0)
-        const boundsList = [selection.bounds.topRight.add(new paper.Point( 45 / this.canvas.view.zoom, -45 / this.canvas.view.zoom)),
-     selection.bounds.topLeft.add(new paper.Point( -45 / this.canvas.view.zoom, -45 / this.canvas.view.zoom)),
-      selection.bounds.bottomRight.add(new paper.Point( 45 / this.canvas.view.zoom, 45 / this.canvas.view.zoom)),
-       selection.bounds.bottomLeft.add(new paper.Point( -45 / this.canvas.view.zoom, 45 / this.canvas.view.zoom))]
+        const boundsList = [selection.bounds.topRight.add(new paper.Point(45 / this.canvas.view.zoom, -45 / this.canvas.view.zoom)),
+        selection.bounds.topLeft.add(new paper.Point(-45 / this.canvas.view.zoom, -45 / this.canvas.view.zoom)),
+        selection.bounds.bottomRight.add(new paper.Point(45 / this.canvas.view.zoom, 45 / this.canvas.view.zoom)),
+        selection.bounds.bottomLeft.add(new paper.Point(-45 / this.canvas.view.zoom, 45 / this.canvas.view.zoom))]
         const closestVisible = boundsList.find(bound => bound.isInside(this.canvas.view.bounds))
         return closestVisible
     }
     isSelectableDrawing(drawing) {
         if (!drawing?.data) return
-        return drawing.data.type === 'frame-image' || drawing.data.type === 'frame' || drawing.data.type === 'bg-image'
+        return drawing.data.type === 'artwork' || drawing.data.type === 'frame' || drawing.data.type === 'bg-image'
     }
     initSelection() {
         this.selectionTool = new paper.Tool({
@@ -659,38 +699,37 @@ class FrameConfigurator {
             name: 'Line'
         })
         this.lineTool.onMouseDown = (event) => {
-            if (this.lineTool.shouldFinishNext) return
             if (this.scale) this.removeDrawing(this.scale)
-            this.lineTool.path = new paper.Path({
-                segments: [event.point, event.point],
-                strokeColor: '#037171',
-                strokeWidth: 1 / this.canvas.view.zoom,
-                strokeCap: 'round',
-                strokeJoin: 'round',
-                data: {
-                    type: 'line'
-                }
-            });
-            this.createPathHandles(this.lineTool.path, true)
-            this.scale = this.lineTool.path
         }
-        this.lineTool.onMouseMove = (event) => {
+        this.lineTool.onMouseDrag = (event) => {
+            if (!this.lineTool.path) {
+                this.lineTool.path = new paper.Path({
+                    segments: [event.point, event.point],
+                    strokeColor: '#037171',
+                    strokeWidth: 1 / this.canvas.view.zoom,
+                    strokeCap: 'round',
+                    strokeJoin: 'round',
+                    data: {
+                        type: 'line'
+                    }
+                });
+                this.createPathHandles(this.lineTool.path, true)
+                this.scale = this.lineTool.path
+            }
             if (this.lineTool.path) {
+                this.hideMeasureInfo()
                 this.lineTool.path.lastSegment.point = event.point
                 this.updateHandlesPosition(this.lineTool.path)
                 this.updatePathText(this.lineTool.path)
             }
         }
         this.lineTool.onMouseUp = () => {
-            if (this.lineTool.shouldFinishNext) {
+            if (this.lineTool.path) {
                 this.setPxPerCm(this.wallSize / this.lineTool.path.length)
                 this.updatePathText(this.lineTool.path)
                 this.interface.updateSelectionPane('scale')
                 this.selectionTool.activate()
                 delete this.lineTool.path
-                delete this.lineTool.shouldFinishNext
-            } else {
-                this.lineTool.shouldFinishNext = true
             }
         }
     }
@@ -897,107 +936,126 @@ class FrameConfigurator {
             })
         })
     }
-    addFrame(src) {
-        const frames = this.canvas.project.activeLayer.children.filter(child => child.data?.type === 'frame')
-        const lastFrame = frames[frames?.length - 1]
-        const uuid = uuidv4()
-        let cool = new paper.Frame({
-            position: lastFrame ? lastFrame.position.add(new paper.Point(lastFrame.bounds.size.width * 1.2, 0)) : this.canvas.view.center,
-            width: 126 / this.pxPerCm,
-            height: 100 / this.pxPerCm,
-            length: 4,
-            strokeColor: 'green',
-            strokeWidth: 16 / this.pxPerCm,
-            pxPerCm: this.pxPerCm,
-            locked: false,
-            src: null,
-            data: { type: 'frame', pane: 'frame', focusable: true, uuid: uuid, name: `Lucrare 1` }
-        })
-        cool.applyBoundsTransformation = (offset) => {
-            // dragging if before mouse up
-            // if (cool._validDragBeforeMouseUp) {
-            cool.position = cool.position.add(offset)
-            frameImage.position = frameImage.position.add(offset)
-            // update clip region
-            frameImage.setClip({
-                size: cool.bounds.size,
-                offset: cool.position.subtract(frameImage.position)
-            })
+    getArtwork() {
+        if (this.activeSelection && this.activeSelection.data?.type === 'artwork') return this.activeSelection
+        return this.canvas.project.activeLayer.children.find(child => child.data?.type === 'artwork')
+    }
+    setArtwork(options) {
+        const artwork = this.activeSelection?.data?.type === 'artwork' && this.activeSelection
+        if (!artwork) {
+            this.addArtwork(options)
             return
-            // }
-            /*
-            // x axis
-            if (cool.bounds.left + offset.x > frameImage.bounds.left && cool.bounds.right + offset.x < frameImage.bounds.right) {
-                cool.position = cool.position.add(new paper.Point(offset.x, 0))
-            }
-            // y axis
-            if (cool.bounds.top + offset.y > frameImage.bounds.top && cool.bounds.bottom + offset.y < frameImage.bounds.bottom) {
-                cool.position = cool.position.add(new paper.Point(0, offset.y))
-            }
-            // console.log(frameImage.bounds.right, cool.bounds.right)
-            if (frameImage.bounds.right < cool.bounds.right) {
-                //cool.setSize(frameImage.bounds.right - cool.bounds.left, cool.bounds.size.height)
-                //cool.scale(1)
-            }
-            // size
-            if (cool.bounds.size.width > frameImage.bounds.size.width || cool.bounds.size.height > frameImage.bounds.size.height) {
-                // cool.fitBounds(frameImage.bounds)
-            }
-            // update clip region
-            frameImage.setClip({
-                size: cool.bounds.size,
-                offset: cool.position.subtract(frameImage.position)
-            })
-            */
         }
-        const frameImage = this.canvas.project.activeLayer.insertChild(cool.index, new paper.Artwork({
-            src: src,
+        const bounds = new paper.Rectangle(artwork.position, new paper.Size(artwork.bounds.size.width, artwork.bounds.size.height))
+        artwork.setSrc(options.src, false, () => {
+            if (artwork.frame) {
+                artwork.fitBounds(artwork.frame.bounds, true)
+                // update clip region
+                artwork.setClip({
+                    size: artwork.frame.bounds.size,
+                    offset: artwork.frame.position.subtract(artwork.position)
+                })
+            } else {
+                artwork.fitBounds(bounds, true)
+            }
+            this.updateActiveSelection()
+        })
+    }
+    addArtwork(options) {
+        const uuid = uuidv4()
+        const artwork = new paper.Artwork({
+            src: options.src,
             position: [0, 0],
-            fillColor: 'green',
-            data: { type: 'frame-image', pane: 'artwork', focusable: true, uuid: uuid, name: `Lucrare 1` }
-        }))
-        frameImage.on('load', () => {
-            frameImage.fitBounds(cool.bounds, true)
-            frameImage.position = cool.position
-            cool.frameImage = frameImage // experimental
-            frameImage.applyBoundsTransformation = (offset) => {
+            frame: null,
+            data: { type: 'artwork', pane: 'frame', focusable: true, uniScaling: true, uuid: uuid, name: `Lucrare ${this.getPaintings().length + 1}` } // pane can be artwork if frame is added
+        })
+        artwork.on('load', () => {
+            // set default size
+            artwork.fitBounds(new paper.Rectangle(this.canvas.view.center, new paper.Size(defaultPaintingSize.width / this.pxPerCm, defaultPaintingSize.height / this.pxPerCm)))
+            artwork.applyBoundsTransformation = (offset) => {
+                const frame = artwork.frame
+                // handle case when no frame
+                if (!frame) {
+                    artwork.position = artwork.position.add(offset)
+                    return
+                }
                 // size
-                if (!cool.isInside(frameImage.bounds)) {
-                    const bounds = new paper.Rectangle(cool.bounds.topLeft.subtract(30, 30), cool.bounds.bottomRight.add(30, 30))
-                    frameImage.fitBounds(bounds, true)
+                if (!frame.isInside(artwork.bounds)) {
+                    const bounds = new paper.Rectangle(frame.bounds.topLeft.subtract(30, 30), frame.bounds.bottomRight.add(30, 30))
+                    artwork.fitBounds(bounds, true)
                 }
                 // dragging if before mouse up
-                if (frameImage._validDragBeforeMouseUp) {
-                    frameImage.position = frameImage.position.add(offset)
-                    cool.position = cool.position.add(offset)
+                if (artwork._validDragBeforeMouseUp) {
+                    artwork.position = artwork.position.add(offset)
+                    frame.position = frame.position.add(offset)
                     // update clip region
-                    frameImage.setClip({
-                        size: cool.bounds.size,
-                        offset: cool.position.subtract(frameImage.position)
+                    artwork.setClip({
+                        size: frame.bounds.size,
+                        offset: frame.position.subtract(artwork.position)
                     })
                     return
                 }
                 // x axis
-                if (frameImage.bounds.left + offset.x < cool.bounds.left && frameImage.bounds.right + offset.x > cool.bounds.right) {
-                    frameImage.position = frameImage.position.add(new paper.Point(offset.x, 0))
+                if (artwork.bounds.left + offset.x < frame.bounds.left && artwork.bounds.right + offset.x > frame.bounds.right) {
+                    artwork.position = artwork.position.add(new paper.Point(offset.x, 0))
                 }
                 // y axis
-                if (frameImage.bounds.top + offset.y < cool.bounds.top && frameImage.bounds.bottom + offset.y > cool.bounds.bottom) {
-                    frameImage.position = frameImage.position.add(new paper.Point(0, offset.y))
+                if (artwork.bounds.top + offset.y < frame.bounds.top && artwork.bounds.bottom + offset.y > frame.bounds.bottom) {
+                    artwork.position = artwork.position.add(new paper.Point(0, offset.y))
                 }
                 // update clip region
-                frameImage.setClip({
-                    size: cool.bounds.size,
-                    offset: cool.position.subtract(frameImage.position)
+                artwork.setClip({
+                    size: frame.bounds.size,
+                    offset: frame.position.subtract(artwork.position)
                 })
             }
-            this.setActiveSelection(cool)
-            this.canvas.view.update()
+            this.setActiveSelection(artwork)
         })
-        frameImage.setClip({
-            size: cool.bounds.size,
-            offset: cool.position.subtract(frameImage.position)
+    }
+    getFrame() {
+        if (this.activeSelection && this.activeSelection.data?.type === 'frame') return this.activeSelection
+        return this.canvas.project.activeLayer.children.find(child => child.data?.type === 'frame')
+    }
+    setFrame(options) {
+        const frame = this.activeSelection?.data?.type === 'frame' && this.activeSelection
+        if (!frame) {
+            this.addFrame(options)
+            return
+        }
+        frame.setFrame(options)
+    }
+    addFrame(options) {
+        const artwork = (this.activeSelection?.data?.type === 'artwork' && this.activeSelection) ?? this.getArtwork()
+        if (!artwork) return
+        // add frame
+        let frame = new paper.Frame({
+            position: artwork.position,
+            width: artwork.bounds.width,
+            height: artwork.bounds.height,
+            length: options.length,
+            strokeColor: '#000', // temp solution for hitbox, need rework
+            strokeWidth: options.length / this.pxPerCm, // temp solution for hitbox, need rework
+            pxPerCm: this.pxPerCm,
+            artwork: artwork,
+            src: options.src,
+            data: { type: 'frame', pane: 'frame', focusable: true, uuid: artwork.data.uuid, name: artwork.data.name }
         })
+        frame.applyBoundsTransformation = (offset) => {
+            frame.position = frame.position.add(offset)
+            artwork.position = artwork.position.add(offset)
+            // update clip region
+            artwork.setClip({
+                size: frame.bounds.size,
+                offset: frame.position.subtract(artwork.position)
+            })
+            return
+        }
+        // change artwork selection pane from frame to artwork
+        artwork.data.pane = 'artwork'
+        // create frame ref for artwork
+        artwork.frame = frame
+        // set active selection
+        this.setActiveSelection(frame)
     }
     setPxPerCm(value) {
         this.pxPerCm = value
@@ -1011,6 +1069,57 @@ class FrameConfigurator {
             frame._changed(9)
         })
         this.canvas.view.update()
+    }
+    showMeasureInfo() {
+        console.log('showMeasureInfo')
+        const bgImage = this.canvas.project.activeLayer.children.find(child => child.data?.type === 'bg-image')
+        if (!bgImage) return
+        if (this._measureInfo) this._measureInfo.remove()
+        this._measureInfo = new paper.PointText({
+            point: bgImage.position,
+            content: 'Tap and drag to draw measure line',
+            locked: true,
+            fillColor: '#037171',
+            fontSize: bgImage.bounds.size.width / 20,
+            justification: 'center',
+            data: {
+                type: 'util'
+            }
+        })
+    }
+    hideMeasureInfo() {
+        console.log('hideMeasureInfo')
+        if (this._measureInfo) this._measureInfo.remove()
+        delete this._measureInfo
+    }
+    selectFirstMatchByPaneType(type) {
+        const painting = this.canvas.project.activeLayer.children.find(child => child.data?.pane === type || child.data?.type === type)
+        if (!painting) {
+            this.interface.updateSelectionPane(type)
+            return
+        }
+        this.setActiveSelection(painting)
+    }
+    updatePaintingName(name) {
+        const painting = this.activeSelection
+        if (!painting) return
+        painting.data.name = name.trim()
+        this.updateActiveSelection()
+    }
+    getPaintings() {
+        return this.canvas.project.activeLayer.children.filter(child => child.data?.type === 'artwork') ?? []
+    }
+    removePainting(painting) {
+        const paintingItem = painting ?? this.activeSelection
+        console.log("WTF?")
+        if (!paintingItem) return
+        if (confirm(`Are you sure you want to remove ${paintingItem.data.name} ?`)) {
+            this.discardActiveSelection()
+            const paintingItems = this.canvas.project.activeLayer.children.filter(child => child.data?.uuid === paintingItem.data.uuid)
+            paintingItems.forEach(item => {
+                item.remove()
+            })
+        }
     }
 }
 window.addEventListener('load', () => {
@@ -1034,24 +1143,7 @@ window.addEventListener('load', () => {
     })
     // add artworks
     artworks.forEach(artwork => {
-        const wrapper = document.getElementById('artwork-list')
-        const itemDiv = document.createElement('div')
-        itemDiv.classList.add('frame-item')
-        const imageEl = document.createElement('img')
-        imageEl.setAttribute('src', artwork.src)
-        imageEl.classList.add('frame-image')
-        itemDiv.appendChild(imageEl)
-        itemDiv.addEventListener('click', () => {
-            if (typeof configurator.activeSelection?.setSrc === 'function') {
-                configurator.activeSelection.setSrc(artwork.src)
-            } else {
-                const artworkEl = configurator.canvas.project.activeLayer.children.find(child => child.data?.type === 'frame-image')
-                if (artworkEl) {
-                    artworkEl.setSrc(artwork.src)
-                }
-            }
-        })
-        wrapper.appendChild(itemDiv)
+        configurator.interface.addArtworkItem(artwork)
     })
     // add frames
     frames.forEach(frame => {
@@ -1063,6 +1155,8 @@ window.addEventListener('load', () => {
         imageEl.classList.add('frame-image')
         itemDiv.appendChild(imageEl)
         itemDiv.addEventListener('click', () => {
+            configurator.setFrame(frame)
+            /*
             if (typeof configurator.activeSelection?.setFrame === 'function') {
                 configurator.activeSelection.setFrame({
                     src: frame.src,
@@ -1084,6 +1178,7 @@ window.addEventListener('load', () => {
                     configurator.setActiveSelection(frameEl)
                 }
             }
+            */
             // configurator.setBgImage(environment.src, environment.size).then(() => {
             //   configurator.interface.setStep(configurator.haveArtwork() ? 3 : 2)
             //  })
@@ -1101,12 +1196,12 @@ window.addEventListener('load', () => {
         itemDiv.appendChild(imageEl)
         itemDiv.addEventListener('click', () => {
             const frameEl = configurator.canvas.project.activeLayer.children.find(child => child.data?.type === 'frame')
-                if (frameEl) {
-                    frameEl.setPass({
-                        src: pas.src,
-                        passLength: pas.passLength
-                    })
-                }
+            if (frameEl) {
+                frameEl.setPass({
+                    src: pas.src,
+                    passLength: pas.passLength
+                })
+            }
         })
         wrapper.appendChild(itemDiv)
     })
@@ -1134,46 +1229,45 @@ window.addEventListener('load', () => {
         }
         reader.readAsDataURL(event.target.files[0])
     })
-    // upload artwork
-    /*
-    document.getElementById('image-drop-zone').addEventListener('drop', (event) => {
-        event.preventDefault()
-        if (event.dataTransfer.items) {
-            [...event.dataTransfer.items].forEach(item => {
-                if (item.kind === 'file') {
-                    const file = item.getAsFile()
-                    const reader = new FileReader()
-                    reader.onload = (event) => {
-                        configurator.addFrame(event.target.result)
-                        configurator.interface.setStep(3)
-                    }
-                    reader.readAsDataURL(file)
-                }
-            })
-        }
-    })
-    document.getElementById('image-drop-zone').addEventListener('dragover', (event) => {
-        event.preventDefault()
-    })
-    */
     document.getElementById('image-file-upload').addEventListener('change', (event) => {
         event.preventDefault()
         const reader = new FileReader()
         reader.onload = (event) => {
-            configurator.addFrame(event.target.result)
+            const artwork = {
+                src: event.target.result,
+                id: uuidv4()
+            }
+            artworks.unshift(artwork)
+            configurator.interface.addArtworkItem(artwork)
+            configurator.addArtwork(artwork)
             configurator.interface.setStep(3)
         }
         reader.readAsDataURL(event.target.files[0])
     })
+    document.getElementById('artwork-file-upload').addEventListener('change', (event) => {
+        event.preventDefault()
+        const reader = new FileReader()
+        reader.onload = (event) => {
+            const artwork = {
+                src: event.target.result,
+                id: uuidv4()
+            }
+            artworks.unshift(artwork)
+            configurator.interface.addArtworkItem(artwork)
+            configurator.setArtwork(artwork)
+        }
+        reader.readAsDataURL(event.target.files[0])
+    })
     document.getElementById('add-artwork').addEventListener('click', () => {
-        configurator.addFrame('https://i.imgur.com/sP1bZ3N.jpg')
+        configurator.interface.updateSelectionPane('artwork')
+        //configurator.addFrame('https://i.imgur.com/sP1bZ3N.jpg')
     })
     /*
     document.getElementById('change-wall').addEventListener('click', () => {
         configurator.interface.setStep(1)
     })
     */
-    document.getElementById('wall-size').addEventListener('change', (event) => {
+    document.getElementById('wall-size').addEventListener('input', (event) => {
         console.log(event.target.value)
         configurator.wallSize = parseInt(event.target.value)
         if (configurator.scale) {
@@ -1182,13 +1276,30 @@ window.addEventListener('load', () => {
         }
     })
     document.getElementById('change-wall-size').addEventListener('click', () => {
+        configurator.showMeasureInfo()
         configurator.lineTool.activate()
     })
-    //document.getElementById('prev-step').addEventListener('click', () => {
-    //   configurator.interface.setStep(configurator.interface.stepIndex - 1)
-    // })
+    const paintingOptionsCollection = document.getElementsByClassName('painting-options-item')
+        for (let i = 0; i < paintingOptionsCollection.length; i++) {
+            paintingOptionsCollection[i].addEventListener('click', () => {
+                configurator.selectFirstMatchByPaneType(paintingOptionsCollection[i].getAttribute('type'))
+                //configurator.interface.updateSelectionPane(paintingOptionsCollection[i].getAttribute('type'))
+            })
+        }
+    /*
     document.getElementById('next-step').addEventListener('click', () => {
         configurator.interface.setStep(configurator.interface.stepIndex + 1)
+    })
+   */
+    document.getElementById('scale-confirm').addEventListener('click', () => {
+        configurator.interface.setStep(configurator.interface.stepIndex + 1)
+    })
+    document.getElementById('painting-name-options').addEventListener('input', () => {
+        configurator.updatePaintingName(document.getElementById('painting-name-options').innerText)
+    }, false)
+    document.getElementById('remove-painting').addEventListener('click', () => {
+        console.log("WTF?")
+      configurator.removePainting()
     })
 })
 

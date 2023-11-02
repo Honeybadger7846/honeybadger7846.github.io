@@ -271,7 +271,7 @@ paper.Frame = paper.Item.extend(
             ) {
                 let hit = false,
                     style = this._style,
-                    hitStroke = options.stroke && style.hasStroke(),
+                    hitStroke = true,
                     hitFill = options.fill && style.hasFill()
                 if (hitStroke || hitFill) {
                     let strokeRadius = hitStroke ? style.getStrokeWidth() / 2 : 0,

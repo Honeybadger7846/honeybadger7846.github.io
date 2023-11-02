@@ -17,7 +17,7 @@ paper.Artwork = paper.Item.extend(
             this._initialize(props, new paper.Point(props.position))
             this.setSrc(props.src, true)
         },
-        setSrc: function (src, load) {
+        setSrc: function (src, load, callback) {
             this._image = new Image()
             this._image.src = src
             this._image.crossOrigin = 'anonymous'
@@ -26,6 +26,7 @@ paper.Artwork = paper.Item.extend(
                 this.setSize(this._image.width, this._image.height)
                 this._changed(9)
                 load && this.emit('load')
+                callback && callback()
             }
         },
         getSize: function () {
@@ -71,11 +72,13 @@ paper.Artwork = paper.Item.extend(
                 ctx.rect((-this.clip.size.width / 2 + this.clip.offset.x) / this.scaling.x, (-this.clip.size.height / 2 + this.clip.offset.y) / this.scaling.y, this.clip.size.width / this.scaling.x, this.clip.size.height / this.scaling.y)
                 ctx.clip()
             }
-            ctx.fillStyle = '#000'
-            ctx.beginPath()
-            ctx.rect((-this.clip.size.width / 2 + this.clip.offset.x) / this.scaling.x, (-this.clip.size.height / 2 + this.clip.offset.y) / this.scaling.y, this.clip.size.width / this.scaling.x, this.clip.size.height / this.scaling.y)
-            ctx.fill()
-            ctx.globalCompositeOperation = 'source-atop'
+            if (this.clip) {
+                ctx.fillStyle = '#000'
+                ctx.beginPath()
+                ctx.rect((-this.clip.size.width / 2 + this.clip.offset.x) / this.scaling.x, (-this.clip.size.height / 2 + this.clip.offset.y) / this.scaling.y, this.clip.size.width / this.scaling.x, this.clip.size.height / this.scaling.y)
+                ctx.fill()
+                ctx.globalCompositeOperation = 'source-atop'
+            }
             if (this._image?.loaded) {
                 ctx.drawImage(
                     this._image,
@@ -107,8 +110,8 @@ paper.Artwork = paper.Item.extend(
                 strokeMatrix
             ) {
                 let hit = false
-                let size = this._selected ? this._size : {width: this.clip.size.width / this.scaling.x, height: this.clip.size.height / this.scaling.y}
-                let offset = this._selected ? { x: 0, y: 0 } : {x: this.clip.offset.x / this.scaling.x, y: this.clip.offset.y / this.scaling.y}
+                let size = this._selected || !this.clip ? this._size : {width: this.clip.size.width / this.scaling.x, height: this.clip.size.height / this.scaling.y}
+                let offset = this._selected || !this.clip ? { x: 0, y: 0 } : {x: this.clip.offset.x / this.scaling.x, y: this.clip.offset.y / this.scaling.y}
                 console.log(offset)
                 let rect = new paper.Rectangle(size).setCenter(offset.x, offset.y)
                 hit = rect._containsPoint(point)

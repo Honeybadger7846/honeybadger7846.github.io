@@ -29,22 +29,8 @@
       height: 50%;
     }
 
-    #selection-pane {
-      display: none;
-      justify-content: space-evenly;
-      align-items: center;
-      box-sizing: border-box;
-      position: absolute;
-      bottom: 72px;
-      z-index: 2;
-      width: 100%;
-      height: 72px;
-      background-color: #fff;
-      border-top: 1px solid #e5e5e5;
-    }
-
-    .selection-pane-item {
-      display: none;
+    .selection-pane {
+      display: flex;
       justify-content: space-evenly;
       align-items: center;
       box-sizing: border-box;
@@ -52,9 +38,17 @@
       bottom: 72px;
       z-index: 2;
       width: 100%;
-      height: 72px;
       background-color: #fff;
       box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    }
+
+    .selection-pane-item {
+      display: none;
+      height: 96px;
+      max-width: 70%;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: nowrap;
     }
 
     #steps-pane {
@@ -63,8 +57,10 @@
       align-items: center;
       box-sizing: border-box;
       position: fixed;
-      padding-left: 20px;
-      padding-right: 20px;
+      /*
+      padding-left: 5%;
+      padding-right: 5%;
+      */
       left: 0;
       bottom: 0;
       z-index: 2;
@@ -173,6 +169,7 @@
       font-size: 15px;
       padding: 12px 24px;
       border-radius: 3px;
+      height: 54px;
       color: #fff;
       fill: #fff;
       text-align: center;
@@ -200,8 +197,8 @@
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      width:100%;
-      height:auto;
+      width: 100%;
+      height: auto;
     }
 
     .environment-item {
@@ -238,8 +235,8 @@
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      width:100%;
-      height:auto;
+      width: 100%;
+      height: auto;
     }
 
     .frame-item {
@@ -263,6 +260,26 @@
       height: 100%;
       width: 100%;
       object-fit: contain;
+    }
+
+    .painting-options-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 5px;
+      width: 76px;
+      height: 76px;
+      cursor: pointer;
+      color: #000;
+      font-family: system-ui;
+      font-size: 14px;
+      transition: all .3s;
+      user-select: none;
+    }
+
+    .painting-options-item:hover {
+      opacity: 0.7;
     }
   </style>
   <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
@@ -300,40 +317,113 @@
     </div>
   -->
     <!-- active selection pane -->
-    <div class="selection-pane-item" type="artwork">
-      <div id="artwork-list" class="frame-list">
-        <label for="artwork-file-upload" class="frame-item" style="text-align:center;">
-          <input style="display:none;" type="file" id="artwork-file-upload" accept="image/png, image/jpeg" />
-          &#x2b;
-        </label>
+    <div class="selection-pane">
+      <div id="painting-name-options" contenteditable="true"
+        style="display:none; width:20%; justify-content:center; align-items:center; color:#037171; font-size:20px; font-family: system-ui;">
       </div>
-    </div>
-    <div class="selection-pane-item" type="frame">
-      <div id="frame-list" class="frame-list">
-        <label for="frame-file-upload" class="frame-item" style="text-align:center;">
-          <input style="display:none;" type="file" id="frame-file-upload" accept="image/png, image/jpeg" />
-          &#x2b;
-        </label>
+      <div class="selection-pane-item" type="artwork">
+        <div id="artwork-list" class="frame-list">
+          <label for="artwork-file-upload" class="frame-item" style="text-align:center;">
+            <input style="display:none;" type="file" id="artwork-file-upload" accept="image/png, image/jpeg" />
+            &#x2b;
+          </label>
+        </div>
       </div>
-    </div>
-    <div class="selection-pane-item" type="pass">
-      <div id="pass-list" class="frame-list">
+      <div class="selection-pane-item" type="frame">
+        <div id="frame-list" class="frame-list">
+          <label for="frame-file-upload" class="frame-item" style="text-align:center;">
+            <input style="display:none;" type="file" id="frame-file-upload" accept="image/png, image/jpeg" />
+            &#x2b;
+          </label>
+        </div>
       </div>
-    </div>
-    <div class="selection-pane-item" style="justify-content:center; gap:20px;" id="selection-background-pane" type="background">
-      <button id="add-artwork">Add New Artwork</button>
-      <div>
-        <button id="change-wall-size">Set wall scale</button>
+      <div class="selection-pane-item" type="pass">
+        <div id="pass-list" class="frame-list">
+        </div>
       </div>
-    </div>
-    <div class="selection-pane-item" id="selection-scale-pane" type="scale">
-      <label for="wall-size" style="display:inline-flex; gap:10px; margin-right: 10px;">Length <input id="wall-size"
-        type="number" min="0" value="300" style="width:50px; text-align:center;" />cm</label>
+      <div class="selection-pane-item" style="justify-content:center; gap:20px;" id="selection-background-pane"
+        type="background">
+        <button id="add-artwork">Add New Artwork</button>
+        <div>
+          <button id="change-wall-size"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+              viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path
+                d="M177.9 494.1c-18.7 18.7-49.1 18.7-67.9 0L17.9 401.9c-18.7-18.7-18.7-49.1 0-67.9l50.7-50.7 48 48c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-48-48 41.4-41.4 48 48c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-48-48 41.4-41.4 48 48c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-48-48 41.4-41.4 48 48c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-48-48 50.7-50.7c18.7-18.7 49.1-18.7 67.9 0l92.1 92.1c18.7 18.7 18.7 49.1 0 67.9L177.9 494.1z" />
+            </svg></button>
+        </div>
+      </div>
+      <div class="selection-pane-item" type="scale">
+        <label for="wall-size" style="display:inline-flex; gap:10px; margin-right: 10px; align-items:center;">Length
+          <input id="wall-size" type="number" min="0" value="300"
+            style="width:70px; height:32px; text-align:center;" />cm</label>
+        <button id="scale-confirm">Confirm</button>
+      </div>
+      <div id="painting-selection-options" style="display:none; width:20%; justify-content:center; align-items:center;">
+        <button id="remove-painting" style="background: rgb(247, 40, 40);">
+          <svg xmlns="http://www.w3.org/2000/svg" height="30"
+            viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+            <path
+            fill="currentColor" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+          </svg>
+        </button>
+      </div>
     </div>
     <!-- steps pane -->
     <div id="steps-pane">
-      <div><span id="steps-counter"></span></div>
-      <div><button id="next-step" style="background-color: #037171;">Next</button></div>
+      <div id="painting-options" style="display:none; gap:5%; justify-content:center; align-items:center; width:100%;">
+        <div type="artwork" class="painting-options-item"><svg xmlns="http://www.w3.org/2000/svg" height="30"
+            viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+            <path fill="currentColor"
+              d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z" />
+          </svg>
+          <span>Artwork</span>
+        </div>
+        <div type="frame" class="painting-options-item">
+          <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 0 37 28">
+            <path
+              d="M36.729,13.773v.51c-.008.07-.019.14-.027.209-.021.231-.03.464-.064.692-.161,1.057-.335,2.114-.488,3.171a7.493,7.493,0,0,0-.123,1.358c.027.671.118,1.341.207,2.01.115.867.26,1.728.389,2.592.04.268.072.537.107.8V25.5c-.011.07-.024.14-.032.209a2.838,2.838,0,0,1-2.192,2.372c-.134.03-.268.051-.405.078h-.456c-.22-.032-.443-.051-.66-.1-.636-.137-1.269-.29-1.9-.424a5.063,5.063,0,0,0-1.564-.177c-.829.089-1.653.217-2.479.335-.63.091-1.261.193-1.891.282-.26.038-.523.054-.783.08h-.724c-.056-.008-.113-.021-.172-.027-.25-.021-.5-.027-.746-.067-.867-.137-1.733-.287-2.6-.432a9.765,9.765,0,0,0-2-.18,16.558,16.558,0,0,0-2.12.287c-.711.121-1.425.231-2.141.338-.255.038-.512.054-.77.078h-.724c-.062-.008-.123-.021-.185-.027-.244-.021-.491-.027-.732-.064-1.036-.158-2.071-.319-3.1-.491a6.191,6.191,0,0,0-2.433.008q-1.014.233-2.036.448c-.26.054-.529.083-.791.123H2.629a.7.7,0,0,0-.1-.024A2.826,2.826,0,0,1,.11,26.051C.064,25.882.035,25.7,0,25.525V25.1c.013-.1.021-.2.038-.3C.225,23.5.424,22.206.6,20.91a6.535,6.535,0,0,0,.094-1.387C.625,18.656.483,17.8.362,16.934.274,16.306.169,15.681.08,15.053c-.038-.247-.054-.5-.08-.743v-.563c.013-.131.019-.266.038-.4.142-.971.292-1.942.432-2.914C.553,9.856.641,9.28.692,8.7A9.7,9.7,0,0,0,.52,6.524C.4,5.666.26,4.81.134,3.954.086,3.624.046,3.291,0,2.961v-.4c.008-.043.021-.086.027-.129A2.782,2.782,0,0,1,1.9.069,5.393,5.393,0,0,1,2.6-.1h.51c.158.021.319.035.475.07.644.14,1.285.29,1.932.424A5.508,5.508,0,0,0,7.2.6C8.035.512,8.864.38,9.693.262c.622-.089,1.242-.19,1.865-.282.25-.035.5-.054.757-.08h.8c.123.011.25.016.37.035.891.134,1.779.274,2.672.408.612.091,1.226.2,1.84.25a10.726,10.726,0,0,0,2.71-.274C21.421.2,22.129.085,22.837-.022c.255-.038.512-.054.77-.078h.8c.048.008.094.021.142.027.319.032.641.046.958.094,1.022.156,2.044.325,3.067.488A5.516,5.516,0,0,0,30.655.5c.681-.15,1.366-.3,2.05-.445.3-.062.606-.1.91-.153h.51a.543.543,0,0,0,.089.024,2.817,2.817,0,0,1,2.407,2.082c.048.18.072.365.107.547v.376c-.013.118-.027.236-.046.354-.185,1.28-.384,2.557-.555,3.839A7.2,7.2,0,0,0,36.035,8.6c.067.842.209,1.68.327,2.519.089.63.193,1.261.284,1.891C36.689,13.269,36.705,13.521,36.729,13.773ZM32.474,23.91V4.152H4.247V23.91Z"
+              transform="translate(1 0.1)" fill="currentColor" />
+          </svg>
+          <span>Frame</span>
+        </div>
+        <div type="pass" class="painting-options-item"><svg xmlns="http://www.w3.org/2000/svg" height="30"
+            viewBox="0 0 31.829 29">
+            <path
+              d="M3.177,28.505l2.042.853V15.6l-3.7,8.93a3.077,3.077,0,0,0,1.661,3.978Zm29.717-5.639L25.336,4.624a3.037,3.037,0,0,0-3.962-1.646L10.142,7.627A3.046,3.046,0,0,0,8.267,10.37,2.843,2.843,0,0,0,8.5,11.589l7.559,18.242a3.044,3.044,0,0,0,2.789,1.874,3.152,3.152,0,0,0,1.173-.229l11.216-4.648a3.039,3.039,0,0,0,1.661-3.962ZM11.33,11.894a1.524,1.524,0,1,1,1.524-1.524A1.528,1.528,0,0,1,11.33,11.894ZM8.282,28.658a3.057,3.057,0,0,0,3.048,3.048h2.21L8.282,19Z"
+              transform="translate(-1.295 -2.75)" fill="currentColor" />
+          </svg>
+          <span>Mat</span>
+        </div>
+        <div type="glass" class="painting-options-item"><svg xmlns="http://www.w3.org/2000/svg" height="30"
+            viewBox="0 0 38 28">
+            <g>
+              <g fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="37.175" height="27.881" stroke="none" />
+                <rect x="1" y="1" width="35.175" height="25.881" fill="none" />
+              </g>
+              <g transform="translate(10.068 8.519)">
+                <line x1="7.745" y2="7.745" transform="translate(6.196 3.098)" fill="none" stroke="currentColor"
+                  stroke-width="2" />
+                <line x1="4.647" y2="4.647" fill="none" stroke="currentColor" stroke-width="2" />
+                <line x1="10.843" y2="10.843" fill="none" stroke="currentColor" stroke-width="2" />
+              </g>
+            </g>
+          </svg>
+          <span>Glass</span>
+        </div>
+        <div type="back" class="painting-options-item">
+          <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 0 38 28">
+            <g>
+              <g fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="37.175" height="27.881" stroke="none" />
+                <rect x="1" y="1" width="35.175" height="25.881" fill="currentColor" />
+              </g>
+            </g>
+          </svg>
+          <span>Back</span>
+        </div>
+      </div>
+      <!--<button id="next-step" style="background-color: #037171;">Next</button>-->
     </div>
   </div>
   <script src="paper.js"></script>
