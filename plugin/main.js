@@ -1396,6 +1396,7 @@ window.addEventListener('load', () => {
         const wrapper = document.getElementById('frame-list')
         const itemDiv = document.createElement('div')
         itemDiv.classList.add('selection-item')
+        itemDiv.style.minWidth = '70px'
         const imageEl = document.createElement('img')
         imageEl.setAttribute('src', frame.src)
         imageEl.classList.add('selection-image')
