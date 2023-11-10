@@ -6,6 +6,7 @@ const uuidv4 = () => {
 }
 
 const environments = [
+    /*
     {
         src: 'https://i.imgur.com/8MLXnRv.jpg',
         size: 500,
@@ -26,6 +27,7 @@ const environments = [
         size: 500,
         position: [0, 0.3]
     },
+    */
     {
         src: 'https://i.imgur.com/KPFoL2H.jpg',
         size: 500,
@@ -65,19 +67,22 @@ const frames = [
         id: '7021C',
         src: 'https://i.imgur.com/HWppjlF.png',
         length: 2,
-        offset: 0.6
+        offset: 0.6,
+        pricePerSquareCm: 0.001
     },
     {
         id: '6180zj',
         src: 'https://i.imgur.com/tkRo50f.jpg',
         length: 8.1,
-        offset: 0.9
+        offset: 0.9,
+        pricePerSquareCm: 0.002
     },
     {
         id: '7455TO',
         src: 'https://i.imgur.com/YbGvFms.png',
         length: 5.6,
-        offset: 0.8
+        offset: 0.8,
+        pricePerSquareCm: 0.003
     }
 ]
 const pass = [
@@ -106,6 +111,7 @@ const steps = [
         el: null,
         activateAction: function (configurator) {
             document.getElementById('canvas').style.display = 'block'
+            document.getElementById('fit-to-screen').style.display = 'flex'
             configurator.showMeasureInfo()
             configurator.lineTool.activate()
         },
@@ -116,6 +122,7 @@ const steps = [
         el: 'select-artwork',
         activateAction: function (configurator) {
             document.getElementById('canvas').style.display = 'block'
+            document.getElementById('fit-to-screen').style.display = 'flex'
             configurator.selectionTool.activate()
             if (configurator.scale) configurator.removeDrawing(configurator.scale)
             const scaleEl = document.getElementById('scale-confirm')
@@ -127,6 +134,7 @@ const steps = [
         el: null,
         activateAction: function (configurator) {
             document.getElementById('canvas').style.display = 'block'
+            document.getElementById('fit-to-screen').style.display = 'flex'
             document.getElementById('painting-options').style.display = 'flex'
         },
         pane: 'background', //'frame'
@@ -149,8 +157,8 @@ const selectionPaneList = {
     },
     'background': {
         update: function (configurator) {
-            console.log("HAPPENS BG")
-            configurator.getPaintingsAsImage()
+           // console.log("HAPPENS BG")
+            //configurator.getPaintingsAsImage()
             // experimental
             // add frames
             const wrapper = document.getElementById('painting-list')
@@ -163,14 +171,19 @@ const selectionPaneList = {
                 const itemDiv = document.createElement('div')
                 itemDiv.classList.add('painting-options-item')
                 itemDiv.classList.add('painting-options-item-render')
+                itemDiv.style.height = '90px'
                 const imageEl = document.createElement('img')
                 const spanEl = document.createElement('span')
                 const spanElText = document.createTextNode(painting.painting.data.name)
                 spanEl.appendChild(spanElText)
+                const spanPriceEl = document.createElement('span')
+                const spanPriceElText = document.createTextNode(painting.price)
+                spanPriceEl.appendChild(spanPriceElText)
                 imageEl.setAttribute('src', painting.image)
                 imageEl.classList.add('selection-image')
-                itemDiv.appendChild(imageEl)
                 itemDiv.appendChild(spanEl)
+                itemDiv.appendChild(imageEl)
+                itemDiv.appendChild(spanPriceEl)
                 itemDiv.addEventListener('click', () => {
                     configurator.setActiveSelection(painting.painting?.frame ?? painting.painting)
                 })
@@ -251,7 +264,7 @@ class Interface {
         }
         //this.stepsCounter.innerHTML = `Step: ${this.stepIndex + 1} / ${this.steps + 1}`
     }
-    addArtworkItem(artwork) {
+    addArtworkItem(artwork, uploaded) {
         const wrapper = document.getElementById('artwork-list')
         const itemDiv = document.createElement('div')
         itemDiv.classList.add('selection-item')
@@ -262,6 +275,15 @@ class Interface {
         itemDiv.addEventListener('click', () => {
             this.configurator.setArtwork(artwork)
         })
+        //itemDiv.after(wrapper.firstChild)
+        /*
+        console.log(uploaded, wrapper.firstChild?.nextSibling)
+        if (uploaded && wrapper.firstChild?.nextSibling) {
+            wrapper.insertBefore(itemDiv, wrapper.firstChild?.nextSibling)
+        } else {
+            wrapper.appendChild(itemDiv)
+        }
+        */
         wrapper.appendChild(itemDiv)
     }
 }
@@ -276,7 +298,7 @@ class FrameConfigurator {
         this.interface = new Interface(this)
         this.minZoom = 0.1
         this.maxZoom = 10
-        this.defaultPaintingPosition = {x: 0, y:0}
+        this.defaultPaintingPosition = { x: 0, y: 0 }
         this.canvas = new paper.PaperScope
         this.canvas.setup(canvasEl)
         // frame resize
@@ -296,10 +318,10 @@ class FrameConfigurator {
     haveArtwork() {
         return this.canvas.project.activeLayer.children.find(child => child.data?.type === 'artwork')
     }
-    fitToScreen() {
+    fitToScreen(bounds) {
         this.canvas.view.update()
         let viewBounds = this.canvas.view.bounds
-        let layerBounds = this.canvas.project.activeLayer?.firstChild?.bounds
+        let layerBounds = bounds ?? this.canvas.project.activeLayer?.firstChild?.bounds
         if (layerBounds?.width > 0) {
             let scaleRatio = Math.min(
                 viewBounds.width / layerBounds.width,
@@ -477,9 +499,16 @@ class FrameConfigurator {
     }
     setActiveSelection(drawing) {
         this.discardActiveSelection()
+        if (drawing instanceof paper.Frame || drawing.frame instanceof paper.Frame) {
+            const bounds = drawing.frame?.strokeBounds ?? drawing.strokeBounds
+            this.fitToScreen(new paper.Rectangle(bounds.topLeft.subtract(new paper.Point(bounds.size.width / 2, bounds.size.height / 2)),
+            bounds.bottomRight.add(new paper.Point(bounds.size.width / 2, bounds.size.height / 2)) ))
+            this.shouldFitToScreenOnDiscardActiveSelection = true
+        }
         this.activeSelection = drawing
         this.activeSelection._validDragBeforeMouseUp = true // needed for dragging before releasing mouse
         this.activeSelection._selected = false // needed for internal draw logic such as clip region, etc.
+        if (this.activeSelection.artwork) this.activeSelection.artwork._selected = false // needed for internal draw logic such as clip region, etc.
         this.createResizeHandles(this.activeSelection)
         this.updateDrawings()
         this.focus()
@@ -495,8 +524,13 @@ class FrameConfigurator {
             this.removeResizeHandles(this.activeSelection)
             this.activeSelection._validDragBeforeMouseUp = false // needed for dragging before releasing mouse
             this.activeSelection._selected = false // needed for internal draw logic such as clip region, etc.
+            if (this.activeSelection.artwork) this.activeSelection.artwork._selected = false // needed for internal draw logic such as clip region, etc.
         }
         this.activeSelection = null
+        if (this.shouldFitToScreenOnDiscardActiveSelection) {
+            this.fitToScreen()
+            delete this.shouldFitToScreenOnDiscardActiveSelection
+        }
         if (this.interface) this.interface.updateSelectionPane(this.activeSelection)
     }
     createResizeHandles(selection) {
@@ -509,7 +543,7 @@ class FrameConfigurator {
         }
         selection.onMouseUp = () => {
             if (this.canvasEl) this.canvasEl.style.cursor = 'grab'
-            if (!selection._validDraggingBeforeMouseUp) {
+            if (!selection._validDraggingBeforeMouseUp && this.activeSelection === selection) {
                 selection._validDragBeforeMouseUp = false // needed for dragging before releasing mouse
                 selection._selected = true // needed for internal draw logic such as clip region, etc.
                 selection._changed(9)
@@ -606,6 +640,27 @@ class FrameConfigurator {
             }
         })
         selection._nameText.position = selection.bounds.topCenter.subtract(new paper.Point(0, 30 / this.canvas.view.zoom))
+        if (selection?.data?.type === 'frame') {
+            // create size text
+            const sizeText = {
+                width: Math.round(selection.strokeBounds.size.width * this.pxPerCm),
+                height: Math.round(selection.strokeBounds.size.height * this.pxPerCm)
+            }
+            selection._sizeText = new paper.PointText({
+                point: selection.bounds.bottomCenter.add(new paper.Point(0, 30 / this.canvas.view.zoom)),
+                content: `${sizeText.width}x${sizeText.height} cm`,
+                locked: true,
+                fillColor: '#037171', //path.strokeColor,
+                fontSize: 15 / this.canvas.view.zoom,
+                justification: 'center',
+                ref: selection,
+                visible: selection.visible,
+                data: {
+                    type: 'handle'
+                }
+            })
+            selection._sizeText.position = selection.bounds.bottomCenter.add(new paper.Point(0, 30 / this.canvas.view.zoom))
+        }
         // create drag handle for frame
         if (selection?.data?.type === 'frame') {
             selection._dragHandle = new paper.Path.Circle({
@@ -676,13 +731,21 @@ class FrameConfigurator {
         if (Array.isArray(selection._handles)) {
             let handles = this.getResizeHandles()
             selection._handles.forEach((handle, index) => {
-                handle.visible = !selection?.data?.locked
+                handle.visible = !selection?.data?.locked && !(selection.bounds.size.width < handle.bounds.size.width * 3 && selection.bounds.size.height < handle.bounds.size.height * 3)
                 handle.position = selection.bounds[handles[index].name]
             })
         }
         if (selection._nameText) {
             selection._nameText.content = selection.data.name
             selection._nameText.position = selection.bounds.topCenter.subtract(new paper.Point(0, 30 / this.canvas.view.zoom))
+        }
+        if (selection._sizeText) {
+            const sizeText = {
+                width: Math.round(selection.strokeBounds.width * this.pxPerCm),
+                height: Math.round(selection.strokeBounds.height * this.pxPerCm)
+            }
+            selection._sizeText.content = `${sizeText.width}x${sizeText.height} cm`
+            selection._sizeText.position = selection.bounds.bottomCenter.add(new paper.Point(0, 30 / this.canvas.view.zoom))
         }
         if (selection._dragHandle) {
             selection._dragHandle.position = this.getClosestVisibleBound(selection) ?? selection._dragHandle.position
@@ -701,6 +764,9 @@ class FrameConfigurator {
         }
         if (selection._nameText) {
             selection._nameText.remove()
+        }
+        if (selection._sizeText) {
+            selection._sizeText.remove()
         }
         if (selection._dragHandle) {
             selection._dragHandle.remove()
@@ -1044,7 +1110,7 @@ class FrameConfigurator {
             }))
             bgImage.on('load', () => {
                 this.wallSize = wallSize
-                // document.getElementById('wall-size').value = wallSize
+                document.getElementById('wall-size').value = wallSize
                 this.setPxPerCm(this.wallSize / bgImage.bounds.size.width)
                 this.fitToScreen()
                 if (paintingPosition) {
@@ -1149,6 +1215,7 @@ class FrameConfigurator {
             this.addFrame(options)
             return
         }
+        frame.data.asset = options
         frame.setFrame(options)
     }
     addFrame(options) {
@@ -1165,7 +1232,7 @@ class FrameConfigurator {
             pxPerCm: this.pxPerCm,
             artwork: artwork,
             src: options.src,
-            data: { type: 'frame', pane: 'frame', focusable: true, uuid: artwork.data.uuid, name: artwork.data.name }
+            data: { type: 'frame', pane: 'frame', focusable: true, uuid: artwork.data.uuid, name: artwork.data.name, asset: options }
         })
         frame.applyBoundsTransformation = (offset) => {
             frame.position = frame.position.add(offset)
@@ -1262,8 +1329,10 @@ class FrameConfigurator {
             const paintingSize = new paper.Size(strokeBounds.size.width * scaleRatio, strokeBounds.size.height * scaleRatio)
             const rasterInternalOffset = raster.internalBounds.topLeft.add(new paper.Point(raster.internalBounds.size.width / 2, raster.internalBounds.size.height / 2))
             const bounds = new paper.Rectangle({ point: rasterInternalOffset.add(paintingOffset), size: paintingSize })
+            const price = painting.frame?.data?.asset?.pricePerSquareCm ? `${Math.round((painting.frame.strokeBounds.size.width * this.pxPerCm) * (painting.frame.strokeBounds.size.height * this.pxPerCm) * painting.frame.data.asset.pricePerSquareCm)}$` : 'null'
             paintingsAsImages.push({
                 painting: painting,
+                price: price,
                 image: raster.getSubCanvas(bounds).toDataURL()
             })
         })
@@ -1288,7 +1357,8 @@ window.addEventListener('load', () => {
     const resizeEditorObserver = new ResizeObserver((entries) => {
         entries.forEach(entry => {
             let width = entry.contentRect.width
-            configurator.isMobile = width < 580 ? true : false
+            let height = entry.contentRect.height
+            configurator.isMobile = Math.min(width, height) < 580 ? true : false
             let vh = window.innerHeight * 0.01
             // Then we set the value in the --vh custom property to the root of the document
             document.documentElement.style.setProperty('--vh', `${vh}px`)
@@ -1382,7 +1452,7 @@ window.addEventListener('load', () => {
                 id: uuidv4()
             }
             artworks.unshift(artwork)
-            configurator.interface.addArtworkItem(artwork)
+            configurator.interface.addArtworkItem(artwork, true)
             configurator.addArtwork(artwork)
             configurator.interface.setStep(3)
         }
@@ -1403,7 +1473,7 @@ window.addEventListener('load', () => {
             }
             */
             configurator.setFrame({
-                length : Number(document.getElementById('frame-length').value),
+                length: Number(document.getElementById('frame-length').value),
                 offset: Number(document.getElementById('frame-offset').value),
                 src: event.target.result
             })
@@ -1420,7 +1490,7 @@ window.addEventListener('load', () => {
                 id: uuidv4()
             }
             artworks.unshift(artwork)
-            configurator.interface.addArtworkItem(artwork)
+            configurator.interface.addArtworkItem(artwork, true)
             configurator.setArtwork(artwork)
         }
         reader.readAsDataURL(event.target.files[0])
@@ -1438,10 +1508,16 @@ window.addEventListener('load', () => {
             configurator.updatePathText(configurator.scale)
         }
     })
+    document.getElementById('fit-to-screen').addEventListener('click', () => {
+        configurator.discardActiveSelection()
+        configurator.fitToScreen()
+    })
+    /*
     document.getElementById('change-wall-size').addEventListener('click', () => {
         configurator.showMeasureInfo()
         configurator.lineTool.activate()
     })
+    */
     const paintingOptionsCollection = document.getElementsByClassName('painting-options-item-menu')
     for (let i = 0; i < paintingOptionsCollection.length; i++) {
         paintingOptionsCollection[i].addEventListener('click', () => {
@@ -1457,12 +1533,12 @@ window.addEventListener('load', () => {
         configurator.updatePaintingName(document.getElementById('painting-name-options').innerText)
     }, false)
     */
-   /*
-    document.getElementById('remove-painting').addEventListener('click', () => {
-        console.log("WTF?")
-        configurator.removePainting()
-    })
-    */
+    /*
+     document.getElementById('remove-painting').addEventListener('click', () => {
+         console.log("WTF?")
+         configurator.removePainting()
+     })
+     */
 
 })
 
