@@ -499,7 +499,7 @@ class FrameConfigurator {
     }
     setActiveSelection(drawing) {
         this.discardActiveSelection()
-        if (drawing instanceof paper.Frame || drawing.frame instanceof paper.Frame) {
+        if ((drawing instanceof paper.Frame || drawing.frame instanceof paper.Frame) && this.isMobile) {
             const bounds = drawing.frame?.strokeBounds ?? drawing.strokeBounds
             this.fitToScreen(new paper.Rectangle(bounds.topLeft.subtract(new paper.Point(bounds.size.width / 2, bounds.size.height / 2)),
             bounds.bottomRight.add(new paper.Point(bounds.size.width / 2, bounds.size.height / 2)) ))
