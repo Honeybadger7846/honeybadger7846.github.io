@@ -157,7 +157,7 @@ const selectionPaneList = {
     },
     'background': {
         update: function (configurator) {
-           // console.log("HAPPENS BG")
+            // console.log("HAPPENS BG")
             //configurator.getPaintingsAsImage()
             // experimental
             // add frames
@@ -171,7 +171,7 @@ const selectionPaneList = {
                 const itemDiv = document.createElement('div')
                 itemDiv.classList.add('painting-options-item')
                 itemDiv.classList.add('painting-options-item-render')
-                itemDiv.style.height = '90px'
+                //itemDiv.style.height = '90px'
                 const imageEl = document.createElement('img')
                 const spanEl = document.createElement('span')
                 const spanElText = document.createTextNode(painting.painting.data.name)
@@ -207,9 +207,22 @@ class Interface {
         this.stepsPane = document.getElementById('steps-pane')
         this.stepIndex = 0
         this.activePane = null
+        this.toolBox = document.getElementById('toolbox')
         //this.stepsPaintingOptions = document.getElementById('painting-options')
         //this.nextStepBtn = document.getElementById('next-step')
         this.setStep(0)
+    }
+    updateToolBox() {
+        if (!this.toolBox || !this.configurator) return
+        const activeSelection = this.configurator.activeSelection
+        this.toolBox.style.display = activeSelection ? 'flex' : 'none'
+        if (!activeSelection) return
+        const selectionBounds = activeSelection.frame?.bounds.topCenter ?? activeSelection.bounds.topCenter
+        const position = this.configurator.canvas.view.projectToView(selectionBounds.subtract(new paper.Point(0, 30 / this.configurator.canvas.view.zoom)))
+        const bbox = this.toolBox.getBoundingClientRect()
+        console.log(bbox)
+        this.toolBox.style.left = `${Math.max(0, position.x - bbox.width / 2)}px`
+        this.toolBox.style.top = `${Math.max(0, position.y - bbox.height)}px`
     }
     updateSelectionPane(pane) {
         if (!pane) pane = steps[this.stepIndex]?.pane
@@ -227,13 +240,9 @@ class Interface {
         this.updatePaintingOptions(pane)
     }
     updatePaintingSelectionOptions() {
-        // if (this.configurator.activeSelection) {
-        //document.getElementById('painting-name-options').style.display = this.configurator.activeSelection ? 'flex' : 'none'
-        //document.getElementById('painting-selection-options').style.display = this.configurator.activeSelection ? 'flex' : 'none'
         if (this.configurator.activeSelection) {
-            //    document.getElementById('painting-name-options').innerHTML = this.configurator.activeSelection.data?.name
+                document.getElementById('painting-name-options').value = this.configurator.activeSelection.data?.name
         }
-        //}
     }
     updatePaintingOptions(pane) {
         document.getElementById('painting-options').style.display = this.configurator.activeSelection ? 'flex' : 'none'
@@ -334,6 +343,7 @@ class FrameConfigurator {
             //this.minZoom = scaleRatio
         }
         this.updateActiveSelection()
+        this.updateThickness()
         return this
     }
     focus() {
@@ -453,6 +463,16 @@ class FrameConfigurator {
         return this
     }
     updateThickness() {
+        this.canvas.project.activeLayer.children.forEach(child => {
+            if (child.data?.type === 'handle') {
+                const size = child.data.size ?? 30
+                if (!child.data?.ignoreZoom) {
+                    child.scale(size / (child.bounds.width * this.canvas.view.zoom))
+                    child.strokeWidth = 1 / this.canvas.view.zoom
+                }
+                child.fontSize = 15 / this.canvas.view.zoom
+            }
+        })
     }
     getResizeHandles() {
         return [{
@@ -502,7 +522,7 @@ class FrameConfigurator {
         if ((drawing instanceof paper.Frame || drawing.frame instanceof paper.Frame) && this.isMobile) {
             const bounds = drawing.frame?.strokeBounds ?? drawing.strokeBounds
             this.fitToScreen(new paper.Rectangle(bounds.topLeft.subtract(new paper.Point(bounds.size.width / 2, bounds.size.height / 2)),
-            bounds.bottomRight.add(new paper.Point(bounds.size.width / 2, bounds.size.height / 2)) ))
+                bounds.bottomRight.add(new paper.Point(bounds.size.width / 2, bounds.size.height / 2))))
             this.shouldFitToScreenOnDiscardActiveSelection = true
         }
         this.activeSelection = drawing
@@ -513,6 +533,7 @@ class FrameConfigurator {
         this.updateDrawings()
         this.focus()
         this.interface.updateSelectionPane(this.activeSelection.data?.pane)
+        this.interface.updateToolBox()
     }
     updateActiveSelection() {
         if (!this.activeSelection) return
@@ -532,6 +553,7 @@ class FrameConfigurator {
             delete this.shouldFitToScreenOnDiscardActiveSelection
         }
         if (this.interface) this.interface.updateSelectionPane(this.activeSelection)
+        if (this.interface) this.interface.updateToolBox()
     }
     createResizeHandles(selection) {
         if (selection?.data?.type === 'line') return
@@ -575,7 +597,8 @@ class FrameConfigurator {
                 strokeWidth: 1 / this.canvas.view.zoom,
                 ref: selection,
                 data: {
-                    type: 'handle'
+                    type: 'handle',
+                    size: 30
                 }
             })
             handleEl.onMouseEnter = () => {
@@ -604,8 +627,14 @@ class FrameConfigurator {
                 const uniScaling = selection.data?.uniScaling
                 if (centerXHandles.includes(handle.name) && diffX) {
                     selection.scale(diffX, uniScaling ? diffX : 1, selection.bounds[handle.opposite])
+                    if (selection.artwork && !selection.isInside(selection.artwork.bounds) && diffX > 1) {
+                        selection.artwork.scale(diffX, selection.bounds[handle.opposite])
+                    }
                 } else if (centerYHandles.includes(handle.name) && diffY) {
                     selection.scale(uniScaling ? diffY : 1, diffY, selection.bounds[handle.opposite])
+                    if (selection.artwork && !selection.isInside(selection.artwork.bounds) && diffY > 1) {
+                        selection.artwork.scale(diffY, selection.bounds[handle.opposite])
+                    }
                 } else {
                     selection.scale(diffX ?? diffY, selection.bounds[handle.opposite])
                     if (selection.artwork) {
@@ -625,21 +654,6 @@ class FrameConfigurator {
             selection._handles.push(handleEl)
 
         })
-        // create name
-        selection._nameText = new paper.PointText({
-            point: selection.bounds.topCenter.subtract(new paper.Point(0, 45 / this.canvas.view.zoom)),
-            content: selection.data?.name,
-            locked: true,
-            fillColor: '#037171', //path.strokeColor,
-            fontSize: 15 / this.canvas.view.zoom,
-            justification: 'center',
-            ref: selection,
-            visible: selection.visible,
-            data: {
-                type: 'handle'
-            }
-        })
-        selection._nameText.position = selection.bounds.topCenter.subtract(new paper.Point(0, 30 / this.canvas.view.zoom))
         if (selection?.data?.type === 'frame') {
             // create size text
             const sizeText = {
@@ -647,7 +661,7 @@ class FrameConfigurator {
                 height: Math.round(selection.strokeBounds.size.height * this.pxPerCm)
             }
             selection._sizeText = new paper.PointText({
-                point: selection.bounds.bottomCenter.add(new paper.Point(0, 30 / this.canvas.view.zoom)),
+                point: selection.bounds.bottomCenter.add(new paper.Point(0, 60 / this.canvas.view.zoom)),
                 content: `${sizeText.width}x${sizeText.height} cm`,
                 locked: true,
                 fillColor: '#037171', //path.strokeColor,
@@ -656,10 +670,11 @@ class FrameConfigurator {
                 ref: selection,
                 visible: selection.visible,
                 data: {
-                    type: 'handle'
+                    type: 'handle',
+                    ignoreZoom: true
                 }
             })
-            selection._sizeText.position = selection.bounds.bottomCenter.add(new paper.Point(0, 30 / this.canvas.view.zoom))
+            selection._sizeText.position = selection.bounds.bottomCenter.add(new paper.Point(0, 60 / this.canvas.view.zoom))
         }
         // create drag handle for frame
         if (selection?.data?.type === 'frame') {
@@ -671,7 +686,8 @@ class FrameConfigurator {
                 strokeWidth: 1 / this.canvas.view.zoom,
                 ref: selection,
                 data: {
-                    type: 'handle'
+                    type: 'handle',
+                    size: 60
                 }
             })
             selection._dragHandleIcon = new paper.Path('M278.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-64 64c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l9.4-9.4V224H109.3l9.4-9.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-64 64c-12.5 12.5-12.5 32.8 0 45.3l64 64c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-9.4-9.4H224V402.7l-9.4-9.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l64 64c12.5 12.5 32.8 12.5 45.3 0l64-64c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-9.4 9.4V288H402.7l-9.4 9.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l64-64c12.5-12.5 12.5-32.8 0-45.3l-64-64c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l9.4 9.4H288V109.3l9.4 9.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-64-64z')
@@ -679,7 +695,8 @@ class FrameConfigurator {
             selection._dragHandleIcon.locked = true
             selection._dragHandleIcon.ref = selection
             selection._dragHandleIcon.data = {
-                type: 'handle'
+                type: 'handle',
+                size: 60
             }
             selection._dragHandleIcon.fitBounds(selection._dragHandle.bounds)
             selection._dragHandle.onMouseEnter = () => {
@@ -694,38 +711,6 @@ class FrameConfigurator {
                 this.updateResizeHandles(selection)
             }
         }
-        // experimental
-        selection._removeHandle = new paper.Path.Circle({
-            center: this.getClosestInternalVisibleBound(selection),
-            radius: 15 / this.canvas.view.zoom,
-            fillColor: 'rgba(0,0,0,0.001)',
-            strokeColor: 'rgba(0,0,0,0.001)',
-            strokeWidth: 1 / this.canvas.view.zoom,
-            ref: selection,
-            data: {
-                type: 'handle'
-            }
-        })
-        selection._removeHandleIcon = new paper.Path('M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z')
-        selection._removeHandleIcon.closed = true
-        selection._removeHandleIcon.fillColor = 'red'
-        selection._removeHandleIcon.locked = true
-        selection._removeHandleIcon.ref = selection
-        selection._removeHandleIcon.data = {
-            type: 'handle'
-        }
-        selection._removeHandleIcon.fitBounds(new paper.Rectangle(selection._removeHandle.bounds.topLeft.add(new paper.Point(5, 5)), selection._removeHandle.bounds.bottomRight.subtract(new paper.Point(5, 5))))
-        selection._removeHandle.onMouseEnter = () => {
-            this.canvasEl.style.cursor = 'pointer'
-        }
-        selection._removeHandle.onMouseLeave = () => {
-            this.canvasEl.style.cursor = 'default'
-        }
-        selection._removeHandle.onMouseDown = (event) => {
-            if (selection.data.locked) return
-            this.removePainting(selection)
-        }
-        // experimental
     }
     updateResizeHandles(selection) {
         if (Array.isArray(selection._handles)) {
@@ -735,26 +720,19 @@ class FrameConfigurator {
                 handle.position = selection.bounds[handles[index].name]
             })
         }
-        if (selection._nameText) {
-            selection._nameText.content = selection.data.name
-            selection._nameText.position = selection.bounds.topCenter.subtract(new paper.Point(0, 30 / this.canvas.view.zoom))
-        }
         if (selection._sizeText) {
             const sizeText = {
                 width: Math.round(selection.strokeBounds.width * this.pxPerCm),
                 height: Math.round(selection.strokeBounds.height * this.pxPerCm)
             }
             selection._sizeText.content = `${sizeText.width}x${sizeText.height} cm`
-            selection._sizeText.position = selection.bounds.bottomCenter.add(new paper.Point(0, 30 / this.canvas.view.zoom))
+            selection._sizeText.position = selection.bounds.bottomCenter.add(new paper.Point(0, 60 / this.canvas.view.zoom))
         }
         if (selection._dragHandle) {
             selection._dragHandle.position = this.getClosestVisibleBound(selection) ?? selection._dragHandle.position
             selection._dragHandleIcon.fitBounds(selection._dragHandle.bounds)
         }
-        if (selection._removeHandle) {
-            selection._removeHandle.position = this.getClosestInternalVisibleBound(selection) ?? selection._removeHandle.position
-            selection._removeHandleIcon.fitBounds(new paper.Rectangle(selection._removeHandle.bounds.topLeft.add(new paper.Point(5, 5)), selection._removeHandle.bounds.bottomRight.subtract(new paper.Point(5, 5))))
-        }
+        this.interface.updateToolBox()
     }
     removeResizeHandles(selection) {
         if (Array.isArray(selection._handles)) {
@@ -762,19 +740,12 @@ class FrameConfigurator {
                 handle.remove()
             })
         }
-        if (selection._nameText) {
-            selection._nameText.remove()
-        }
         if (selection._sizeText) {
             selection._sizeText.remove()
         }
         if (selection._dragHandle) {
             selection._dragHandle.remove()
             selection._dragHandleIcon.remove()
-        }
-        if (selection._removeHandle) {
-            selection._removeHandle.remove()
-            selection._removeHandleIcon.remove()
         }
     }
     getClosestVisibleBound(selection) {
@@ -934,7 +905,8 @@ class FrameConfigurator {
             visible: true,
             ref: path,
             data: {
-                type: 'handle'
+                type: 'handle',
+                size: 20
             }
         })
         firstSegmentHandle.position = path.firstSegment.point
@@ -974,7 +946,8 @@ class FrameConfigurator {
             visible: true,
             ref: path,
             data: {
-                type: 'handle'
+                type: 'handle',
+                size: 20
             }
         })
         secondSegmentHandle.position = path.lastSegment.point
@@ -1006,7 +979,7 @@ class FrameConfigurator {
         }
         path._handles = [firstSegmentHandle, secondSegmentHandle]
         this.updatePathText(path)
-        // this.updateThickness()
+        this.updateThickness()
     }
     updateHandlesPosition(path) {
         if (path._handles) {
@@ -1315,9 +1288,10 @@ class FrameConfigurator {
         return this.canvas.project.activeLayer.children.filter(child => child.data?.type === 'artwork') ?? []
     }
     getPaintingsAsImage() {
+        console.log("HAPPENS PAINTING GETT")
         if (!this.canvas?.project?.activeLayer) return []
         const raster = this.canvas.project.activeLayer.rasterize({
-            resolution: 50 / window.devicePixelRatio,
+            resolution: 10,
             insert: false,
         })
         const paintings = this.getPaintings()
@@ -1529,17 +1503,17 @@ window.addEventListener('load', () => {
     document.getElementById('scale-confirm').addEventListener('click', () => {
         configurator.interface.setStep(configurator.interface.stepIndex + 1)
     })
-    /*
+    
     document.getElementById('painting-name-options').addEventListener('input', () => {
-        configurator.updatePaintingName(document.getElementById('painting-name-options').innerText)
+        configurator.updatePaintingName(document.getElementById('painting-name-options').value)
     }, false)
-    */
-    /*
+    document.getElementById('rename-painting-focus').addEventListener('click', () => {
+        document.getElementById('painting-name-options').focus()
+    })
      document.getElementById('remove-painting').addEventListener('click', () => {
          console.log("WTF?")
          configurator.removePainting()
      })
-     */
 
 })
 

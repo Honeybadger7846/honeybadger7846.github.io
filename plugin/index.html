@@ -12,15 +12,44 @@
   <div id="app-container">
     <!-- steps -->
     <div id="steps-container">
+      <div id="toolbox"
+        style="display: none; align-items:center; justify-content:space-between; position:absolute; z-index:4; top:10px; left:10px; width:220px; background:transparent;">
+        <input type="text" id="painting-name-options" style="text-align:center; min-width: 10px; width:auto; max-width:100px; height:30px; font-size:16px; border: none;
+        outline: none; background:transparent; color:#037171;" />
+        <label id="rename-painting-focus" class="selection-item selection-item-add" style=" display:flex; height:30px; width:30px;">
+          <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 512 512">
+            <path fill="currentColor"
+              d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z" />
+          </svg>
+        </label>
+        <label class="selection-item selection-item-add" style=" display:flex; height:30px; width:30px;">
+          <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 512 512">
+            <path fill="currentColor"
+              d="M288 448H64V224h64V160H64c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H288c35.3 0 64-28.7 64-64V384H288v64zm-64-96H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H224c-35.3 0-64 28.7-64 64V288c0 35.3 28.7 64 64 64z" />
+          </svg>
+        </label>
+        <label id="remove-painting" class="selection-item selection-item-add"
+          style=" display:flex; height:30px; width:30px;">
+          <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 448 512">
+            <path fill="currentColor"
+              d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+          </svg>
+        </label>
+        <!--
+        <div id="painting-name-options" contenteditable="true"
+        style="display:flex; align-items:center; min-width: 10px; max-width:100px; overflow: hidden; white-space: nowrap; text-overflow: clip; color:#037171; font-size:16px; height:auto;">
+      </div>
+    -->
+      </div>
       <!-- canvas step -->
       <label id="fit-to-screen" class="selection-item selection-item-add"
-      style=" display:none; height:40px; min-width:40px; position:absolute; z-index:3; top:20px; right:20px;" alt="Fit to Screen">
-      <svg height="30" xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 448 512">
-        <path fill="currentColor"
-          d="M32 32C14.3 32 0 46.3 0 64v96c0 17.7 14.3 32 32 32s32-14.3 32-32V96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H32zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H64V352zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32H320zM448 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V352z" />
-      </svg>
-    </label>
+        style=" display:none; height:40px; min-width:40px; position:absolute; z-index:3; top:20px; right:20px;"
+        alt="Fit to Screen">
+        <svg height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path fill="currentColor"
+            d="M32 32C14.3 32 0 46.3 0 64v96c0 17.7 14.3 32 32 32s32-14.3 32-32V96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H32zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H64V352zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32H320zM448 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V352z" />
+        </svg>
+      </label>
       <canvas id="canvas"></canvas>
       <!-- environment step -->
       <div class="step-item" id="select-environment">
@@ -82,7 +111,8 @@
         </div>
       </div>
        -->
-      <div class="selection-pane-item" id="selection-background-pane" type="background" style="gap:20px; width:100%; height:120px;">
+      <div class="selection-pane-item" id="selection-background-pane" type="background"
+        style="gap:20px; width:100%; height:120px;">
         <div id="painting-list" class="selection-list" style="margin: auto; width:auto;">
           <label id="add-artwork" class="selection-item selection-item-add"
             style="height:50px; min-width:50px; margin-left:20px;">

@@ -88,6 +88,9 @@ paper.Artwork = paper.Item.extend(
                     this._size.height // newHeight
                 )
             }
+            // draw glass overlay
+            //ctx.fillStyle = 'rgba(255,0,0,0.1)'
+            //ctx.fillRect(-this._size.width / 2, -this._size.height / 2, this._size.width, this._size.height)
             ctx.restore()
         },
         _getBounds: function (matrix, options) {

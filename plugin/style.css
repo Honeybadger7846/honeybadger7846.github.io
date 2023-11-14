@@ -121,7 +121,7 @@ html *:after {
     flex-direction: column;
     gap: 5px;
     width: auto;
-    height: 72px;
+    height:auto;
     cursor: pointer;
     color: #000;
     font-family: system-ui;
