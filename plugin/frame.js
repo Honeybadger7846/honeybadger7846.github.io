@@ -77,7 +77,7 @@ paper.Frame = paper.Item.extend(
         },
         _draw: function (ctx, param, viewMatrix) {
             this._setStyles(ctx, param, viewMatrix)
-            const zoom = this.getView()?.zoom || 1
+            const zoom = Math.max(1, this.getView()?.zoom || 1)
             const sideLength = this.length / this.pxPerCm
             const minScaling = Math.min(this.scaling.x, this.scaling.y)
             // draw pass
@@ -173,14 +173,14 @@ paper.Frame = paper.Item.extend(
                 ctx.restore()
             }
             // draw shadow layer
-            ctx.save()
-            ctx.lineWidth = sideLength
-            ctx.strokeStyle = 'rgba(0,0,0,0)'
-            ctx.shadowColor = 'rgba(0,0,0,0.6)'
-            ctx.shadowBlur = sideLength * zoom
-            ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
-            ctx.strokeRect(-this._size.width / 2 * this.scaling.x, -this._size.height / 2 * this.scaling.y, this._size.width * this.scaling.x, this._size.height * this.scaling.y)
-            ctx.restore()
+           // ctx.save()
+            //ctx.lineWidth = sideLength
+            //ctx.strokeStyle = 'rgba(0,0,0,0)'
+            //ctx.shadowColor = 'rgba(0,0,0,0.6)'
+            //ctx.shadowBlur = sideLength * zoom
+           // ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
+            //ctx.strokeRect(-this._size.width / 2 * this.scaling.x, -this._size.height / 2 * this.scaling.y, this._size.width * this.scaling.x, this._size.height * this.scaling.y)
+           // ctx.restore()
             // draw frame
             if (this._image?.loaded) {
                 ctx.fillStyle = ctx.createPattern(this._image, 'repeat')
@@ -213,6 +213,11 @@ paper.Frame = paper.Item.extend(
                 ctx.restore()
                 // right side
                 ctx.save()
+                // set environment shadow
+                ctx.shadowColor = "rgba(0,0,0,0.5)"
+                ctx.shadowBlur = 20 * zoom
+                ctx.shadowOffsetX = 10 * zoom
+                ctx.shadowOffsetY = 10 * zoom
                 ctx.beginPath()
                 ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
                 ctx.moveTo(this._size.width * this.scaling.x / 2 + sideLength / 2, -this._size.height * this.scaling.y / 2 - sideLength / 2)
@@ -227,6 +232,11 @@ paper.Frame = paper.Item.extend(
                 ctx.restore()
                 // bottom side
                 ctx.save()
+                // set environment shadow
+                ctx.shadowColor = "rgba(0,0,0,0.5)"
+                ctx.shadowBlur = 20 * zoom
+                ctx.shadowOffsetX = 10 * zoom
+                ctx.shadowOffsetY = 10 * zoom
                 ctx.beginPath()
                 ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
                 ctx.moveTo(this._size.width * this.scaling.x / 2 + sideLength / 2, this._size.height * this.scaling.y / 2 + sideLength / 2)

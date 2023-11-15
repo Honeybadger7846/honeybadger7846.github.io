@@ -53,7 +53,6 @@ paper.Artwork = paper.Item.extend(
                 size: new paper.Size(options.size),
                 offset: new paper.Point(options.offset)
             }
-            console.log(this.clip.size, this._size)
             this._changed(9)
         },
         isEmpty: function () {
@@ -64,8 +63,15 @@ paper.Artwork = paper.Item.extend(
         },
         _draw: function (ctx, param, viewMatrix) {
             this._setStyles(ctx, param, viewMatrix)
-            const zoom = this.getView()?.zoom || 1
+            const zoom = Math.max(1, this.getView()?.zoom || 1)
             ctx.save()
+            // set environment shadow
+            if (!this.frame) {
+                ctx.shadowColor = "rgba(0,0,0,0.5)"
+                ctx.shadowBlur = 20 * zoom
+                ctx.shadowOffsetX = 10 * zoom
+                ctx.shadowOffsetY = 10 * zoom
+            }
             // clipping
             if (this.clip && !this._selected) {
                 ctx.beginPath()
@@ -90,13 +96,12 @@ paper.Artwork = paper.Item.extend(
             }
             // draw glass overlay
             //ctx.fillStyle = 'rgba(255,0,0,0.1)'
-            //ctx.fillRect(-this._size.width / 2, -this._size.height / 2, this._size.width, this._size.height)
+            // ctx.fillRect(-this._size.width / 2, -this._size.height / 2, this._size.width, this._size.height)
             ctx.restore()
         },
         _getBounds: function (matrix, options) {
             let rect = new paper.Rectangle(this._size).setCenter(0, 0)
             if (matrix) rect = matrix._transformBounds(rect)
-            console.log("HAPPENS GET BOUNDS")
             return rect
         }
     },
@@ -113,9 +118,8 @@ paper.Artwork = paper.Item.extend(
                 strokeMatrix
             ) {
                 let hit = false
-                let size = this._selected || !this.clip ? this._size : {width: this.clip.size.width / this.scaling.x, height: this.clip.size.height / this.scaling.y}
-                let offset = this._selected || !this.clip ? { x: 0, y: 0 } : {x: this.clip.offset.x / this.scaling.x, y: this.clip.offset.y / this.scaling.y}
-                console.log(offset)
+                let size = this._selected || !this.clip ? this._size : { width: this.clip.size.width / this.scaling.x, height: this.clip.size.height / this.scaling.y }
+                let offset = this._selected || !this.clip ? { x: 0, y: 0 } : { x: this.clip.offset.x / this.scaling.x, y: this.clip.offset.y / this.scaling.y }
                 let rect = new paper.Rectangle(size).setCenter(offset.x, offset.y)
                 hit = rect._containsPoint(point)
                 return hit
