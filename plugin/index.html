@@ -97,7 +97,7 @@
         <!-- experimental -->
       </div>
       <div class="selection-pane-item" type="frame">
-        <div id="frame-list" class="selection-list">
+        <div id="frame-list" class="selection-list" style="margin: auto; width:auto;">
           <div id="add-frame-item-debug" class="selection-item">
             <label for="frame-file-upload" class="selection-item-add" style="cursor:pointer;">
               <input type="file" id="frame-file-upload" accept="image/png, image/jpeg" />
@@ -117,12 +117,20 @@
           </div>
         </div>
       </div>
-      <!--
-      <div class="selection-pane-item" type="pass">
-        <div id="pass-list" class="selection-list">
+      <div class="selection-pane-item" type="matting">
+        <div class="selection-list" style="margin: auto; width:auto;">
+          <input id="matting-length-slider" type="range" min="5" max="100" value="15">
+          <label id="add-matting" class="selection-item selection-item-add"
+            style="height:70px; width:70px; margin-left:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 448 512">
+              <path fill="currentColor"
+                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+            </svg>
+          </label>
+          <div id="matting-list" style="display:flex; gap:20px;">
+          </div>
         </div>
       </div>
-       -->
       <div class="selection-pane-item" id="selection-background-pane" type="background"
         style="gap:20px; width:100%; height:120px;">
         <div class="selection-list" style="margin: auto; width:auto;">
@@ -136,16 +144,6 @@
           <div id="painting-list" style="display:flex; gap:20px;">
           </div>
         </div>
-        <!--
-        <label id="change-wall-size" class="selection-item selection-item-add"
-          style="height:40px; min-width:40px; margin-right:20px;" alt="Fit to Screen">
-          <svg height="30" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512">
-            <path fill="currentColor"
-              d="M32 32C14.3 32 0 46.3 0 64v96c0 17.7 14.3 32 32 32s32-14.3 32-32V96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H32zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H64V352zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32H320zM448 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V352z" />
-          </svg>
-        </label>
-      -->
       </div>
       <div class="selection-pane-item" type="scale">
         <label for="wall-size" style="display:inline-flex; gap:10px; margin-right: 10px; align-items:center;">Length
@@ -204,7 +202,7 @@
           </svg>
           <span>Frame</span>
         </div>
-        <div type="pass" class="painting-options-item painting-options-item-menu"><svg
+        <div type="matting" class="painting-options-item painting-options-item-menu"><svg
             xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 0 31.829 29">
             <path
               d="M3.177,28.505l2.042.853V15.6l-3.7,8.93a3.077,3.077,0,0,0,1.661,3.978Zm29.717-5.639L25.336,4.624a3.037,3.037,0,0,0-3.962-1.646L10.142,7.627A3.046,3.046,0,0,0,8.267,10.37,2.843,2.843,0,0,0,8.5,11.589l7.559,18.242a3.044,3.044,0,0,0,2.789,1.874,3.152,3.152,0,0,0,1.173-.229l11.216-4.648a3.039,3.039,0,0,0,1.661-3.962ZM11.33,11.894a1.524,1.524,0,1,1,1.524-1.524A1.528,1.528,0,0,1,11.33,11.894ZM8.282,28.658a3.057,3.057,0,0,0,3.048,3.048h2.21L8.282,19Z"
@@ -250,8 +248,9 @@
     </div>
   </div>
   <script src="paper.js"></script>
-  <script src="frame.js"></script>
   <script src="artwork.js"></script>
+  <script src="frame.js"></script>
+  <script src="matting.js"></script>
   <script src="main.js"></script>
 </body>
 

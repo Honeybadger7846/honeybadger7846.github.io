@@ -85,18 +85,15 @@ const frames = [
         pricePerSquareCm: 0.003
     }
 ]
-const pass = [
+const mattings = [
     {
-        src: 'https://i.imgur.com/QDs68dd.png',
-        passLength: 0
+        src: 'https://i.imgur.com/QDs68dd.png'
     },
     {
-        src: 'https://i.imgur.com/0kFsOHE.png',
-        passLength: 15
+        src: 'https://i.imgur.com/0kFsOHE.png'
     },
     {
-        src: 'https://i.imgur.com/4fRVhjt.png',
-        passLength: 20
+        src: 'https://i.imgur.com/4fRVhjt.png'
     }
 ]
 const steps = [
@@ -192,6 +189,14 @@ const selectionPaneList = {
     },
     'scale': {
         update: function (configurator) {
+        }
+    },
+    'matting': {
+        update: function (configurator) {
+            const matting = configurator.getMatting()
+            if (matting) {
+                document.getElementById('matting-length-slider').value = matting.length
+            }
         }
     }
 }
@@ -756,7 +761,7 @@ class FrameConfigurator {
     }
     isSelectableDrawing(drawing) {
         if (!drawing?.data) return
-        return drawing.data.type === 'artwork' || drawing.data.type === 'frame' || drawing.data.type === 'bg-image'
+        return drawing.data.type === 'artwork' || drawing.data.type === 'frame' || drawing.data.type === 'matting' || drawing.data.type === 'bg-image'
     }
     initSelection() {
         this.selectionTool = new paper.Tool({
@@ -771,7 +776,7 @@ class FrameConfigurator {
                 segments: true,
                 stroke: true,
                 fill: true,
-                tolerance: 30 / Math.max(1, this.canvas.view.zoom)
+                tolerance: 5 / Math.max(1, this.canvas.view.zoom)
             })
             this.selectionTool._hitResult = { item: hitResult?.item }
             // if no hit detection, set activeSelectionHandler flag && remove activeSelection if any
@@ -1140,6 +1145,8 @@ class FrameConfigurator {
                 if (artwork._validDragBeforeMouseUp) {
                     artwork.position = artwork.position.add(offset)
                     frame.position = frame.position.add(offset)
+                    // update matting
+                    frame.updateMattingsPosition()
                     // update clip region
                     artwork.setClip({
                         size: frame.bounds.size,
@@ -1164,9 +1171,9 @@ class FrameConfigurator {
             this.setActiveSelection(artwork)
         })
     }
-    getFrame() {
+    getFrame(uuid) {
         if (this.activeSelection?.data?.type === 'frame') return this.activeSelection
-        return this.canvas.project.activeLayer.children.find(child => child.data?.type === 'frame')
+        return uuid ? this.canvas.project.activeLayer.children.find(child => child.data?.type === 'frame' && child.data?.uuid === uuid) : this.canvas.project.activeLayer.children.find(child => child.data?.type === 'frame')
     }
     setFrame(options) {
         const frame = this.activeSelection?.data?.type === 'frame' && this.activeSelection
@@ -1176,6 +1183,7 @@ class FrameConfigurator {
         }
         frame.data.asset = options
         frame.setFrame(options)
+        frame.updateMattingsPosition()
     }
     addFrame(options) {
         const artwork = (this.activeSelection?.data?.type === 'artwork' && this.activeSelection) ?? this.getArtwork()
@@ -1191,10 +1199,11 @@ class FrameConfigurator {
             pxPerCm: this.pxPerCm,
             artwork: artwork,
             src: options.src,
-            data: { type: 'frame', pane: 'frame', focusable: true, uuid: artwork.data.uuid, name: artwork.data.name, asset: options }
+            data: { type: 'frame', pane: 'frame', mattings: [], focusable: true, uuid: artwork.data.uuid, name: artwork.data.name, asset: options }
         })
         frame.applyBoundsTransformation = (offset) => {
             frame.position = frame.position.add(offset)
+            frame.updateMattingsPosition()
             artwork.position = artwork.position.add(offset)
             // update clip region
             artwork.setClip({
@@ -1203,6 +1212,20 @@ class FrameConfigurator {
             })
             return
         }
+        frame.updateMattingsPosition = () => {
+            if (frame.data.mattings?.length < 1) return
+            let cumulativeLength = frame.length
+            let availableLength = Math.min(frame.strokeBounds.size.width * this.pxPerCm, frame.strokeBounds.size.height * this.pxPerCm)
+
+            frame.data.mattings.forEach(matting => {
+                // if (matting.length * 2 < availableLength) {
+                cumulativeLength += matting.length
+                matting.setSize(frame.bounds.size.width - cumulativeLength / this.pxPerCm, frame.bounds.size.height - cumulativeLength / this.pxPerCm)
+                matting.position = frame.position
+                cumulativeLength += matting.length
+                // }
+            })
+        }
         // change artwork selection pane from frame to artwork
         artwork.data.pane = 'artwork'
         // create frame ref for artwork
@@ -1210,11 +1233,49 @@ class FrameConfigurator {
         // set active selection
         this.setActiveSelection(frame)
     }
+    getMatting() {
+        if (this.activeSelection?.data?.type === 'matting') return this.activeSelection
+        return this.canvas.project.activeLayer.children.find(child => child.data?.type === 'matting')
+    }
+    setMatting(options) {
+        const matting = this.activeSelection?.data?.type === 'matting' && this.activeSelection
+        if (!matting) {
+            this.addMatting(options)
+            return
+        }
+        matting.data.asset = options
+        matting.setMatting(options)
+        matting.frame?.updateMattingsPosition()
+    }
+    addMatting(options) {
+        const frame = this.getFrame(this.activeSelection?.data?.uuid)
+        console.log(frame, this.getFrame(this.activeSelection?.data?.uuid))
+        if (!frame) return
+        // add matting
+        const index = frame.data.mattings?.length > 0 ? frame.data.mattings[frame.data.mattings.length - 1].index : frame.index
+        let matting = this.canvas.project.activeLayer.insertChild(index, new paper.Matting({
+            position: frame.position,
+            width: frame.bounds.width,
+            height: frame.bounds.height,
+            length: 10, // default value
+            strokeColor: '#000', // temp solution for hitbox, need rework
+            strokeWidth: 10 / this.pxPerCm, // temp solution for hitbox, need rework
+            pxPerCm: this.pxPerCm,
+            frame: frame,
+            src: options.src,
+            data: { type: 'matting', pane: 'matting', focusable: true, disableResize: false, uuid: frame.data.uuid, name: frame.data.name, asset: options }
+        }))
+        frame.data.mattings.push(matting)
+        frame.updateMattingsPosition()
+        // set active selection
+        this.setActiveSelection(matting)
+    }
     setPxPerCm(value) {
         this.pxPerCm = value
-        this.updateFrames()
+        this.updateFramesPxPerCm()
+        this.updateMattingsPxPerCm()
     }
-    updateFrames() {
+    updateFramesPxPerCm() {
         const frames = this.canvas.project.activeLayer.children.filter(child => child.data?.type === 'frame')
         frames && frames.forEach(frame => {
             frame.pxPerCm = this.pxPerCm
@@ -1222,6 +1283,22 @@ class FrameConfigurator {
             frame._changed(9)
         })
         this.canvas.view.update()
+    }
+    updateMattingsPxPerCm() {
+        const mattings = this.canvas.project.activeLayer.children.filter(child => child.data?.type === 'matting')
+        mattings && mattings.forEach(matting => {
+            matting.pxPerCm = this.pxPerCm
+            matting.strokeWidth = matting.length / matting.pxPerCm
+            matting._changed(9)
+        })
+        this.canvas.view.update()
+    }
+    updateMattingLength(length) {
+        const matting = this.getMatting()
+        if (!matting) return
+        matting.setLength(length)
+        matting.frame?.updateMattingsPosition()
+        this.updateActiveSelection()
     }
     showMeasureInfo() {
         const bgImage = this.canvas.project.activeLayer.children.find(child => child.data?.type === 'bg-image')
@@ -1368,28 +1445,22 @@ window.addEventListener('load', () => {
         })
         wrapper.appendChild(itemDiv)
     })
-    // add pass
-    /*
-    pass.forEach(pas => {
-        const wrapper = document.getElementById('pass-list')
+
+    // add mattings
+    mattings.forEach(matting => {
+        const wrapper = document.getElementById('matting-list')
         const itemDiv = document.createElement('div')
         itemDiv.classList.add('selection-item')
+        itemDiv.style.minWidth = '70px'
         const imageEl = document.createElement('img')
-        imageEl.setAttribute('src', pas.src)
+        imageEl.setAttribute('src', matting.src)
         imageEl.classList.add('selection-image')
         itemDiv.appendChild(imageEl)
         itemDiv.addEventListener('click', () => {
-            const frameEl = configurator.canvas.project.activeLayer.children.find(child => child.data?.type === 'frame')
-            if (frameEl) {
-                frameEl.setPass({
-                    src: pas.src,
-                    passLength: pas.passLength
-                })
-            }
+            configurator.setMatting(matting)
         })
         wrapper.appendChild(itemDiv)
     })
-    */
     // upload wall
     document.getElementById('wall-upload').addEventListener('change', (event) => {
         event.preventDefault()
@@ -1497,6 +1568,13 @@ window.addEventListener('load', () => {
     document.getElementById('remove-painting').addEventListener('click', () => {
         configurator.removePainting()
     })
+
+    document.getElementById('add-matting').addEventListener('click', () => {
+        configurator.addMatting(mattings[1])
+    })
+    document.getElementById('matting-length-slider').addEventListener('input', () => {
+        configurator.updateMattingLength(Number(document.getElementById('matting-length-slider').value))
+    }, false)
 
 })
 

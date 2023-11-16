@@ -38,10 +38,12 @@ paper.Frame = paper.Item.extend(
             }
         },
         setFrame: function (options) {
-            if (options.length) this.length = options.length
+            if (options.length) {
+                this.length = options.length
+                this.strokeWidth = options.length / this.pxPerCm
+            }
             if (options.offset) this.offset = options.offset
             if (options.pxPerCm) this.pxPerCm = options.pxPerCm
-            if (options.strokeWidth) this.strokeWidth = options.strokeWidth
             this._image = new Image()
             this._image.src = options.src
             this._image.crossOrigin = 'anonymous'
@@ -185,6 +187,11 @@ paper.Frame = paper.Item.extend(
             if (this._image?.loaded) {
                 ctx.fillStyle = ctx.createPattern(this._image, 'repeat')
                 // left side
+                 // set environment shadow
+                 ctx.shadowColor = "rgba(0,0,0,0.5)"
+                 ctx.shadowBlur = 20 * zoom
+                 ctx.shadowOffsetX = -10 * zoom
+                 ctx.shadowOffsetY = 10 * zoom
                 ctx.save()
                 ctx.beginPath()
                 ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
@@ -212,12 +219,12 @@ paper.Frame = paper.Item.extend(
                 ctx.fill()
                 ctx.restore()
                 // right side
-                ctx.save()
                 // set environment shadow
                 ctx.shadowColor = "rgba(0,0,0,0.5)"
                 ctx.shadowBlur = 20 * zoom
-                ctx.shadowOffsetX = 10 * zoom
+                ctx.shadowOffsetX = 1 * zoom
                 ctx.shadowOffsetY = 10 * zoom
+                ctx.save()
                 ctx.beginPath()
                 ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
                 ctx.moveTo(this._size.width * this.scaling.x / 2 + sideLength / 2, -this._size.height * this.scaling.y / 2 - sideLength / 2)
@@ -235,7 +242,7 @@ paper.Frame = paper.Item.extend(
                 // set environment shadow
                 ctx.shadowColor = "rgba(0,0,0,0.5)"
                 ctx.shadowBlur = 20 * zoom
-                ctx.shadowOffsetX = 10 * zoom
+                ctx.shadowOffsetX = -10 * zoom
                 ctx.shadowOffsetY = 10 * zoom
                 ctx.beginPath()
                 ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
