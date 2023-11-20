@@ -79,16 +79,13 @@ const frames = [
     },
     {
         id: '7455TO',
-        src: 'https://i.imgur.com/YbGvFms.png',
-        length: 5.6,
-        offset: 0.8,
+        src: 'https://i.imgur.com/Spw7c3b.jpg', //'https://i.imgur.com/YbGvFms.png',
+        length: 8.1,
+        offset: 0.9,
         pricePerSquareCm: 0.003
     }
 ]
 const mattings = [
-    {
-        src: 'https://i.imgur.com/QDs68dd.png'
-    },
     {
         src: 'https://i.imgur.com/0kFsOHE.png'
     },
@@ -108,8 +105,8 @@ const steps = [
         el: null,
         activateAction: function (configurator) {
             document.getElementById('canvas').style.display = 'block'
-            document.getElementById('undo').style.display = 'flex'
-            document.getElementById('redo').style.display = 'flex'
+            //document.getElementById('undo').style.display = 'flex'
+            //document.getElementById('redo').style.display = 'flex'
             document.getElementById('fit-to-screen').style.display = 'flex'
             configurator.showMeasureInfo()
             configurator.lineTool.activate()
@@ -121,8 +118,8 @@ const steps = [
         el: 'select-artwork',
         activateAction: function (configurator) {
             document.getElementById('canvas').style.display = 'block'
-            document.getElementById('undo').style.display = 'flex'
-            document.getElementById('redo').style.display = 'flex'
+            //document.getElementById('undo').style.display = 'flex'
+            //document.getElementById('redo').style.display = 'flex'
             document.getElementById('fit-to-screen').style.display = 'flex'
             configurator.selectionTool.activate()
             if (configurator.scale) configurator.removeDrawing(configurator.scale)
@@ -135,8 +132,8 @@ const steps = [
         el: null,
         activateAction: function (configurator) {
             document.getElementById('canvas').style.display = 'block'
-            document.getElementById('undo').style.display = 'flex'
-            document.getElementById('redo').style.display = 'flex'
+            //document.getElementById('undo').style.display = 'flex'
+            //document.getElementById('redo').style.display = 'flex'
             document.getElementById('fit-to-screen').style.display = 'flex'
             document.getElementById('painting-options').style.display = 'flex'
         },
@@ -196,6 +193,7 @@ const selectionPaneList = {
             const matting = configurator.getMatting()
             if (matting) {
                 document.getElementById('matting-length-slider').value = matting.length
+                document.getElementById('matting-length-value').innerHTML = `${document.getElementById('matting-length-slider').value} cm`
             }
         }
     }
@@ -258,6 +256,7 @@ class Interface {
         }
         this.updatePaintingSelectionOptions()
         this.updatePaintingOptions(pane)
+        document.getElementById('matting-slider').style.display = this.activePane === 'matting' && this.configurator.activeSelection instanceof paper.Matting ? 'flex' : 'none'
     }
     updatePaintingSelectionOptions() {
         if (this.configurator.activeSelection) {
@@ -265,7 +264,10 @@ class Interface {
         }
     }
     updatePaintingOptions(pane) {
-        document.getElementById('checkout').style.display = !this.configurator.activeSelection && this.configurator.getFrame() ? 'flex' : 'none'
+        document.getElementById('cart-bg').style.display = this.configurator.getFrame() ? 'flex' : 'none'
+        document.getElementById('checkout').style.display = this.configurator.getFrame() ? 'flex' : 'none'
+        document.getElementById('checkout').setAttribute('data-totalitems', this.configurator.getPaintings().length)
+        document.getElementById('cart-total-price').innerHTML = `${this.configurator.getTotalPrice().toFixed(2)}$`
         document.getElementById('painting-options').style.display = this.configurator.activeSelection ? 'flex' : 'none'
         const paintingOptionsCollection = document.getElementsByClassName('painting-options-item-menu')
         //const activePane = this.configurator.activeSelection?.data?.pane
@@ -542,6 +544,7 @@ class FrameConfigurator {
     setActiveSelection(drawing) {
         this.discardActiveSelection()
         if ((drawing instanceof paper.Frame || drawing.frame instanceof paper.Frame) && this.isMobile) { // && this.isMobile
+            console.log("HAPPENS")
             this.shouldZoomToPainting = true
             this.shouldZoomFitActionCoords = {
                 viewSize: new paper.Size(this.canvas.view.viewSize.width, this.canvas.view.viewSize.height),
@@ -608,7 +611,8 @@ class FrameConfigurator {
             this.updateResizeHandles(selection)
             this.shouldZoomToPainting = false // need for zooming on mobile
         }
-        const handleRadius = 15
+        const isMatting = selection.data?.type === 'matting'
+        const handleRadius = isMatting ? 5 : 15
         const handles = this.getResizeHandles()
         selection._handles = []
         handles.forEach(handle => {
@@ -617,15 +621,17 @@ class FrameConfigurator {
                 radius: handleRadius / this.canvas.view.zoom,
                 fillColor: '#037171',
                 strokeColor: '#fff',
+                opacity: isMatting ? 0.5 : 1,
+                locked: isMatting ? true : false,
                 strokeWidth: 1 / this.canvas.view.zoom,
                 ref: selection,
                 data: {
                     type: 'handle',
-                    size: 30
+                    size: handleRadius * 2
                 }
             })
             handleEl.onMouseEnter = () => {
-                this.canvasEl.style.cursor = handle.cursor
+                this.canvasEl.style.cursor = isMatting ? 'not-allowed' : handle.cursor
             }
             handleEl.onMouseLeave = () => {
                 this.canvasEl.style.cursor = 'default'
@@ -1117,6 +1123,7 @@ class FrameConfigurator {
         })
     }
     addArtwork(options) {
+        const bgImage = this.canvas.project.activeLayer.children.find(child => child.data?.type === 'bg-image')
         const lastAddedArtwork = this.canvas.project.activeLayer.children.filter(child => child.data?.type === 'artwork')?.reverse()?.find(child => child.data?.type === 'artwork')
         const position = lastAddedArtwork ? lastAddedArtwork.position.add(new paper.Point(lastAddedArtwork.bounds.size.width * 0.6, 0)) : this.canvas.view.center.add(new paper.Point(this.defaultPaintingPosition.x, this.defaultPaintingPosition.y))
         const uuid = uuidv4()
@@ -1186,6 +1193,7 @@ class FrameConfigurator {
         frame.updateMattingsPosition()
     }
     addFrame(options) {
+        const bgImage = this.canvas.project.activeLayer.children.find(child => child.data?.type === 'bg-image')
         const artwork = (this.activeSelection?.data?.type === 'artwork' && this.activeSelection) ?? this.getArtwork()
         if (!artwork) return
         // add frame
@@ -1198,6 +1206,11 @@ class FrameConfigurator {
             strokeWidth: options.length / this.pxPerCm, // temp solution for hitbox, need rework
             pxPerCm: this.pxPerCm,
             artwork: artwork,
+            glass: {
+                src: 'https://i.imgur.com/0Kq6UkP.png',
+                opacity: 0,
+                type: 'plexi'
+            },
             src: options.src,
             data: { type: 'frame', pane: 'frame', mattings: [], focusable: true, uuid: artwork.data.uuid, name: artwork.data.name, asset: options }
         })
@@ -1235,7 +1248,7 @@ class FrameConfigurator {
     }
     getMatting() {
         if (this.activeSelection?.data?.type === 'matting') return this.activeSelection
-        return this.canvas.project.activeLayer.children.find(child => child.data?.type === 'matting')
+        return this.canvas.project.activeLayer.children.find(child => child.data?.type === 'matting' && child.length > 0)
     }
     setMatting(options) {
         const matting = this.activeSelection?.data?.type === 'matting' && this.activeSelection
@@ -1245,6 +1258,7 @@ class FrameConfigurator {
         }
         matting.data.asset = options
         matting.setMatting(options)
+        if (matting.length < 1) matting.setLength(10)
         matting.frame?.updateMattingsPosition()
     }
     addMatting(options) {
@@ -1255,8 +1269,8 @@ class FrameConfigurator {
         const index = frame.data.mattings?.length > 0 ? frame.data.mattings[frame.data.mattings.length - 1].index : frame.index
         let matting = this.canvas.project.activeLayer.insertChild(index, new paper.Matting({
             position: frame.position,
-            width: frame.bounds.width,
-            height: frame.bounds.height,
+            width: frame.bounds.size.width,
+            height: frame.bounds.size.height,
             length: 10, // default value
             strokeColor: '#000', // temp solution for hitbox, need rework
             strokeWidth: 10 / this.pxPerCm, // temp solution for hitbox, need rework
@@ -1267,10 +1281,29 @@ class FrameConfigurator {
         }))
         frame.data.mattings.push(matting)
         frame.updateMattingsPosition()
+        matting.applyBoundsTransformation = (offset) => {
+            frame.position = frame.position.add(offset)
+            frame.updateMattingsPosition()
+            frame.artwork.position = frame.artwork.position.add(offset)
+            // update clip region
+            frame.artwork.setClip({
+                size: frame.bounds.size,
+                offset: frame.position.subtract(frame.artwork.position)
+            })
+            return
+        }
         // set active selection
         this.setActiveSelection(matting)
     }
-    setPxPerCm(value) {
+    removeMatting() {
+            const matting = this.getMatting()
+            if (!matting) return
+            matting.setLength(0)
+            matting.frame?.updateMattingsPosition()
+            this.setActiveSelection(matting.frame)
+            this.interface.updateSelectionPane('matting')
+    }
+     setPxPerCm(value) {
         this.pxPerCm = value
         this.updateFramesPxPerCm()
         this.updateMattingsPxPerCm()
@@ -1298,6 +1331,15 @@ class FrameConfigurator {
         if (!matting) return
         matting.setLength(length)
         matting.frame?.updateMattingsPosition()
+        this.updateActiveSelection()
+    }
+    updateGlass(options) {
+        const frame = this.getFrame()
+        if (!frame) return
+        frame.setGlass({
+            type: options.type,
+            opacity: Number(options.opacity)
+        })
         this.updateActiveSelection()
     }
     showMeasureInfo() {
@@ -1349,6 +1391,15 @@ class FrameConfigurator {
     }
     getPaintings() {
         return this.canvas.project.activeLayer.children.filter(child => child.data?.type === 'artwork') ?? []
+    }
+    getTotalPrice() {
+        const paintings = this.getPaintings()
+        let totalPrice = 0
+        paintings.forEach(painting => {
+            const price = painting.frame?.data?.asset?.pricePerSquareCm ? (painting.frame.strokeBounds.size.width * this.pxPerCm) * (painting.frame.strokeBounds.size.height * this.pxPerCm) * painting.frame.data.asset.pricePerSquareCm : 0
+            totalPrice += price
+        })
+        return totalPrice
     }
     getPaintingsAsImage() {
         if (!this.canvas?.project?.activeLayer) return []
@@ -1572,10 +1623,22 @@ window.addEventListener('load', () => {
     document.getElementById('add-matting').addEventListener('click', () => {
         configurator.addMatting(mattings[1])
     })
+    document.getElementById('remove-matting').addEventListener('click', () => {
+        configurator.removeMatting()
+    })
     document.getElementById('matting-length-slider').addEventListener('input', () => {
         configurator.updateMattingLength(Number(document.getElementById('matting-length-slider').value))
+        document.getElementById('matting-length-value').innerHTML = `${document.getElementById('matting-length-slider').value} cm`
     }, false)
 
+    document.querySelectorAll("input[name='glass-radio']").forEach((input) => {
+        input.addEventListener('click', () => {
+            configurator.updateGlass({
+                type: input.getAttribute('glass-type'),
+                opacity: input.value
+            })
+        })
+    })
 })
 
 //'https://i.imgur.com/KPFoL2H.jpg'

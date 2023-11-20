@@ -127,7 +127,7 @@ html *:after {
     cursor: pointer;
     color: #000;
     font-family: system-ui;
-    font-size: 15px;
+    font-size: 16px;
     transition: all .3s;
     user-select: none;
     white-space: nowrap;
@@ -207,7 +207,7 @@ button {
     align-items: center;
     gap: 10px;
     background-color: #000;
-    font-size: 15px;
+    font-size: 16px;
     padding: 10px 24px;
     border-radius: 3px;
     height: 54px;
@@ -218,6 +218,7 @@ button {
     outline: none;
     border: none;
     cursor: pointer;
+    position: relative;
 }
 
 button:hover {
@@ -243,7 +244,7 @@ button:hover {
     display: inline-block;
     position: relative;
     padding-left: 20px;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .radio input+span:before {
@@ -309,4 +310,109 @@ button:hover {
 .toolbox-item:hover {
     opacity: 0.7;
     cursor: pointer;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    max-width: 250px;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #037171;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #037171;
+    cursor: pointer;
+}
+
+
+
+
+.cart {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    height: 70px;
+    width: 70px;
+    background: #037171;
+    position: absolute;
+    z-index: 3;
+    bottom: 270px;
+    right: 5vw;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.cart:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.cart:before {
+    content: attr(data-totalitems);
+    font-size: 12px;
+    font-weight: 600;
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: #000;
+    line-height: 24px;
+    padding: 0 5px;
+    height: 24px;
+    min-width: 24px;
+    color: white;
+    text-align: center;
+    border-radius: 24px;
+}
+
+#cart-bg {
+    display: none;
+    animation: pulse 2s ease infinite;
+    background: #037171;
+    border-radius: 3px;
+    position: absolute;
+    height: 70px;
+    width: 70px;
+    z-index: 2;
+    bottom: 270px;
+    right: 5vw;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1, 1);
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
 }

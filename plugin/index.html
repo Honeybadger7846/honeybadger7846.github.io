@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Plugin</title>
   <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -21,12 +22,14 @@
               d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z" />
           </svg>
         </label>
+        <!--
         <label class="toolbox-item" style=" display:flex; height:30px; width:30px;">
           <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 512 512">
             <path fill="currentColor"
               d="M288 448H64V224h64V160H64c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H288c35.3 0 64-28.7 64-64V384H288v64zm-64-96H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H224c-35.3 0-64 28.7-64 64V288c0 35.3 28.7 64 64 64z" />
           </svg>
         </label>
+      -->
         <label id="remove-painting" class="toolbox-item" style=" display:flex; height:30px; width:30px;">
           <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 448 512">
             <path fill="currentColor"
@@ -37,6 +40,7 @@
       <div id="toolbox-bottom" class="toolbox" style="width:auto; user-select:none;">
       </div>
       <!-- canvas step -->
+      <!--
       <label id="undo" class="selection-item selection-item-add"
         style=" display:none; height:40px; min-width:40px; position:absolute; z-index:3; top:20px; left:20px;">
         <svg height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -51,6 +55,7 @@
             d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z" />
         </svg>
       </label>
+    -->
       <label id="fit-to-screen" class="selection-item selection-item-add"
         style=" display:none; height:40px; min-width:40px; position:absolute; z-index:3; top:20px; right:20px;">
         <svg height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -117,14 +122,29 @@
           </div>
         </div>
       </div>
+      <div id="matting-slider"
+        style="display:none; width:100%; position:absolute; bottom: 120px; justify-content:center; align-items:center; gap: 20px; background:#fff; border-bottom: 1px solid #e5e5e5; box-shadow: 0 -10px 10px -10px rgba(0, 0, 0, 0.3);">
+        <div
+          style="display:flex; justify-content: center; align-items: center; gap: 5px; width:100vw; height:50px;">
+          <input id="matting-length-slider" type="range" min="1" max="100" value="15" class="slider" style="margin-left:10px;">
+          <div id="matting-length-value" style="display:flex; width:70px; justify-content:center; align-items:center;">
+            15cm</div>
+        </div>
+      </div>
       <div class="selection-pane-item" type="matting">
         <div class="selection-list" style="margin: auto; width:auto;">
-          <input id="matting-length-slider" type="range" min="5" max="100" value="15">
           <label id="add-matting" class="selection-item selection-item-add"
             style="height:70px; width:70px; margin-left:20px;">
             <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 448 512">
               <path fill="currentColor"
                 d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+            </svg>
+          </label>
+          <label id="remove-matting" class="selection-item selection-item-add" style="height:70px; width:70px;">
+            <svg xmlns="http://www.w3.org/2000/svg"
+            height="40" viewBox="0 0 512 512">
+              <path fill="currentColor"
+                d="M367.2 412.5L99.5 144.8C77.1 176.1 64 214.5 64 256c0 106 86 192 192 192c41.5 0 79.9-13.1 111.2-35.5zm45.3-45.3C434.9 335.9 448 297.5 448 256c0-106-86-192-192-192c-41.5 0-79.9 13.1-111.2 35.5L412.5 367.2zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z" />
             </svg>
           </label>
           <div id="matting-list" style="display:flex; gap:20px;">
@@ -154,15 +174,15 @@
       <div class="selection-pane-item" type="glass">
         <div style="display:flex; align-items:center; gap:20px; margin: auto; overflow:auto;">
           <label class="radio">
-            <input name="radio" type="radio" checked>
+            <input name="glass-radio" type="radio" checked value="0.4" glass-type="plexi">
             <span>Plexiglass</span>
           </label>
           <label class="radio">
-            <input name="radio" type="radio">
+            <input name="glass-radio" type="radio" value="0" glass-type="none">
             <span>No glass</span>
           </label>
           <label class="radio">
-            <input name="radio" type="radio">
+            <input name="glass-radio" type="radio" value="0.1" glass-type="museum">
             <span>Museum glass</span>
           </label>
         </div>
@@ -239,13 +259,15 @@
           <span>Back</span>
         </div>
       </div>
-      <button id="checkout" style="display: none; margin-right:20px; background-color: #037171;">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 576 512">
-          <path fill="currentColor"
-            d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-        </svg>
-        CHECKOUT</button>
     </div>
+    <div id="cart-bg"></div>
+    <label id="checkout" class="cart" data-totalitems="2">
+    <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 0 576 512">
+      <path fill="currentColor"
+        d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
+    </svg>
+    <span id="cart-total-price" style="font-size:14px;">350$</span>
+  </label>
   </div>
   <script src="paper.js"></script>
   <script src="artwork.js"></script>

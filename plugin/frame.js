@@ -6,6 +6,7 @@ paper.Frame = paper.Item.extend(
         _canScaleStroke: true,
         _size: null, // width, height
         src: null,
+        glass: {},
         length: null,
         offset: null,
         _image: null,
@@ -18,24 +19,21 @@ paper.Frame = paper.Item.extend(
             props.size = [props.width, props.height]
             this._initialize(props, new paper.Point(props.position))
             if (props.src) this.setFrame(props)
-            // https://i.imgur.com/4fRVhjt.png // green
-            // https://i.imgur.com/0kFsOHE.png // blue
-            //this.setPass({ src: 'https://i.imgur.com/0kFsOHE.png', passLength: 15 })
+            this.setGlass(props.glass)
         },
-        setPass: function (options) {
-            if (!options.passLength || options.passLength === 0) {
-                delete this._passImage
-                this._changed(9)
-                return
+        setGlass: function (options) {
+            if (options.src) {
+                this.glass.image = new Image()
+                this.glass.image.src = options.src
+                this.glass.image.crossOrigin = 'anonymous'
+                this.glass.image.onload = () => {
+                    this.glass.image.loaded = true
+                    this._changed(9)
+                }
             }
-            this.passLength = options.passLength
-            this._passImage = new Image()
-            this._passImage.src = options.src
-            this._passImage.crossOrigin = 'anonymous'
-            this._passImage.onload = () => {
-                this._passImage.loaded = true
-                this._changed(9)
-            }
+            this.glass.opacity = options.opacity
+            this.glass.type = options.type
+            this._changed(9)
         },
         setFrame: function (options) {
             if (options.length) {
@@ -81,118 +79,16 @@ paper.Frame = paper.Item.extend(
             this._setStyles(ctx, param, viewMatrix)
             const zoom = Math.max(1, this.getView()?.zoom || 1)
             const sideLength = this.length / this.pxPerCm
-            const minScaling = Math.min(this.scaling.x, this.scaling.y)
-            // draw pass
-            if (this._passImage?.loaded && this.passLength) {
-                const passLength = this.passLength / this.pxPerCm
-                // top shadow
-                ctx.save()
-                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
-                ctx.shadowColor = 'rgba(0,0,0,0.6)'
-                ctx.shadowBlur = 3 * zoom
-                ctx.shadowOffsetY = 3 * zoom
-                ctx.fillStyle = '#000'
-                ctx.beginPath()
-                ctx.rect(-this._size.width / 2 * this.scaling.x, -this._size.height / 2 * this.scaling.y, this._size.width * this.scaling.x, passLength)
-                ctx.closePath()
-                ctx.fill()
-                ctx.restore()
-                // bottom shadow
-                ctx.save()
-                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
-                ctx.shadowColor = 'rgba(0,0,0,0.6)'
-                ctx.shadowBlur = 3 * zoom
-                ctx.shadowOffsetY = -3 * zoom
-                ctx.fillStyle = '#000'
-                ctx.beginPath()
-                ctx.rect(-this._size.width / 2 * this.scaling.x, this._size.height / 2 * this.scaling.y -passLength, this._size.width * this.scaling.x, passLength)
-                ctx.closePath()
-                ctx.fill()
-                ctx.restore()
-                // left shadow
-                ctx.save()
-                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
-                ctx.shadowColor = 'rgba(0,0,0,0.6)'
-                ctx.shadowBlur = 3 * zoom
-                ctx.shadowOffsetX = 3 * zoom
-                ctx.fillStyle = '#000'
-                ctx.beginPath()
-                ctx.rect(-this._size.width / 2 * this.scaling.x, -this._size.height / 2 * this.scaling.y + passLength, passLength, this._size.height * this.scaling.y - passLength * 2)
-                ctx.closePath()
-                ctx.fill()
-                ctx.restore()
-                // right shadow
-                ctx.save()
-                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
-                ctx.shadowColor = 'rgba(0,0,0,0.6)'
-                ctx.shadowBlur = 3 * zoom
-                ctx.shadowOffsetX = -3 * zoom
-                ctx.fillStyle = '#000'
-                ctx.beginPath()
-                ctx.rect(this._size.width / 2 * this.scaling.x - passLength, -this._size.height / 2 * this.scaling.y + passLength, passLength, this._size.height * this.scaling.y - passLength * 2)
-                ctx.closePath()
-                ctx.fill()
-                ctx.restore()
-                // top pass
-                ctx.save()
-                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
-                ctx.beginPath()
-                ctx.rect(-this._size.width / 2 * this.scaling.x, -this._size.height / 2 * this.scaling.y, this._size.width * this.scaling.x, passLength)
-                ctx.closePath()
-                ctx.fillStyle = ctx.createPattern(this._passImage, 'repeat')
-                ctx.scale(passLength / this._passImage.width, passLength / this._passImage.width)
-                ctx.fill()
-                ctx.restore()
-                // bottom pass
-                ctx.save()
-                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
-                ctx.beginPath()
-                ctx.rect(-this._size.width / 2 * this.scaling.x, this._size.height / 2 * this.scaling.y -passLength, this._size.width * this.scaling.x, passLength)
-                ctx.closePath()
-                ctx.fillStyle = ctx.createPattern(this._passImage, 'repeat')
-                ctx.scale(passLength / this._passImage.width, passLength / this._passImage.width)
-                ctx.fill()
-                ctx.restore()
-                // left pass
-                ctx.save()
-                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
-                ctx.beginPath()
-                ctx.rect(-this._size.width / 2 * this.scaling.x, -this._size.height / 2 * this.scaling.y, passLength, this._size.height * this.scaling.y)
-                ctx.closePath()
-                ctx.fillStyle = ctx.createPattern(this._passImage, 'repeat')
-                ctx.scale(passLength / this._passImage.width, passLength / this._passImage.width)
-                ctx.fill()
-                ctx.restore()
-                // right pass
-                ctx.save()
-                ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
-                ctx.beginPath()
-                ctx.rect(this._size.width / 2 * this.scaling.x - passLength, -this._size.height / 2 * this.scaling.y, passLength, this._size.height * this.scaling.y)
-                ctx.closePath()
-                ctx.fillStyle = ctx.createPattern(this._passImage, 'repeat')
-                ctx.scale(passLength / this._passImage.width, passLength / this._passImage.width)
-                ctx.fill()
-                ctx.restore()
-            }
-            // draw shadow layer
-           // ctx.save()
-            //ctx.lineWidth = sideLength
-            //ctx.strokeStyle = 'rgba(0,0,0,0)'
-            //ctx.shadowColor = 'rgba(0,0,0,0.6)'
-            //ctx.shadowBlur = sideLength * zoom
-           // ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
-            //ctx.strokeRect(-this._size.width / 2 * this.scaling.x, -this._size.height / 2 * this.scaling.y, this._size.width * this.scaling.x, this._size.height * this.scaling.y)
-           // ctx.restore()
             // draw frame
             if (this._image?.loaded) {
                 ctx.fillStyle = ctx.createPattern(this._image, 'repeat')
                 // left side
-                 // set environment shadow
-                 ctx.shadowColor = "rgba(0,0,0,0.5)"
-                 ctx.shadowBlur = 20 * zoom
-                 ctx.shadowOffsetX = -10 * zoom
-                 ctx.shadowOffsetY = 10 * zoom
                 ctx.save()
+                // set environment shadow
+                ctx.shadowColor = "rgba(0,0,0,0.5)"
+                ctx.shadowBlur = 20 * zoom
+                ctx.shadowOffsetX = -10 * zoom
+                ctx.shadowOffsetY = 10 * zoom
                 ctx.beginPath()
                 ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
                 ctx.moveTo(-this._size.width * this.scaling.x / 2 - sideLength / 2, -this._size.height * this.scaling.y / 2 - sideLength / 2)
@@ -220,10 +116,10 @@ paper.Frame = paper.Item.extend(
                 ctx.restore()
                 // right side
                 // set environment shadow
-                ctx.shadowColor = "rgba(0,0,0,0.5)"
-                ctx.shadowBlur = 20 * zoom
-                ctx.shadowOffsetX = 1 * zoom
-                ctx.shadowOffsetY = 10 * zoom
+                //ctx.shadowColor = "rgba(0,0,0,0.5)"
+                //ctx.shadowBlur = 20 * zoom
+                //ctx.shadowOffsetX = 1 * zoom
+                // ctx.shadowOffsetY = 10 * zoom
                 ctx.save()
                 ctx.beginPath()
                 ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
@@ -256,6 +152,17 @@ paper.Frame = paper.Item.extend(
                 ctx.scale(sideLength / this._image.width, sideLength / this._image.width)
                 ctx.fill()
                 ctx.restore()
+                if (this.glass?.image?.loaded && this.glass.opacity > 0) {
+                    ctx.globalAlpha = this.glass.opacity ?? 1
+                    ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
+                    ctx.drawImage(
+                        this.glass.image,
+                        -this._size.width * this.scaling.x / 2 + sideLength / 2,
+                        -this._size.height * this.scaling.y / 2 + sideLength / 2,
+                        this._size.width * this.scaling.x - sideLength,
+                        this._size.height * this.scaling.y - sideLength
+                    )
+                }
             }
         },
         _getBounds: function (matrix, options) {

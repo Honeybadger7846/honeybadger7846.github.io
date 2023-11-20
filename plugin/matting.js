@@ -88,7 +88,6 @@ paper.Matting = paper.Item.extend(
             // draw pass
             if (this._mattingImage?.loaded && this.length) {
                 const mattingLength = this.length / this.pxPerCm
-                
                 // top shadow
                 ctx.save()
                 ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
@@ -101,7 +100,6 @@ paper.Matting = paper.Item.extend(
                 ctx.closePath()
                 ctx.fill()
                 ctx.restore()
-                
                 // bottom shadow
                 ctx.save()
                 ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
@@ -114,7 +112,6 @@ paper.Matting = paper.Item.extend(
                 ctx.closePath()
                 ctx.fill()
                 ctx.restore()
-                
                 // left shadow
                 ctx.save()
                 ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
@@ -127,7 +124,6 @@ paper.Matting = paper.Item.extend(
                 ctx.closePath()
                 ctx.fill()
                 ctx.restore()
-                
                 // right shadow
                 ctx.save()
                 ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
