@@ -31,6 +31,7 @@ paper.Matting = paper.Item.extend(
             }
             this.length = options.length
             */
+            if (options.src) this.src = options.src
             this._mattingImage = new Image()
             this._mattingImage.src = options.src
             this._mattingImage.crossOrigin = 'anonymous'
@@ -43,19 +44,6 @@ paper.Matting = paper.Item.extend(
             this.length = length
             this.strokeWidth = length / this.pxPerCm
             this._changed(9)
-        },
-        setFrame: function (options) {
-            if (options.length) this.length = options.length
-            if (options.offset) this.offset = options.offset
-            if (options.pxPerCm) this.pxPerCm = options.pxPerCm
-            if (options.strokeWidth) this.strokeWidth = options.strokeWidth
-            this._image = new Image()
-            this._image.src = options.src
-            this._image.crossOrigin = 'anonymous'
-            this._image.onload = () => {
-                this._image.loaded = true
-                this._changed(9)
-            }
         },
         getSize: function () {
             return new paper.Size(

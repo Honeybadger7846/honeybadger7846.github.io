@@ -42,6 +42,7 @@ paper.Frame = paper.Item.extend(
             }
             if (options.offset) this.offset = options.offset
             if (options.pxPerCm) this.pxPerCm = options.pxPerCm
+            if (options.src) this.src = options.src
             this._image = new Image()
             this._image.src = options.src
             this._image.crossOrigin = 'anonymous'

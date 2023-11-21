@@ -16,8 +16,10 @@ paper.Artwork = paper.Item.extend(
             props.size = [props.width || 1, props.height || 1]
             this._initialize(props, new paper.Point(props.position))
             this.setSrc(props.src, true)
+            this.setClip(props.clip)
         },
         setSrc: function (src, load, callback) {
+            this.src = src
             this._image = new Image()
             this._image.src = src
             this._image.crossOrigin = 'anonymous'
@@ -49,6 +51,7 @@ paper.Artwork = paper.Item.extend(
             }
         },
         setClip: function (options) {
+            if (!options) return
             this.clip = {
                 size: new paper.Size(options.size),
                 offset: new paper.Point(options.offset)
