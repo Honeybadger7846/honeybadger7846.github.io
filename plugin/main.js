@@ -673,28 +673,30 @@ class FrameConfigurator {
                 let maxFrameLimit = false
                 if (centerXHandles.includes(handle.name) && diffX) {
                     selection.scale(diffX, uniScaling ? diffX : 1, selection.bounds[handle.opposite])
-                    if (selection.data?.type === 'frame') {
-                        let size = selection.strokeBounds.size.width * this.pxPerCm
+                    //if (selection.data?.type === 'frame') {
+                        let selectionSize = uniScaling ? Math.max(selection.strokeBounds.size.width, selection.strokeBounds.size.height) : selection.strokeBounds.size.width
+                        let size = selectionSize * this.pxPerCm
                         maxFrameLimit = size > maxPaintingSize
                         if (size > maxPaintingSize) {
-                            selection.scale(maxPaintingSize / size, uniScaling ? diffX : 1, selection.bounds[handle.opposite])
+                            selection.scale(maxPaintingSize / size, uniScaling ? maxPaintingSize / size : 1, selection.bounds[handle.opposite])
                         }
                         if (selection.artwork && !selection.isInside(selection.artwork.bounds) && diffX > 1 && !maxFrameLimit) {
                             selection.artwork.scale(diffX, selection.bounds[handle.opposite])
                         }
-                    }
+                   // }
                 } else if (centerYHandles.includes(handle.name) && diffY) {
                     selection.scale(uniScaling ? diffY : 1, diffY, selection.bounds[handle.opposite])
-                    if (selection.data?.type === 'frame') {
-                        let size = selection.strokeBounds.size.height * this.pxPerCm
+                    //if (selection.data?.type === 'frame') {
+                        let selectionSize = uniScaling ? Math.max(selection.strokeBounds.size.width, selection.strokeBounds.size.height) : selection.strokeBounds.size.height
+                        let size = selectionSize * this.pxPerCm
                         maxFrameLimit = size > maxPaintingSize
                         if (size > maxPaintingSize) {
-                            selection.scale(uniScaling ? diffY : 1 , maxPaintingSize / size, selection.bounds[handle.opposite])
+                            selection.scale(uniScaling ? maxPaintingSize / size : 1 , maxPaintingSize / size, selection.bounds[handle.opposite])
                         }
                         if (selection.artwork && !selection.isInside(selection.artwork.bounds) && diffY > 1 && !maxFrameLimit) {
                             selection.artwork.scale(diffY, selection.bounds[handle.opposite])
                         }
-                    }
+                    //}
                 } else {
                     selection.scale(diffX ?? diffY, selection.bounds[handle.opposite])
                    // if (selection.data?.type === 'frame') {
