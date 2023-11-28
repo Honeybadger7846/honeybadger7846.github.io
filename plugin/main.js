@@ -1237,6 +1237,7 @@ class FrameConfigurator {
         frame.data.asset = options
         frame.setFrame(options)
         frame.updateMattingsPosition()
+        this.updateActiveSelection()
         this.snapshot()
     }
     initFrameEvents(frame) {
