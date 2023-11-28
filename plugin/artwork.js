@@ -70,10 +70,10 @@ paper.Artwork = paper.Item.extend(
             ctx.save()
             // set environment shadow
             if (!this.frame) {
-                ctx.shadowColor = "rgba(0,0,0,0.5)"
-                ctx.shadowBlur = 20 * zoom
-                ctx.shadowOffsetX = 10 * zoom
-                ctx.shadowOffsetY = 10 * zoom
+                ctx.shadowColor = "rgba(0,0,0,1)"
+                ctx.shadowBlur = 40 * zoom
+                //ctx.shadowOffsetX = 10 * zoom
+                //ctx.shadowOffsetY = 10 * zoom
             }
             // clipping
             if (this.clip && !this._selected) {

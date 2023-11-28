@@ -142,6 +142,7 @@ const steps = [
 ]
 const defaultWallSize = 300
 const defaultPaintingSize = { width: 120, height: 80 }
+const maxPaintingSize = 145
 const selectionPaneList = {
     'frame': {
         update: function (configurator) {
@@ -244,6 +245,8 @@ class Interface {
     }
     updateSelectionPane(pane) {
         if (!pane) pane = steps[this.stepIndex]?.pane
+        this.updateCartPrice()
+        this.updateMattingSlider()
         if (this.activePane === pane) return
         const paneCollection = document.getElementsByClassName('selection-pane-item')
         for (let i = 0; i < paneCollection.length; i++) {
@@ -263,11 +266,17 @@ class Interface {
             document.getElementById('painting-name-options').value = this.configurator.activeSelection.data?.name
         }
     }
-    updatePaintingOptions(pane) {
-        document.getElementById('cart-bg').style.display = this.configurator.getFrame() ? 'flex' : 'none'
-        document.getElementById('checkout').style.display = this.configurator.getFrame() ? 'flex' : 'none'
+    updateCartPrice() {
+        document.getElementById('cart-bg').style.display = this.configurator.getArtwork() ? 'flex' : 'none'
+        document.getElementById('checkout').style.display = this.configurator.getArtwork() ? 'flex' : 'none'
         document.getElementById('checkout').setAttribute('data-totalitems', this.configurator.getPaintings().length)
         document.getElementById('cart-total-price').innerHTML = `${this.configurator.getTotalPrice().toFixed(2)}$`
+    }
+    updateMattingSlider() {
+        this.configurator.calcAvailableMattingLength(this.configurator.activeSelection?.frame)
+    }
+    updatePaintingOptions(pane) {
+        this.updateCartPrice()
         document.getElementById('painting-options').style.display = this.configurator.activeSelection ? 'flex' : 'none'
         const paintingOptionsCollection = document.getElementsByClassName('painting-options-item-menu')
         //const activePane = this.configurator.activeSelection?.data?.pane
@@ -318,7 +327,7 @@ class FrameConfigurator {
         this.pxPerCm = 10
         this.interface = new Interface(this)
         this.minZoom = 0.1
-        this.maxZoom = 10
+        this.maxZoom = 1.5
         this.defaultPaintingPosition = { x: 0, y: 0 }
         this.canvas = new paper.PaperScope
         this.canvas.setup(canvasEl)
@@ -370,7 +379,8 @@ class FrameConfigurator {
         if (!this.activeSelection || !this.activeSelection?.data?.focusable) return
         const uuid = this.activeSelection?.data?.uuid
         this.canvas.project.activeLayer.children.forEach(child => {
-            if (child.data?.uuid !== uuid && child.data?.type !== 'handle') {
+            //child.data?.uuid !== uuid
+            if (child !== this.activeSelection && child.data?.type !== 'handle') {
                 child.opacity = 0.3
             }
         })
@@ -660,23 +670,45 @@ class FrameConfigurator {
                 } else
                 */
                 const uniScaling = selection.data?.uniScaling
+                let maxFrameLimit = false
                 if (centerXHandles.includes(handle.name) && diffX) {
                     selection.scale(diffX, uniScaling ? diffX : 1, selection.bounds[handle.opposite])
-                    if (selection.artwork && !selection.isInside(selection.artwork.bounds) && diffX > 1) {
-                        selection.artwork.scale(diffX, selection.bounds[handle.opposite])
+                    if (selection.data?.type === 'frame') {
+                        let size = selection.strokeBounds.size.width * this.pxPerCm
+                        maxFrameLimit = size > maxPaintingSize
+                        if (size > maxPaintingSize) {
+                            selection.scale(maxPaintingSize / size, uniScaling ? diffX : 1, selection.bounds[handle.opposite])
+                        }
+                        if (selection.artwork && !selection.isInside(selection.artwork.bounds) && diffX > 1 && !maxFrameLimit) {
+                            selection.artwork.scale(diffX, selection.bounds[handle.opposite])
+                        }
                     }
                 } else if (centerYHandles.includes(handle.name) && diffY) {
                     selection.scale(uniScaling ? diffY : 1, diffY, selection.bounds[handle.opposite])
-                    if (selection.artwork && !selection.isInside(selection.artwork.bounds) && diffY > 1) {
-                        selection.artwork.scale(diffY, selection.bounds[handle.opposite])
+                    if (selection.data?.type === 'frame') {
+                        let size = selection.strokeBounds.size.height * this.pxPerCm
+                        maxFrameLimit = size > maxPaintingSize
+                        if (size > maxPaintingSize) {
+                            selection.scale(uniScaling ? diffY : 1 , maxPaintingSize / size, selection.bounds[handle.opposite])
+                        }
+                        if (selection.artwork && !selection.isInside(selection.artwork.bounds) && diffY > 1 && !maxFrameLimit) {
+                            selection.artwork.scale(diffY, selection.bounds[handle.opposite])
+                        }
                     }
                 } else {
                     selection.scale(diffX ?? diffY, selection.bounds[handle.opposite])
-                    if (selection.artwork) {
-                        selection.artwork.scale(diffX ?? diffY, selection.bounds[handle.opposite])
-                        //const checkBounds = new paper.Rectangle(selection.bounds.topLeft.subtract(30, 30), selection.bounds.bottomRight.add(30, 30))
-                        if (!selection.isInside(selection.artwork.bounds)) {
-                            selection.artwork.fitBounds(selection.bounds, true)
+                    if (selection.data?.type === 'frame') {
+                        let size = Math.max(selection.strokeBounds.size.width * this.pxPerCm, selection.strokeBounds.size.height * this.pxPerCm)
+                        maxFrameLimit = size > maxPaintingSize
+                        if (size > maxPaintingSize) {
+                            selection.scale(maxPaintingSize / size, selection.bounds[handle.opposite])
+                        }
+                        if (selection.artwork) {
+                            if (!maxFrameLimit) selection.artwork.scale(diffX ?? diffY, selection.bounds[handle.opposite])
+                            //const checkBounds = new paper.Rectangle(selection.bounds.topLeft.subtract(30, 30), selection.bounds.bottomRight.add(30, 30))
+                            if (!selection.isInside(selection.artwork.bounds)) {
+                                selection.artwork.fitBounds(selection.bounds, true)
+                            }
                         }
                     }
                 }
@@ -691,7 +723,7 @@ class FrameConfigurator {
             }
             handleEl.mouseUpEvent = () => {
                 this.snapshot()
-              }
+            }
             selection._handles.push(handleEl)
 
         })
@@ -1182,7 +1214,7 @@ class FrameConfigurator {
             src: options.src,
             position: [0, 0],
             frame: null,
-            data: { type: 'artwork', pane: 'frame', focusable: true, uniScaling: true, uuid: uuid, name: `Lucrare ${this.getPaintings().length + 1}` } // pane can be artwork if frame is added
+            data: { type: 'artwork', pane: 'frame', focusable: true, uniScaling: true, uuid: uuid, name: `Tablou - Canvas ${this.getPaintings().length + 1}` } // pane can be artwork if frame is added
         })
         artwork.on('load', () => {
             // set default size
@@ -1219,11 +1251,10 @@ class FrameConfigurator {
             })
             return
         }
-        frame.updateMattingsPosition = () => {
+        frame.updateMattingsPosition = (matting) => {
             if (frame.mattings?.length < 1) return
             let cumulativeLength = frame.length
-            let availableLength = Math.min(frame.strokeBounds.size.width * this.pxPerCm, frame.strokeBounds.size.height * this.pxPerCm)
-
+            let availableLength = Math.min(frame.bounds.size.width * this.pxPerCm, frame.bounds.size.height * this.pxPerCm) - 5
             frame.mattings.forEach(matting => {
                 // if (matting.length * 2 < availableLength) {
                 cumulativeLength += matting.length
@@ -1232,7 +1263,26 @@ class FrameConfigurator {
                 cumulativeLength += matting.length
                 // }
             })
+            let scaleDiff = Math.min(availableLength / cumulativeLength, 1)
+            frame.mattings.forEach(matting => {
+                matting.setLength(matting.length * scaleDiff)
+                matting.setSize(matting._size.width * scaleDiff, matting._size.height * scaleDiff)
+                matting.position = frame.position
+            })
+            //document.getElementById('matting-length-slider').setAttribute('max', (availableLength - cumulativeLength) - 10)
+            //console.log(`${cumulativeLength} / ${availableLength}`)
         }
+    }
+    calcAvailableMattingLength(frame) {
+        if (!frame?.mattings || frame?.mattings?.length < 1) return
+        let cumulativeLength = frame.length
+        let availableLength = Math.min(frame.bounds.size.width * this.pxPerCm, frame.bounds.size.height * this.pxPerCm)
+        frame.mattings.forEach(matting => {
+            cumulativeLength += matting.length * 2
+        })
+        //let calcLength = frame.mattings.length === 1 ? availableLength / 2 - 5 - frame.length / 2 : Math.max(1, (availableLength / 2 - cumulativeLength) - 5 - frame.length / 2)
+        document.getElementById('matting-length-slider').setAttribute('max', availableLength / 2 - frame.length / 2 - 5)
+        console.log(`${cumulativeLength} / ${availableLength}`)
     }
     addFrame(options) {
         const bgImage = this.canvas.project.activeLayer.children.find(child => child.data?.type === 'bg-image')
@@ -1241,8 +1291,8 @@ class FrameConfigurator {
         // add frame
         let frame = new paper.Frame({
             position: artwork.position,
-            width: artwork.bounds.width,
-            height: artwork.bounds.height,
+            width: artwork.bounds.width - options.length / this.pxPerCm,
+            height: artwork.bounds.height - options.length / this.pxPerCm,
             length: options.length,
             strokeColor: '#000', // temp solution for hitbox, need rework
             strokeWidth: options.length / this.pxPerCm, // temp solution for hitbox, need rework
@@ -1251,17 +1301,19 @@ class FrameConfigurator {
             mattings: [],
             glass: {
                 src: 'https://i.imgur.com/0Kq6UkP.png',
-                opacity: 0,
+                opacity: 0.15,
                 type: 'plexi'
             },
             src: options.src,
-            data: { type: 'frame', pane: 'frame', focusable: true, uuid: artwork.data.uuid, name: artwork.data.name, asset: options }
+            data: { type: 'frame', pane: 'frame', focusable: true, uuid: artwork.data.uuid, name: `Tablou ${this.getPaintings().length}`, asset: options }
         })
         this.initFrameEvents(frame)
         // change artwork selection pane from frame to artwork
         artwork.data.pane = 'artwork'
         // create frame ref for artwork
         artwork.frame = frame
+        // rename artwork name from Tablou-Canvas to Tablou
+        artwork.data.name = `Tablou ${this.getPaintings().length}`
         // set active selection
         this.setActiveSelection(frame)
         this.snapshot()
@@ -1279,7 +1331,7 @@ class FrameConfigurator {
         matting.data.asset = options
         matting.setMatting(options)
         if (matting.length < 1) matting.setLength(10)
-        matting.frame?.updateMattingsPosition()
+        matting.frame?.updateMattingsPosition(matting)
         this.snapshot()
     }
     initMattingEvents(matting) {
@@ -1421,12 +1473,17 @@ class FrameConfigurator {
     getPaintings() {
         return this.canvas.project.activeLayer.children.filter(child => child.data?.type === 'artwork') ?? []
     }
+    getPaintingPrice(painting) {
+        if (!painting) return 0
+        const size = painting.frame?.strokeBounds?.size ?? painting.bounds?.size
+        const pricePerSquareCm = painting.frame?.data?.asset?.pricePerSquareCm ?? 0.001
+        return (size.width * this.pxPerCm) * (size.height * this.pxPerCm) * pricePerSquareCm
+    }
     getTotalPrice() {
         const paintings = this.getPaintings()
         let totalPrice = 0
         paintings.forEach(painting => {
-            const price = painting.frame?.data?.asset?.pricePerSquareCm ? (painting.frame.strokeBounds.size.width * this.pxPerCm) * (painting.frame.strokeBounds.size.height * this.pxPerCm) * painting.frame.data.asset.pricePerSquareCm : 0
-            totalPrice += price
+            totalPrice += this.getPaintingPrice(painting)
         })
         return totalPrice
     }
@@ -1445,10 +1502,9 @@ class FrameConfigurator {
             const paintingSize = new paper.Size(strokeBounds.size.width * scaleRatio, strokeBounds.size.height * scaleRatio)
             const rasterInternalOffset = raster.internalBounds.topLeft.add(new paper.Point(raster.internalBounds.size.width / 2, raster.internalBounds.size.height / 2))
             const bounds = new paper.Rectangle({ point: rasterInternalOffset.add(paintingOffset), size: paintingSize })
-            const price = painting.frame?.data?.asset?.pricePerSquareCm ? `${Math.round((painting.frame.strokeBounds.size.width * this.pxPerCm) * (painting.frame.strokeBounds.size.height * this.pxPerCm) * painting.frame.data.asset.pricePerSquareCm)}$` : 'null'
             paintingsAsImages.push({
                 painting: painting,
-                price: price,
+                price: `${this.getPaintingPrice(painting).toFixed(2)}$`,
                 image: raster.getSubCanvas(bounds).toDataURL()
             })
         })
@@ -1516,26 +1572,35 @@ class FrameConfigurator {
         if (!uuid) return
         const painting = this.paintingToJson(uuid)
         const newUuid = uuidv4()
-        const offset = painting.frame?.width * 1.1 ?? painting.artwork?.width * 1.1 ?? 0
+        const offset = painting.frame?.width ?? painting.artwork?.width ?? 0
         painting.uuid = newUuid
+        const name = painting.frame ? `Tablou ${this.getPaintings().length + 1}` : `Tablou - Canvas ${this.getPaintings().length + 1}`
         if (painting.artwork) {
             painting.artwork.data.uuid = newUuid
-            painting.artwork.data.name = `Lucrare ${this.getPaintings().length + 1}`
-            painting.artwork.position[0] += offset
+            painting.artwork.data.name = name
+            painting.artwork.position[0] += offset * 1.1
         }
         if (painting.frame) {
             painting.frame.data.uuid = newUuid
-            painting.frame.data.name = `Lucrare ${this.getPaintings().length + 1}`
-            painting.frame.position[0] += offset
+            painting.frame.data.name = name
+            painting.frame.position[0] += offset * 1.1
         }
         if (painting.mattings?.length > 0) {
             painting.mattings.forEach(matting => {
                 matting.data.uuid = newUuid
-                matting.data.name = `Lucrare ${this.getPaintings().length + 1}`
-                matting.position[0] += offset
+                matting.data.name = name
+                matting.position[0] += offset * 1.1
             })
         }
-        this.fromJson([painting])
+        const newPainting = this.fromJson([painting])
+        const newPaintingItem = newPainting[0].frame ?? newPainting[0].artwork
+        if (newPaintingItem.data?.type === 'artwork') {
+            newPaintingItem.on('load', () => {
+                this.setActiveSelection(newPaintingItem)
+            })
+        } else {
+            this.setActiveSelection(newPaintingItem)
+        }
         this.snapshot()
     }
     toJson() {
@@ -1544,9 +1609,11 @@ class FrameConfigurator {
         paintings.forEach(painting => {
             jsonList.push(this.paintingToJson(painting.data?.uuid))
         })
+        console.log(jsonList)
         return jsonList
     }
     fromJson(paintings) {
+        const paintingsList = []
         paintings.forEach(painting => {
             const paintingObject = {
                 frame: null,
@@ -1606,7 +1673,9 @@ class FrameConfigurator {
                     }
                 })
             }
+            paintingsList.push(paintingObject)
         })
+        return paintingsList
     }
     clearPaintings() {
         this.discardActiveSelection()
@@ -1853,6 +1922,9 @@ window.addEventListener('load', () => {
     })
     document.getElementById('redo').addEventListener('click', () => {
         configurator.redo()
+    })
+    document.getElementById('checkout').addEventListener('click', () => {
+        confirm('Are you sure you finished?')
     })
 })
 

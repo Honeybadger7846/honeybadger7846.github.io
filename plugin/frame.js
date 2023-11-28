@@ -37,8 +37,14 @@ paper.Frame = paper.Item.extend(
         },
         setFrame: function (options) {
             if (options.length) {
+                let lengthDiff = this.length - options.length
+                console.log(lengthDiff)
+                this._size._set(this._size.width + lengthDiff / this.pxPerCm, this._size.height + lengthDiff / this.pxPerCm)
                 this.length = options.length
                 this.strokeWidth = options.length / this.pxPerCm
+                this._changed(9)
+                if (this.artwork) this.artwork.fitBounds(this.bounds, true)
+                this.artwork._changed(9)
             }
             if (options.offset) this.offset = options.offset
             if (options.pxPerCm) this.pxPerCm = options.pxPerCm
@@ -154,8 +160,23 @@ paper.Frame = paper.Item.extend(
                 ctx.fill()
                 ctx.restore()
                 if (this.glass?.image?.loaded && this.glass.opacity > 0) {
+                    ctx.save()
                     ctx.globalAlpha = this.glass.opacity ?? 1
                     ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
+                    ctx.beginPath()
+                    ctx.rect(-this._size.width * this.scaling.x / 2 + sideLength / 2,
+                        -this._size.height * this.scaling.y / 2 + sideLength / 2,
+                        this._size.width * this.scaling.x - sideLength,
+                        this._size.height * this.scaling.y - sideLength)
+                    ctx.clip()
+                    const pattern = ctx.createPattern(this.glass.image, 'repeat')
+                    ctx.beginPath()
+                    const size = this.getView()?.size ?? { width: 2000, height: 2000 }
+                    ctx.rect(- size.width / 2, - size.height / 2, size.width, size.height)
+                    ctx.fillStyle = pattern
+                    ctx.fill()
+                    ctx.restore()
+                    /*
                     ctx.drawImage(
                         this.glass.image,
                         -this._size.width * this.scaling.x / 2 + sideLength / 2,
@@ -163,6 +184,7 @@ paper.Frame = paper.Item.extend(
                         this._size.width * this.scaling.x - sideLength,
                         this._size.height * this.scaling.y - sideLength
                     )
+                    */
                 }
             }
         },
