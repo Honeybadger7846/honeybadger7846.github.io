@@ -581,9 +581,9 @@ class FrameConfigurator {
             this.activeSelection = drawing.data?.type === 'artwork' && drawing.frame ? drawing.frame : drawing
         }
 
-        //this.activeSelection._validDragBeforeMouseUp = true // needed for dragging before releasing mouse
-        this.activeSelection._selected = true // needed for internal draw logic such as clip region, etc.
-        //if (this.activeSelection.artwork) this.activeSelection.artwork._selected = true // needed for internal draw logic such as clip region, etc.
+        this.activeSelection._validDragBeforeMouseUp = true // needed for dragging before releasing mouse
+        this.activeSelection._selected = false // needed for internal draw logic such as clip region, etc.
+        if (this.activeSelection.artwork) this.activeSelection.artwork._selected = false // needed for internal draw logic such as clip region, etc.
         this.createResizeHandles(this.activeSelection)
         this.updateDrawings()
         this.focus()
@@ -598,7 +598,7 @@ class FrameConfigurator {
         if (this.activeSelection) {
             this.unFocus()
             this.removeResizeHandles(this.activeSelection)
-            //this.activeSelection._validDragBeforeMouseUp = false // needed for dragging before releasing mouse
+            this.activeSelection._validDragBeforeMouseUp = false // needed for dragging before releasing mouse
             this.activeSelection._selected = false // needed for internal draw logic such as clip region, etc.
             if (this.activeSelection.artwork) this.activeSelection.artwork._selected = false // needed for internal draw logic such as clip region, etc.
         }
@@ -617,13 +617,13 @@ class FrameConfigurator {
         }
         selection.onMouseUp = () => {
             if (this.canvasEl) this.canvasEl.style.cursor = 'grab'
-           // if (!selection._validDraggingBeforeMouseUp && this.activeSelection === selection) {
-               // selection._validDragBeforeMouseUp = false // needed for dragging before releasing mouse
-                //selection._selected = true // needed for internal draw logic such as clip region, etc.
-                //selection._changed(9)
-               // this.canvas.view.update()
-            //}
-            //selection._validDraggingBeforeMouseUp = false
+            if (!selection._validDraggingBeforeMouseUp && this.activeSelection === selection) {
+                selection._validDragBeforeMouseUp = false // needed for dragging before releasing mouse
+                selection._selected = true // needed for internal draw logic such as clip region, etc.
+                selection._changed(9)
+                this.canvas.view.update()
+            }
+            selection._validDraggingBeforeMouseUp = false
             if (selection._snapShotDragEvent) {
                 this.snapshot()
             }
@@ -631,7 +631,7 @@ class FrameConfigurator {
         }
         selection.onMouseDrag = () => {
             if (this.canvasEl) this.canvasEl.style.cursor = 'grabbing'
-            //selection._validDraggingBeforeMouseUp = true // needed for dragging before releasing mouse
+            selection._validDraggingBeforeMouseUp = true // needed for dragging before releasing mouse
         }
         selection.onMouseLeave = () => {
             if (this.canvasEl) this.canvasEl.style.cursor = 'default'
@@ -736,8 +736,8 @@ class FrameConfigurator {
                 this.interface.updateSelectionPane(selection.data?.pane)
                 this.shouldZoomToPainting = false // need for zooming on mobile
                 selection._selected = true
-                //selection._validDraggingBeforeMouseUp = false
-                //selection._validDragBeforeMouseUp = false
+                selection._validDraggingBeforeMouseUp = false
+                selection._validDragBeforeMouseUp = false
             }
             handleEl.mouseUpEvent = () => {
                 this.snapshot()
