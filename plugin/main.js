@@ -697,7 +697,7 @@ class FrameConfigurator {
                     }
                 } else {
                     selection.scale(diffX ?? diffY, selection.bounds[handle.opposite])
-                    if (selection.data?.type === 'frame') {
+                   // if (selection.data?.type === 'frame') {
                         let size = Math.max(selection.strokeBounds.size.width * this.pxPerCm, selection.strokeBounds.size.height * this.pxPerCm)
                         maxFrameLimit = size > maxPaintingSize
                         if (size > maxPaintingSize) {
@@ -710,7 +710,7 @@ class FrameConfigurator {
                                 selection.artwork.fitBounds(selection.bounds, true)
                             }
                         }
-                    }
+                   // }
                 }
                 selection.applyBoundsTransformation?.({ x: 0, y: 0 })
                 this.updateResizeHandles(selection)
