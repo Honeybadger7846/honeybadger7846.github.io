@@ -200,11 +200,14 @@ const selectionPaneList = {
     },
     'glass': {
         update: function (configurator) {
-            if (configurator.activeSelection?.frame) {
-                configurator.activeSelection.frame.opacity = 1
-            }
-            if (configurator.activeSelection?.artwork) {
-                configurator.activeSelection.artwork.opacity = 1
+            let painting = configurator.activeSelection?.frame || configurator.activeSelection?.artwork
+            if (painting) {
+                let uuid = painting.data?.uuid
+                configurator.canvas.project.activeLayer.children.forEach(child => {
+                    if (child.data?.uuid === uuid) {
+                        child.opacity = 1
+                    }
+                })
             }
         }
     }
@@ -646,6 +649,10 @@ class FrameConfigurator {
         const isMatting = selection.data?.type === 'matting'
         const handleRadius = isMatting ? 5 : 15
         const handles = this.getResizeHandles()
+        if (selection.data?.type === 'artwork') {
+            handles.length = 4
+        }
+        console.log(handles)
         selection._handles = []
         handles.forEach(handle => {
             let handleEl = new paper.Path.Circle({
@@ -670,7 +677,7 @@ class FrameConfigurator {
             }
             handleEl.mouseDragEvent = (event) => {
                 let isDotCircle = selection.data.type === 'dotCircle' // only allow resizing same aspect ratio
-                let isText = selection.data?.type === 'artwork' //(selection.rotation !== 0 || selection.data?.matrixRotation !== 0) || selection.data.type === 'text' // only allow resizing same aspect ratio
+                let isArtwork = selection.data?.type === 'artwork' //(selection.rotation !== 0 || selection.data?.matrixRotation !== 0) || selection.data.type === 'text' // only allow resizing same aspect ratio
                 let xHandles = ['topLeft', 'topRight', 'bottomRight', 'bottomLeft', 'leftCenter', 'rightCenter']
                 let yHandles = ['topLeft', 'topRight', 'bottomRight', 'bottomLeft', 'topCenter', 'bottomCenter']
                 let centerXHandles = ['leftCenter', 'rightCenter']
@@ -1309,14 +1316,6 @@ class FrameConfigurator {
                 // }
             })
             frame.cumulativeLength = cumulativeLength
-            if (!frame.artwork.bounds.contains(frame.getAvailableBounds())) {
-                const bounds = new paper.Rectangle(frame.getAvailableBounds().topLeft.subtract(1, 1), frame.getAvailableBounds().bottomRight.add(1, 1))
-                frame.artwork.fitBounds(bounds, true)
-            }
-            frame.artwork.setClip({
-                size: frame.getAvailableBounds().size,
-                offset: frame.position.subtract(frame.artwork.position)
-            })
         }
     }
     calcAvailableMattingLength(frame) {
@@ -1378,6 +1377,12 @@ class FrameConfigurator {
         matting.setMatting(options)
         if (matting.length < 1) matting.setLength(10)
         matting.frame?.updateMattingsPosition(matting)
+        matting.frame.artwork.fitBounds(matting.frame.getAvailableBounds(), true)
+        // update clip region
+        matting.frame.artwork.setClip({
+            size: matting.frame.getAvailableBounds().size,
+            offset: matting.frame.position.subtract(matting.frame.artwork.position)
+        })
         this.snapshot()
     }
     initMattingEvents(matting) {
@@ -1413,6 +1418,12 @@ class FrameConfigurator {
         }))
         frame.mattings.push(matting)
         frame.updateMattingsPosition()
+        frame.artwork.fitBounds(frame.getAvailableBounds(), true)
+        // update clip region
+        frame.artwork.setClip({
+            size: frame.getAvailableBounds().size,
+            offset: frame.position.subtract(frame.artwork.position)
+        })
         this.initMattingEvents(matting)
         // set active selection
         this.setActiveSelection(matting)
@@ -1455,6 +1466,12 @@ class FrameConfigurator {
         if (!matting) return
         matting.setLength(length)
         matting.frame?.updateMattingsPosition()
+        matting.frame.artwork.fitBounds(matting.frame.getAvailableBounds(), true)
+        // update clip region
+        matting.frame.artwork.setClip({
+            size: matting.frame.getAvailableBounds().size,
+            offset: matting.frame.position.subtract(matting.frame.artwork.position)
+        })
         this.updateActiveSelection()
     }
     updateGlass(options) {
