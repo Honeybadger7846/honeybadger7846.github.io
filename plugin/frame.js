@@ -43,8 +43,6 @@ paper.Frame = paper.Item.extend(
                 this.length = options.length
                 this.strokeWidth = options.length / this.pxPerCm
                 this._changed(9)
-                if (this.artwork) this.artwork.fitBounds(this.bounds, true)
-                this.artwork._changed(9)
             }
             if (options.offset) this.offset = options.offset
             if (options.pxPerCm) this.pxPerCm = options.pxPerCm

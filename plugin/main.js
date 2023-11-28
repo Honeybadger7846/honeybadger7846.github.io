@@ -1239,6 +1239,12 @@ class FrameConfigurator {
         frame.data.asset = options
         frame.setFrame(options)
         frame.updateMattingsPosition()
+        frame.artwork.fitBounds(frame.bounds, true)
+        // update clip region
+        frame.artwork.setClip({
+            size: frame.bounds.size,
+            offset: frame.position.subtract(frame.artwork.position)
+        })
         this.updateActiveSelection()
         this.snapshot()
     }
