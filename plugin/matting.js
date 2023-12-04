@@ -14,7 +14,7 @@ paper.Matting = paper.Item.extend(
             length: null,
             offset: null
         },
-        initialize: function Frame(props) {
+        initialize: function Matting(props) {
             props.size = [props.width, props.height]
             this._initialize(props, new paper.Point(props.position))
             if (props.src) this.setMatting(props)

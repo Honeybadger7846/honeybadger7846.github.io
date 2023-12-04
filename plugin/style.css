@@ -359,8 +359,8 @@ button:hover {
     background: #037171;
     position: absolute;
     z-index: 4;
-    bottom: 270px;
-    right: 10vw;
+    bottom: 215px;
+    right: 7.5vw;
     align-items: center;
     justify-content: center;
     color: #fff;
@@ -398,8 +398,8 @@ button:hover {
     height: 70px;
     width: 70px;
     z-index: 4;
-    bottom: 270px;
-    right: 10vw;
+    bottom: 215px;
+    right: 7.5vw;
 }
 
 @keyframes pulse {
@@ -415,4 +415,35 @@ button:hover {
         transform: scale(1.4);
         opacity: 0;
     }
+}
+
+.matting-list {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    overflow: auto;
+    height: 100%;
+}
+
+.matting-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    color: #fff;
+}
+
+.matting-item:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.matting-image {
+    height: 25px;
+    width: 25px;
+    object-fit: cover;
 }
