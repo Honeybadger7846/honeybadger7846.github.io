@@ -189,8 +189,8 @@ html *:after {
 
 .selection-image {
     height: 50px;
-    width: auto;
-    object-fit: cover;
+    width: 50px;
+    object-fit: contain;
 }
 
 .selection-item-add {
