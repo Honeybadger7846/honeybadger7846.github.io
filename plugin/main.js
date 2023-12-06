@@ -583,14 +583,14 @@ class FrameConfigurator {
         ]
     }
     zoomToPainting(painting) {
-        if (!(painting instanceof paper.Frame || painting.frame instanceof paper.Frame) || !this.isMobile) return
+        if (!(painting instanceof paper.Frame || painting instanceof paper.Artwork) || !this.isMobile) return
         const bounds = painting.frame?.strokeBounds ?? painting.strokeBounds
         this.fitToScreen(new paper.Rectangle(bounds.topLeft.subtract(new paper.Point(bounds.size.width / 2, bounds.size.height / 2)),
             bounds.bottomRight.add(new paper.Point(bounds.size.width / 2, bounds.size.height / 2))))
     }
     setActiveSelection(drawing, force) {
         this.discardActiveSelection()
-        if ((drawing instanceof paper.Frame || drawing.frame instanceof paper.Frame) && this.isMobile) { // && this.isMobile
+        if ((drawing instanceof paper.Frame || drawing instanceof paper.Artwork) && this.isMobile) { // && this.isMobile
             this.shouldZoomToPainting = true
             this.shouldZoomFitActionCoords = {
                 viewSize: new paper.Size(this.canvas.view.viewSize.width, this.canvas.view.viewSize.height),
@@ -611,6 +611,7 @@ class FrameConfigurator {
         //if (this.activeSelection.artwork) this.activeSelection.artwork._selected = true // needed for internal draw logic such as clip region, etc.
         this.createResizeHandles(this.activeSelection)
         this.updateDrawings()
+        this.updateActiveSelection()
         this.focus()
         this.interface.updateSelectionPane(this.activeSelection.data?.pane)
         this.interface.updateToolBox()
@@ -675,7 +676,6 @@ class FrameConfigurator {
         if (selection.data?.type === 'artwork') {
             handles.length = 4
         }
-        console.log(handles)
         selection._handles = []
         handles.forEach(handle => {
             let handleEl = new paper.Path.Circle({
@@ -712,8 +712,7 @@ class FrameConfigurator {
                 let maxAvailableSizeX = selection.data.type === 'frame' || !selection.frame ? maxPaintingSize / this.pxPerCm : Math.max(handleBounds.x, minArtworkSize / this.pxPerCm)
                 let maxAvailableSizeY = selection.data.type === 'frame' || !selection.frame ? maxPaintingSize / this.pxPerCm : Math.max(handleBounds.y, minArtworkSize / this.pxPerCm)
                 let availableLength = selection.data.type === 'frame' ? selection.getAvailableBounds() : selection.bounds
-                console.log(Math.abs(availableLength.width - minArtworkSize / this.pxPerCm - selection.bounds.width), handleBounds.x)
-                let diffX = xHandles.includes(handle.name) && Math.min(maxAvailableSizeX, Math.max(handleBounds.x, minArtworkSize / this.pxPerCm, Math.abs(availableLength.width - minArtworkSize / this.pxPerCm  - selection.bounds.width))) / originalBounds.width
+                let diffX = xHandles.includes(handle.name) && Math.min(maxAvailableSizeX, Math.max(handleBounds.x, minArtworkSize / this.pxPerCm, Math.abs(availableLength.width - minArtworkSize / this.pxPerCm - selection.bounds.width))) / originalBounds.width
                 let diffY = yHandles.includes(handle.name) && Math.min(maxAvailableSizeY, Math.max(handleBounds.y, minArtworkSize / this.pxPerCm, Math.abs(availableLength.height - minArtworkSize / this.pxPerCm - selection.bounds.height))) / originalBounds.height
                 const uniScaling = selection.data?.uniScaling
                 let maxFrameLimit = false
@@ -747,8 +746,8 @@ class FrameConfigurator {
 
                     } else {
                         selection.scale((diffX ?? diffY), selection.bounds[handle.opposite])
-                        if (selection.artwork) selection.artwork.scale((diffX ?? diffY), selection.bounds[handle.opposite])
-                        if (selection.artwork && !selection.artwork.bounds.contains(selection.getAvailableBounds())) {
+                        if (selection.artwork) selection.artwork.scale((diffX ?? diffY), selection.getAvailableBounds()[handle.opposite])
+                        if (selection.artwork && (!selection.artwork.bounds.contains(selection.getAvailableBounds()) || selection.mattings?.length > 0)) {
                             selection.artwork.fitBounds(selection.getAvailableBounds(), true)
                         }
                     }
@@ -761,7 +760,6 @@ class FrameConfigurator {
                 selection._selected = true
                 //selection._validDraggingBeforeMouseUp = false
                 //selection._validDragBeforeMouseUp = false
-                selection._eligibleForHandlesIntersection = true
             }
             handleEl.mouseUpEvent = () => {
                 this.snapshot()
@@ -779,10 +777,9 @@ class FrameConfigurator {
                 if (intersection) break
             }
             selection._handles.forEach((handle, index) => {
-                    handle.visible = selection._eligibleForHandlesIntersection ? !selection?.data?.locked && !intersection : true
+                handle.visible = !selection?.data?.locked && !intersection
                 handle.position = selection.bounds[handles[index].name]
             })
-
         }
         this.interface.updateToolBox()
     }
@@ -1270,7 +1267,7 @@ class FrameConfigurator {
         }
         frame.getAvailableBounds = () => {
             let cumulativeLength = frame.cumulativeLength ?? 0 // from matting
-            let defaultOffset = 0.5 / this.pxPerCm
+            let defaultOffset = frame.mattings.length > 0 ? 0.5 / this.pxPerCm : 0.1 / this.pxPerCm
             return new paper.Rectangle(frame.bounds.topLeft.add(cumulativeLength / 2 / this.pxPerCm - defaultOffset, cumulativeLength / 2 / this.pxPerCm - defaultOffset), frame.bounds.bottomRight.subtract(cumulativeLength / 2 / this.pxPerCm - defaultOffset, cumulativeLength / 2 / this.pxPerCm - defaultOffset))
         }
         /*
@@ -1295,7 +1292,6 @@ class FrameConfigurator {
                 // if (matting.length * 2 < availableLength - cumulativeLength) {
                 if (availableLength < cumulativeLength + matting.length * 2) {
                     let diff = availableLength - (cumulativeLength + matting.length * 2)
-                    console.log(availableLength - (cumulativeLength + matting.length * 2))
                     //matting.setLength(Math.max(0, matting.length + diff / 2))
                 }
                 cumulativeLength += matting.length
@@ -1312,7 +1308,6 @@ class FrameConfigurator {
         let availableSize = Math.min(frame.getAvailableBounds().size.width, frame.getAvailableBounds().size.height) * this.pxPerCm
         //hideMattingLengthRange = availableSize < minMattingSize + minArtworkSize
         let matting = this.getMatting()
-        console.log(availableSize, matting.length)
 
         document.getElementById('matting-length-slider').setAttribute('max', availableSize / 2 + matting.length - minArtworkSize / 2)
         /*
@@ -1421,8 +1416,8 @@ class FrameConfigurator {
         frame.mattings.push(matting)
         frame.updateMattingsPosition()
         //if (!frame.artwork.bounds.contains(frame.getAvailableBounds())) {
-            frame.artwork.fitBounds(frame.getAvailableBounds(), true)
-       // }
+        frame.artwork.fitBounds(frame.getAvailableBounds(), true)
+        // }
         //frame.artwork.fitBounds(frame.getAvailableBounds(), true)
         // update clip region
         frame.artwork.setClip({
@@ -1621,8 +1616,8 @@ class FrameConfigurator {
                 listItem.artwork = {
                     data: Object.assign({}, item.data),
                     position: [item.position.x, item.position.y],
-                    width: item.bounds.size.width,
-                    height: item.bounds.size.height,
+                    width: item.bounds.size.width * this.pxPerCm,
+                    height: item.bounds.size.height * this.pxPerCm,
                     src: item.src,
                     clip: item.clip ? {
                         size: [item.clip?.size?.width, item.clip?.size?.height],
@@ -1634,8 +1629,8 @@ class FrameConfigurator {
                 listItem.frame = {
                     data: Object.assign({}, item.data),
                     position: [item.position.x, item.position.y],
-                    width: item.bounds.size.width,
-                    height: item.bounds.size.height,
+                    width: item.bounds.size.width * this.pxPerCm,
+                    height: item.bounds.size.height * this.pxPerCm,
                     length: item.length,
                     glass: item.glass,
                     src: item.src
@@ -1645,8 +1640,8 @@ class FrameConfigurator {
                 listItem.mattings.push({
                     data: Object.assign({}, item.data),
                     position: [item.position.x, item.position.y],
-                    width: item.bounds.size.width,
-                    height: item.bounds.size.height,
+                    width: item.bounds.size.width * this.pxPerCm,
+                    height: item.bounds.size.height * this.pxPerCm,
                     length: item.length,
                     src: item.src
                 })
@@ -1695,8 +1690,15 @@ class FrameConfigurator {
         paintings.forEach(painting => {
             jsonList.push(this.paintingToJson(painting.data?.uuid))
         })
-        console.log(jsonList)
         return jsonList
+    }
+    toJsonWithBg() {
+        let image = this.canvas.project.activeLayer.children.find(child => child.data?.type === 'bg-image')
+        return {
+            bg: image?.source,
+            pxPerCm: this.pxPerCm,
+            paintings: this.toJson()
+        }
     }
     fromJson(paintings) {
         const paintingsList = []
@@ -1714,15 +1716,15 @@ class FrameConfigurator {
                     data: painting.artwork.data
                 })
                 paintingObject.artwork.on('load', () => {
-                    paintingObject.artwork.scale(painting.artwork.width / paintingObject.artwork.bounds.size.width, painting.artwork.height / paintingObject.artwork.bounds.size.height)
+                    paintingObject.artwork.scale(painting.artwork.width / this.pxPerCm / paintingObject.artwork.bounds.size.width, painting.artwork.height / this.pxPerCm / paintingObject.artwork.bounds.size.height)
                     // init events
                     this.initArtworkEvents(paintingObject.artwork)
                     // add frame && matting
                     if (painting.frame) {
                         paintingObject.frame = new paper.Frame({
                             position: painting.frame.position,
-                            width: painting.frame.width,
-                            height: painting.frame.height,
+                            width: painting.frame.width / this.pxPerCm,
+                            height: painting.frame.height / this.pxPerCm,
                             length: painting.frame.length,
                             strokeColor: '#000', // temp solution for hitbox, need rework
                             strokeWidth: painting.frame.length / this.pxPerCm, // temp solution for hitbox, need rework
@@ -1741,8 +1743,8 @@ class FrameConfigurator {
                         painting.mattings.forEach(matting => {
                             const mattingObject = new paper.Matting({
                                 position: matting.position,
-                                width: matting.width,
-                                height: matting.height,
+                                width: matting.width / this.pxPerCm,
+                                height: matting.height / this.pxPerCm,
                                 length: matting.length,
                                 strokeColor: '#000', // temp solution for hitbox, need rework
                                 strokeWidth: matting.length / this.pxPerCm, // temp solution for hitbox, need rework
@@ -1818,6 +1820,15 @@ window.addEventListener('load', () => {
         })
     })
     resizeEditorObserver.observe(document.getElementById('app-container'))
+    // add shortcuts
+    document.addEventListener('keydown', (event) => {
+        if ((event.metaKey || event.ctrlKey) && event.key === 'z') {
+            configurator.undo()
+        }
+        if ((event.metaKey || event.ctrlKey) && event.key === 'y') {
+            configurator.redo()
+        }
+    })
     // add environments
     environments.forEach(environment => {
         const wrapper = document.getElementById('environment-list')
@@ -2029,7 +2040,9 @@ window.addEventListener('load', () => {
         configurator.redo()
     })
     document.getElementById('checkout').addEventListener('click', () => {
-        confirm('Are you sure you finished?')
+        if (confirm('Are you sure you finished?')) {
+            console.log(configurator.toJsonWithBg())
+        }
     })
 })
 

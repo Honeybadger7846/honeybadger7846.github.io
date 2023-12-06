@@ -38,7 +38,6 @@ paper.Frame = paper.Item.extend(
         setFrame: function (options) {
             if (options.length) {
                 let lengthDiff = this.length - options.length
-                console.log(lengthDiff)
                 this._size._set(this._size.width + lengthDiff / this.pxPerCm, this._size.height + lengthDiff / this.pxPerCm)
                 this.length = options.length
                 this.strokeWidth = options.length / this.pxPerCm
