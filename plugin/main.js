@@ -1353,8 +1353,8 @@ class FrameConfigurator {
         // add frame
         let frame = new paper.Frame({
             position: artwork.position,
-            width: artwork.bounds.width + options.length / this.pxPerCm,
-            height: artwork.bounds.height + options.length / this.pxPerCm,
+            width: Math.min((maxPaintingSize - options.length) / this.pxPerCm, artwork.bounds.width + options.length / this.pxPerCm),
+            height: Math.min((maxPaintingSize - options.length) / this.pxPerCm, artwork.bounds.height + options.length / this.pxPerCm),
             length: options.length,
             strokeColor: '#000', // temp solution for hitbox, need rework
             strokeWidth: options.length / this.pxPerCm, // temp solution for hitbox, need rework
