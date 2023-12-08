@@ -313,7 +313,11 @@ class Interface {
     }
     updatePaintingOptions(pane) {
         this.updateCartPrice()
-        document.getElementById('painting-options').style.display = this.configurator.activeSelection ? 'flex' : 'none'
+        let activeSelection = this.configurator.activeSelection
+        document.getElementById('painting-options').style.display = activeSelection ? 'flex' : 'none'
+        document.getElementById('matting-item-menu').style.display = activeSelection?.frame || activeSelection?.data?.type === 'frame' ? 'flex' : 'none'
+        document.getElementById('glass-item-menu').style.display = activeSelection?.frame || activeSelection?.data?.type === 'frame' ? 'flex' : 'none'
+        document.getElementById('back-item-menu').style.display = activeSelection?.frame || activeSelection?.data?.type === 'frame' ? 'flex' : 'none'
         const paintingOptionsCollection = document.getElementsByClassName('painting-options-item-menu')
         //const activePane = this.configurator.activeSelection?.data?.pane
         for (let i = 0; i < paintingOptionsCollection.length; i++) {
@@ -709,8 +713,9 @@ class FrameConfigurator {
                 let originalBounds = new paper.Rectangle(selection.bounds.topLeft, selection.bounds.bottomRight)
                 //let handleBounds = new paper.Rectangle(selection.bounds[handle.opposite], event.point)
                 let handleBounds = oppositeXHandles.includes(handle.opposite) ? event.point.subtract(selection.bounds[handle.opposite]) : selection.bounds[handle.opposite].subtract(event.point)
-                let maxAvailableSizeX = selection.data.type === 'frame' || !selection.frame ? maxPaintingSize / this.pxPerCm : Math.max(handleBounds.x, minArtworkSize / this.pxPerCm)
-                let maxAvailableSizeY = selection.data.type === 'frame' || !selection.frame ? maxPaintingSize / this.pxPerCm : Math.max(handleBounds.y, minArtworkSize / this.pxPerCm)
+                let frameLength = selection.data.type === 'frame' ? selection.length : selection.frame ? selection.frame.length : 0
+                let maxAvailableSizeX = selection.data.type === 'frame' || !selection.frame ? (maxPaintingSize - frameLength) / this.pxPerCm : Math.max(handleBounds.x, minArtworkSize / this.pxPerCm)
+                let maxAvailableSizeY = selection.data.type === 'frame' || !selection.frame ? (maxPaintingSize - frameLength) / this.pxPerCm : Math.max(handleBounds.y, minArtworkSize / this.pxPerCm)
                 let availableLength = selection.data.type === 'frame' ? selection.getAvailableBounds() : selection.bounds
                 let diffX = xHandles.includes(handle.name) && Math.min(maxAvailableSizeX, Math.max(handleBounds.x, minArtworkSize / this.pxPerCm, Math.abs(availableLength.width - minArtworkSize / this.pxPerCm - selection.bounds.width))) / originalBounds.width
                 let diffY = yHandles.includes(handle.name) && Math.min(maxAvailableSizeY, Math.max(handleBounds.y, minArtworkSize / this.pxPerCm, Math.abs(availableLength.height - minArtworkSize / this.pxPerCm - selection.bounds.height))) / originalBounds.height
@@ -746,9 +751,29 @@ class FrameConfigurator {
 
                     } else {
                         selection.scale((diffX ?? diffY), selection.bounds[handle.opposite])
-                        if (selection.artwork) selection.artwork.scale((diffX ?? diffY), selection.getAvailableBounds()[handle.opposite])
-                        if (selection.artwork && (!selection.artwork.bounds.contains(selection.getAvailableBounds()) || selection.mattings?.length > 0)) {
+                        if (selection.artwork) {
                             selection.artwork.fitBounds(selection.getAvailableBounds(), true)
+                            selection.artwork.setClip({
+                                size: selection.getAvailableBounds().size,
+                                offset: selection.position.subtract(selection.artwork.position)
+                            })
+                            /*
+                            let frameArtworkSizeDiff = selection.getAvailableBounds().width / selection.artwork.bounds.width
+                            selection.artwork.scale(frameArtworkSizeDiff, selection.getAvailableBounds()[handle.opposite])
+                            selection.artwork.scale((diffX ?? diffY), selection.getAvailableBounds()[handle.opposite])
+                             selection.artwork.setClip({
+                                size: selection.getAvailableBounds().size,
+                                offset: selection.getAvailableBounds().topCenter.subtract(selection.artwork.bounds.topCenter)
+                            })
+                            */
+                        }
+                        // && (!selection.artwork.bounds.contains(selection.getAvailableBounds()) || selection.mattings?.length > 0)
+                        if (selection.artwork) {
+                            //selection.artwork.fitBounds(selection.getAvailableBounds(), true)
+                            // selection.artwork.setClip({
+                            //   size: selection.getAvailableBounds().size,
+                            //   offset: selection.position.subtract(selection.artwork.position)
+                            // })
                         }
                     }
                 }
@@ -1267,7 +1292,7 @@ class FrameConfigurator {
         }
         frame.getAvailableBounds = () => {
             let cumulativeLength = frame.cumulativeLength ?? 0 // from matting
-            let defaultOffset = frame.mattings.length > 0 ? 0.5 / this.pxPerCm : 0.1 / this.pxPerCm
+            let defaultOffset = 0//frame.mattings.length > 0 ? 0.5 / this.pxPerCm : 0.1 / this.pxPerCm
             return new paper.Rectangle(frame.bounds.topLeft.add(cumulativeLength / 2 / this.pxPerCm - defaultOffset, cumulativeLength / 2 / this.pxPerCm - defaultOffset), frame.bounds.bottomRight.subtract(cumulativeLength / 2 / this.pxPerCm - defaultOffset, cumulativeLength / 2 / this.pxPerCm - defaultOffset))
         }
         /*
@@ -1328,8 +1353,8 @@ class FrameConfigurator {
         // add frame
         let frame = new paper.Frame({
             position: artwork.position,
-            width: artwork.bounds.width - (options.length - 0.5) / this.pxPerCm,
-            height: artwork.bounds.height - (options.length - 0.5) / this.pxPerCm,
+            width: artwork.bounds.width + options.length / this.pxPerCm,
+            height: artwork.bounds.height + options.length / this.pxPerCm,
             length: options.length,
             strokeColor: '#000', // temp solution for hitbox, need rework
             strokeWidth: options.length / this.pxPerCm, // temp solution for hitbox, need rework
@@ -1351,7 +1376,14 @@ class FrameConfigurator {
         artwork.frame = frame
         // rename artwork name from Tablou-Canvas to Tablou
         artwork.data.name = `Tablou ${this.getPaintings().length}`
+        //frame.artwork.fitBounds(frame.getAvailableBounds(), true)
+        frame.updateMattingsPosition()
+        ///if (!matting.frame.artwork.bounds.contains(matting.frame.getAvailableBounds())) {
         frame.artwork.fitBounds(frame.getAvailableBounds(), true)
+        frame.artwork.setClip({
+            size: frame.getAvailableBounds().size,
+            offset: frame.position.subtract(frame.artwork.position)
+        })
         // set active selection
         this.setActiveSelection(frame)
         this.snapshot()
@@ -1372,14 +1404,14 @@ class FrameConfigurator {
         matting.frame?.updateMattingsPosition(matting)
         ///if (!matting.frame.artwork.bounds.contains(matting.frame.getAvailableBounds())) {
         matting.frame.artwork.fitBounds(matting.frame.getAvailableBounds(), true)
+        matting.frame.artwork.setClip({
+            size: matting.frame.artwork.frame.getAvailableBounds().size,
+            offset: matting.frame.artwork.frame.position.subtract(matting.frame.artwork.position)
+        })
         // }
         //matting.frame.artwork.fitBounds(matting.frame.getAvailableBounds(), true)
         this.interface.updateToolBox()
         // update clip region
-        matting.frame.artwork.setClip({
-            size: matting.frame.getAvailableBounds().size,
-            offset: matting.frame.position.subtract(matting.frame.artwork.position)
-        })
         this.snapshot()
     }
     initMattingEvents(matting) {
@@ -1789,6 +1821,8 @@ class FrameConfigurator {
             this.historyNextState = history
             this.clearPaintings()
             this.fromJson(history)
+            if (this.interface) this.interface.updateSelectionPane(this.activeSelection)
+            if (this.interface) this.interface.updateToolBox()
         }
     }
     redo() {
@@ -1798,6 +1832,8 @@ class FrameConfigurator {
             this.historyNextState = history
             this.clearPaintings()
             this.fromJson(history)
+            if (this.interface) this.interface.updateSelectionPane(this.activeSelection)
+            if (this.interface) this.interface.updateToolBox()
         }
     }
 }
