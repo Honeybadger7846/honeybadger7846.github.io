@@ -592,7 +592,7 @@ class FrameConfigurator {
         this.fitToScreen(new paper.Rectangle(bounds.topLeft.subtract(new paper.Point(bounds.size.width / 2, bounds.size.height / 2)),
             bounds.bottomRight.add(new paper.Point(bounds.size.width / 2, bounds.size.height / 2))))
     }
-    setActiveSelection(drawing, force) {
+    setActiveSelection(drawing, force, pane) {
         this.discardActiveSelection()
         if ((drawing instanceof paper.Frame || drawing instanceof paper.Artwork) && this.isMobile) { // && this.isMobile
             this.shouldZoomToPainting = true
@@ -617,7 +617,7 @@ class FrameConfigurator {
         this.updateDrawings()
         this.updateActiveSelection()
         this.focus()
-        this.interface.updateSelectionPane(this.activeSelection.data?.pane)
+        this.interface.updateSelectionPane(pane ?? this.activeSelection.data?.pane)
         this.interface.updateToolBox()
     }
     updateActiveSelection() {
@@ -1241,13 +1241,13 @@ class FrameConfigurator {
             src: options.src,
             position: [0, 0],
             frame: null,
-            data: { type: 'artwork', pane: 'frame', focusable: true, uniScaling: true, uuid: uuid, name: `Tablou - Canvas ${this.getPaintings().length + 1}` } // pane can be artwork if frame is added
+            data: { type: 'artwork', pane: 'artwork', focusable: true, uniScaling: true, uuid: uuid, name: `Tablou - Canvas ${this.getPaintings().length + 1}` } // pane can be artwork if frame is added
         })
         artwork.on('load', () => {
             // set default size
             artwork.fitBounds(new paper.Rectangle(position, new paper.Size(defaultPaintingSize.width / this.pxPerCm, defaultPaintingSize.height / this.pxPerCm)))
             this.initArtworkEvents(artwork)
-            this.setActiveSelection(artwork)
+            this.setActiveSelection(artwork, false, 'frame')
             this.snapshot()
         })
     }
@@ -1371,7 +1371,7 @@ class FrameConfigurator {
         })
         this.initFrameEvents(frame)
         // change artwork selection pane from frame to artwork
-        artwork.data.pane = 'artwork'
+        //artwork.data.pane = 'artwork'
         // create frame ref for artwork
         artwork.frame = frame
         // rename artwork name from Tablou-Canvas to Tablou
