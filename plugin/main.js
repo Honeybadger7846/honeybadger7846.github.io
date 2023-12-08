@@ -713,9 +713,9 @@ class FrameConfigurator {
                 let originalBounds = new paper.Rectangle(selection.bounds.topLeft, selection.bounds.bottomRight)
                 //let handleBounds = new paper.Rectangle(selection.bounds[handle.opposite], event.point)
                 let handleBounds = oppositeXHandles.includes(handle.opposite) ? event.point.subtract(selection.bounds[handle.opposite]) : selection.bounds[handle.opposite].subtract(event.point)
-                let frameLength = selection.data.type === 'frame' ? selection.length : selection.frame ? selection.frame.length : 0
-                let maxAvailableSizeX = selection.data.type === 'frame' || !selection.frame ? (maxPaintingSize - frameLength) / this.pxPerCm : Math.max(handleBounds.x, minArtworkSize / this.pxPerCm)
-                let maxAvailableSizeY = selection.data.type === 'frame' || !selection.frame ? (maxPaintingSize - frameLength) / this.pxPerCm : Math.max(handleBounds.y, minArtworkSize / this.pxPerCm)
+                let frameLength = selection.data.type === 'frame' ? selection.length + 0.25 : selection.frame ? selection.frame.length + 0.25 : 0
+                let maxAvailableSizeX = selection.data.type === 'frame' || !selection.frame ? Math.ceil((maxPaintingSize - frameLength) / this.pxPerCm) : Math.max(handleBounds.x, minArtworkSize / this.pxPerCm)
+                let maxAvailableSizeY = selection.data.type === 'frame' || !selection.frame ? Math.ceil((maxPaintingSize - frameLength) / this.pxPerCm) : Math.max(handleBounds.y, minArtworkSize / this.pxPerCm)
                 let availableLength = selection.data.type === 'frame' ? selection.getAvailableBounds() : selection.bounds
                 let diffX = xHandles.includes(handle.name) && Math.min(maxAvailableSizeX, Math.max(handleBounds.x, minArtworkSize / this.pxPerCm, Math.abs(availableLength.width - minArtworkSize / this.pxPerCm - selection.bounds.width))) / originalBounds.width
                 let diffY = yHandles.includes(handle.name) && Math.min(maxAvailableSizeY, Math.max(handleBounds.y, minArtworkSize / this.pxPerCm, Math.abs(availableLength.height - minArtworkSize / this.pxPerCm - selection.bounds.height))) / originalBounds.height
