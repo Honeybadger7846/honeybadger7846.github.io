@@ -142,6 +142,8 @@ const minPossibleMattingSize = 5
 const selectionPaneList = {
     'frame': {
         update: function (configurator) {
+            const activeSelection = configurator.activeSelection
+            document.getElementById('remove-frame').style.display = activeSelection?.data?.type === 'frame' || activeSelection?.frame ? 'flex' : 'none'
         }
     },
     'background': {
@@ -303,8 +305,8 @@ class Interface {
         }
     }
     updateCartPrice() {
-        document.getElementById('cart-bg').style.display = this.configurator.getArtwork() ? 'flex' : 'none'
-        document.getElementById('checkout').style.display = this.configurator.getArtwork() ? 'flex' : 'none'
+        document.getElementById('cart-bg').style.display = this.configurator.getFrame() ? 'flex' : 'none'
+        document.getElementById('checkout').style.display = this.configurator.getFrame() ? 'flex' : 'none'
         document.getElementById('checkout').setAttribute('data-totalitems', this.configurator.getPaintings().length)
         document.getElementById('cart-total-price').innerHTML = `${this.configurator.getTotalPrice().toFixed(2)}$`
     }
@@ -592,7 +594,7 @@ class FrameConfigurator {
         this.fitToScreen(new paper.Rectangle(bounds.topLeft.subtract(new paper.Point(bounds.size.width / 2, bounds.size.height / 2)),
             bounds.bottomRight.add(new paper.Point(bounds.size.width / 2, bounds.size.height / 2))))
     }
-    setActiveSelection(drawing, force, pane) {
+    setActiveSelection(drawing, force) {
         this.discardActiveSelection()
         if ((drawing instanceof paper.Frame || drawing instanceof paper.Artwork) && this.isMobile) { // && this.isMobile
             this.shouldZoomToPainting = true
@@ -617,7 +619,7 @@ class FrameConfigurator {
         this.updateDrawings()
         this.updateActiveSelection()
         this.focus()
-        this.interface.updateSelectionPane(pane ?? this.activeSelection.data?.pane)
+        this.interface.updateSelectionPane(this.activeSelection.data?.pane)
         this.interface.updateToolBox()
     }
     updateActiveSelection() {
@@ -1241,13 +1243,13 @@ class FrameConfigurator {
             src: options.src,
             position: [0, 0],
             frame: null,
-            data: { type: 'artwork', pane: 'artwork', focusable: true, uniScaling: true, uuid: uuid, name: `Tablou - Canvas ${this.getPaintings().length + 1}` } // pane can be artwork if frame is added
+            data: { type: 'artwork', pane: 'frame', focusable: true, uniScaling: true, uuid: uuid, name: `Tablou ${this.getPaintings().length + 1}`, } // pane can be artwork if frame is added
         })
         artwork.on('load', () => {
             // set default size
             artwork.fitBounds(new paper.Rectangle(position, new paper.Size(defaultPaintingSize.width / this.pxPerCm, defaultPaintingSize.height / this.pxPerCm)))
             this.initArtworkEvents(artwork)
-            this.setActiveSelection(artwork, false, 'frame')
+            this.setActiveSelection(artwork)
             this.snapshot()
         })
     }
@@ -1272,6 +1274,22 @@ class FrameConfigurator {
         })
         this.updateActiveSelection()
         this.snapshot()
+    }
+    removeFrame() {
+        const frame = this.getFrame()
+        if (!frame) return
+        this.snapshot()
+        frame.mattings.forEach(matting => {
+            matting.remove()
+        })
+        frame.updateMattingsPosition()
+        frame.mattings = []
+        let artwork = frame.artwork
+        frame.remove()
+        artwork.frame = null
+        artwork.clip = null
+        artwork.data.pane = 'frame'
+        this.setActiveSelection(artwork)
     }
     initFrameEvents(frame) {
         frame.applyBoundsTransformation = (offset) => {
@@ -1367,15 +1385,15 @@ class FrameConfigurator {
                 type: 'plexi'
             },
             src: options.src,
-            data: { type: 'frame', pane: 'frame', focusable: true, uuid: artwork.data.uuid, name: `Tablou ${this.getPaintings().length}`, asset: options }
+            data: { type: 'frame', pane: 'frame', focusable: true, uuid: artwork.data.uuid, name: artwork.data.name, asset: options }
         })
         this.initFrameEvents(frame)
         // change artwork selection pane from frame to artwork
-        //artwork.data.pane = 'artwork'
+        artwork.data.pane = 'artwork'
         // create frame ref for artwork
         artwork.frame = frame
         // rename artwork name from Tablou-Canvas to Tablou
-        artwork.data.name = `Tablou ${this.getPaintings().length}`
+
         //frame.artwork.fitBounds(frame.getAvailableBounds(), true)
         frame.updateMattingsPosition()
         ///if (!matting.frame.artwork.bounds.contains(matting.frame.getAvailableBounds())) {
@@ -1589,7 +1607,7 @@ class FrameConfigurator {
     getPaintingPrice(painting) {
         if (!painting) return 0
         const size = painting.frame?.strokeBounds?.size ?? painting.bounds?.size
-        const pricePerSquareCm = painting.frame?.data?.asset?.pricePerSquareCm ?? 0.001
+        const pricePerSquareCm = painting.frame?.data?.asset?.pricePerSquareCm ?? 0
         return (size.width * this.pxPerCm) * (size.height * this.pxPerCm) * pricePerSquareCm
     }
     getTotalPrice() {
@@ -1687,7 +1705,7 @@ class FrameConfigurator {
         const newUuid = uuidv4()
         const offset = painting.frame?.width ?? painting.artwork?.width ?? 0
         painting.uuid = newUuid
-        const name = painting.frame ? `Tablou ${this.getPaintings().length + 1}` : `Tablou - Canvas ${this.getPaintings().length + 1}`
+        const name = `Tablou ${this.getPaintings().length + 1}`
         if (painting.artwork) {
             painting.artwork.data.uuid = newUuid
             painting.artwork.data.name = name
@@ -2047,6 +2065,9 @@ window.addEventListener('load', () => {
     })
     document.getElementById('remove-matting').addEventListener('click', () => {
         configurator.removeMatting()
+    })
+    document.getElementById('remove-frame').addEventListener('click', () => {
+        configurator.removeFrame()
     })
     document.getElementById('matting-length-slider').addEventListener('input', () => {
         configurator.updateMattingLength(Number(document.getElementById('matting-length-slider').value))
