@@ -454,8 +454,11 @@ button:hover {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    z-index: 11; /* Sit on top */
+    align-items:center;
+    justify-content:center;
+    padding-bottom: 200px;
+    font-family: system-ui;
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -471,8 +474,9 @@ button:hover {
     background-color: #fefefe;
     margin: auto;
     padding: 0;
-    border: 1px solid #888;
-    width: 80%;
+    width: 95%;
+    max-width:640px;
+    border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -480,43 +484,111 @@ button:hover {
     animation-duration: 0.4s
   }
   
-  /* Add Animation */
-  @-webkit-keyframes animatetop {
+ /* Add Animation */
+@-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 
     to {top:0; opacity:1}
   }
   
   @keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
+    from {bottom:-300px; opacity:0}
+    to {bottom:0; opacity:1}
   }
   
   /* The Close Button */
   .close {
     color: white;
     float: right;
-    font-size: 28px;
+    font-size: 26px;
+    margin-top:-5px;
     font-weight: bold;
   }
   
   .close:hover,
   .close:focus {
-    color: #000;
+    opacity:0.7;
     text-decoration: none;
     cursor: pointer;
   }
   
   .modal-header {
-    padding: 2px 16px;
-    background-color: #5cb85c;
+    padding: 6px 16px;
+    background-color: #037171;
     color: white;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
   }
   
-  .modal-body {padding: 2px 16px;}
+  .modal-body {padding: 16px 16px;}
   
   .modal-footer {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #037171;
     color: white;
   }
 
+
+
+  .pulse-button {
+    display: flex;
+    justify-content:center;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    margin-left:20px;
+    padding-top:3px;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    background: #000;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+    animation: pulseBtn 2s infinite;
+    -webkit-animation: pulseBtn 2s infinite;
+  }
+  
+  .pulse-button:hover {
+    -webkit-animation: none;
+    opacity:0.7;
+  }
+  
+  @-webkit-keyframes pulseBtn {
+    0% {
+      -moz-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+      -webkit-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+    70% {
+      -moz-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      box-shadow: 0 0 0 12px rgba(0, 0, 0, 0);
+    }
+    100% {
+      -moz-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+      -webkit-transform: scale(0.9);
+      transform: scale(0.9);
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+  }
+
+  .cart-item {
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    gap:20px;
+    border-bottom: 1px solid #000;
+  }
+  .cart-item label {
+    font-weight:bolder;
+    font-size:20px;
+  }
+  .cart-image {
+    height: 100px;
+    width: 100px;
+    object-fit: contain;
+}
+  

@@ -218,6 +218,7 @@ class Interface {
         this.toolBoxTop = document.getElementById('toolbox-top')
         this.toolBoxBottom = document.getElementById('toolbox-bottom')
         this.toolBoxMattings = document.getElementById('toolbox-mattings')
+        this.modal = null
         //this.stepsPaintingOptions = document.getElementById('painting-options')
         //this.nextStepBtn = document.getElementById('next-step')
         this.setStep(0)
@@ -357,6 +358,65 @@ class Interface {
             this.configurator.setArtwork(artwork)
         })
         wrapper.prepend(itemDiv)
+    }
+    openModal(name) {
+        let el = document.getElementById(name)
+        if (!el) return
+        el.style.display = 'flex'
+        this.modal = el
+    }
+    closeModal() {
+        if (!this.modal) return
+        this.modal.style.display = 'none'
+        this.modal = null
+    }
+    updateCartModal() {
+        const parent = document.getElementById('checkout-modal-body')
+        while (parent.lastChild) {
+            parent.removeChild(parent.lastChild)
+        }
+        const paintings = this.configurator.getPaintingsAsImage()
+        paintings.forEach(painting => {
+            console.log(painting)
+            const itemDiv = document.createElement('div')
+            itemDiv.classList.add('cart-item')
+            itemDiv.style.color = painting.painting.frame ? '#000' : 'red'
+            itemDiv.style.paddingBottom = '5px'
+            const imageEl = document.createElement('img')
+            imageEl.setAttribute('src', painting.image)
+            imageEl.classList.add('cart-image')
+            const detailsDiv = document.createElement('div')
+            detailsDiv.style.display = 'flex'
+            detailsDiv.style.flexDirection = 'column'
+            //detailsDiv.style.alignItems = 'center'
+            const nameEl = document.createElement('label')
+            nameEl.innerText = painting.painting.data?.name
+            const sizeEl = document.createElement('span')
+            const frameSize = {
+                width: painting.painting.frame?.strokeBounds.size.width ?? painting.painting.strokeBounds.size.width,
+                height: painting.painting.frame?.strokeBounds.size.height ?? painting.painting.strokeBounds.size.height
+            }
+            sizeEl.innerText = `Size: ${Math.round(frameSize.width * this.configurator.pxPerCm)}x${Math.round(frameSize.height * this.configurator.pxPerCm)}cm`
+            const frameEl = document.createElement('span')
+            frameEl.innerText = `Frame: ${painting.painting.frame ? painting.painting.frame.data?.asset?.id : 'No'}`
+            const mattingsEl = document.createElement('span')
+            mattingsEl.innerText = `Matting: ${painting.painting.frame?.mattings?.length > 0 ? painting.painting.frame?.mattings?.length : 'No'}`
+            const glassEl = document.createElement('span')
+            glassEl.innerText = `Glass: ${painting.painting.frame?.glass ? painting.painting.frame?.glass?.type : 'No'}`
+            detailsDiv.appendChild(nameEl)
+            detailsDiv.appendChild(sizeEl)
+            detailsDiv.appendChild(frameEl)
+            detailsDiv.appendChild(mattingsEl)
+            detailsDiv.appendChild(glassEl)
+
+            const priceEl = document.createElement('label')
+            priceEl.innerText = painting.price
+            itemDiv.appendChild(imageEl)
+            itemDiv.appendChild(detailsDiv)
+            itemDiv.appendChild(priceEl)
+            parent.appendChild(itemDiv)
+        })
+        //parent.innerText = JSON.stringify(this.configurator.toJsonWithBg())
     }
 }
 class FrameConfigurator {
@@ -1621,7 +1681,7 @@ class FrameConfigurator {
     getPaintingsAsImage() {
         if (!this.canvas?.project?.activeLayer) return []
         const raster = this.canvas.project.activeLayer.rasterize({
-            resolution: 10,
+            resolution: 40,
             insert: false,
         })
         const paintings = this.getPaintings()
@@ -2097,8 +2157,27 @@ window.addEventListener('load', () => {
         configurator.redo()
     })
     document.getElementById('checkout').addEventListener('click', () => {
-        if (confirm('Are you sure you finished?')) {
-            console.log(configurator.toJsonWithBg())
+        configurator.discardActiveSelection()
+        configurator.interface.updateCartModal()
+        configurator.interface.openModal('cart-info')
+    })
+    const modalBtns = document.getElementsByClassName('open-modal-btn')
+    for (let i = 0; i < modalBtns.length; i++) {
+        modalBtns[i].addEventListener('click', () => {
+            configurator.interface.openModal(modalBtns[i].getAttribute('modal-name'))
+        })
+    }
+    const modalCloseBtns = document.getElementsByClassName('close')
+    for (let i = 0; i < modalCloseBtns.length; i++) {
+        modalCloseBtns[i].addEventListener('click', () => {
+            configurator.interface.closeModal(configurator.interface.modal)
+        })
+    }
+    // When the user clicks anywhere outside of the modal, close it
+    window.addEventListener('click', (event) => {
+        if (configurator.interface.modal && event.target == configurator.interface.modal) {
+            configurator.interface.modal.style.display = 'none'
+            configurator.interface.modal = null
         }
     })
 })
