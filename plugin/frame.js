@@ -106,6 +106,8 @@ paper.Frame = paper.Item.extend(
                 ctx.restore()
                 // top side
                 ctx.save()
+                ctx.imageSmoothingQuality = 'high'
+                ctx.imageSmoothingEnabled = true
                 ctx.beginPath()
                 ctx.scale(1 / this.scaling.x, 1 / this.scaling.y)
                 ctx.moveTo(-this._size.width * this.scaling.x / 2 - sideLength / 2, -this._size.height * this.scaling.y / 2 - sideLength / 2)
