@@ -245,12 +245,12 @@
                     const svgModifiedString = event.target.result.replaceAll(defaultFont, newFont)
                     svgPreview.appendChild(parseSvgString(svgModifiedString))
                     svgColored.appendChild(parseSvgString(svgModifiedString))
+                    document.getElementById('info-log').value = ''
                     validate(svgPreview.firstChild)
                     validate(svgColored.firstChild, true)
                     modify(svgPreview.firstChild)
                     modify(svgColored.firstChild)
                     colorize(svgColored.firstChild)
-                    document.getElementById('info-log').value = ''
                 }
                 reader.readAsText(e.target.files[0])
             }
