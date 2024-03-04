@@ -250,6 +250,7 @@
                     modify(svgPreview.firstChild)
                     modify(svgColored.firstChild)
                     colorize(svgColored.firstChild)
+                    document.getElementById('info-log').value = ''
                 }
                 reader.readAsText(e.target.files[0])
             }
