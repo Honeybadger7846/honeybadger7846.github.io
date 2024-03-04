@@ -2,17 +2,19 @@
 <html>
 
 <head>
-    <title>v0.1</title>
+    <title>v0.2</title>
     <style>
         * {
             margin: 0;
             padding: 0;
         }
+
         .category-item {
-            display:flex;
-            margin:10px;
-            gap:5px;
+            display: flex;
+            margin: 10px;
+            gap: 5px;
         }
+
         .category-color {
             width: 20px;
             height: 20px;
@@ -21,7 +23,7 @@
 </head>
 
 <body>
-    <div>
+    <div style="display:flex; gap:20px; align-items:center; padding:10px;">
         <input type="file" id="upload-svg" />
         <button id="modified-download">Download</button>
     </div>
@@ -32,10 +34,16 @@
         </div>
     </div>
     <div id="categories-list" style="display:flex; flex-wrap:wrap; margin-top:30px;"></div>
-    <textarea style="width:60%; height:250px;">
-        /* IMPLEMENTED
+    <textarea id="info-log" style="width:90%; height:250px; color:orange; padding:10px;">
+    </textarea>
+    <script>
+           /* IMPLEMENTED
         Remove svg id attribute
         Replace text font
+        Add data-category if group have id attribute with category name
+        Add extra group if section is category itself
+        Add group for shapes without group inside category
+        Remove extra groups inside section (Mostly used for text isolation glitch)
         Add data-section
         Add data-seat
         Preview colorized SVG
@@ -45,8 +53,6 @@
         Swap text with shapes if text have lower z-index
         Wrap single section category with group
         */
-    </textarea>
-    <script>
         const defaultFont = 'ProximaNova-Regular'
         const newFont = 'proxima-nova'
         const uuid = () => {
@@ -68,14 +74,84 @@
             downloadLink.click()
             document.body.removeChild(downloadLink)
         }
-        const modify = (svgEl) => {
-            if (!svgEl) return
+        const getCategories = (elements) => {
+            return elements.filter(child => child.hasAttribute('data-category') || child.id)
+        }
+        const validate = (svgEl, ignoreConsoleLog) => {
             // remove svg id
             svgEl.removeAttribute('id')
-            const categories = Array.from(svgEl.children).filter(child => child.hasAttribute('data-category'))
+            const categories = getCategories(Array.from(svgEl.children))
             if (categories.length > 0) {
                 categories.forEach(category => {
-                    const categoryName = category.getAttribute('data-category')
+                    let sections = Array.from(category.children)
+                    // check scenario when section is category itself
+                    let haveGroupElement = false
+                    for (let i = 0; i < sections.length; i++) {
+                        if (sections[i].tagName === 'g') {
+                            haveGroupElement = true
+                            break
+                        }
+                    }
+                    // if we don't have any sections, we wrap section with group
+                    if (!haveGroupElement) {
+                        if (!ignoreConsoleLog) {
+                            document.getElementById('info-log').value += `\nWe have situation when category have only one section in category: ${category.id || category.getAttribute('data.category')}`
+                        }
+                        // clone elements
+                        let clonedCategory = category.cloneNode(true)
+                        clonedCategory.removeAttribute('id')
+                        while (category.firstChild) {
+                            category.removeChild(category.lastChild)
+                        }
+                        category.appendChild(clonedCategory)
+                        // update sections
+                        sections = Array.from(category.children)
+                    }
+                    // if category have any section, we check if we have lone svg elements without group
+                    sections.forEach(section => {
+                        if (section.tagName !== 'g') {
+                            let element = section.cloneNode(true)
+                            category.removeChild(section)
+                            // create group element
+                            let group = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+                            group.appendChild(element)
+                            category.prepend(group)
+                            if (!ignoreConsoleLog) {
+                                document.getElementById('info-log').value += `\nWe have situation when shape is without section in category: ${category.id || category.getAttribute('data.category')}`
+                            }
+                        }
+                    })
+                    // if section is valid, we check if text have group isolation glitch
+                    sections.forEach(section => {
+                        if (section.tagName === 'g') {
+                            let elements = Array.from(section.children)
+                            elements.forEach(element => {
+                                if (element.tagName === 'g') {
+                                    let clonedChildren = Array.from(element.cloneNode(true).children)
+                                    section.removeChild(element)
+                                    clonedChildren.forEach(clonedChild => {
+                                        section.appendChild(clonedChild)
+                                    })
+                                    if (!ignoreConsoleLog) {
+                                document.getElementById('info-log').value += `\nWe have situation when we have group inside section in category: ${category.id || category.getAttribute('data.category')}`
+                            }
+                                }
+                            })
+                        }
+                    })
+                })
+            }
+        }
+        const modify = (svgEl) => {
+            if (!svgEl) return
+            const categories = getCategories(Array.from(svgEl.children))
+            if (categories.length > 0) {
+                categories.forEach(category => {
+                    const categoryName = category.getAttribute('data-category') || category.getAttribute('id')
+                    // remove id attribute
+                    category.removeAttribute('id')
+                    // set data-category attribute in case if we got name from id attribute
+                    category.setAttribute('data-category', categoryName)
                     const sections = Array.from(category.children)
                     sections.forEach(section => {
                         const sectionElements = Array.from(section.children)
@@ -115,11 +191,11 @@
                 "#d3277a", "#2ca1ae", "#9685eb", "#8a96c6", "#dba2e6", "#76fc1b", "#608fa4",
                 "#20f6ba",
             ]
-            const categories = Array.from(svgEl.children).filter(child => child.hasAttribute('data-category'))
+            const categories = getCategories(Array.from(svgEl.children))
             if (categories.length > 0) {
                 const categoryColorList = []
                 categories.forEach((category, index) => {
-                    const categoryName = category.getAttribute('data-category')
+                    const categoryName = category.getAttribute('data-category') || category.getAttribute('id')
                     const sections = Array.from(category.children)
                     categoryColorList.push({ category: categoryName, color: colors[index] })
                     sections.forEach(section => {
@@ -139,15 +215,15 @@
                 }
                 categoryColorList.forEach(item => {
                     const categoryItem = document.createElement('div')
-                categoryItem.classList.add('category-item')
-                const categoryColor = document.createElement('div')
-                categoryColor.classList.add('category-color')
-                categoryColor.style.backgroundColor = item.color
-                const categoryName = document.createElement('span')
-                categoryName.innerHTML = item.category
-                categoryItem.appendChild(categoryName)
-                categoryItem.appendChild(categoryColor)
-                categoriesListEl.appendChild(categoryItem)
+                    categoryItem.classList.add('category-item')
+                    const categoryColor = document.createElement('div')
+                    categoryColor.classList.add('category-color')
+                    categoryColor.style.backgroundColor = item.color
+                    const categoryName = document.createElement('span')
+                    categoryName.innerHTML = item.category
+                    categoryItem.appendChild(categoryName)
+                    categoryItem.appendChild(categoryColor)
+                    categoriesListEl.appendChild(categoryItem)
                 })
             }
         }
@@ -169,6 +245,8 @@
                     const svgModifiedString = event.target.result.replaceAll(defaultFont, newFont)
                     svgPreview.appendChild(parseSvgString(svgModifiedString))
                     svgColored.appendChild(parseSvgString(svgModifiedString))
+                    validate(svgPreview.firstChild)
+                    validate(svgColored.firstChild, true)
                     modify(svgPreview.firstChild)
                     modify(svgColored.firstChild)
                     colorize(svgColored.firstChild)
