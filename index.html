@@ -36,6 +36,229 @@
     <div id="categories-list" style="display:flex; flex-wrap:wrap; margin-top:30px;"></div>
     <textarea id="info-log" style="width:90%; height:250px; color:orange; padding:10px;">
     </textarea>
+    <script>
+           /* IMPLEMENTED
+        Remove svg id attribute
+        Replace text font
+        Add data-category if group have id attribute with category name
+        Add extra group if section is category itself
+        Add group for shapes without group inside category
+        Remove extra groups inside section (Mostly used for text isolation glitch)
+        Add data-section
+        Add data-seat
+        Preview colorized SVG
+        */
+        /* TO-DO
+        Wrap single shapes without text inside category with group
+        Swap text with shapes if text have lower z-index
+        Wrap single section category with group
+        */
+        const defaultFont = 'ProximaNova-Regular'
+        const newFont = 'proxima-nova'
+        const uuid = () => {
+            return '100-3000'.replace(/[018]/g, c =>
+                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+            )
+        }
+        const downloadSvg = (svgEl) => {
+            if (!svgEl) return
+            const svgData = svgEl?.outerHTML
+            const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' })
+            const svgUrl = URL.createObjectURL(svgBlob)
+            const downloadLink = document.createElement('a')
+            downloadLink.href = svgUrl
+            const fullPath = document.getElementById('upload-svg').value.split('.')[0]
+            const fileName = fullPath.replace(/^.*[\\\/]/, '')
+            downloadLink.download = `${fileName}.svg`
+            document.body.appendChild(downloadLink)
+            downloadLink.click()
+            document.body.removeChild(downloadLink)
+        }
+        const getCategories = (elements) => {
+            return elements.filter(child => child.hasAttribute('data-category') || child.id)
+        }
+        const validate = (svgEl, ignoreConsoleLog) => {
+            // remove svg id
+            svgEl.removeAttribute('id')
+            const categories = getCategories(Array.from(svgEl.children))
+            if (categories.length > 0) {
+                categories.forEach(category => {
+                    let sections = Array.from(category.children)
+                    // check scenario when section is category itself
+                    let haveGroupElement = false
+                    for (let i = 0; i < sections.length; i++) {
+                        if (sections[i].tagName === 'g') {
+                            haveGroupElement = true
+                            break
+                        }
+                    }
+                    // if we don't have any sections, we wrap section with group
+                    if (!haveGroupElement) {
+                        if (!ignoreConsoleLog) {
+                            document.getElementById('info-log').value += `\nWe have situation when category have only one section in category: ${category.id || category.getAttribute('data.category')}`
+                        }
+                        // clone elements
+                        let clonedCategory = category.cloneNode(true)
+                        clonedCategory.removeAttribute('id')
+                        while (category.firstChild) {
+                            category.removeChild(category.lastChild)
+                        }
+                        category.appendChild(clonedCategory)
+                        // update sections
+                        sections = Array.from(category.children)
+                    }
+                    // if category have any section, we check if we have lone svg elements without group
+                    sections.forEach(section => {
+                        if (section.tagName !== 'g') {
+                            let element = section.cloneNode(true)
+                            category.removeChild(section)
+                            // create group element
+                            let group = document.createElementNS('http://www.w3.org/2000/svg', 'g')
+                            group.appendChild(element)
+                            category.prepend(group)
+                            if (!ignoreConsoleLog) {
+                                document.getElementById('info-log').value += `\nWe have situation when shape is without section in category: ${category.id || category.getAttribute('data.category')}`
+                            }
+                        }
+                    })
+                    // if section is valid, we check if text have group isolation glitch
+                    sections.forEach(section => {
+                        if (section.tagName === 'g') {
+                            let elements = Array.from(section.children)
+                            elements.forEach(element => {
+                                if (element.tagName === 'g') {
+                                    let clonedChildren = Array.from(element.cloneNode(true).children)
+                                    section.removeChild(element)
+                                    clonedChildren.forEach(clonedChild => {
+                                        section.appendChild(clonedChild)
+                                    })
+                                    if (!ignoreConsoleLog) {
+                                document.getElementById('info-log').value += `\nWe have situation when we have group inside section in category: ${category.id || category.getAttribute('data.category')}`
+                            }
+                                }
+                            })
+                        }
+                    })
+                })
+            }
+        }
+        const modify = (svgEl) => {
+            if (!svgEl) return
+            const categories = getCategories(Array.from(svgEl.children))
+            if (categories.length > 0) {
+                categories.forEach(category => {
+                    const categoryName = category.getAttribute('data-category') || category.getAttribute('id')
+                    // remove id attribute
+                    category.removeAttribute('id')
+                    // set data-category attribute in case if we got name from id attribute
+                    category.setAttribute('data-category', categoryName)
+                    const sections = Array.from(category.children)
+                    sections.forEach(section => {
+                        const sectionElements = Array.from(section.children)
+                        const sectionText = sectionElements.find(element => element.tagName === 'text')?.textContent ?? uuid()
+                        // set data-section
+                        section.setAttribute('data-section', `${categoryName}_${sectionText.trim().toLowerCase().replace(/^\s+|\s+$|\s+(?=\s)/g, "").replace(/\s/g, '-')}`)
+                        // set data-seat
+                        sectionElements.forEach(element => {
+                            if (element.tagName !== 'text') {
+                                element.setAttribute('data-seat', categoryName)
+                            }
+                        })
+                    })
+                })
+            }
+        }
+        const colorize = (svgEl) => {
+            if (!svgEl) return
+            const colors = ["#e3a481", "#0eb621", "#fc458e", "#07d7f6", "#73872a",
+                "#520d3a", "#cefcb8", "#a5b3d9", "#c4fd57", "#f1ae16", "#ef6e3c", "#dd93fd",
+                "#3f8473", "#e7dbce", "#635f6d", "#93f2d7", "#9b5c2a", "#dce77a", "#15b9ee",
+                "#0f5997", "#409188", "#911e20", "#1350ce", "#10e5b1", "#fff4d7", "#07d7f6",
+                "#cb2582", "#ce00be", "#32d5d6", "#608572", "#c79bc2", "#00f87c", "#77772a",
+                "#6995ba", "#fc6b57", "#f07815", "#8fd883", "#060e27", "#96e591", "#21d52e",
+                "#d00043", "#b47162", "#1ec227", "#4f0f6f", "#1d1d58", "#947002", "#bde052",
+                "#e08c56", "#28fcfd", "#36486a", "#d02e29", "#1ae6db", "#3e464c", "#a84a8f",
+                "#911e7e", "#3f16d9", "#0f525f", "#ac7c0a", "#b4c086", "#c9d730", "#30cc49",
+                "#3d6751", "#fb4c03", "#640fc1", "#62c03e", "#d3493a", "#88aa0b", "#406df9",
+                "#615af0", "#2a3434", "#4a543f", "#79bca0", "#a8b8d4", "#00efd4", "#7ad236",
+                "#7260d8", "#1deaa7", "#06f43a", "#823c59", "#e3d94c", "#dc1c06", "#f53b2a",
+                "#b46238", "#2dfff6", "#a82b89", "#1a8011", "#436a9f", "#1a806a", "#4cf09d",
+                "#c188a2", "#67eb4b", "#b308d3", "#fc7e41", "#af3101", "#71b1f4", "#a2f8a5",
+                "#e23dd0", "#d3486d", "#00f7f9", "#474893", "#3cec35", "#1c65cb", "#5d1d0c",
+                "#2d7d2a", "#ff3420", "#5cdd87", "#a259a4", "#e4ac44", "#1bede6", "#8798a4",
+                "#d7790f", "#b2c24f", "#de73c2", "#d70a9c", "#88e9b8", "#c2b0e2", "#86e98f",
+                "#ae90e2", "#1a806b", "#436a9e", "#0ec0ff", "#f812b3", "#b17fc9", "#8d6c2f",
+                "#d3277a", "#2ca1ae", "#9685eb", "#8a96c6", "#dba2e6", "#76fc1b", "#608fa4",
+                "#20f6ba",
+            ]
+            const categories = getCategories(Array.from(svgEl.children))
+            if (categories.length > 0) {
+                const categoryColorList = []
+                categories.forEach((category, index) => {
+                    const categoryName = category.getAttribute('data-category') || category.getAttribute('id')
+                    const sections = Array.from(category.children)
+                    categoryColorList.push({ category: categoryName, color: colors[index] })
+                    sections.forEach(section => {
+                        const sectionElements = Array.from(section.children)
+                        // set color
+                        sectionElements.forEach(element => {
+                            if (element.tagName !== 'text' && element.getAttribute('data-seat') === categoryName) {
+                                element.setAttribute('style', `fill: ${colors[index]}`)
+                            }
+                        })
+                    })
+                })
+                // display categories list
+                const categoriesListEl = document.getElementById('categories-list')
+                while (categoriesListEl.firstChild) {
+                    categoriesListEl.removeChild(categoriesListEl.lastChild)
+                }
+                categoryColorList.forEach(item => {
+                    const categoryItem = document.createElement('div')
+                    categoryItem.classList.add('category-item')
+                    const categoryColor = document.createElement('div')
+                    categoryColor.classList.add('category-color')
+                    categoryColor.style.backgroundColor = item.color
+                    const categoryName = document.createElement('span')
+                    categoryName.innerHTML = item.category
+                    categoryItem.appendChild(categoryName)
+                    categoryItem.appendChild(categoryColor)
+                    categoriesListEl.appendChild(categoryItem)
+                })
+            }
+        }
+        window.addEventListener('load', () => {
+            document.getElementById('upload-svg').onchange = (e) => {
+                const reader = new FileReader()
+                reader.onload = event => {
+                    const svgPreview = document.getElementById('svg-preview')
+                    const svgColored = document.getElementById('svg-colored')
+                    while (svgPreview.firstChild) {
+                        svgPreview.removeChild(svgPreview.lastChild)
+                    }
+                    while (svgColored.firstChild) {
+                        svgColored.removeChild(svgColored.lastChild)
+                    }
+                    const parseSvgString = svgString =>
+                        new DOMParser().parseFromString(svgString, 'image/svg+xml')
+                            .querySelector('svg')
+                    const svgModifiedString = event.target.result.replaceAll(defaultFont, newFont)
+                    svgPreview.appendChild(parseSvgString(svgModifiedString))
+                    svgColored.appendChild(parseSvgString(svgModifiedString))
+                    document.getElementById('info-log').value = ''
+                    validate(svgPreview.firstChild)
+                    validate(svgColored.firstChild, true)
+                    modify(svgPreview.firstChild)
+                    modify(svgColored.firstChild)
+                    colorize(svgColored.firstChild)
+                }
+                reader.readAsText(e.target.files[0])
+            }
+            document.getElementById('modified-download').addEventListener('click', () => {
+                downloadSvg(document.getElementById('svg-preview')?.firstChild)
+            })
+        })
+    </script>
 </body>
 
 </html>
