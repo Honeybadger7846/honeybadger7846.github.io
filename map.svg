@@ -1,0 +1,496 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 902.3 835" style="enable-background:new 0 0 902.3 835;" xml:space="preserve">
+<g data-category="longside-lower-tier">
+	<g data-section="longside-lower-tier_kg">
+		<polygon style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" points="224.6,121.9 224.6,188.3 306.6,188.3 306.6,150     260.8,150 260.8,121.9   " data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 263.5766 173.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">KG</text>
+	</g>
+	<g data-section="longside-lower-tier_kh">
+		<rect x="310.5" y="148.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="49.5" height="39.4" data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 328.5766 172.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">KH</text>
+	</g>
+	<g data-section="longside-lower-tier_kj">
+		<rect x="363.5" y="148.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="51.8" height="39.4" data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 382.5766 172.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">KJ</text>
+	</g>
+	<g data-section="longside-lower-tier_kk">
+		<rect x="419.5" y="148.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="49.2" height="39.4" data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 437.5766 172.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">KK</text>
+	</g>
+	<g data-section="longside-lower-tier_kl">
+		<rect x="472.5" y="148.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="52.1" height="39.4" data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 493.5766 172.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">KL</text>
+	</g>
+	<g data-section="longside-lower-tier_km">
+		<rect x="528.5" y="148.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="49.1" height="39.4" data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 545.5767 172.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">KM</text>
+	</g>
+	<g data-section="longside-lower-tier_kp">
+		<polygon style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" points="627.7,121.9 627.7,188.3 646,188.3 663.7,149.7     663.7,121.9   " data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 639.5767 145.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">KP</text>
+	</g>
+	<g data-section="longside-lower-tier_kn">
+		<rect x="581.5" y="148.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="42.6" height="39.4" data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 595.5767 172.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">KN</text>
+	</g>
+	<g data-section="longside-lower-tier_l1">
+		<polygon style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" points="162.2,641.3 208.2,641.3 208.2,535.4 162.2,577.4   " data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 181.5767 604.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">L1</text>
+	</g>
+	<g data-section="longside-lower-tier_l2">
+		<polygon style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" points="210.9,533 210.9,641.3 226.4,641.3 226.4,603.5     262.4,603.5 262.4,510 235.4,510   " data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 233.5767 567.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">L2</text>
+	</g>
+	<g data-section="longside-lower-tier_l3">
+		<rect x="266.3" y="510" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="51.1" height="93.5" data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 287.5767 567.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">L3</text>
+	</g>
+	<g data-section="longside-lower-tier_l4">
+		<rect x="321.3" y="510" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="52.1" height="93.5" data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 342.5767 567.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">L4</text>
+	</g>
+	<g data-section="longside-lower-tier_l5">
+		<polygon style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" points="377,510 377,603.5 438,603.5 438,526.8 410.9,526.8     410.9,510   " data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 402.5767 567.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">L5</text>
+	</g>
+	<g data-section="longside-lower-tier_l6">
+		<polygon style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" points="505,510 505,603.5 444,603.5 444,526.8 471.1,526.8     471.1,510   " data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 469.5767 567.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">L6</text>
+	</g>
+	<g data-section="longside-lower-tier_l7">
+		<rect x="508.3" y="510" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="52.7" height="93.5" data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 530.5767 567.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">L7</text>
+	</g>
+	<g data-section="longside-lower-tier_l8">
+		<rect x="564.3" y="510" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="50.9" height="93.5" data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 585.5767 567.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">L8</text>
+	</g>
+	<g data-section="longside-lower-tier_l9">
+		<polygon style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" points="618.6,603.5 664.5,603.5 664.5,527 646.2,510 618.6,510       " data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 636.5767 567.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">L9</text>
+	</g>
+	<g data-section="longside-lower-tier_l10">
+		<rect x="672.9" y="545.6" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="46.6" height="94.6" data-seat="longside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 689.5767 600.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">L10</text>
+	</g>
+</g>
+<g data-category="shortside-lower-tier">
+	<g data-section="shortside-lower-tier_109">
+		<polygon style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" points="700,119.7 700,151 720.9,151 722.8,155.1 741.7,155.1     741.7,119.7   " data-seat="shortside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 713.0825 140.2184)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">109</text>
+	</g>
+	<g data-section="shortside-lower-tier_108">
+		<path style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" d="M673.1,194.7v12.2h68.6v-48.2h-17.6c-10.5,12-21.1,24-31.6,36    C686.1,194.6,679.6,194.6,673.1,194.7z" data-seat="shortside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 713.4126 191.7159)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">108</text>
+	</g>
+	<g data-section="shortside-lower-tier_107">
+		<rect x="673.1" y="209.8" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="83.9" height="51.7" data-seat="shortside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 708.4873 240.4407)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">107</text>
+	</g>
+	<g data-section="shortside-lower-tier_106">
+		<rect x="673.1" y="264.7" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="83.9" height="52.9" data-seat="shortside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 708.4873 294.4407)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">106</text>
+	</g>
+	<g data-section="shortside-lower-tier_105">
+		<rect x="673.1" y="320.7" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="83.9" height="51.7" data-seat="shortside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 708.4873 351.4407)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">105</text>
+	</g>
+	<g data-section="shortside-lower-tier_104">
+		<rect x="673.1" y="375.5" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="83.9" height="52.9" data-seat="shortside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 708.4873 406.4407)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">104</text>
+	</g>
+	<g data-section="shortside-lower-tier_103">
+		<rect x="673.1" y="431.4" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="83.9" height="51.9" data-seat="shortside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 708.4873 461.4407)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">103</text>
+	</g>
+	<g data-section="shortside-lower-tier_102">
+		<polygon style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" points="673.1,486.1 673.1,500.2 692.8,500.2 724.4,534.2     741.7,534.2 741.7,486.1   " data-seat="shortside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 713.4873 506.4407)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">102</text>
+	</g>
+	<g data-section="shortside-lower-tier_al1">
+		<rect x="177.3" y="162.2" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="37.6" height="42.9" data-seat="shortside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 187.813 188.0415)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AL1</text>
+	</g>
+	<g data-section="shortside-lower-tier_al2">
+		<rect x="141.3" y="162.2" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="32.9" height="42.9" data-seat="shortside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 147.813 188.0415)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AL2</text>
+	</g>
+	<g data-section="shortside-lower-tier_al3">
+		<rect x="141.3" y="208.2" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="73.6" height="45.3" data-seat="shortside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 168.813 235.0415)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AL3</text>
+	</g>
+	<g data-section="shortside-lower-tier_al4">
+		<rect x="141.3" y="256.2" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="73.6" height="46.7" data-seat="shortside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 168.813 285.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AL4</text>
+	</g>
+	<g data-section="shortside-lower-tier_al5">
+		<rect x="141.3" y="305.8" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="73.6" height="46.1" data-seat="shortside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 168.813 333.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AL5</text>
+	</g>
+	<g data-section="shortside-lower-tier_al6">
+		<rect x="141.3" y="354.8" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="73.6" height="46.1" data-seat="shortside-lower-tier"/>
+		<text transform="matrix(1 0 0 1 168.813 382.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AL6</text>
+	</g>
+</g>
+<g data-category="longside-upper-tier">
+	<g data-section="longside-upper-tier_u1">
+		<polygon style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" points="162.2,693.1 235.4,693.1 235.4,803.5 221.5,803.5     162.2,746   " data-seat="longside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 196.5767 737.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">U1</text>
+	</g>
+	<g data-section="longside-upper-tier_u2">
+		<rect x="239" y="693.1" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="56.1" height="110.5" data-seat="longside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 260.5767 751.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">U2</text>
+	</g>
+	<g data-section="longside-upper-tier_u3">
+		<rect x="299" y="693.1" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="50.4" height="110.5" data-seat="longside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 318.5767 751.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">U3</text>
+	</g>
+	<g data-section="longside-upper-tier_u4">
+		<rect x="353" y="693.1" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="51.6" height="110.5" data-seat="longside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 372.5767 751.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">U4</text>
+	</g>
+	<g data-section="longside-upper-tier_u5">
+		<rect x="409" y="693.1" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="64.8" height="110.5" data-seat="longside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 435.5767 751.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">U5</text>
+	</g>
+	<g data-section="longside-upper-tier_u6">
+		<rect x="478" y="693.1" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="50.8" height="110.5" data-seat="longside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 497.5767 751.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">U6</text>
+	</g>
+	<g data-section="longside-upper-tier_u7">
+		<rect x="533" y="693.1" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="52" height="110.5" data-seat="longside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 554.5767 751.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">U7</text>
+	</g>
+	<g data-section="longside-upper-tier_u8">
+		<rect x="589" y="693.1" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="53.6" height="110.5" data-seat="longside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 608.5767 751.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">U8</text>
+	</g>
+	<g data-section="longside-upper-tier_u9">
+		<polygon style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" points="645.3,693.1 645.3,803.4 661.1,803.4 719.5,744.6     719.5,693.1   " data-seat="longside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 673.5767 738.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">U9</text>
+	</g>
+</g>
+<g data-category="shortside-upper-tier">
+	<g data-section="shortside-upper-tier_208">
+		<rect x="744.3" y="158.6" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="84.2" height="48.2" data-seat="shortside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 776.4126 186.7159)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">208</text>
+	</g>
+	<g data-section="shortside-upper-tier_207">
+		<rect x="759.8" y="209.8" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="84" height="51.7" data-seat="shortside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 794.4873 240.4407)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">207</text>
+	</g>
+	<g data-section="shortside-upper-tier_206">
+		<rect x="759.8" y="264.7" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="65.3" height="52.9" data-seat="shortside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 783.4873 295.4407)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">206</text>
+	</g>
+	<g data-section="shortside-upper-tier_205">
+		<rect x="759.8" y="320.7" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="65.3" height="51.7" data-seat="shortside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 783.4873 351.4407)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">205</text>
+	</g>
+	<g data-section="shortside-upper-tier_204">
+		<rect x="759.8" y="375.5" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="65.3" height="52.9" data-seat="shortside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 783.4873 405.4407)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">204</text>
+	</g>
+	<g data-section="shortside-upper-tier_203">
+		<rect x="759.8" y="431.4" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="83.9" height="51.9" data-seat="shortside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 796.4873 459.4407)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">203</text>
+	</g>
+	<g data-section="shortside-upper-tier_202">
+		<rect x="744.8" y="486.1" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="83.9" height="48.1" data-seat="shortside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 782.4873 513.4407)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">202</text>
+	</g>
+	<g data-section="shortside-upper-tier_304">
+		<rect x="828.1" y="375.5" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="41" height="52.9" data-seat="shortside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 838.4873 405.4407)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">304</text>
+	</g>
+	<g data-section="shortside-upper-tier_305">
+		<rect x="828.1" y="320.7" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="41" height="51.7" data-seat="shortside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 838.4873 351.4407)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">305</text>
+	</g>
+	<g data-section="shortside-upper-tier_306">
+		<rect x="828.1" y="264.7" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="41" height="52.9" data-seat="shortside-upper-tier"/>
+		<text transform="matrix(1 0 0 1 838.4873 295.4407)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">306</text>
+	</g>
+</g>
+<g data-category="vip-packages">
+	<g data-section="vip-packages_ce9">
+		<rect x="627.5" y="91" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="36.2" height="27.6" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 635.5767 108.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE9</text>
+	</g>
+	<g data-section="vip-packages_ce8">
+		<rect x="581.5" y="91" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="42.6" height="27.6" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 593.5767 108.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE8</text>
+	</g>
+	<g data-section="vip-packages_ce7">
+		<rect x="528.5" y="91" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="49.1" height="27.6" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 544.5767 108.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE7</text>
+	</g>
+	<g data-section="vip-packages_ce6">
+		<rect x="472.5" y="91" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="52.1" height="27.6" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 489.5766 108.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE6</text>
+	</g>
+	<g data-section="vip-packages_ce5">
+		<rect x="419.5" y="91" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="49.2" height="27.6" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 433.5766 108.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE5</text>
+	</g>
+	<g data-section="vip-packages_ce4">
+		<rect x="363.5" y="91" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="51.8" height="27.6" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 380.5766 108.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE4</text>
+	</g>
+	<g data-section="vip-packages_ce3">
+		<rect x="310.5" y="91" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="49.5" height="27.6" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 325.5766 108.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE3</text>
+	</g>
+	<g data-section="vip-packages_ce2">
+		<rect x="264.5" y="91" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="42.1" height="27.6" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 275.5766 108.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE2</text>
+	</g>
+	<g data-section="vip-packages_ce1">
+		<rect x="224.5" y="91" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="36.4" height="27.6" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 233.5766 108.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE1</text>
+	</g>
+	<g data-section="vip-packages_kg">
+		<rect x="264.5" y="121.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="42.1" height="23.7" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 277.5766 137.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">KG</text>
+	</g>
+	<g data-section="vip-packages_kh">
+		<rect x="310.5" y="121.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="49.5" height="23.7" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 328.5766 137.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">KH</text>
+	</g>
+	<g data-section="vip-packages_kj">
+		<rect x="363.5" y="121.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="51.8" height="23.7" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 382.5766 137.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">KJ</text>
+	</g>
+	<g data-section="vip-packages_kk">
+		<rect x="419.5" y="121.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="49.2" height="23.7" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 437.5766 137.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">KK</text>
+	</g>
+	<g data-section="vip-packages_kl">
+		<rect x="472.5" y="121.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="52.1" height="23.7" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 493.5766 137.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">KL</text>
+	</g>
+	<g data-section="vip-packages_km">
+		<rect x="528.5" y="121.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="49.1" height="23.7" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 545.5767 137.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">KM</text>
+	</g>
+	<g data-section="vip-packages_kn">
+		<rect x="581.5" y="121.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="42.6" height="23.7" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 595.5767 137.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">KN</text>
+	</g>
+	<g data-section="vip-packages_l11">
+		<rect x="230.3" y="607.4" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="51.4" height="32.9" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 250.5767 628.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">L11</text>
+	</g>
+	<g data-section="vip-packages_l12">
+		<rect x="284.6" y="607.4" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="58.5" height="32.9" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 309.5767 628.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">L12</text>
+	</g>
+	<g data-section="vip-packages_l13">
+		<rect x="345.9" y="607.4" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="60.2" height="32.9" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 369.5767 628.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">L13</text>
+	</g>
+	<g data-section="vip-packages_l14">
+		<rect x="477.1" y="607.4" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="58.4" height="32.9" data-seat="vip-packages"/>
+		<text transform="matrix(1 0 0 1 500.5767 628.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">L14</text>
+	</g>
+</g>
+<g data-category="away-fan-section">
+	<g data-section="away-fan-section_al7">
+		<rect x="141.3" y="403.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="73.6" height="46.9" data-seat="away-fan-section"/>
+		<text transform="matrix(1 0 0 1 168.813 431.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AL7</text>
+	</g>
+	<g data-section="away-fan-section_al8">
+		<rect x="141.3" y="453.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="73.6" height="44.5" data-seat="away-fan-section"/>
+		<text transform="matrix(1 0 0 1 168.813 480.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AL8</text>
+	</g>
+	<g data-section="away-fan-section_al9">
+		<polygon style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" points="214.9,501.1 141.3,501.1 141.3,551.2 169.6,551.2     214.9,511.5   " data-seat="away-fan-section"/>
+		<text transform="matrix(1 0 0 1 160.813 526.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AL9</text>
+	</g>
+</g>
+
+<g data-category="beautiful-game-hospitality"><g data-section="beautiful-game-hospitality_m4">
+	<rect x="345.9" y="644.5" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="60.2" height="45.2" data-seat="beautiful-game-hospitality"/>
+	<text transform="matrix(1 0 0 1 368.5767 671.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">M4</text>
+</g></g>
+<g data-category="chemistry-lounge-hospitality"><g data-section="chemistry-lounge-hospitality_m6">
+	<rect x="477.1" y="644.5" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="58.4" height="45.2" data-seat="chemistry-lounge-hospitality"/>
+	<text transform="matrix(1 0 0 1 498.5767 671.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">M6</text>
+</g></g>
+<g data-category="the-dugout-hospitality">
+	<g data-section="the-dugout-hospitality_m1">
+		<rect x="162.2" y="644.5" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="56.5" height="45.2" data-seat="the-dugout-hospitality"/>
+		<text transform="matrix(1 0 0 1 184.5767 671.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">M1</text>
+	</g>
+	<g data-section="the-dugout-hospitality_m2">
+		<rect x="221.5" y="644.5" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="60.2" height="45.2" data-seat="the-dugout-hospitality"/>
+		<text transform="matrix(1 0 0 1 245.5767 671.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">M2</text>
+	</g>
+	<g data-section="the-dugout-hospitality_m3">
+		<rect x="284.6" y="644.5" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="58.5" height="45.2" data-seat="the-dugout-hospitality"/>
+		<text transform="matrix(1 0 0 1 307.5767 671.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">M3</text>
+	</g>
+	<g data-section="the-dugout-hospitality_m5">
+		<rect x="408.9" y="644.5" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="65.3" height="45.2" data-seat="the-dugout-hospitality"/>
+		<text transform="matrix(1 0 0 1 433.5767 671.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">M5</text>
+	</g>
+	<g data-section="the-dugout-hospitality_m7">
+		<rect x="538.4" y="644.5" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="58.5" height="45.2" data-seat="the-dugout-hospitality"/>
+		<text transform="matrix(1 0 0 1 560.5767 671.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">M7</text>
+	</g>
+	<g data-section="the-dugout-hospitality_m8">
+		<rect x="599.9" y="644.5" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="60" height="45.2" data-seat="the-dugout-hospitality"/>
+		<text transform="matrix(1 0 0 1 622.5767 671.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">M8</text>
+	</g>
+	<g data-section="the-dugout-hospitality_m9">
+		<rect x="662.9" y="644.5" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="56.7" height="45.2" data-seat="the-dugout-hospitality"/>
+		<text transform="matrix(1 0 0 1 683.5767 671.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">M9</text>
+	</g>
+</g>
+<g data-category="beat-lounge-hospitality">
+	<g data-section="beat-lounge-hospitality_l15">
+		<rect x="538.4" y="607.4" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="58.5" height="32.9" data-seat="beat-lounge-hospitality"/>
+		<text transform="matrix(1 0 0 1 561.5767 628.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">L15</text>
+	</g>
+	<g data-section="beat-lounge-hospitality_l16">
+		<rect x="599.9" y="607.4" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="64.7" height="32.9" data-seat="beat-lounge-hospitality"/>
+		<text transform="matrix(1 0 0 1 624.5767 628.4848)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">L16</text>
+	</g>
+</g>
+<g data-category="longside-hospitality">
+	<g data-section="longside-hospitality_ce1">
+		<rect x="224.5" y="32.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="36.4" height="54.7" data-seat="longside-hospitality"/>
+		<text transform="matrix(1 0 0 1 233.5767 64.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE1</text>
+	</g>
+	<g data-section="longside-hospitality_ce2">
+		<rect x="264.5" y="32.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="42.1" height="54.7" data-seat="longside-hospitality"/>
+		<text transform="matrix(1 0 0 1 276.5767 64.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE2</text>
+	</g>
+	<g data-section="longside-hospitality_ce3">
+		<rect x="310.5" y="32.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="49.5" height="54.7" data-seat="longside-hospitality"/>
+		<text transform="matrix(1 0 0 1 325.5767 64.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE3</text>
+	</g>
+	<g data-section="longside-hospitality_ce4">
+		<rect x="363.5" y="32.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="51.8" height="54.7" data-seat="longside-hospitality"/>
+		<text transform="matrix(1 0 0 1 380.5767 64.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE4</text>
+	</g>
+	<g data-section="longside-hospitality_ce5">
+		<rect x="419.5" y="32.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="49.2" height="54.7" data-seat="longside-hospitality"/>
+		<text transform="matrix(1 0 0 1 434.5767 64.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE5</text>
+	</g>
+	<g data-section="longside-hospitality_ce6">
+		<rect x="472.5" y="32.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="52.1" height="54.7" data-seat="longside-hospitality"/>
+		<text transform="matrix(1 0 0 1 489.5767 64.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE6</text>
+	</g>
+	<g data-section="longside-hospitality_ce7">
+		<rect x="528.5" y="32.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="49.1" height="54.7" data-seat="longside-hospitality"/>
+		<text transform="matrix(1 0 0 1 543.5767 64.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE7</text>
+	</g>
+	<g data-section="longside-hospitality_ce8">
+		<rect x="581.5" y="32.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="42.6" height="54.7" data-seat="longside-hospitality"/>
+		<text transform="matrix(1 0 0 1 593.5767 64.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE8</text>
+	</g>
+	<g data-section="longside-hospitality_ce9">
+		<rect x="627.5" y="32.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="36.2" height="54.7" data-seat="longside-hospitality"/>
+		<text transform="matrix(1 0 0 1 635.5767 64.708)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">CE9</text>
+	</g>
+</g>
+<g data-category="anfield-road-upper-offsite-hospitality">
+	<g data-section="anfield-road-upper-offsite-hospitality_au1">
+		<polygon style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" points="43.6,162.2 32.8,205.2 83.7,205.2 83.7,162.2   " data-seat="anfield-road-upper-offsite-hospitality"/>
+		<text transform="matrix(1 0 0 1 51.813 188.0415)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AU1</text>
+	</g>
+	<g data-section="anfield-road-upper-offsite-hospitality_au2">
+		<rect x="32.3" y="208.2" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="51.4" height="45.3" data-seat="anfield-road-upper-offsite-hospitality"/>
+		<text transform="matrix(1 0 0 1 47.813 235.0415)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AU2</text>
+	</g>
+	<g data-section="anfield-road-upper-offsite-hospitality_au3">
+		<rect x="32.3" y="256.2" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="51.4" height="46.7" data-seat="anfield-road-upper-offsite-hospitality"/>
+		<text transform="matrix(1 0 0 1 47.813 285.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AU3</text>
+	</g>
+	<g data-section="anfield-road-upper-offsite-hospitality_au4">
+		<rect x="32.3" y="305.8" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="51.4" height="46.1" data-seat="anfield-road-upper-offsite-hospitality"/>
+		<text transform="matrix(1 0 0 1 47.813 333.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AU4</text>
+	</g>
+	<g data-section="anfield-road-upper-offsite-hospitality_au5">
+		<rect x="32.3" y="354.8" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="51.4" height="46.1" data-seat="anfield-road-upper-offsite-hospitality"/>
+		<text transform="matrix(1 0 0 1 47.813 382.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AU5</text>
+	</g>
+	<g data-section="anfield-road-upper-offsite-hospitality_au6">
+		<rect x="32.3" y="403.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="51.4" height="46.9" data-seat="anfield-road-upper-offsite-hospitality"/>
+		<text transform="matrix(1 0 0 1 47.813 431.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AU6</text>
+	</g>
+	<g data-section="anfield-road-upper-offsite-hospitality_au7">
+		<rect x="32.3" y="453.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="51.4" height="44.5" data-seat="anfield-road-upper-offsite-hospitality"/>
+		<text transform="matrix(1 0 0 1 47.813 480.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AU7</text>
+	</g>
+	<g data-section="anfield-road-upper-offsite-hospitality_au8">
+		<polygon style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" points="83.7,501.1 83.7,551.2 43.9,551.2 32.3,511.6     32.3,501.1   " data-seat="anfield-road-upper-offsite-hospitality"/>
+		<text transform="matrix(1 0 0 1 47.813 528.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AU8</text>
+	</g>
+</g>
+<g data-category="anfield-road-middle-tier-hospitality">
+	<g data-section="anfield-road-middle-tier-hospitality_am1">
+		<rect x="87.3" y="162.2" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="50.9" height="42.9" data-seat="anfield-road-middle-tier-hospitality"/>
+		<text transform="matrix(1 0 0 1 103.813 188.0415)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AM1</text>
+	</g>
+	<g data-section="anfield-road-middle-tier-hospitality_am2">
+		<rect x="87.3" y="208.2" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="50.9" height="45.3" data-seat="anfield-road-middle-tier-hospitality"/>
+		<text transform="matrix(1 0 0 1 101.813 235.0415)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AM2</text>
+	</g>
+	<g data-section="anfield-road-middle-tier-hospitality_am3">
+		<rect x="87.3" y="256.2" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="50.9" height="46.7" data-seat="anfield-road-middle-tier-hospitality"/>
+		<text transform="matrix(1 0 0 1 101.813 285.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AM3</text>
+	</g>
+	<g data-section="anfield-road-middle-tier-hospitality_am4">
+		<rect x="87.3" y="305.8" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="50.9" height="46.1" data-seat="anfield-road-middle-tier-hospitality"/>
+		<text transform="matrix(1 0 0 1 101.813 333.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AM4</text>
+	</g>
+	<g data-section="anfield-road-middle-tier-hospitality_am5">
+		<rect x="87.3" y="354.8" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="50.9" height="46.1" data-seat="anfield-road-middle-tier-hospitality"/>
+		<text transform="matrix(1 0 0 1 101.813 382.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AM5</text>
+	</g>
+	<g data-section="anfield-road-middle-tier-hospitality_am6">
+		<rect x="87.3" y="403.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="50.9" height="46.9" data-seat="anfield-road-middle-tier-hospitality"/>
+		<text transform="matrix(1 0 0 1 101.813 431.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AM6</text>
+	</g>
+	<g data-section="anfield-road-middle-tier-hospitality_am7">
+		<rect x="87.3" y="453.9" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="50.9" height="44.5" data-seat="anfield-road-middle-tier-hospitality"/>
+		<text transform="matrix(1 0 0 1 101.813 480.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AM7</text>
+	</g>
+	<g data-section="anfield-road-middle-tier-hospitality_am8">
+		<rect x="87.3" y="501.1" style="fill:none;stroke:#C6CDD2;stroke-miterlimit:10;" width="50.9" height="50.1" data-seat="anfield-road-middle-tier-hospitality"/>
+		<text transform="matrix(1 0 0 1 101.813 528.0414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:11px;">AM8</text>
+	</g>
+</g>
+<g>
+	<g>
+		<text transform="matrix(1 0 0 1 391.8476 208.4414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:15px;">LONGSIDE TIER</text>
+	</g>
+	<g>
+		<text transform="matrix(6.123234e-17 -1 1 6.123234e-17 237.2944 406.248)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:15px;">SHORTSIDE TIER</text>
+	</g>
+	<g>
+		<text transform="matrix(3.267949e-07 1 -1 3.267949e-07 652.6547 290.1064)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:15px;">SHORTSIDE TIER</text>
+	</g>
+	<g>
+		<text transform="matrix(1 0 0 1 391.8476 497.4413)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:15px;">LONGSIDE TIER</text>
+	</g>
+	<g>
+		<text transform="matrix(1 0 0 1 344.8476 18.4414)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:15px;">SIR KENNY DALGLISH STAND</text>
+	</g>
+	<g>
+		<text transform="matrix(3.267949e-07 1 -1 3.267949e-07 886.6528 317.1064)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:15px;">THE KOP</text>
+	</g>
+	<g>
+		<text transform="matrix(5.206618e-15 -1 1 5.206618e-15 16.2939 427.6055)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:15px;">ANFIELD ROAD STAND</text>
+	</g>
+	<g>
+		<text transform="matrix(1 0 0 1 400.8476 830.4413)" style="fill:#503FA5; font-family:'proxima-nova'; font-size:15px;">MAIN STAND</text>
+	</g>
+	<g xmlns="http://www.w3.org/2000/svg">
+	<rect x="249.6" y="223.3" style="fill:#96CC6A;" width="388.4" height="251.5"/>
+	<path style="fill:#FFFFFF;fill-opacity:8.000000e-02;" d="M616,460.2h-18.1V237.7H616V460.2z M579.8,460.2h-18.1V237.7h18.1V460.2z    M543.5,460.2h-18.1V237.7h18.1V460.2z M507.3,460.2h-18.1V237.7h18.1V460.2z M471.1,460.2H453V237.7h18.1V460.2z M434.9,460.2   h-18.1V237.7h18.1V460.2z M398.6,460.2h-18.1V237.7h18.1V460.2z M362.4,460.2h-18.1V237.7h18.1V460.2z M326.2,460.2h-18.1V237.7   h18.1V460.2z M290,460.2h-18.1V237.7H290V460.2z"/>
+	<path style="fill:none;stroke:#FFFFFF;stroke-width:0.8777;stroke-miterlimit:10;" d="M590.2,382.7v-67.6H616v67.6H590.2z    M543,348.9c0,10.4,4.8,19.8,12.2,26v-52C547.8,329.1,543,338.5,543,348.9z M616,418.3V279.6h-60.7v138.8L616,418.3L616,418.3z    M616,452.1c-4.5,0-8.1,3.6-8.1,8.1h8.1V452.1z M616,245.8v-8.1h-8.1C607.8,242.2,611.5,245.8,616,245.8z M623.1,362.9V335H616   v27.9H623.1z M297.6,382.7v-67.6h-25.7v67.6H297.6z M332.6,323v52c7.5-6.2,12.2-15.5,12.2-26S340.1,329.1,332.6,323z M332.6,418.3   V279.6h-60.6v138.8L332.6,418.3L332.6,418.3z M271.9,460.2h8.1c0-4.5-3.6-8.1-8.1-8.1C271.9,452.1,271.9,460.2,271.9,460.2z    M616,452.1V245.8c-4.5,0-8.1-3.6-8.1-8.1H446.7h-2.8H280c0,4.5-3.6,8.1-8.1,8.1v206.3c4.5,0,8.1,3.6,8.1,8.1h163.9h2.8h161.1   C607.8,455.7,611.5,452.1,616,452.1z M280,237.7h-8.1v8.1C276.4,245.8,280,242.2,280,237.7z M271.9,362.9V335h-7.2v27.9H271.9z    M443.9,460.2V237.7 M443.9,378c16,0,29-13,29-29s-13-29-29-29s-29,13-29,29S427.9,378,443.9,378z"/>
+</g>
+</g>
+</svg>
