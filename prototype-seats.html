@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venue Map & Ticket Interface</title>
+    <title>Prototype</title>
     <style>
-        /* --- UI STYLES --- */
         * { box-sizing: border-box; }
         body { 
             margin: 0; 
@@ -19,24 +18,19 @@
             flex-direction: column; 
         }
 
-        /* Header */
         .app-header { padding: 12px 20px; border-bottom: 1px solid #eaeaea; }
         .app-header h1 { margin: 0 0 4px 0; font-size: 18px; display: flex; align-items: center; gap: 8px; }
         .app-header p { margin: 0; font-size: 13px; color: #555; display: flex; align-items: center; gap: 5px; }
         .flags { font-size: 18px; }
 
-        /* Toolbar Filters */
         .toolbar { padding: 12px 20px; display: flex; gap: 12px; border-bottom: 1px solid #eaeaea; align-items: center; overflow-x: auto; }
         .toolbar button { padding: 8px 12px; border: 1px solid #ddd; background: white; border-radius: 6px; font-size: 13px; cursor: pointer; white-space: nowrap; font-weight: 500; color: #333; display: flex; align-items: center; gap: 6px;}
         .toolbar button:hover { border-color: #bbb; }
         .toolbar button.icon-btn { padding: 8px; justify-content: center; }
-        .toolbar button.pin-btn { border: none; background: transparent; padding: 4px; color: #2cdb9f; }
-        .toolbar button.pin-btn:hover { border: none; opacity: 0.8; }
         
         .toolbar .toggle-group { display: flex; align-items: center; gap: 8px; font-size: 13px; margin-left: 10px; color: #555; }
         .spacer { flex: 1; }
 
-        /* iOS-style Toggle Switch */
         .switch { position: relative; display: inline-block; width: 36px; height: 20px; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #e5e7eb; transition: .3s; border-radius: 20px; }
@@ -44,7 +38,6 @@
         input:checked + .slider { background-color: #e5e7eb; } 
         input:checked + .slider:before { transform: translateX(16px); }
 
-        /* Categories Legend */
         .categories-bar { display: flex; align-items: center; padding: 12px 20px; border-bottom: 1px solid #eaeaea; gap: 16px; background: #fff; }
         .categories { display: flex; gap: 10px; align-items: center; overflow-x: auto; flex: 1; scrollbar-width: none; }
         .categories::-webkit-scrollbar { display: none; }
@@ -72,14 +65,11 @@
         .qty-btn { background: #2cdb9f; color: #000; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 800; cursor: pointer; font-size: 13px; white-space: nowrap; }
         .qty-btn:hover { background: #26c48d; }
 
-        /* Main Workspace */
         .main-area { display: flex; flex: 1; overflow: hidden; position: relative; }
 
-        /* Map Container */
         #map-container { flex: 1; position: relative; background: #ffffff; overflow: hidden; }
         #map-container canvas { display: block; width: 100% !important; height: 100% !important; outline: none; }
 
-        /* Floating Zoom & Reset Controls */
         .map-controls-widget {
             position: absolute;
             bottom: 24px;
@@ -108,28 +98,25 @@
             outline: none;
             padding: 0;
         }
-        .map-ctrl-btn:hover {
+        .map-ctrl-btn:hover { background: #e2e8f0; color: #0f172a; }
+        .map-ctrl-btn.active-mode { background: #111827; color: #ffffff; border-color: #111827; }
+        .map-ctrl-btn.active-mode:hover { background: #1f2937; color: #ffffff; }
+
+        /* Style for the dynamic 2D mode transition button matching widget controls */
+        .map-ctrl-btn.mode-2d-btn {
+            font-size: 15px;
+            font-weight: 700;
+            background: #f1f4f6;
+            color: #334155;
+            border: 1px solid #e2e8f0;
+            display: none; /* Hidden by default in 2D mode */
+        }
+        .map-ctrl-btn.mode-2d-btn:hover {
             background: #e2e8f0;
             color: #0f172a;
         }
-        .map-ctrl-btn svg {
-            width: 20px;
-            height: 20px;
-            stroke: currentColor;
-            stroke-width: 2.2;
-            fill: none;
-        }
-        .map-ctrl-btn.toggle-2d {
-            display: none;
-        }
-        .map-ctrl-btn.toggle-2d.visible {
-            display: flex;
-        }
 
-        /* Tickets Sidebar */
         .sidebar { width: 650px; border-left: 1px solid #eaeaea; display: flex; flex-direction: column; background: #ffffff; position: relative; overflow: hidden;}
-        
-        /* --- LISTINGS VIEW --- */
         .ticket-list { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 14px; background: #fafafa; }
         .ticket-card { 
             background: white; 
@@ -144,7 +131,6 @@
         }
         .ticket-card:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.07); border-color: #cbd5e1; }
         .card-color { width: 8px; flex-shrink: 0; }
-        
         .card-thumb { 
             width: 114px; 
             height: 78px; 
@@ -180,7 +166,6 @@
         .buy-btn small { font-size: 10px; font-weight: 700; opacity: 0.8; }
         .badge-green { color: #10b981; font-weight: 600; font-size: 12px; }
 
-        /* --- DETAILED VIEW --- */
         .detail-view { 
             display: flex; 
             flex-direction: column; 
@@ -195,13 +180,11 @@
             transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .detail-view.active { transform: translateX(0); }
-        
         .detail-header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #eaeaea; }
         .back-btn { background: none; border: none; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 0;}
         .back-btn .back-circle { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #000; color: #fff; border-radius: 50%; }
         
         .detail-content { flex: 1; overflow-y: auto; padding: 20px; font-size: 14px; color: #111; }
-        
         .detail-features { 
             display: flex; 
             flex-wrap: wrap; 
@@ -215,7 +198,6 @@
         .detail-row { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 13px; color: #333;}
         .detail-row svg { width: 16px; height: 16px; flex-shrink: 0; color: #555; }
         
-        /* 360 Panorama Container */
         #panorama-container {
             width: 100%;
             height: 312px;
@@ -260,7 +242,6 @@
         }
 
         .pano-hint.active { opacity: 1; }
-
         .pano-hint-icon {
             width: 28px;
             height: 28px;
@@ -306,7 +287,6 @@
         
         .section-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; margin-top: 24px; margin-bottom: 8px;}
         .section-desc { color: #444; margin-bottom: 16px; font-size: 14px; line-height: 1.5; margin-left: 26px;}
-
         .detail-footer { padding: 20px; border-top: 1px solid #eaeaea; background: #fff; }
         .checkout-btn { width: 100%; background: #2cdb9f; color: #000; border: none; padding: 16px; border-radius: 30px; font-size: 16px; font-weight: 800; cursor: pointer; transition: background 0.2s;}
         .checkout-btn:hover { background: #26c48d; }
@@ -322,13 +302,11 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <header class="app-header">
         <h1><span class="flags">🇬🇧</span> TBD vs TBD</h1>
         <p>📅 Date TBD · 📍 Anfield Stadium, Liverpool, United Kingdom</p>
     </header>
 
-    <!-- TOOLBAR -->
     <div class="toolbar">
         <button class="icon-btn">
             <svg viewBox="0 0 24 24" width="16" height="16" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -346,31 +324,33 @@
         <button>Price: Low to High ▾</button>
     </div>
 
-    <!-- DYNAMIC CATEGORIES BAR -->
     <div class="categories-bar">
         <div class="categories" id="categories-container"></div>
         <button class="qty-btn">2 TICKETS</button>
     </div>
 
     <div class="main-area">
-        
-        <!-- MAP CONTAINER -->
         <div id="map-container">
-            <!-- FLOATING MAP CONTROLS -->
             <div class="map-controls-widget">
                 <button class="map-ctrl-btn" id="ctrl-zoom-in" title="Zoom In">+</button>
                 <button class="map-ctrl-btn" id="ctrl-zoom-out" title="Zoom Out">−</button>
                 <button class="map-ctrl-btn" id="ctrl-reset-view" title="Reset View">
-                    <svg viewBox="0 0 24 24">
+                    <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; stroke: currentColor; stroke-width: 2.2; fill: none;">
                         <path d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
                         <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
                     </svg>
                 </button>
-                <button class="map-ctrl-btn toggle-2d" id="ctrl-2d-view" title="Back to 2D" style="font-size: 13px; font-weight: 700;">2D</button>
+                <button class="map-ctrl-btn" id="ctrl-toggle-seats" title="Toggle Seats/Rows">
+                    <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; stroke: currentColor; stroke-width: 2.2; fill: none;">
+                        <circle cx="8" cy="12" r="2.5"></circle>
+                        <circle cx="16" cy="12" r="2.5"></circle>
+                    </svg>
+                </button>
+                <!-- Dedicated 2D return button at the bottom, matching widget styling -->
+                <button class="map-ctrl-btn mode-2d-btn" id="ctrl-mode-2d" title="Switch to 2D Top View">2D</button>
             </div>
         </div>
 
-        <!-- TICKETS SIDEBAR -->
         <div class="sidebar">
             <div class="ticket-list" id="ticket-list-container">
                 <div style="padding: 20px; text-align: center; color: #888; font-size: 14px;">
@@ -378,7 +358,6 @@
                 </div>
             </div>
 
-            <!-- DETAILED TICKET PANEL -->
             <div id="detail-view" class="detail-view">
                 <div class="detail-header">
                     <button class="back-btn" id="back-to-list-btn">
@@ -416,7 +395,6 @@
                         </div>
                     </div>
 
-                    <!-- INTERACTIVE 360 PANORAMA VIEWER -->
                     <div id="panorama-container">
                         <div id="pano-loading">Loading 360° View...</div>
                         <div id="pano-hint" class="pano-hint">
@@ -480,20 +458,19 @@
                     <button class="checkout-btn">Proceed To Checkout</button>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!-- THREE.JS ENGINE & PANORAMA LOGIC -->
     <script type="module">
         import * as THREE from 'three';
         import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
         import { MapControls } from 'three/addons/controls/MapControls.js';
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
+        let showSeats = false;
         const mapContainer = document.getElementById('map-container');
+        const mode2dBtn = document.getElementById('ctrl-mode-2d');
 
-        // --- 1. BASE SCENE SETUP (MAP) ---
         const scene = new THREE.Scene();
         scene.background = new THREE.Color('#ffffff');
 
@@ -520,7 +497,6 @@
         controls.enableZoom = false; 
         controls.screenSpacePanning = true;
 
-        // --- 1.5 SCENE SETUP (PANORAMA 360) ---
         const panoContainer = document.getElementById('panorama-container');
         const panoScene = new THREE.Scene();
         const panoCamera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
@@ -541,21 +517,16 @@
         panoGeometry.scale(-1, 1, 1); 
         const panoMaterial = new THREE.MeshBasicMaterial({ color: 0xcccccc });
         const panoMesh = new THREE.Mesh(panoGeometry, panoMaterial);
-        
         panoMesh.rotation.y = -Math.PI / 2; 
         panoScene.add(panoMesh);
 
-        // --- PANORAMA HINT DISMISS LOGIC ---
         const panoHint = document.getElementById('pano-hint');
         let panoHintTimeout = null;
 
         function showPanoHint() {
             clearTimeout(panoHintTimeout);
             panoHint.classList.add('active');
-            
-            panoHintTimeout = setTimeout(() => {
-                hidePanoHint();
-            }, 3200);
+            panoHintTimeout = setTimeout(() => { hidePanoHint(); }, 3200);
         }
 
         function hidePanoHint() {
@@ -606,7 +577,10 @@
         let isUiHoverActive = false;
         let lockedSectionGroup = null;
 
-        // Stand Row Limits lookup based on Anfield stadium specifications
+        let lastMinPricesByRow = {};
+        let lastMinPricesBySeat = {};
+        let lastMinPricesBySection = {};
+
         const STAND_ROW_LIMITS = {
             DALGLISH: { min: 1, max: 31 },
             KOP:      { min: 1, max: 76 },
@@ -616,26 +590,16 @@
 
         function getStandRowRange(sectionName) {
             const s = (sectionName || '').toUpperCase();
-            if (s.includes('KOP') || s.includes('KP') || s.startsWith('K')) {
-                return STAND_ROW_LIMITS.KOP;
-            }
-            if (s.includes('MAIN') || s.includes('MS') || s.startsWith('M') || s.startsWith('L')) {
-                return STAND_ROW_LIMITS.MAIN;
-            }
-            if (s.includes('ANFIELD') || s.includes('ARE') || s.includes('AR') || s.startsWith('A')) {
-                return STAND_ROW_LIMITS.ANFIELD;
-            }
-            if (s.includes('DALGLISH') || s.includes('CE') || s.includes('KD') || s.startsWith('CE') || s.startsWith('U')) {
-                return STAND_ROW_LIMITS.DALGLISH;
-            }
+            if (s.includes('KOP') || s.includes('KP') || s.startsWith('K')) return STAND_ROW_LIMITS.KOP;
+            if (s.includes('MAIN') || s.includes('MS') || s.startsWith('M') || s.startsWith('L')) return STAND_ROW_LIMITS.MAIN;
+            if (s.includes('ANFIELD') || s.includes('ARE') || s.includes('AR') || s.startsWith('A')) return STAND_ROW_LIMITS.ANFIELD;
             return STAND_ROW_LIMITS.DALGLISH;
         }
 
         function getDisplaySection(rawSection) {
             if (!rawSection) return '';
             const idx = rawSection.indexOf('_');
-            const cleanName = idx !== -1 ? rawSection.substring(idx + 1) : rawSection;
-            return cleanName.toUpperCase();
+            return idx !== -1 ? rawSection.substring(idx + 1).toUpperCase() : rawSection.toUpperCase();
         }
 
         function getDisplayCategory(rawCategory) {
@@ -644,12 +608,13 @@
         }
 
         function applySectionOpacities() {
+            const baseOp = showSeats ? 0.2 : 0.3;
             for (const [secName, group] of Object.entries(sectionGroups)) {
-                let targetOpacity = 0.3;
+                let targetOpacity = baseOp;
                 if (group === activeSection || group === hoveredSectionGroup) {
-                    targetOpacity = 0.75;
+                    targetOpacity = showSeats ? 0.35 : 0.75;
                 } else if (group.userData && group.userData.hasActiveListings) {
-                    targetOpacity = 0.5;
+                    targetOpacity = showSeats ? 0.25 : 0.5;
                 }
 
                 group.children.forEach(child => {
@@ -669,7 +634,6 @@
             for (const [key, rGroup] of Object.entries(rowGroups)) {
                 const hasActive = rGroup.userData.hasActiveListings;
                 const isCurrentSectionRow = activeSectionName && rGroup.userData.sectionName === activeSectionName;
-
                 const shouldBeVisible = !!(hasActive || isCurrentSectionRow);
                 rGroup.visible = shouldBeVisible;
 
@@ -682,19 +646,28 @@
                 }
 
                 const isFocused = (rGroup === hoveredRowGroup || rGroup === selectedRowGroup);
-                
-                let targetOpacity = 0.9;
-                if (!hasActive && isCurrentSectionRow) {
-                    targetOpacity = isFocused ? 0.75 : 0.45;
+                let targetLineOpacity;
+                if (showSeats) {
+                    targetLineOpacity = hasActive ? 0.6 : 0.4;
                 } else {
-                    targetOpacity = isFocused ? 1.0 : 0.9;
+                    targetLineOpacity = (!hasActive && isCurrentSectionRow) ? (isFocused ? 0.75 : 0.45) : (isFocused ? 1.0 : 0.9);
                 }
 
                 rGroup.children.forEach(child => {
                     if (child.userData && child.userData.isHitProxy) return;
-                    if (child.isMesh || child.isLine) {
-                        child.material.transparent = targetOpacity < 1.0;
-                        child.material.opacity = targetOpacity;
+                    if (child.userData && child.userData.isDebugDotGroup) {
+                        child.visible = showSeats;
+                        const rowDefaultSeatOp = hasActive ? 0.75 : 0.7;
+                        child.children.forEach(dotItem => {
+                            if (dotItem.userData && dotItem.userData.isSeatCircle) {
+                                const isSeatActive = dotItem.userData.isActiveSeat;
+                                dotItem.material.opacity = isSeatActive ? 1.0 : rowDefaultSeatOp;
+                                dotItem.material.needsUpdate = true;
+                            }
+                        });
+                    } else if (child.isMesh || child.isLine) {
+                        child.material.transparent = true;
+                        child.material.opacity = targetLineOpacity;
                         child.material.needsUpdate = true;
                     }
                 });
@@ -727,12 +700,74 @@
             applyRowOpacities();
         }
 
+        const seatToggleBtn = document.getElementById('ctrl-toggle-seats');
+        seatToggleBtn.classList.toggle('active-mode', showSeats);
+        seatToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showSeats = !showSeats;
+            seatToggleBtn.classList.toggle('active-mode', showSeats);
+            applySectionOpacities();
+            applyRowOpacities();
+            renderPriceBadges(lastMinPricesByRow, lastMinPricesBySeat, lastMinPricesBySection);
+        });
+
+        const seatSpriteMatCache = {};
+
+        function createSeatTextSprite(seatNumber, textColorHexStr) {
+            const cacheKey = `${seatNumber}_${textColorHexStr}`;
+            if (!seatSpriteMatCache[cacheKey]) {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                const renderPx = 96;
+                const fontName = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+
+                ctx.font = `bold ${renderPx}px ${fontName}`;
+                const metrics = ctx.measureText(String(seatNumber));
+                const w = Math.ceil(metrics.width);
+                const h = Math.ceil(renderPx * 1.25);
+
+                canvas.width = Math.max(16, w + 16);
+                canvas.height = Math.max(16, h + 16);
+
+                ctx.font = `bold ${renderPx}px ${fontName}`;
+                ctx.fillStyle = textColorHexStr || '#ffffff';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = 'high';
+                ctx.fillText(String(seatNumber), canvas.width / 2, canvas.height / 2);
+
+                const texture = new THREE.CanvasTexture(canvas);
+                texture.colorSpace = THREE.SRGBColorSpace;
+                texture.generateMipmaps = true;
+                texture.minFilter = THREE.LinearMipmapLinearFilter;
+                texture.magFilter = THREE.LinearFilter;
+
+                seatSpriteMatCache[cacheKey] = new THREE.SpriteMaterial({
+                    map: texture,
+                    transparent: true,
+                    depthTest: false,
+                    depthWrite: false
+                });
+                seatSpriteMatCache[cacheKey].userData = { aspect: canvas.width / canvas.height };
+            }
+
+            const spriteMat = seatSpriteMatCache[cacheKey];
+            const sprite = new THREE.Sprite(spriteMat);
+            const aspect = spriteMat.userData.aspect;
+            const worldH = 0.70;
+            const worldW = worldH * aspect;
+            sprite.scale.set(worldW, worldH, 1);
+            sprite.raycast = () => {};
+            sprite.renderOrder = 2050;
+            return sprite;
+        }
+
         function createPinBadgeTexture(priceText) {
             const canvas = document.createElement('canvas');
             canvas.width = 512;
             canvas.height = 340;
             const ctx = canvas.getContext('2d');
-
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             const x = 60, y = 40, w = 392, h = 200, r = 48, tipW = 44, tipH = 32;
@@ -749,11 +784,9 @@
             ctx.arcTo(x + w, y, x + w, y + r, r);
             ctx.lineTo(x + w, y + h - r);
             ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
-            
             ctx.lineTo(centerX + tipW / 2, y + h);
             ctx.lineTo(centerX, y + h + tipH);
             ctx.lineTo(centerX - tipW / 2, y + h);
-            
             ctx.lineTo(x + r, y + h);
             ctx.arcTo(x, y + h, x, y + h - r, r);
             ctx.lineTo(x, y + r);
@@ -762,7 +795,6 @@
 
             ctx.fillStyle = '#ffffff';
             ctx.fill();
-
             ctx.strokeStyle = '#e4e4e7';
             ctx.lineWidth = 3;
             ctx.stroke();
@@ -779,7 +811,11 @@
             return texture;
         }
 
-        function renderPriceBadges(minPricesByRow, minPricesBySectionFallback) {
+        function renderPriceBadges(minPricesByRow, minPricesBySeat, minPricesBySectionFallback) {
+            lastMinPricesByRow = minPricesByRow || {};
+            lastMinPricesBySeat = minPricesBySeat || {};
+            lastMinPricesBySection = minPricesBySectionFallback || {};
+
             if (labelsGroup) {
                 scene.remove(labelsGroup);
                 labelsGroup.traverse(child => {
@@ -814,9 +850,8 @@
 
                 const sprite = new THREE.Sprite(spriteMat);
                 sprite.center.set(0.5, 0.0);
-
                 sprite.scale.set(BADGE_WIDTH, BADGE_HEIGHT, 1);
-                sprite.position.set(center.x, center.y + BADGE_CLEARANCE, isRowBadge ? 0.35 : 0.25);
+                sprite.position.set(center.x, center.y + BADGE_CLEARANCE, 0.90);
 
                 sprite.userData = {
                     isPriceLabel: true,
@@ -829,17 +864,36 @@
                     baseY: center.y,
                     verticalClearance: BADGE_CLEARANCE
                 };
-                sprite.renderOrder = isRowBadge ? 1005 : 999;
+                sprite.renderOrder = 99999;
                 labelsGroup.add(sprite);
             }
 
-            for (const [rowKey, price] of Object.entries(minPricesByRow)) {
-                const rGroup = rowGroups[rowKey];
-                if (!rGroup) continue;
-                addBadge(rGroup, `€${price}`, true, price, rGroup.userData.sectionName);
+            if (showSeats) {
+                for (const [seatKey, price] of Object.entries(lastMinPricesBySeat)) {
+                    const sepIdx = seatKey.lastIndexOf('::');
+                    if (sepIdx === -1) continue;
+                    const rowKey = seatKey.substring(0, sepIdx);
+                    const seatNum = parseInt(seatKey.substring(sepIdx + 2), 10);
+                    const rGroup = rowGroups[rowKey];
+                    if (!rGroup) continue;
+
+                    const debugDotGroup = rGroup.children.find(c => c.userData && c.userData.isDebugDotGroup);
+                    if (!debugDotGroup) continue;
+
+                    const seatCircle = debugDotGroup.children.find(c => c.userData && c.userData.isSeatCircle && c.userData.seatNumber === seatNum);
+                    if (!seatCircle) continue;
+
+                    addBadge(seatCircle, `€${price}`, true, price, rGroup.userData.sectionName);
+                }
+            } else {
+                for (const [rowKey, price] of Object.entries(lastMinPricesByRow)) {
+                    const rGroup = rowGroups[rowKey];
+                    if (!rGroup) continue;
+                    addBadge(rGroup, `€${price}`, true, price, rGroup.userData.sectionName);
+                }
             }
 
-            for (const [sectionName, price] of Object.entries(minPricesBySectionFallback)) {
+            for (const [sectionName, price] of Object.entries(lastMinPricesBySection)) {
                 const sGroup = sectionGroups[sectionName];
                 if (!sGroup) continue;
                 addBadge(sGroup, `€${price}`, false, price, sectionName);
@@ -862,7 +916,6 @@
 
             const refDist = defaultCameraPos.length();
             const currentCameraDist = camera.position.distanceTo(controls.target);
-
             const t = THREE.MathUtils.clamp((refDist - currentCameraDist) / (refDist * 0.65), 0, 1);
             const screenMultiplier = 1.0 + (0.35 * t);
 
@@ -871,7 +924,6 @@
             if (w === 0 || h === 0) return;
 
             const tanHalfFov = Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2);
-
             const sectionBadges = {};
 
             labelsGroup.children.forEach(sprite => {
@@ -949,27 +1001,17 @@
         }
 
         function filterListingsByCategory(categoryName) {
-            if (activeFilterCategory === categoryName) {
-                activeFilterCategory = null;
-            } else {
-                activeFilterCategory = categoryName;
-            }
-
+            activeFilterCategory = (activeFilterCategory === categoryName) ? null : categoryName;
             activeFilterSection = null;
 
             document.querySelectorAll('.cat-pill').forEach(pill => {
-                if (pill.dataset.category === activeFilterCategory) {
-                    pill.classList.add('active');
-                } else {
-                    pill.classList.remove('active');
-                }
+                pill.classList.toggle('active', pill.dataset.category === activeFilterCategory);
             });
 
             if (!activeFilterCategory) {
                 renderListings(allListingsData);
             } else {
-                const filtered = allListingsData.filter(item => item.category === activeFilterCategory);
-                renderListings(filtered);
+                renderListings(allListingsData.filter(item => item.category === activeFilterCategory));
             }
         }
 
@@ -981,9 +1023,7 @@
                 const pill = document.createElement('div');
                 pill.className = 'cat-pill';
                 pill.dataset.category = categoryName;
-                if (activeFilterCategory === categoryName) {
-                    pill.classList.add('active');
-                }
+                if (activeFilterCategory === categoryName) pill.classList.add('active');
 
                 pill.onclick = (e) => {
                     e.stopPropagation();
@@ -993,10 +1033,8 @@
                 const dot = document.createElement('div');
                 dot.className = 'cat-dot';
                 dot.style.background = colorString;
-                const displayCategoryName = getDisplayCategory(categoryName);
-                const text = document.createTextNode(' ' + displayCategoryName);
                 pill.appendChild(dot);
-                pill.appendChild(text);
+                pill.appendChild(document.createTextNode(' ' + getDisplayCategory(categoryName)));
                 container.appendChild(pill);
             }
         }
@@ -1116,18 +1154,13 @@
             netGeom.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
             netGeom.computeVertexNormals();
 
-            const netMesh = new THREE.Mesh(netGeom, netMaterialGlobal);
-            goalGroup.add(netMesh);
-
+            goalGroup.add(new THREE.Mesh(netGeom, netMaterialGlobal));
             return goalGroup;
         }
 
         function add3DGoals(parentGroup) {
-            const leftGoal = buildGoal3D(271.9, 264.7, 335.0, 362.9);
-            parentGroup.add(leftGoal);
-
-            const rightGoal = buildGoal3D(616.0, 623.1, 335.0, 362.9);
-            parentGroup.add(rightGoal);
+            parentGroup.add(buildGoal3D(271.9, 264.7, 335.0, 362.9));
+            parentGroup.add(buildGoal3D(616.0, 623.1, 335.0, 362.9));
         }
 
         function createSectionTextSprite(textStr, fontPx, fillHex) {
@@ -1152,7 +1185,6 @@
             ctx.textBaseline = 'middle';
             ctx.imageSmoothingEnabled = true;
             ctx.imageSmoothingQuality = 'high';
-
             ctx.fillText(textStr, canvas.width / 2, canvas.height / 2);
 
             const texture = new THREE.CanvasTexture(canvas);
@@ -1176,7 +1208,6 @@
             sprite.scale.set(worldW, worldH, 1);
             sprite.raycast = () => {};
             sprite.renderOrder = 450;
-
             return sprite;
         }
 
@@ -1209,7 +1240,6 @@
 
                 const fontSize = Math.max(5.5, Math.min(size.x * 0.32, size.y * 0.42, 11));
                 const sprite = createSectionTextSprite(cleanLabel, fontSize, '#3b2384');
-
                 sprite.position.set(center.x, center.y, 0.08);
                 sprite.name = `secLabel_${secInfo.section}`;
                 sprite.userData = { sectionName: secInfo.section };
@@ -1238,8 +1268,8 @@
                 
                 const sprite = createSectionTextSprite(String(rowLabel), fontSize, rowTextColor);
                 sprite.name = `sprite_${key}`;
-                sprite.position.set(center.x, center.y, 0.15);
-                sprite.renderOrder = 500;
+                sprite.position.set(center.x, center.y, 0.35);
+                sprite.renderOrder = 3000;
                 sprite.visible = false;
                 group.add(sprite);
             }
@@ -1313,11 +1343,9 @@
             textMesh.position.set(0, 0, 0.04);
             textMesh.raycast = () => {};
             textMesh.renderOrder = 300;
-
             return textMesh;
         }
 
-        // --- CAMERA TRANSITIONS ---
         const cameraAnim = {
             active: false,
             startPos: new THREE.Vector3(),
@@ -1339,16 +1367,13 @@
             cameraAnim.startPos.copy(camera.position);
             cameraAnim.startTarget.copy(controls.target);
             cameraAnim.startUp.copy(camera.up);
-
             cameraAnim.endPos.copy(targetPos);
             cameraAnim.endTarget.copy(targetLookAt);
             cameraAnim.endUp.copy(targetUp);
-
             cameraAnim.startTime = performance.now();
             cameraAnim.duration = duration;
             cameraAnim.onComplete = onComplete;
             cameraAnim.active = true;
-
             controls.enablePan = false;
             controls.enableRotate = false;
         }
@@ -1412,7 +1437,7 @@
 
             const corners = [
                 new THREE.Vector3(box.min.x, box.min.y, 0),
-                new THREE.Vector3(box.min.x, box.max.y, 0),
+                new THREE.Vector3(box.min.x, box.min.y, 0),
                 new THREE.Vector3(box.max.x, box.min.y, 0),
                 new THREE.Vector3(box.max.x, box.max.y, 0)
             ];
@@ -1439,6 +1464,9 @@
             applySectionOpacities();
             applyRowOpacities();
 
+            // Make the '2D' return button visible when entering 3D perspective view mode
+            mode2dBtn.style.display = 'flex';
+
             const secName = targetGroup.userData.sectionName;
             const sectionHasActiveRows = Object.values(rowGroups).some(
                 rg => rg.userData.sectionName === secName && rg.userData.hasActiveListings
@@ -1454,9 +1482,6 @@
                 });
             }
 
-            // Show the 2D button
-            document.getElementById('ctrl-2d-view').classList.add('visible');
-
             animateCameraTo(finalCamPos, lookTarget, new THREE.Vector3(0, 0, 1), 600);
         }
 
@@ -1466,14 +1491,14 @@
             applySectionOpacities();
             applyRowOpacities();
 
+            // Hide the '2D' return button when returning to 2D mode
+            mode2dBtn.style.display = 'none';
+
             if (sectionTextSpritesGroup) {
                 sectionTextSpritesGroup.children.forEach(sprite => {
                     sprite.visible = true;
                 });
             }
-
-            // Hide the 2D button
-            document.getElementById('ctrl-2d-view').classList.remove('visible');
 
             animateCameraTo(defaultCameraPos, defaultControlsTarget, new THREE.Vector3(0, 1, 0), 600, () => {
                 controls.enablePan = true;
@@ -1481,15 +1506,20 @@
             });
         }
 
+        // Wire up click event for the 2D button at the bottom of the widget
+        mode2dBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeDetailView();
+            resetTo2DTopView();
+            filterListingsBySection(null);
+        });
+
         function openDetailView(sectionName, price, displayCategoryName) {
             const targetGroup = sectionGroups[sectionName];
             if (!targetGroup) return;
 
-            // Immediately reset UI hover state to prevent stale hover flags on exit
             isUiHoverActive = false;
-
             document.getElementById('detail-view').classList.add('active');
-
             document.getElementById('dt-cat').innerText = displayCategoryName;
             document.getElementById('dt-cat-desc').innerText = displayCategoryName;
             document.getElementById('dt-price').innerText = `€${price}`;
@@ -1512,7 +1542,6 @@
                     panoMaterial.map = texture;
                     panoMaterial.needsUpdate = true;
                     panoLoading.style.display = 'none';
-
                     showPanoHint();
                 },
                 undefined,
@@ -1537,8 +1566,6 @@
 
         function closeDetailView() {
             document.getElementById('detail-view').classList.remove('active');
-            
-            // Re-enable canvas interactions and clear stale hover locks
             lockedSectionGroup = null;
             isUiHoverActive = false;
             hoveredRowGroup = null;
@@ -1546,7 +1573,6 @@
             applySectionOpacities();
             applyRowOpacities();
             document.body.style.cursor = 'default';
-
             hidePanoHint();
         }
 
@@ -1578,13 +1604,11 @@
                     if (lockedSectionGroup) return; 
                     isUiHoverActive = true;
                     const targetGroup = sectionGroups[item.section];
-                    
                     hoveredSectionGroup = targetGroup;
                     const rKey = `${item.section}::${item.rowNum}`;
                     hoveredRowGroup = (rowGroups[rKey] && (rowGroups[rKey].userData.hasActiveListings || activeSection === targetGroup))
                         ? rowGroups[rKey]
                         : null;
-
                     applySectionOpacities();
                     applyRowOpacities();
                 });
@@ -1592,10 +1616,8 @@
                 card.addEventListener('mouseleave', () => {
                     if (lockedSectionGroup) return; 
                     isUiHoverActive = false;
-                    
                     hoveredSectionGroup = activeSection;
                     hoveredRowGroup = null;
-
                     applySectionOpacities();
                     applyRowOpacities();
                 });
@@ -1613,16 +1635,15 @@
                 thumbImg.src = `https://honeybadger7846.github.io/thumbnail/${item.displaySectionName}.jpg`;
                 thumbImg.alt = `Section ${item.displaySectionName} View`;
                 thumbImg.loading = 'lazy';
-                thumbImg.onerror = () => {
-                    thumbImg.style.display = 'none';
-                };
+                thumbImg.onerror = () => { thumbImg.style.display = 'none'; };
                 content.appendChild(thumbImg);
 
                 const info = document.createElement('div');
                 info.className = 'card-info';
                 
                 const title = document.createElement('h3');
-                title.textContent = `${item.displayCategoryName} · Section ${item.displaySectionName} · Row ${item.rowNum}`;
+                const seatDisplay = item.seatNum ? ` · Seat ${item.seatNum}` : '';
+                title.textContent = `${item.displayCategoryName} · Section ${item.displaySectionName} · Row ${item.rowNum}${seatDisplay}`;
                 info.appendChild(title);
 
                 const sellerP = document.createElement('p');
@@ -1679,23 +1700,22 @@
             if (!sectionName) {
                 renderListings(allListingsData);
             } else {
-                const filtered = allListingsData.filter(item => item.section === sectionName);
-                renderListings(filtered);
+                renderListings(allListingsData.filter(item => item.section === sectionName));
             }
         }
 
         function generateListings(parsedSections) {
             allListingsData = [];
             if (parsedSections.length === 0) {
-                const container = document.getElementById('ticket-list-container');
-                container.textContent = 'No sections found in SVG.';
+                document.getElementById('ticket-list-container').textContent = 'No sections found in SVG.';
                 return;
             }
 
             const sectionsWithListings = new Set();
             const activeRowKeys = new Set();
-
+            const activeSeatsByRow = {};
             const minPricesByRow = {};
+            const minPricesBySeat = {};
             const minPricesBySectionFallback = {};
 
             const TOTAL_LISTINGS = 162;
@@ -1706,18 +1726,17 @@
                 const standLimits = getStandRowRange(sec.section);
 
                 let rowNum = null;
-
                 const validSvgRowKeys = matchingRowKeys.filter(k => {
                     const rowVal = parseInt(rowGroups[k].userData.rowId, 10);
                     return !isNaN(rowVal) ? (rowVal >= standLimits.min && rowVal <= standLimits.max) : true;
                 });
 
+                let chosenKey = null;
                 if (validSvgRowKeys.length > 0 && Math.random() < 0.75) {
-                    const chosenKey = validSvgRowKeys[Math.floor(Math.random() * validSvgRowKeys.length)];
+                    chosenKey = validSvgRowKeys[Math.floor(Math.random() * validSvgRowKeys.length)];
                     rowNum = rowGroups[chosenKey].userData.rowId;
                 } else {
-                    const generatedRow = Math.floor(Math.random() * (standLimits.max - standLimits.min + 1)) + standLimits.min;
-                    rowNum = String(generatedRow);
+                    rowNum = String(Math.floor(Math.random() * (standLimits.max - standLimits.min + 1)) + standLimits.min);
                 }
 
                 const price = Math.floor(Math.random() * 300) + 75;
@@ -1740,10 +1759,22 @@
                 const rowKey = `${sec.section}::${rowNum}`;
                 const hasValidSvgRow = !!rowGroups[rowKey];
 
+                let displaySeat = null;
+
                 if (hasValidSvgRow) {
                     activeRowKeys.add(rowKey);
                     if (!minPricesByRow[rowKey] || price < minPricesByRow[rowKey]) {
                         minPricesByRow[rowKey] = price;
+                    }
+                    
+                    const dotCount = rowGroups[rowKey].userData.dotCount || 20;
+                    displaySeat = Math.floor(Math.random() * dotCount) + 1;
+                    if (!activeSeatsByRow[rowKey]) activeSeatsByRow[rowKey] = new Set();
+                    activeSeatsByRow[rowKey].add(displaySeat);
+
+                    const seatKey = `${rowKey}::${displaySeat}`;
+                    if (!minPricesBySeat[seatKey] || price < minPricesBySeat[seatKey]) {
+                        minPricesBySeat[seatKey] = price;
                     }
                 } else {
                     if (!minPricesBySectionFallback[sec.section] || price < minPricesBySectionFallback[sec.section]) {
@@ -1755,6 +1786,7 @@
                     section: sec.section,
                     category: sec.category,
                     rowNum: rowNum,
+                    seatNum: displaySeat,
                     price,
                     colorString,
                     isIndividual,
@@ -1769,13 +1801,31 @@
             }
 
             for (const [key, rGroup] of Object.entries(rowGroups)) {
-                rGroup.userData.hasActiveListings = activeRowKeys.has(key);
+                const isActiveRow = activeRowKeys.has(key);
+                rGroup.userData.hasActiveListings = isActiveRow;
+                const activeSeats = activeSeatsByRow[key] || new Set();
+
+                const debugDotGroup = rGroup.children.find(c => c.userData && c.userData.isDebugDotGroup);
+                if (debugDotGroup) {
+                    debugDotGroup.children.forEach(item => {
+                        const seatNum = item.userData.seatNumber;
+                        const isSeatActive = activeSeats.has(seatNum);
+                        item.userData.isActiveSeat = isSeatActive;
+
+                        if (item.userData.isSeatCircle) {
+                            item.material.opacity = isSeatActive ? 1.0 : (isActiveRow ? 0.75 : 0.7);
+                            item.material.needsUpdate = true;
+                        } else if (item.userData.isSeatTextSprite) {
+                            item.visible = isSeatActive;
+                        }
+                    });
+                }
             }
 
             filterListingsBySection(null);
             updateSectionOpacities(sectionsWithListings);
             applyRowOpacities();
-            renderPriceBadges(minPricesByRow, minPricesBySectionFallback);
+            renderPriceBadges(minPricesByRow, minPricesBySeat, minPricesBySectionFallback);
         }
 
         async function loadSVGString(svgText) {
@@ -1787,53 +1837,11 @@
             activeFilterSection = null;
             activeFilterCategory = null;
 
-            if (labelsGroup) {
-                scene.remove(labelsGroup);
-                labelsGroup = null;
-            }
-
-            if (sectionTextSpritesGroup) {
-                scene.remove(sectionTextSpritesGroup);
-                sectionTextSpritesGroup.traverse(child => {
-                    if (child.material) {
-                        if (child.material.map) child.material.map.dispose();
-                        child.material.dispose();
-                    }
-                });
-                sectionTextSpritesGroup = null;
-            }
-
-            if (rowTextSpritesGroup) {
-                scene.remove(rowTextSpritesGroup);
-                rowTextSpritesGroup.traverse(child => {
-                    if (child.material) {
-                        if (child.material.map) child.material.map.dispose();
-                        child.material.dispose();
-                    }
-                });
-                rowTextSpritesGroup = null;
-            }
-
-            if (staticTextOverlayMesh) {
-                scene.remove(staticTextOverlayMesh);
-                if (staticTextOverlayMesh.geometry) staticTextOverlayMesh.geometry.dispose();
-                if (staticTextOverlayMesh.material) {
-                    if (staticTextOverlayMesh.material.map) staticTextOverlayMesh.material.map.dispose();
-                    staticTextOverlayMesh.material.dispose();
-                }
-                staticTextOverlayMesh = null;
-            }
-
-            if (currentSvgGroup) {
-                scene.remove(currentSvgGroup);
-                currentSvgGroup.traverse(child => {
-                    if (child.geometry) child.geometry.dispose();
-                    if (child.material) {
-                        if (child.material.map) child.material.map.dispose();
-                        child.material.dispose();
-                    }
-                });
-            }
+            if (labelsGroup) { scene.remove(labelsGroup); labelsGroup = null; }
+            if (sectionTextSpritesGroup) { scene.remove(sectionTextSpritesGroup); sectionTextSpritesGroup = null; }
+            if (rowTextSpritesGroup) { scene.remove(rowTextSpritesGroup); rowTextSpritesGroup = null; }
+            if (staticTextOverlayMesh) { scene.remove(staticTextOverlayMesh); staticTextOverlayMesh = null; }
+            if (currentSvgGroup) { scene.remove(currentSvgGroup); }
 
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(svgText, 'image/svg+xml');
@@ -1845,10 +1853,7 @@
                 if (vb) {
                     const parts = vb.trim().split(/[\s,]+/).map(parseFloat);
                     if (parts.length === 4) {
-                        vbX = parts[0];
-                        vbY = parts[1];
-                        vbW = parts[2];
-                        vbH = parts[3];
+                        vbX = parts[0]; vbY = parts[1]; vbW = parts[2]; vbH = parts[3];
                     }
                 } else {
                     vbW = parseFloat(svgEl.getAttribute('width')) || vbW;
@@ -1865,17 +1870,10 @@
                 const textEl = rNode.querySelector('text, tspan');
                 
                 if (textEl && textEl.textContent.trim()) {
-                    let textColor = null;
-                    if (textEl.hasAttribute('fill') && textEl.getAttribute('fill') !== 'none') {
-                        textColor = textEl.getAttribute('fill');
-                    } else if (textEl.style && textEl.style.fill && textEl.style.fill !== 'none') {
-                        textColor = textEl.style.fill;
-                    }
-
-                    if (!textColor && textEl.parentElement && textEl.parentElement.hasAttribute('fill')) {
+                    let textColor = textEl.getAttribute('fill') || (textEl.style && textEl.style.fill);
+                    if ((!textColor || textColor === 'none') && textEl.parentElement) {
                         textColor = textEl.parentElement.getAttribute('fill');
                     }
-
                     rowLabelsMap[`${sName}::${rName}`] = {
                         text: textEl.textContent.trim(),
                         color: textColor
@@ -1885,9 +1883,7 @@
 
             const geometryXmlDoc = parser.parseFromString(svgText, 'image/svg+xml');
             geometryXmlDoc.querySelectorAll('text, tspan').forEach(el => {
-                if (!el.closest('[data-row]')) {
-                    el.remove();
-                }
+                if (!el.closest('[data-row]')) el.remove();
             });
             const geometrySvgText = new XMLSerializer().serializeToString(geometryXmlDoc);
 
@@ -1898,10 +1894,10 @@
             currentSvgGroup.scale.y = -1;
             
             const uniqueSectionsForListings = [];
+            const rowAccumulatedPoints = {};
 
             for (const path of svgData.paths) {
                 const node = path.userData.node;
-
                 const catNode = node ? node.closest('[data-category]') : null;
                 const secNode = node ? node.closest('[data-section]') : null;
                 const rowNode = node ? node.closest('[data-row]') : null;
@@ -1939,9 +1935,7 @@
                                     depthWrite: true
                                 }));
                             }
-                        } catch (e) {
-                            lineMesh = null;
-                        }
+                        } catch (e) {}
 
                         if (!lineMesh) {
                             const lineGeom = new THREE.BufferGeometry().setFromPoints(points);
@@ -1959,6 +1953,7 @@
                 }
 
                 const materialColor = category ? getCategoryColor(category) : (path.color || 0xcccccc);
+                const parsedHex = '#' + (typeof materialColor === 'number' ? materialColor.toString(16).padStart(6, '0') : new THREE.Color(materialColor).getHexString());
 
                 if (section && !sectionGroups[section]) {
                     sectionGroups[section] = new THREE.Group();
@@ -1970,33 +1965,35 @@
                     }
                 }
 
-                // ROW LINE PROCESSING
                 if (rowId && section) {
                     const rowKey = `${section}::${rowId}`;
+                    
                     if (!rowGroups[rowKey]) {
                         const rGroup = new THREE.Group();
                         const meta = rowLabelsMap[rowKey] || {};
-                        const parsedHex = '#' + materialColor.toString(16).padStart(6, '0');
                         rGroup.userData = { 
                             isRowGroup: true, 
                             sectionName: section, 
                             rowId: rowId, 
                             label: meta.text || rowId,
                             textColor: meta.color || parsedHex,
+                            rowColor: parsedHex,
                             categoryName: category, 
                             hasActiveListings: false 
                         };
                         rGroup.visible = false;
                         rowGroups[rowKey] = rGroup;
                         sectionGroups[section].add(rGroup);
+                        rowAccumulatedPoints[rowKey] = [];
                     }
 
-                    let createdRowElements = false;
                     const strokeWidth = (node && parseFloat(node.getAttribute('stroke-width'))) || 1.8;
 
                     for (const subPath of path.subPaths) {
-                        const points = subPath.getPoints();
+                        const points = subPath.getSpacedPoints(100);
                         if (!points || points.length < 2) continue;
+
+                        rowAccumulatedPoints[rowKey].push(...points);
 
                         try {
                             const strokeGeom = SVGLoader.pointsToStroke(points, {
@@ -2021,7 +2018,6 @@
                                 rowLineMesh.renderOrder = 380;
                                 rowLineMesh.userData = { section, category, rowId, isRow: true };
                                 rowGroups[rowKey].add(rowLineMesh);
-                                createdRowElements = true;
                             }
                         } catch (e) {}
 
@@ -2044,51 +2040,12 @@
                                 hitMesh.renderOrder = 390;
                                 hitMesh.userData = { section, category, rowId, isRow: true, isHitProxy: true };
                                 rowGroups[rowKey].add(hitMesh);
-                                createdRowElements = true;
                             }
                         } catch (e) {}
-
-                        if (!createdRowElements) {
-                            const lineGeom = new THREE.BufferGeometry().setFromPoints(points);
-                            const rowLineMesh = new THREE.Line(lineGeom, new THREE.LineBasicMaterial({
-                                color: materialColor,
-                                transparent: true,
-                                opacity: 0.9,
-                                linewidth: 3,
-                                depthTest: false
-                            }));
-                            rowLineMesh.position.z = 0.08;
-                            rowLineMesh.renderOrder = 380;
-                            rowLineMesh.userData = { section, category, rowId, isRow: true };
-                            rowGroups[rowKey].add(rowLineMesh);
-                            createdRowElements = true;
-                        }
-                    }
-
-                    if (!createdRowElements) {
-                        const shapes = SVGLoader.createShapes(path);
-                        for (const shape of shapes) {
-                            const geometry = new THREE.ShapeGeometry(shape);
-                            const rowMesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
-                                color: materialColor,
-                                side: THREE.DoubleSide,
-                                transparent: true,
-                                opacity: 0.9,
-                                depthTest: true,
-                                polygonOffset: true,
-                                polygonOffsetFactor: -3.0,
-                                polygonOffsetUnits: -3.0
-                            }));
-                            rowMesh.position.z = 0.08;
-                            rowMesh.renderOrder = 380;
-                            rowMesh.userData = { section, category, rowId, isRow: true };
-                            rowGroups[rowKey].add(rowMesh);
-                        }
                     }
                     continue;
                 }
 
-                // REGULAR SECTION FILL PROCESSING
                 let fillOpacity = section ? 0.3 : 1.0;
                 if (node) {
                     const explicitOpacity = node.getAttribute('fill-opacity') || (node.style && node.style.fillOpacity);
@@ -2125,6 +2082,76 @@
                 }
             }
 
+            const circleGeom = new THREE.CircleGeometry(0.5, 32);
+
+            for (const [rowKey, allRowPoints] of Object.entries(rowAccumulatedPoints)) {
+                if (allRowPoints.length < 2) continue;
+
+                let startPt = allRowPoints[0];
+                let endPt = allRowPoints[1];
+                let maxDistSq = 0;
+
+                for (let i = 0; i < allRowPoints.length; i++) {
+                    for (let j = i + 1; j < allRowPoints.length; j++) {
+                        const dSq = allRowPoints[i].distanceToSquared(allRowPoints[j]);
+                        if (dSq > maxDistSq) {
+                            maxDistSq = dSq;
+                            startPt = allRowPoints[i];
+                            endPt = allRowPoints[j];
+                        }
+                    }
+                }
+
+                if (maxDistSq <= 0) continue;
+
+                if (startPt.x > endPt.x || (Math.abs(startPt.x - endPt.x) < 0.001 && startPt.y > endPt.y)) {
+                    const temp = startPt; startPt = endPt; endPt = temp;
+                }
+
+                const totalRowLength = Math.sqrt(maxDistSq);
+                const SEAT_PITCH = 1.45;
+                const dotCount = Math.max(2, Math.round(totalRowLength / SEAT_PITCH));
+                rowGroups[rowKey].userData.dotCount = dotCount;
+
+                const debugDotGroup = new THREE.Group();
+                debugDotGroup.userData = { isDebugDotGroup: true };
+
+                const rowColorHex = rowGroups[rowKey].userData.rowColor || '#00ffff';
+                const rowTextColorHex = rowGroups[rowKey].userData.textColor || '#ffffff';
+
+                for (let i = 0; i < dotCount; i++) {
+                    const t = i / (dotCount - 1);
+                    const px = THREE.MathUtils.lerp(startPt.x, endPt.x, t);
+                    const py = THREE.MathUtils.lerp(startPt.y, endPt.y, t);
+                    const seatNumber = i + 1;
+
+                    const circleMat = new THREE.MeshBasicMaterial({
+                        color: new THREE.Color(rowColorHex),
+                        transparent: true,
+                        opacity: 0.7,
+                        depthTest: false,
+                        depthWrite: false,
+                        side: THREE.DoubleSide
+                    });
+
+                    const circleMesh = new THREE.Mesh(circleGeom, circleMat);
+                    circleMesh.position.set(px, py, 0.23);
+                    circleMesh.renderOrder = 2000;
+                    circleMesh.raycast = () => {};
+                    circleMesh.userData = { isSeatCircle: true, seatNumber: seatNumber, isActiveSeat: false };
+                    debugDotGroup.add(circleMesh);
+
+                    const textSprite = createSeatTextSprite(seatNumber, rowTextColorHex);
+                    textSprite.position.set(px, py, 0.25);
+                    textSprite.userData = { isSeatTextSprite: true, seatNumber: seatNumber };
+                    textSprite.visible = false;
+                    debugDotGroup.add(textSprite);
+                }
+
+                debugDotGroup.visible = showSeats;
+                rowGroups[rowKey].add(debugDotGroup);
+            }
+
             add3DGoals(currentSvgGroup);
 
             const geomBox = new THREE.Box3().setFromObject(currentSvgGroup);
@@ -2151,7 +2178,6 @@
             renderCategoriesLegend();
 
             const maxDim = Math.max(geomSize.x, geomSize.y);
-            
             camera.position.set(0, 0, maxDim * 1.2);
             controls.target.set(0, 0, 0);
             controls.enablePan = true;
@@ -2182,9 +2208,7 @@
         initApp();
 
         function stepZoom(factor) {
-            if (cameraAnim.active) {
-                cameraAnim.active = false;
-            }
+            if (cameraAnim.active) cameraAnim.active = false;
 
             if (activeSection) {
                 const box = new THREE.Box3().setFromObject(activeSection);
@@ -2193,9 +2217,7 @@
                 controls.target.set(center.x, center.y, 0);
 
                 const offset = new THREE.Vector3().subVectors(camera.position, controls.target);
-                let currentDist = offset.length();
-
-                const newDist = THREE.MathUtils.clamp(currentDist * factor, 25, 1200);
+                const newDist = THREE.MathUtils.clamp(offset.length() * factor, 25, 1200);
                 offset.setLength(newDist);
 
                 camera.position.copy(controls.target).add(offset);
@@ -2205,11 +2227,8 @@
             }
 
             const offset = new THREE.Vector3().subVectors(camera.position, controls.target);
-            let currentDist = offset.length();
-
-            const newDist = THREE.MathUtils.clamp(currentDist * factor, 30, 8000);
+            const newDist = THREE.MathUtils.clamp(offset.length() * factor, 30, 8000);
             offset.setLength(newDist);
-
             camera.position.copy(controls.target).add(offset);
             controls.update();
         }
@@ -2231,23 +2250,13 @@
             filterListingsBySection(null);
         });
 
-        document.getElementById('ctrl-2d-view').addEventListener('click', (e) => {
-            e.stopPropagation();
-            closeDetailView();
-            resetTo2DTopView();
-            filterListingsBySection(null);
-        });
-
         const groundPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
         const wheelRaycaster = new THREE.Raycaster();
         const planeIntersectPoint = new THREE.Vector3();
 
         mapContainer.addEventListener('wheel', (e) => {
             e.preventDefault();
-
-            if (cameraAnim.active) {
-                cameraAnim.active = false;
-            }
+            if (cameraAnim.active) cameraAnim.active = false;
 
             if (activeSection) {
                 const box = new THREE.Box3().setFromObject(activeSection);
@@ -2257,8 +2266,7 @@
 
                 const zoomFactor = e.deltaY < 0 ? 0.88 : 1.14;
                 const offset = new THREE.Vector3().subVectors(camera.position, controls.target);
-                const currentDist = offset.length();
-                const nextDist = THREE.MathUtils.clamp(currentDist * zoomFactor, 25, 1200);
+                const nextDist = THREE.MathUtils.clamp(offset.length() * zoomFactor, 25, 1200);
 
                 offset.setLength(nextDist);
                 camera.position.copy(controls.target).add(offset);
@@ -2274,10 +2282,7 @@
             );
 
             wheelRaycaster.setFromCamera(mouseCoord, camera);
-
-            if (!wheelRaycaster.ray.intersectPlane(groundPlane, planeIntersectPoint)) {
-                return;
-            }
+            if (!wheelRaycaster.ray.intersectPlane(groundPlane, planeIntersectPoint)) return;
 
             const zoomFactor = e.deltaY < 0 ? 0.85 : 1.18;
             const currentDist = camera.position.distanceTo(controls.target);
@@ -2300,7 +2305,6 @@
 
         function onClick(event) {
             const detailView = document.getElementById('detail-view');
-
             if (detailView.classList.contains('active')) {
                 closeDetailView();
                 return;
@@ -2319,11 +2323,7 @@
                     focusRowIn3DView(hoveredRowGroup);
                 }
 
-                if (selectedRowGroup === hoveredRowGroup) {
-                    setSelectedRow(null);
-                } else {
-                    setSelectedRow(hoveredRowGroup);
-                }
+                setSelectedRow(selectedRowGroup === hoveredRowGroup ? null : hoveredRowGroup);
                 return;
             }
 
@@ -2374,7 +2374,6 @@
             const width = mapContainer.clientWidth;
             const height = mapContainer.clientHeight;
             if (width === 0 || height === 0) return;
-            
             camera.aspect = width / height;
             camera.updateProjectionMatrix();
             renderer.setSize(width, height);
@@ -2391,7 +2390,6 @@
 
                 camera.position.lerpVectors(cameraAnim.startPos, cameraAnim.endPos, t);
                 controls.target.lerpVectors(cameraAnim.startTarget, cameraAnim.endTarget, t);
-                
                 camera.up.lerpVectors(cameraAnim.startUp, cameraAnim.endUp, t).normalize();
                 camera.lookAt(controls.target);
 
@@ -2438,15 +2436,9 @@
                     const allIntersects = raycaster.intersectObject(currentSvgGroup, true);
                     for (let i = 0; i < allIntersects.length; i++) {
                         const hitMesh = allIntersects[i].object;
-
-                        if (hitMesh.userData && (hitMesh.userData.isPriceLabel || hitMesh.userData.isSvgText)) {
+                        if (hitMesh.userData && (hitMesh.userData.isPriceLabel || hitMesh.userData.isSvgText || hitMesh.userData.isRow)) {
                             continue;
                         }
-
-                        if (hitMesh.userData && hitMesh.userData.isRow) {
-                            continue;
-                        }
-
                         if (hitMesh.userData && hitMesh.userData.section) {
                             targetSectionGroup = hitMesh.parent;
                             break;
@@ -2456,12 +2448,7 @@
                 
                 setHoveredRow(targetRowGroup);
                 setHoveredSection(targetSectionGroup || activeSection);
-
-                if (targetRowGroup || targetSectionGroup) {
-                    document.body.style.cursor = 'pointer';
-                } else {
-                    document.body.style.cursor = 'default';
-                }
+                document.body.style.cursor = (targetRowGroup || targetSectionGroup) ? 'pointer' : 'default';
             }
             
             renderer.render(scene, camera);
