@@ -39,35 +39,1043 @@
   </g>
   <g data-section="sir-kenny-dalglish-stand_kg">
    <path d="m224.6 121.9v66.4h82v-66.401h-82z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
-   <text x="265.6" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KG</text>
+   <text x="265.60001" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KG</text>
+   <g data-rows="KG">
+    <g data-row="1">
+     <path d="m224.6 187.79h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="187.79201" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">1</tspan></text>
+    </g>
+    <g data-row="2">
+     <path d="m224.6 185.61h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="185.61301" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">2</tspan></text>
+    </g>
+    <g data-row="3">
+     <path d="m224.6 183.43h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="183.433" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">3</tspan></text>
+    </g>
+    <g data-row="4">
+     <path d="m224.6 181.25h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="181.25301" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">4</tspan></text>
+    </g>
+    <g data-row="5">
+     <path d="m224.6 179.07h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="179.07401" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">5</tspan></text>
+    </g>
+    <g data-row="6">
+     <path d="m224.6 176.89h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="176.894" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">6</tspan></text>
+    </g>
+    <g data-row="7">
+     <path d="m224.6 174.72h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="174.715" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">7</tspan></text>
+    </g>
+    <g data-row="8">
+     <path d="m224.6 172.54h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="172.535" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">8</tspan></text>
+    </g>
+    <g data-row="9">
+     <path d="m224.6 170.36h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="170.356" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">9</tspan></text>
+    </g>
+    <g data-row="10">
+     <path d="m224.6 168.18h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="168.17599" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">10</tspan></text>
+    </g>
+    <g data-row="11">
+     <path d="m224.6 166h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="165.996" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">11</tspan></text>
+    </g>
+    <g data-row="12">
+     <path d="m224.6 163.82h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="163.817" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">12</tspan></text>
+    </g>
+    <g data-row="13">
+     <path d="m224.6 161.64h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="161.63699" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">13</tspan></text>
+    </g>
+    <g data-row="14">
+     <path d="m224.6 159.46h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="159.45799" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">14</tspan></text>
+    </g>
+    <g data-row="15">
+     <path d="m224.6 157.28h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="157.278" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">15</tspan></text>
+    </g>
+    <g data-row="16">
+     <path d="m224.6 155.1h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="155.09801" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">16</tspan></text>
+    </g>
+    <g data-row="17">
+     <path d="m224.6 152.92h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="152.91901" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">17</tspan></text>
+    </g>
+    <g data-row="18">
+     <path d="m224.6 150.74h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="150.739" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">18</tspan></text>
+    </g>
+    <g data-row="19">
+     <path d="m224.6 148.56h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="148.56" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">19</tspan></text>
+    </g>
+    <g data-row="20">
+     <path d="m224.6 146.38h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="146.38" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">20</tspan></text>
+    </g>
+    <g data-row="21">
+     <path d="m224.6 144.2h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="144.201" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">21</tspan></text>
+    </g>
+    <g data-row="22">
+     <path d="m224.6 142.02h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="142.021" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">22</tspan></text>
+    </g>
+    <g data-row="23">
+     <path d="m224.6 139.84h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="139.841" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">23</tspan></text>
+    </g>
+    <g data-row="24">
+     <path d="m224.6 137.66h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="137.662" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">24</tspan></text>
+    </g>
+    <g data-row="25">
+     <path d="m224.6 135.48h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="135.48199" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">25</tspan></text>
+    </g>
+    <g data-row="26">
+     <path d="m224.6 133.3h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="133.30299" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">26</tspan></text>
+    </g>
+    <g data-row="27">
+     <path d="m224.6 131.12h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="131.123" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">27</tspan></text>
+    </g>
+    <g data-row="28">
+     <path d="m224.6 128.94h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="128.944" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">28</tspan></text>
+    </g>
+    <g data-row="29">
+     <path d="m224.6 126.76h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="126.764" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">29</tspan></text>
+    </g>
+    <g data-row="30">
+     <path d="m224.6 124.58h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="124.584" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">30</tspan></text>
+    </g>
+    <g data-row="31">
+     <path d="m224.6 122.4h82" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="224.60001" y="122.405" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">31</tspan></text>
+    </g>
+   </g>
   </g>
   <g data-section="sir-kenny-dalglish-stand_kh">
-   <path d="m310.5 121.9v66.4h49.5v-66.4h-49.5z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <path d="m310.5 121.9v66.4h49.5v-66.4z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
    <text x="335.25" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KH</text>
+   <g data-rows="KH">
+    <g data-row="1">
+     <path d="m310.5 187.79h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="187.79201" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">1</tspan></text>
+    </g>
+    <g data-row="2">
+     <path d="m310.5 185.61h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="185.61301" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">2</tspan></text>
+    </g>
+    <g data-row="3">
+     <path d="m310.5 183.43h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="183.433" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">3</tspan></text>
+    </g>
+    <g data-row="4">
+     <path d="m310.5 181.25h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="181.25301" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">4</tspan></text>
+    </g>
+    <g data-row="5">
+     <path d="m310.5 179.07h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="179.07401" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">5</tspan></text>
+    </g>
+    <g data-row="6">
+     <path d="m310.5 176.89h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="176.894" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">6</tspan></text>
+    </g>
+    <g data-row="7">
+     <path d="m310.5 174.72h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="174.715" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">7</tspan></text>
+    </g>
+    <g data-row="8">
+     <path d="m310.5 172.54h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="172.535" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">8</tspan></text>
+    </g>
+    <g data-row="9">
+     <path d="m310.5 170.36h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="170.356" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">9</tspan></text>
+    </g>
+    <g data-row="10">
+     <path d="m310.5 168.18h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="168.17599" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">10</tspan></text>
+    </g>
+    <g data-row="11">
+     <path d="m310.5 166h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="165.996" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">11</tspan></text>
+    </g>
+    <g data-row="12">
+     <path d="m310.5 163.82h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="163.817" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">12</tspan></text>
+    </g>
+    <g data-row="13">
+     <path d="m310.5 161.64h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="161.63699" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">13</tspan></text>
+    </g>
+    <g data-row="14">
+     <path d="m310.5 159.46h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="159.45799" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">14</tspan></text>
+    </g>
+    <g data-row="15">
+     <path d="m310.5 157.28h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="157.278" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">15</tspan></text>
+    </g>
+    <g data-row="16">
+     <path d="m310.5 155.1h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="155.09801" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">16</tspan></text>
+    </g>
+    <g data-row="17">
+     <path d="m310.5 152.92h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="152.91901" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">17</tspan></text>
+    </g>
+    <g data-row="18">
+     <path d="m310.5 150.74h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="150.739" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">18</tspan></text>
+    </g>
+    <g data-row="19">
+     <path d="m310.5 148.56h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="148.56" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">19</tspan></text>
+    </g>
+    <g data-row="20">
+     <path d="m310.5 146.38h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="146.38" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">20</tspan></text>
+    </g>
+    <g data-row="21">
+     <path d="m310.5 144.2h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="144.201" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">21</tspan></text>
+    </g>
+    <g data-row="22">
+     <path d="m310.5 142.02h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="142.021" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">22</tspan></text>
+    </g>
+    <g data-row="23">
+     <path d="m310.5 139.84h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="139.841" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">23</tspan></text>
+    </g>
+    <g data-row="24">
+     <path d="m310.5 137.66h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="137.662" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">24</tspan></text>
+    </g>
+    <g data-row="25">
+     <path d="m310.5 135.48h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="135.48199" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">25</tspan></text>
+    </g>
+    <g data-row="26">
+     <path d="m310.5 133.3h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="133.30299" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">26</tspan></text>
+    </g>
+    <g data-row="27">
+     <path d="m310.5 131.12h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="131.123" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">27</tspan></text>
+    </g>
+    <g data-row="28">
+     <path d="m310.5 128.94h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="128.944" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">28</tspan></text>
+    </g>
+    <g data-row="29">
+     <path d="m310.5 126.76h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="126.764" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">29</tspan></text>
+    </g>
+    <g data-row="30">
+     <path d="m310.5 124.58h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="124.584" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">30</tspan></text>
+    </g>
+    <g data-row="31">
+     <path d="m310.5 122.4h49.5" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="310.5" y="122.405" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">31</tspan></text>
+    </g>
+   </g>
   </g>
   <g data-section="sir-kenny-dalglish-stand_kj">
-   <path d="m363.5 121.9v66.4h51.801v-66.4h-51.801z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
-   <text x="389.4" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KJ</text>
+   <path d="m363.5 121.9v66.4h51.801v-66.4z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="389.39999" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KJ</text>
+   <g data-rows="KJ">
+    <g data-row="1">
+     <path d="m363.5 187.79h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="187.79201" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">1</tspan></text>
+    </g>
+    <g data-row="2">
+     <path d="m363.5 185.61h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="185.61301" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">2</tspan></text>
+    </g>
+    <g data-row="3">
+     <path d="m363.5 183.43h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="183.433" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">3</tspan></text>
+    </g>
+    <g data-row="4">
+     <path d="m363.5 181.25h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="181.25301" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">4</tspan></text>
+    </g>
+    <g data-row="5">
+     <path d="m363.5 179.07h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="179.07401" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">5</tspan></text>
+    </g>
+    <g data-row="6">
+     <path d="m363.5 176.89h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="176.894" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">6</tspan></text>
+    </g>
+    <g data-row="7">
+     <path d="m363.5 174.72h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="174.715" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">7</tspan></text>
+    </g>
+    <g data-row="8">
+     <path d="m363.5 172.54h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="172.535" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">8</tspan></text>
+    </g>
+    <g data-row="9">
+     <path d="m363.5 170.36h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="170.356" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">9</tspan></text>
+    </g>
+    <g data-row="10">
+     <path d="m363.5 168.18h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="168.17599" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">10</tspan></text>
+    </g>
+    <g data-row="11">
+     <path d="m363.5 166h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="165.996" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">11</tspan></text>
+    </g>
+    <g data-row="12">
+     <path d="m363.5 163.82h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="163.817" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">12</tspan></text>
+    </g>
+    <g data-row="13">
+     <path d="m363.5 161.64h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="161.63699" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">13</tspan></text>
+    </g>
+    <g data-row="14">
+     <path d="m363.5 159.46h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="159.45799" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">14</tspan></text>
+    </g>
+    <g data-row="15">
+     <path d="m363.5 157.28h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="157.278" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">15</tspan></text>
+    </g>
+    <g data-row="16">
+     <path d="m363.5 155.1h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="155.09801" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">16</tspan></text>
+    </g>
+    <g data-row="17">
+     <path d="m363.5 152.92h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="152.91901" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">17</tspan></text>
+    </g>
+    <g data-row="18">
+     <path d="m363.5 150.74h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="150.739" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">18</tspan></text>
+    </g>
+    <g data-row="19">
+     <path d="m363.5 148.56h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="148.56" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">19</tspan></text>
+    </g>
+    <g data-row="20">
+     <path d="m363.5 146.38h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="146.38" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">20</tspan></text>
+    </g>
+    <g data-row="21">
+     <path d="m363.5 144.2h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="144.201" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">21</tspan></text>
+    </g>
+    <g data-row="22">
+     <path d="m363.5 142.02h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="142.021" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">22</tspan></text>
+    </g>
+    <g data-row="23">
+     <path d="m363.5 139.84h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="139.841" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">23</tspan></text>
+    </g>
+    <g data-row="24">
+     <path d="m363.5 137.66h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="137.662" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">24</tspan></text>
+    </g>
+    <g data-row="25">
+     <path d="m363.5 135.48h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="135.48199" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">25</tspan></text>
+    </g>
+    <g data-row="26">
+     <path d="m363.5 133.3h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="133.30299" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">26</tspan></text>
+    </g>
+    <g data-row="27">
+     <path d="m363.5 131.12h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="131.123" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">27</tspan></text>
+    </g>
+    <g data-row="28">
+     <path d="m363.5 128.94h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="128.944" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">28</tspan></text>
+    </g>
+    <g data-row="29">
+     <path d="m363.5 126.76h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="126.764" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">29</tspan></text>
+    </g>
+    <g data-row="30">
+     <path d="m363.5 124.58h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="124.584" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">30</tspan></text>
+    </g>
+    <g data-row="31">
+     <path d="m363.5 122.4h51.801" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="363.5" y="122.405" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">31</tspan></text>
+    </g>
+   </g>
   </g>
   <g data-section="sir-kenny-dalglish-stand_kk">
-   <path d="m419.5 121.9v66.401h49.199v-66.401h-49.199z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
-   <text x="444.1" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KK</text>
+   <path d="m419.5 121.9v66.401h49.199v-66.401z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="444.10001" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KK</text>
+   <g data-rows="KK">
+    <g data-row="1">
+     <path d="m419.5 187.79h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="187.79201" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">1</tspan></text>
+    </g>
+    <g data-row="2">
+     <path d="m419.5 185.61h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="185.61301" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">2</tspan></text>
+    </g>
+    <g data-row="3">
+     <path d="m419.5 183.43h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="183.433" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">3</tspan></text>
+    </g>
+    <g data-row="4">
+     <path d="m419.5 181.25h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="181.25301" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">4</tspan></text>
+    </g>
+    <g data-row="5">
+     <path d="m419.5 179.07h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="179.07401" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">5</tspan></text>
+    </g>
+    <g data-row="6">
+     <path d="m419.5 176.89h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="176.894" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">6</tspan></text>
+    </g>
+    <g data-row="7">
+     <path d="m419.5 174.72h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="174.715" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">7</tspan></text>
+    </g>
+    <g data-row="8">
+     <path d="m419.5 172.54h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="172.535" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">8</tspan></text>
+    </g>
+    <g data-row="9">
+     <path d="m419.5 170.36h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="170.356" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">9</tspan></text>
+    </g>
+    <g data-row="10">
+     <path d="m419.5 168.18h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="168.17599" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">10</tspan></text>
+    </g>
+    <g data-row="11">
+     <path d="m419.5 166h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="165.996" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">11</tspan></text>
+    </g>
+    <g data-row="12">
+     <path d="m419.5 163.82h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="163.817" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">12</tspan></text>
+    </g>
+    <g data-row="13">
+     <path d="m419.5 161.64h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="161.63699" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">13</tspan></text>
+    </g>
+    <g data-row="14">
+     <path d="m419.5 159.46h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="159.45799" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">14</tspan></text>
+    </g>
+    <g data-row="15">
+     <path d="m419.5 157.28h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="157.278" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">15</tspan></text>
+    </g>
+    <g data-row="16">
+     <path d="m419.5 155.1h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="155.09801" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">16</tspan></text>
+    </g>
+    <g data-row="17">
+     <path d="m419.5 152.92h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="152.91901" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">17</tspan></text>
+    </g>
+    <g data-row="18">
+     <path d="m419.5 150.74h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="150.739" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">18</tspan></text>
+    </g>
+    <g data-row="19">
+     <path d="m419.5 148.56h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="148.56" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">19</tspan></text>
+    </g>
+    <g data-row="20">
+     <path d="m419.5 146.38h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="146.38" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">20</tspan></text>
+    </g>
+    <g data-row="21">
+     <path d="m419.5 144.2h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="144.201" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">21</tspan></text>
+    </g>
+    <g data-row="22">
+     <path d="m419.5 142.02h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="142.021" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">22</tspan></text>
+    </g>
+    <g data-row="23">
+     <path d="m419.5 139.84h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="139.841" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">23</tspan></text>
+    </g>
+    <g data-row="24">
+     <path d="m419.5 137.66h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="137.662" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">24</tspan></text>
+    </g>
+    <g data-row="25">
+     <path d="m419.5 135.48h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="135.48199" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">25</tspan></text>
+    </g>
+    <g data-row="26">
+     <path d="m419.5 133.3h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="133.30299" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">26</tspan></text>
+    </g>
+    <g data-row="27">
+     <path d="m419.5 131.12h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="131.123" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">27</tspan></text>
+    </g>
+    <g data-row="28">
+     <path d="m419.5 128.94h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="128.944" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">28</tspan></text>
+    </g>
+    <g data-row="29">
+     <path d="m419.5 126.76h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="126.764" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">29</tspan></text>
+    </g>
+    <g data-row="30">
+     <path d="m419.5 124.58h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="124.584" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">30</tspan></text>
+    </g>
+    <g data-row="31">
+     <path d="m419.5 122.4h49.199" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="419.5" y="122.405" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">31</tspan></text>
+    </g>
+   </g>
   </g>
   <g data-section="sir-kenny-dalglish-stand_kl">
-   <path d="m472.5 121.9v66.401h52.1v-66.401h-52.1z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
-   <text x="498.55" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KL</text>
+   <path d="m472.5 121.9v66.401h52.1v-66.401z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="498.54999" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KL</text>
+   <g data-rows="KL">
+    <g data-row="1">
+     <path d="m472.5 187.79h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="187.79201" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">1</tspan></text>
+    </g>
+    <g data-row="2">
+     <path d="m472.5 185.61h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="185.61301" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">2</tspan></text>
+    </g>
+    <g data-row="3">
+     <path d="m472.5 183.43h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="183.433" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">3</tspan></text>
+    </g>
+    <g data-row="4">
+     <path d="m472.5 181.25h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="181.25301" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">4</tspan></text>
+    </g>
+    <g data-row="5">
+     <path d="m472.5 179.07h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="179.07401" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">5</tspan></text>
+    </g>
+    <g data-row="6">
+     <path d="m472.5 176.89h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="176.894" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">6</tspan></text>
+    </g>
+    <g data-row="7">
+     <path d="m472.5 174.72h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="174.715" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">7</tspan></text>
+    </g>
+    <g data-row="8">
+     <path d="m472.5 172.54h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="172.535" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">8</tspan></text>
+    </g>
+    <g data-row="9">
+     <path d="m472.5 170.36h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="170.356" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">9</tspan></text>
+    </g>
+    <g data-row="10">
+     <path d="m472.5 168.18h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="168.17599" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">10</tspan></text>
+    </g>
+    <g data-row="11">
+     <path d="m472.5 166h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="165.996" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">11</tspan></text>
+    </g>
+    <g data-row="12">
+     <path d="m472.5 163.82h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="163.817" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">12</tspan></text>
+    </g>
+    <g data-row="13">
+     <path d="m472.5 161.64h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="161.63699" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">13</tspan></text>
+    </g>
+    <g data-row="14">
+     <path d="m472.5 159.46h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="159.45799" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">14</tspan></text>
+    </g>
+    <g data-row="15">
+     <path d="m472.5 157.28h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="157.278" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">15</tspan></text>
+    </g>
+    <g data-row="16">
+     <path d="m472.5 155.1h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="155.09801" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">16</tspan></text>
+    </g>
+    <g data-row="17">
+     <path d="m472.5 152.92h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="152.91901" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">17</tspan></text>
+    </g>
+    <g data-row="18">
+     <path d="m472.5 150.74h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="150.739" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">18</tspan></text>
+    </g>
+    <g data-row="19">
+     <path d="m472.5 148.56h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="148.56" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">19</tspan></text>
+    </g>
+    <g data-row="20">
+     <path d="m472.5 146.38h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="146.38" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">20</tspan></text>
+    </g>
+    <g data-row="21">
+     <path d="m472.5 144.2h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="144.201" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">21</tspan></text>
+    </g>
+    <g data-row="22">
+     <path d="m472.5 142.02h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="142.021" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">22</tspan></text>
+    </g>
+    <g data-row="23">
+     <path d="m472.5 139.84h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="139.841" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">23</tspan></text>
+    </g>
+    <g data-row="24">
+     <path d="m472.5 137.66h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="137.662" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">24</tspan></text>
+    </g>
+    <g data-row="25">
+     <path d="m472.5 135.48h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="135.48199" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">25</tspan></text>
+    </g>
+    <g data-row="26">
+     <path d="m472.5 133.3h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="133.30299" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">26</tspan></text>
+    </g>
+    <g data-row="27">
+     <path d="m472.5 131.12h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="131.123" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">27</tspan></text>
+    </g>
+    <g data-row="28">
+     <path d="m472.5 128.94h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="128.944" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">28</tspan></text>
+    </g>
+    <g data-row="29">
+     <path d="m472.5 126.76h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="126.764" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">29</tspan></text>
+    </g>
+    <g data-row="30">
+     <path d="m472.5 124.58h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="124.584" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">30</tspan></text>
+    </g>
+    <g data-row="31">
+     <path d="m472.5 122.4h52.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="472.5" y="122.405" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">31</tspan></text>
+    </g>
+   </g>
   </g>
   <g data-section="sir-kenny-dalglish-stand_km">
-   <path d="m528.5 121.93v66.376h49.1v-66.376z" fill="none" stroke="#c6cdd2" stroke-width="1.0173px" data-seat="sir-kenny-dalglish-stand"/>
-   <text x="553.05" y="156.25" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KM</text>
+   <path d="m528.5 121.93v66.376h49.1v-66.376z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="553.04999" y="156.25" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KM</text>
+   <g data-rows="KM">
+    <g data-row="1">
+     <path d="m528.5 187.79h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="187.79201" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">1</tspan></text>
+    </g>
+    <g data-row="2">
+     <path d="m528.5 185.61h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="185.61301" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">2</tspan></text>
+    </g>
+    <g data-row="3">
+     <path d="m528.5 183.43h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="183.433" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">3</tspan></text>
+    </g>
+    <g data-row="4">
+     <path d="m528.5 181.25h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="181.25301" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">4</tspan></text>
+    </g>
+    <g data-row="5">
+     <path d="m528.5 179.07h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="179.07401" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">5</tspan></text>
+    </g>
+    <g data-row="6">
+     <path d="m528.5 176.89h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="176.894" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">6</tspan></text>
+    </g>
+    <g data-row="7">
+     <path d="m528.5 174.72h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="174.715" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">7</tspan></text>
+    </g>
+    <g data-row="8">
+     <path d="m528.5 172.54h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="172.535" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">8</tspan></text>
+    </g>
+    <g data-row="9">
+     <path d="m528.5 170.36h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="170.356" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">9</tspan></text>
+    </g>
+    <g data-row="10">
+     <path d="m528.5 168.18h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="168.17599" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">10</tspan></text>
+    </g>
+    <g data-row="11">
+     <path d="m528.5 166h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="165.996" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">11</tspan></text>
+    </g>
+    <g data-row="12">
+     <path d="m528.5 163.82h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="163.817" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">12</tspan></text>
+    </g>
+    <g data-row="13">
+     <path d="m528.5 161.64h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="161.63699" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">13</tspan></text>
+    </g>
+    <g data-row="14">
+     <path d="m528.5 159.46h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="159.45799" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">14</tspan></text>
+    </g>
+    <g data-row="15">
+     <path d="m528.5 157.28h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="157.278" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">15</tspan></text>
+    </g>
+    <g data-row="16">
+     <path d="m528.5 155.1h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="155.09801" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">16</tspan></text>
+    </g>
+    <g data-row="17">
+     <path d="m528.5 152.92h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="152.91901" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">17</tspan></text>
+    </g>
+    <g data-row="18">
+     <path d="m528.5 150.74h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="150.739" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">18</tspan></text>
+    </g>
+    <g data-row="19">
+     <path d="m528.5 148.56h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="148.56" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">19</tspan></text>
+    </g>
+    <g data-row="20">
+     <path d="m528.5 146.38h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="146.38" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">20</tspan></text>
+    </g>
+    <g data-row="21">
+     <path d="m528.5 144.2h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="144.201" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">21</tspan></text>
+    </g>
+    <g data-row="22">
+     <path d="m528.5 142.02h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="142.021" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">22</tspan></text>
+    </g>
+    <g data-row="23">
+     <path d="m528.5 139.84h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="139.841" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">23</tspan></text>
+    </g>
+    <g data-row="24">
+     <path d="m528.5 137.66h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="137.662" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">24</tspan></text>
+    </g>
+    <g data-row="25">
+     <path d="m528.5 135.48h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="135.48199" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">25</tspan></text>
+    </g>
+    <g data-row="26">
+     <path d="m528.5 133.3h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="133.30299" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">26</tspan></text>
+    </g>
+    <g data-row="27">
+     <path d="m528.5 131.12h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="131.123" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">27</tspan></text>
+    </g>
+    <g data-row="28">
+     <path d="m528.5 128.94h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="128.944" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">28</tspan></text>
+    </g>
+    <g data-row="29">
+     <path d="m528.5 126.76h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="126.764" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">29</tspan></text>
+    </g>
+    <g data-row="30">
+     <path d="m528.5 124.58h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="124.584" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">30</tspan></text>
+    </g>
+    <g data-row="31">
+     <path d="m528.5 122.4h49.1" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="528.5" y="122.405" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">31</tspan></text>
+    </g>
+   </g>
   </g>
   <g data-section="sir-kenny-dalglish-stand_kn">
-   <path d="m581.5 121.9v66.4h42.6v-66.4h-42.6z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
-   <text x="602.8" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KN</text>
+   <path d="m581.5 121.9v66.4h42.6v-66.4z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="602.79999" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KN</text>
+   <g data-rows="KN">
+    <g data-row="1">
+     <path d="m581.5 187.79h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="187.79201" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">1</tspan></text>
+    </g>
+    <g data-row="2">
+     <path d="m581.5 185.61h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="185.61301" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">2</tspan></text>
+    </g>
+    <g data-row="3">
+     <path d="m581.5 183.43h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="183.433" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">3</tspan></text>
+    </g>
+    <g data-row="4">
+     <path d="m581.5 181.25h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="181.25301" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">4</tspan></text>
+    </g>
+    <g data-row="5">
+     <path d="m581.5 179.07h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="179.07401" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">5</tspan></text>
+    </g>
+    <g data-row="6">
+     <path d="m581.5 176.89h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="176.894" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">6</tspan></text>
+    </g>
+    <g data-row="7">
+     <path d="m581.5 174.72h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="174.715" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">7</tspan></text>
+    </g>
+    <g data-row="8">
+     <path d="m581.5 172.54h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="172.535" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">8</tspan></text>
+    </g>
+    <g data-row="9">
+     <path d="m581.5 170.36h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="170.356" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">9</tspan></text>
+    </g>
+    <g data-row="10">
+     <path d="m581.5 168.18h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="168.17599" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">10</tspan></text>
+    </g>
+    <g data-row="11">
+     <path d="m581.5 166h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="165.996" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">11</tspan></text>
+    </g>
+    <g data-row="12">
+     <path d="m581.5 163.82h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="163.817" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">12</tspan></text>
+    </g>
+    <g data-row="13">
+     <path d="m581.5 161.64h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="161.63699" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">13</tspan></text>
+    </g>
+    <g data-row="14">
+     <path d="m581.5 159.46h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="159.45799" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">14</tspan></text>
+    </g>
+    <g data-row="15">
+     <path d="m581.5 157.28h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="157.278" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">15</tspan></text>
+    </g>
+    <g data-row="16">
+     <path d="m581.5 155.1h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="155.09801" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">16</tspan></text>
+    </g>
+    <g data-row="17">
+     <path d="m581.5 152.92h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="152.91901" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">17</tspan></text>
+    </g>
+    <g data-row="18">
+     <path d="m581.5 150.74h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="150.739" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">18</tspan></text>
+    </g>
+    <g data-row="19">
+     <path d="m581.5 148.56h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="148.56" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">19</tspan></text>
+    </g>
+    <g data-row="20">
+     <path d="m581.5 146.38h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="146.38" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">20</tspan></text>
+    </g>
+    <g data-row="21">
+     <path d="m581.5 144.2h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="144.201" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">21</tspan></text>
+    </g>
+    <g data-row="22">
+     <path d="m581.5 142.02h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="142.021" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">22</tspan></text>
+    </g>
+    <g data-row="23">
+     <path d="m581.5 139.84h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="139.841" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">23</tspan></text>
+    </g>
+    <g data-row="24">
+     <path d="m581.5 137.66h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="137.662" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">24</tspan></text>
+    </g>
+    <g data-row="25">
+     <path d="m581.5 135.48h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="135.48199" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">25</tspan></text>
+    </g>
+    <g data-row="26">
+     <path d="m581.5 133.3h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="133.30299" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">26</tspan></text>
+    </g>
+    <g data-row="27">
+     <path d="m581.5 131.12h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="131.123" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">27</tspan></text>
+    </g>
+    <g data-row="28">
+     <path d="m581.5 128.94h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="128.944" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">28</tspan></text>
+    </g>
+    <g data-row="29">
+     <path d="m581.5 126.76h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="126.764" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">29</tspan></text>
+    </g>
+    <g data-row="30">
+     <path d="m581.5 124.58h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="124.584" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">30</tspan></text>
+    </g>
+    <g data-row="31">
+     <path d="m581.5 122.4h42.6" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="581.5" y="122.405" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">31</tspan></text>
+    </g>
+   </g>
   </g>
   <g data-section="sir-kenny-dalglish-stand_kp">
-   <polygon points="627.7 121.9 627.7 188.3 646 188.3 663.7 149.7 663.7 121.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
-   <text x="643.682" y="151.71" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KP</text>
+   <polygon points="627.7 188.3 646 188.3 663.7 149.7 663.7 121.9 627.7 121.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="643.68201" y="151.71001" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KP</text>
+   <g data-rows="KP">
+    <g data-row="1">
+     <path d="m627.7 187.79h18.533" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="187.79201" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">1</tspan></text>
+    </g>
+    <g data-row="2">
+     <path d="m627.7 185.61h19.532" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="185.61301" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">2</tspan></text>
+    </g>
+    <g data-row="3">
+     <path d="m627.7 183.43h20.532" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="183.433" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">3</tspan></text>
+    </g>
+    <g data-row="4">
+     <path d="m627.7 181.25h21.531" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="181.25301" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">4</tspan></text>
+    </g>
+    <g data-row="5">
+     <path d="m627.7 179.07h22.531" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="179.07401" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">5</tspan></text>
+    </g>
+    <g data-row="6">
+     <path d="m627.7 176.89h23.53" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="176.894" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">6</tspan></text>
+    </g>
+    <g data-row="7">
+     <path d="m627.7 174.72h24.53" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="174.715" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">7</tspan></text>
+    </g>
+    <g data-row="8">
+     <path d="m627.7 172.54h25.529" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="172.535" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">8</tspan></text>
+    </g>
+    <g data-row="9">
+     <path d="m627.7 170.36h26.528" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="170.356" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">9</tspan></text>
+    </g>
+    <g data-row="10">
+     <path d="m627.7 168.18h27.528" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="168.17599" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">10</tspan></text>
+    </g>
+    <g data-row="11">
+     <path d="m627.7 166h28.527" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="165.996" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">11</tspan></text>
+    </g>
+    <g data-row="12">
+     <path d="m627.7 163.82h29.527" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="163.817" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">12</tspan></text>
+    </g>
+    <g data-row="13">
+     <path d="m627.7 161.64h30.526" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="161.63699" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">13</tspan></text>
+    </g>
+    <g data-row="14">
+     <path d="m627.7 159.46h31.526" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="159.45799" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">14</tspan></text>
+    </g>
+    <g data-row="15">
+     <path d="m627.7 157.28h32.525" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="157.278" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">15</tspan></text>
+    </g>
+    <g data-row="16">
+     <path d="m627.7 155.1h33.525" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="155.09801" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">16</tspan></text>
+    </g>
+    <g data-row="17">
+     <path d="m627.7 152.92h34.524" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="152.91901" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">17</tspan></text>
+    </g>
+    <g data-row="18">
+     <path d="m627.7 150.74h35.523" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="150.739" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">18</tspan></text>
+    </g>
+    <g data-row="19">
+     <path d="m627.7 148.56h36" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="148.56" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">19</tspan></text>
+    </g>
+    <g data-row="20">
+     <path d="m627.7 146.38h36" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="146.38" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">20</tspan></text>
+    </g>
+    <g data-row="21">
+     <path d="m627.7 144.2h36" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="144.201" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">21</tspan></text>
+    </g>
+    <g data-row="22">
+     <path d="m627.7 142.02h36" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="142.021" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">22</tspan></text>
+    </g>
+    <g data-row="23">
+     <path d="m627.7 139.84h36" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="139.841" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">23</tspan></text>
+    </g>
+    <g data-row="24">
+     <path d="m627.7 137.66h36" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="137.662" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">24</tspan></text>
+    </g>
+    <g data-row="25">
+     <path d="m627.7 135.48h36" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="135.48199" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">25</tspan></text>
+    </g>
+    <g data-row="26">
+     <path d="m627.7 133.3h36" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="133.30299" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">26</tspan></text>
+    </g>
+    <g data-row="27">
+     <path d="m627.7 131.12h36" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="131.123" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">27</tspan></text>
+    </g>
+    <g data-row="28">
+     <path d="m627.7 128.94h36" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="128.944" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">28</tspan></text>
+    </g>
+    <g data-row="29">
+     <path d="m627.7 126.76h36" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="126.764" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">29</tspan></text>
+    </g>
+    <g data-row="30">
+     <path d="m627.7 124.58h36" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="124.584" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">30</tspan></text>
+    </g>
+    <g data-row="31">
+     <path d="m627.7 122.4h36" fill="none" stroke="#C6CDD2" stroke-linecap="round" stroke-width="1px"/>
+     <text class="row-label" x="627.70001" y="122.405" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="1.5px"><tspan fill="#503FA5" font-family="Proxima Nova">31</tspan></text>
+    </g>
+   </g>
   </g>
  </g>
  <g data-category="the-kop">
@@ -384,15 +1392,15 @@
    <text x="60.138" y="524.99" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AU8</text>
   </g>
  </g>
- <g transform="translate(.50887 -.51618)">
+ <g transform="translate(1.0108 -1.0216)">
   <g>
    <text x="344.83899" y="18.4335" fill="#503fa5" font-family="proxima-nova" font-size="15px">SIR KENNY DALGLISH STAND</text>
   </g>
   <g>
-   <text transform="rotate(90 284.77 601.87)" fill="#503fa5" font-family="proxima-nova" font-size="15px">THE KOP</text>
+   <text transform="rotate(90,284.77,601.87)" fill="#503fa5" font-family="proxima-nova" font-size="15px">THE KOP</text>
   </g>
   <g>
-   <text transform="rotate(-90 221.94 205.66)" fill="#503fa5" font-family="proxima-nova" font-size="15px">ANFIELD ROAD STAND</text>
+   <text transform="rotate(-90,221.94,205.66)" fill="#503fa5" font-family="proxima-nova" font-size="15px">ANFIELD ROAD STAND</text>
   </g>
   <g>
    <text x="400.83899" y="830.43298" fill="#503fa5" font-family="proxima-nova" font-size="15px">MAIN STAND</text>
