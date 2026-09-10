@@ -1,500 +1,406 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg enable-background="new 0 0 902.3 835" version="1.1" viewBox="0 0 902.3 835" xmlns="http://www.w3.org/2000/svg">
- <g data-category="longside-lower-tier">
-  <g data-section="longside-lower-tier_kg">
-   <polygon points="224.6 121.9 224.6 188.3 306.6 188.3 306.6 150 260.8 150 260.8 121.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(263.58 173.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">KG</text>
+ <g data-category="sir-kenny-dalglish-stand">
+  <g data-section="sir-kenny-dalglish-stand_ce1">
+   <path d="m224.5 32.9v85.699h36.4v-85.699z" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="242.7" y="75.75" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">CE1</text>
   </g>
-  <g data-section="longside-lower-tier_kh">
-   <rect x="310.5" y="148.9" width="49.5" height="39.4" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(328.58 172.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">KH</text>
+  <g data-section="sir-kenny-dalglish-stand_ce2">
+   <path d="m264.5 32.9v85.699h42.1v-85.699z" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="285.55" y="75.75" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">CE2</text>
   </g>
-  <g data-section="longside-lower-tier_kj">
-   <rect x="363.5" y="148.9" width="51.8" height="39.4" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(382.58 172.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">KJ</text>
+  <g data-section="sir-kenny-dalglish-stand_ce3">
+   <path d="m310.5 32.9v85.699h49.5v-85.699z" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="335.25" y="75.75" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">CE3</text>
   </g>
-  <g data-section="longside-lower-tier_kk">
-   <rect x="419.5" y="148.9" width="49.2" height="39.4" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(437.58 172.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">KK</text>
+  <g data-section="sir-kenny-dalglish-stand_ce4">
+   <path d="m363.5 32.9v85.699h51.801v-85.699z" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="389.4" y="75.75" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">CE4</text>
   </g>
-  <g data-section="longside-lower-tier_kl">
-   <rect x="472.5" y="148.9" width="52.1" height="39.4" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(493.58 172.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">KL</text>
+  <g data-section="sir-kenny-dalglish-stand_ce5">
+   <path d="m419.5 32.9v85.699h49.199v-85.699z" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="444.1" y="75.75" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">CE5</text>
   </g>
-  <g data-section="longside-lower-tier_km">
-   <rect x="528.5" y="148.9" width="49.1" height="39.4" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(545.58 172.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">KM</text>
+  <g data-section="sir-kenny-dalglish-stand_ce6">
+   <path d="m472.5 32.9v85.699h52.1v-85.699z" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="498.55" y="75.75" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">CE6</text>
   </g>
-  <g data-section="longside-lower-tier_kp">
-   <polygon points="627.7 121.9 627.7 188.3 646 188.3 663.7 149.7 663.7 121.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(639.58 145.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">KP</text>
+  <g data-section="sir-kenny-dalglish-stand_ce7">
+   <path d="m528.5 32.9v85.699h49.1v-85.699z" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="553.05" y="75.75" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">CE7</text>
   </g>
-  <g data-section="longside-lower-tier_kn">
-   <rect x="581.5" y="148.9" width="42.6" height="39.4" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(595.58 172.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">KN</text>
+  <g data-section="sir-kenny-dalglish-stand_ce8">
+   <path d="m581.5 32.9v85.699h42.6v-85.699z" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="602.8" y="75.75" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">CE8</text>
   </g>
-  <g data-section="longside-lower-tier_l1">
-   <polygon points="162.2 641.3 208.2 641.3 208.2 535.4 162.2 577.4" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(181.58 604.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">L1</text>
+  <g data-section="sir-kenny-dalglish-stand_ce9">
+   <path d="m627.5 32.9v85.699h36.199v-85.699z" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="645.6" y="75.75" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">CE9</text>
   </g>
-  <g data-section="longside-lower-tier_l2">
-   <polygon points="210.9 533 210.9 641.3 226.4 641.3 226.4 603.5 262.4 603.5 262.4 510 235.4 510" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(233.58 567.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">L2</text>
+  <g data-section="sir-kenny-dalglish-stand_kg">
+   <path d="m224.6 121.9v66.4h82v-34.785-3.5156-28.1h-45.799-4.457-31.744z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="265.6" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KG</text>
   </g>
-  <g data-section="longside-lower-tier_l3">
-   <rect x="266.3" y="510" width="51.1" height="93.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(287.58 567.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">L3</text>
+  <g data-section="sir-kenny-dalglish-stand_kh">
+   <path d="m310.5 121.9v27 6.6152 32.785h49.5v-32.785-6.6152-27h-49.5z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="335.25" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KH</text>
   </g>
-  <g data-section="longside-lower-tier_l4">
-   <rect x="321.3" y="510" width="52.1" height="93.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(342.58 567.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">L4</text>
+  <g data-section="sir-kenny-dalglish-stand_kj">
+   <path d="m363.5 121.9v27 9.8125 29.588h51.801v-29.588-9.8125-27h-51.801z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="389.4" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KJ</text>
   </g>
-  <g data-section="longside-lower-tier_l5">
-   <polygon points="377 510 377 603.5 438 603.5 438 526.8 410.9 526.8 410.9 510" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(402.58 567.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">L5</text>
+  <g data-section="sir-kenny-dalglish-stand_kk">
+   <path d="m419.5 121.9v27 7.1328 32.268h49.199v-32.268-7.1328-27h-49.199z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="444.1" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KK</text>
   </g>
-  <g data-section="longside-lower-tier_l6">
-   <polygon points="505 510 505 603.5 444 603.5 444 526.8 471.1 526.8 471.1 510" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(469.58 567.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">L6</text>
+  <g data-section="sir-kenny-dalglish-stand_kl">
+   <path d="m472.5 121.9v27 9.1738 30.227h52.1v-30.227-9.1738-27h-52.1z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="498.55" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KL</text>
   </g>
-  <g data-section="longside-lower-tier_l7">
-   <rect x="508.3" y="510" width="52.7" height="93.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(530.58 567.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">L7</text>
+  <g data-section="sir-kenny-dalglish-stand_km">
+   <path d="m528.5 124.2v24.701 3.6367 35.764h49.1v-35.764-3.6367-24.701h-49.1z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="553.05" y="156.25" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KM</text>
   </g>
-  <g data-section="longside-lower-tier_l8">
-   <rect x="564.3" y="510" width="50.9" height="93.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(585.58 567.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">L8</text>
+  <g data-section="sir-kenny-dalglish-stand_kn">
+   <path d="m581.5 121.9v27 1.6562 37.744h42.6v-37.744-1.6562-27h-42.6z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="602.8" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KN</text>
   </g>
-  <g data-section="longside-lower-tier_l9">
-   <polygon points="618.6 603.5 664.5 603.5 664.5 527 646.2 510 618.6 510" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(636.58 567.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">L9</text>
-  </g>
-  <g data-section="longside-lower-tier_l10">
-   <rect x="672.9" y="545.6" width="46.6" height="94.6" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-lower-tier"/>
-   <text transform="translate(689.58 600.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">L10</text>
+  <g data-section="sir-kenny-dalglish-stand_kp">
+   <polygon points="627.7 121.9 627.7 188.3 646 188.3 663.7 149.7 663.7 121.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <text x="643.682" y="151.71" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KP</text>
   </g>
  </g>
- <g data-category="shortside-lower-tier">
-  <g data-section="shortside-lower-tier_109">
-   <polygon points="700 119.7 700 151 720.9 151 722.8 155.1 741.7 155.1 741.7 119.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-lower-tier"/>
-   <text transform="translate(713.08 140.22)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">109</text>
+ <g data-category="the-kop">
+  <g data-section="the-kop_109">
+   <polygon points="700 119.7 700 151 720.9 151 722.8 155.1 741.7 155.1 741.7 119.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="721.491" y="136.387" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">109</text>
   </g>
-  <g data-section="shortside-lower-tier_108">
-   <path d="m673.1 194.7v12.2h68.6v-48.2h-17.6c-10.5 12-21.1 24-31.6 36-6.4-0.1-12.9-0.1-19.4 0z" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-lower-tier"/>
-   <text transform="translate(713.41 191.72)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">108</text>
+  <g data-section="the-kop_108">
+   <path d="m673.1 194.7v12.2h68.6v-48.2h-17.6c-10.5 12-21.1 24-31.6 36-6.4-0.1-12.9-0.1-19.4 0z" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="717.043" y="188.264" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">108</text>
   </g>
-  <g data-section="shortside-lower-tier_107">
-   <rect x="673.1" y="209.8" width="83.9" height="51.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-lower-tier"/>
-   <text transform="translate(708.49 240.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">107</text>
+  <g data-section="the-kop_107">
+   <rect x="673.1" y="209.8" width="83.9" height="51.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="715.05" y="235.65" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">107</text>
   </g>
-  <g data-section="shortside-lower-tier_106">
-   <rect x="673.1" y="264.7" width="83.9" height="52.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-lower-tier"/>
-   <text transform="translate(708.49 294.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">106</text>
+  <g data-section="the-kop_106">
+   <rect x="673.1" y="264.7" width="83.9" height="52.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="715.05" y="291.15" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">106</text>
   </g>
-  <g data-section="shortside-lower-tier_105">
-   <rect x="673.1" y="320.7" width="83.9" height="51.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-lower-tier"/>
-   <text transform="translate(708.49 351.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">105</text>
+  <g data-section="the-kop_105">
+   <rect x="673.1" y="320.7" width="83.9" height="51.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="715.05" y="346.55" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">105</text>
   </g>
-  <g data-section="shortside-lower-tier_104">
-   <rect x="673.1" y="375.5" width="83.9" height="52.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-lower-tier"/>
-   <text transform="translate(708.49 406.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">104</text>
+  <g data-section="the-kop_104">
+   <rect x="673.1" y="375.5" width="83.9" height="52.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="715.05" y="401.95" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">104</text>
   </g>
-  <g data-section="shortside-lower-tier_103">
-   <rect x="673.1" y="431.4" width="83.9" height="51.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-lower-tier"/>
-   <text transform="translate(708.49 461.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">103</text>
+  <g data-section="the-kop_103">
+   <rect x="673.1" y="431.4" width="83.9" height="51.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="715.05" y="457.35" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">103</text>
   </g>
-  <g data-section="shortside-lower-tier_102">
-   <polygon points="673.1 486.1 673.1 500.2 692.8 500.2 724.4 534.2 741.7 534.2 741.7 486.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-lower-tier"/>
-   <text transform="translate(713.49 506.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">102</text>
+  <g data-section="the-kop_102">
+   <polygon points="673.1 486.1 673.1 500.2 692.8 500.2 724.4 534.2 741.7 534.2 741.7 486.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="716.27" y="504.629" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">102</text>
   </g>
-  <g data-section="shortside-lower-tier_al1">
-   <rect x="177.3" y="162.2" width="37.6" height="42.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-lower-tier"/>
-   <text transform="translate(187.81 188.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AL1</text>
+  <g data-section="the-kop_202">
+   <rect x="744.8" y="486.1" width="83.9" height="48.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="786.75" y="510.15" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">202</text>
   </g>
-  <g data-section="shortside-lower-tier_al2">
-   <rect x="141.3" y="162.2" width="32.9" height="42.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-lower-tier"/>
-   <text transform="translate(147.81 188.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AL2</text>
+  <g data-section="the-kop_203">
+   <rect x="759.8" y="431.4" width="83.9" height="51.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="801.75" y="457.35" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">203</text>
   </g>
-  <g data-section="shortside-lower-tier_al3">
-   <rect x="141.3" y="208.2" width="73.6" height="45.3" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-lower-tier"/>
-   <text transform="translate(168.81 235.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AL3</text>
+  <g data-section="the-kop_204">
+   <rect x="759.8" y="375.5" width="65.3" height="52.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="792.45" y="401.95" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">204</text>
   </g>
-  <g data-section="shortside-lower-tier_al4">
-   <rect x="141.3" y="256.2" width="73.6" height="46.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-lower-tier"/>
-   <text transform="translate(168.81 285.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AL4</text>
+  <g data-section="the-kop_205">
+   <rect x="759.8" y="320.7" width="65.3" height="51.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="792.45" y="346.55" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">205</text>
   </g>
-  <g data-section="shortside-lower-tier_al5">
-   <rect x="141.3" y="305.8" width="73.6" height="46.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-lower-tier"/>
-   <text transform="translate(168.81 333.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AL5</text>
+  <g data-section="the-kop_206">
+   <rect x="759.8" y="264.7" width="65.3" height="52.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="792.45" y="291.15" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">206</text>
   </g>
-  <g data-section="shortside-lower-tier_al6">
-   <rect x="141.3" y="354.8" width="73.6" height="46.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-lower-tier"/>
-   <text transform="translate(168.81 382.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AL6</text>
+  <g data-section="the-kop_207">
+   <rect x="759.8" y="209.8" width="84" height="51.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="801.8" y="235.65" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">207</text>
   </g>
- </g>
- <g data-category="longside-upper-tier">
-  <g data-section="longside-upper-tier_u1">
-   <polygon points="162.2 693.1 235.4 693.1 235.4 803.5 221.5 803.5 162.2 746" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-upper-tier"/>
-   <text transform="translate(196.58 737.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">U1</text>
+  <g data-section="the-kop_208">
+   <rect x="744.3" y="158.6" width="84.2" height="48.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="786.4" y="182.7" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">208</text>
   </g>
-  <g data-section="longside-upper-tier_u2">
-   <rect x="239" y="693.1" width="56.1" height="110.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-upper-tier"/>
-   <text transform="translate(260.58 751.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">U2</text>
+  <g data-section="the-kop_306">
+   <rect x="828.1" y="264.7" width="41" height="52.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="848.6" y="291.15" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">306</text>
   </g>
-  <g data-section="longside-upper-tier_u3">
-   <rect x="299" y="693.1" width="50.4" height="110.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-upper-tier"/>
-   <text transform="translate(318.58 751.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">U3</text>
+  <g data-section="the-kop_305">
+   <rect x="828.1" y="320.7" width="41" height="51.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="848.6" y="346.55" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">305</text>
   </g>
-  <g data-section="longside-upper-tier_u4">
-   <rect x="353" y="693.1" width="51.6" height="110.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-upper-tier"/>
-   <text transform="translate(372.58 751.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">U4</text>
-  </g>
-  <g data-section="longside-upper-tier_u5">
-   <rect x="409" y="693.1" width="64.8" height="110.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-upper-tier"/>
-   <text transform="translate(435.58 751.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">U5</text>
-  </g>
-  <g data-section="longside-upper-tier_u6">
-   <rect x="478" y="693.1" width="50.8" height="110.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-upper-tier"/>
-   <text transform="translate(497.58 751.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">U6</text>
-  </g>
-  <g data-section="longside-upper-tier_u7">
-   <rect x="533" y="693.1" width="52" height="110.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-upper-tier"/>
-   <text transform="translate(554.58 751.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">U7</text>
-  </g>
-  <g data-section="longside-upper-tier_u8">
-   <rect x="589" y="693.1" width="53.6" height="110.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-upper-tier"/>
-   <text transform="translate(608.58 751.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">U8</text>
-  </g>
-  <g data-section="longside-upper-tier_u9">
-   <polygon points="645.3 693.1 645.3 803.4 661.1 803.4 719.5 744.6 719.5 693.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-upper-tier"/>
-   <text transform="translate(673.58 738.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">U9</text>
+  <g data-section="the-kop_304">
+   <rect x="828.1" y="375.5" width="41" height="52.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="the-kop"/>
+   <text x="848.6" y="401.95" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">304</text>
   </g>
  </g>
- <g data-category="shortside-upper-tier">
-  <g data-section="shortside-upper-tier_208">
-   <rect x="744.3" y="158.6" width="84.2" height="48.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-upper-tier"/>
-   <text transform="translate(776.41 186.72)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">208</text>
+ <g data-category="main-stand">
+  <g data-section="main-stand_l10">
+   <rect x="672.9" y="545.6" width="46.6" height="94.6" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="696.2" y="592.9" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">L10</text>
   </g>
-  <g data-section="shortside-upper-tier_207">
-   <rect x="759.8" y="209.8" width="84" height="51.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-upper-tier"/>
-   <text transform="translate(794.49 240.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">207</text>
+  <g data-section="main-stand_l9">
+   <polygon points="618.6 603.5 664.5 603.5 664.5 527 646.2 510 618.6 510" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="640.916" y="558.295" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">L9</text>
   </g>
-  <g data-section="shortside-upper-tier_206">
-   <rect x="759.8" y="264.7" width="65.3" height="52.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-upper-tier"/>
-   <text transform="translate(783.49 295.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">206</text>
+  <g data-section="main-stand_l8">
+   <rect x="564.3" y="510" width="50.9" height="93.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="589.75" y="556.75" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">L8</text>
   </g>
-  <g data-section="shortside-upper-tier_205">
-   <rect x="759.8" y="320.7" width="65.3" height="51.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-upper-tier"/>
-   <text transform="translate(783.49 351.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">205</text>
+  <g data-section="main-stand_l7">
+   <rect x="508.3" y="510" width="52.7" height="93.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="534.65" y="556.75" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">L7</text>
   </g>
-  <g data-section="shortside-upper-tier_204">
-   <rect x="759.8" y="375.5" width="65.3" height="52.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-upper-tier"/>
-   <text transform="translate(783.49 405.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">204</text>
+  <g data-section="main-stand_l6">
+   <polygon points="505 510 505 603.5 444 603.5 444 526.8 471.1 526.8 471.1 510" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="475.97" y="560.077" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">L6</text>
   </g>
-  <g data-section="shortside-upper-tier_203">
-   <rect x="759.8" y="431.4" width="83.9" height="51.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-upper-tier"/>
-   <text transform="translate(796.49 459.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">203</text>
+  <g data-section="main-stand_l5">
+   <polygon points="377 510 377 603.5 438 603.5 438 526.8 410.9 526.8 410.9 510" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="406.03" y="560.077" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">L5</text>
   </g>
-  <g data-section="shortside-upper-tier_202">
-   <rect x="744.8" y="486.1" width="83.9" height="48.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-upper-tier"/>
-   <text transform="translate(782.49 513.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">202</text>
+  <g data-section="main-stand_l4">
+   <rect x="321.3" y="510" width="52.1" height="93.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="347.35" y="556.75" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">L4</text>
   </g>
-  <g data-section="shortside-upper-tier_304">
-   <rect x="828.1" y="375.5" width="41" height="52.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-upper-tier"/>
-   <text transform="translate(838.49 405.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">304</text>
+  <g data-section="main-stand_l3">
+   <rect x="266.3" y="510" width="51.1" height="93.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="291.85" y="556.75" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">L3</text>
   </g>
-  <g data-section="shortside-upper-tier_305">
-   <rect x="828.1" y="320.7" width="41" height="51.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-upper-tier"/>
-   <text transform="translate(838.49 351.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">305</text>
+  <g data-section="main-stand_l2">
+   <polygon points="210.9 533 210.9 641.3 226.4 641.3 226.4 603.5 262.4 603.5 262.4 510 235.4 510" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="235.558" y="566.414" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">L2</text>
   </g>
-  <g data-section="shortside-upper-tier_306">
-   <rect x="828.1" y="264.7" width="41" height="52.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="shortside-upper-tier"/>
-   <text transform="translate(838.49 295.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">306</text>
+  <g data-section="main-stand_l1">
+   <polygon points="162.2 641.3 208.2 641.3 208.2 535.4 162.2 577.4" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="187.096" y="597.984" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">L1</text>
   </g>
- </g>
- <g data-category="vip-packages">
-  <g data-section="vip-packages_ce9">
-   <rect x="627.5" y="91" width="36.2" height="27.6" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(635.58 108.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE9</text>
+  <g data-section="main-stand_l11">
+   <rect x="230.3" y="607.4" width="51.4" height="32.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="256" y="623.85" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">L11</text>
   </g>
-  <g data-section="vip-packages_ce8">
-   <rect x="581.5" y="91" width="42.6" height="27.6" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(593.58 108.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE8</text>
+  <g data-section="main-stand_l12">
+   <rect x="284.6" y="607.4" width="58.5" height="32.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="313.85" y="623.85" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">L12</text>
   </g>
-  <g data-section="vip-packages_ce7">
-   <rect x="528.5" y="91" width="49.1" height="27.6" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(544.58 108.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE7</text>
+  <g data-section="main-stand_l13">
+   <rect x="345.9" y="607.4" width="60.2" height="32.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="376" y="623.85" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">L13</text>
   </g>
-  <g data-section="vip-packages_ce6">
-   <rect x="472.5" y="91" width="52.1" height="27.6" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(489.58 108.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE6</text>
+  <g data-section="main-stand_l14">
+   <rect x="477.1" y="607.4" width="58.4" height="32.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="506.3" y="623.85" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">L14</text>
   </g>
-  <g data-section="vip-packages_ce5">
-   <rect x="419.5" y="91" width="49.2" height="27.6" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(433.58 108.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE5</text>
+  <g data-section="main-stand_l15">
+   <rect x="538.4" y="607.4" width="58.5" height="32.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="567.65" y="623.85" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">L15</text>
   </g>
-  <g data-section="vip-packages_ce4">
-   <rect x="363.5" y="91" width="51.8" height="27.6" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(380.58 108.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE4</text>
+  <g data-section="main-stand_l16">
+   <rect x="599.9" y="607.4" width="64.7" height="32.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="632.25" y="623.85" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">L16</text>
   </g>
-  <g data-section="vip-packages_ce3">
-   <rect x="310.5" y="91" width="49.5" height="27.6" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(325.58 108.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE3</text>
+  <g data-section="main-stand_m9">
+   <rect x="662.9" y="644.5" width="56.7" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="691.25" y="667.1" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">M9</text>
   </g>
-  <g data-section="vip-packages_ce2">
-   <rect x="264.5" y="91" width="42.1" height="27.6" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(275.58 108.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE2</text>
+  <g data-section="main-stand_m8">
+   <rect x="599.9" y="644.5" width="60" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="629.9" y="667.1" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">M8</text>
   </g>
-  <g data-section="vip-packages_ce1">
-   <rect x="224.5" y="91" width="36.4" height="27.6" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(233.58 108.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE1</text>
+  <g data-section="main-stand_m7">
+   <rect x="538.4" y="644.5" width="58.5" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="567.65" y="667.1" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">M7</text>
   </g>
-  <g data-section="vip-packages_kg">
-   <rect x="264.5" y="121.9" width="42.1" height="23.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(277.58 137.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">KG</text>
+  <g data-section="main-stand_m6">
+   <rect x="477.1" y="644.5" width="58.4" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="506.3" y="667.1" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">M6</text>
   </g>
-  <g data-section="vip-packages_kh">
-   <rect x="310.5" y="121.9" width="49.5" height="23.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(328.58 137.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">KH</text>
+  <g data-section="main-stand_m5">
+   <rect x="408.9" y="644.5" width="65.3" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="441.55" y="667.1" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">M5</text>
   </g>
-  <g data-section="vip-packages_kj">
-   <rect x="363.5" y="121.9" width="51.8" height="23.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(382.58 137.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">KJ</text>
+  <g data-section="main-stand_m4">
+   <rect x="345.9" y="644.5" width="60.2" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="376" y="667.1" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">M4</text>
   </g>
-  <g data-section="vip-packages_kk">
-   <rect x="419.5" y="121.9" width="49.2" height="23.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(437.58 137.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">KK</text>
+  <g data-section="main-stand_m3">
+   <rect x="284.6" y="644.5" width="58.5" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="313.85" y="667.1" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">M3</text>
   </g>
-  <g data-section="vip-packages_kl">
-   <rect x="472.5" y="121.9" width="52.1" height="23.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(493.58 137.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">KL</text>
+  <g data-section="main-stand_m2">
+   <rect x="221.5" y="644.5" width="60.2" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="251.6" y="667.1" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">M2</text>
   </g>
-  <g data-section="vip-packages_km">
-   <rect x="528.5" y="121.9" width="49.1" height="23.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(545.58 137.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">KM</text>
+  <g data-section="main-stand_m1">
+   <rect x="162.2" y="644.5" width="56.5" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="190.45" y="667.1" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">M1</text>
   </g>
-  <g data-section="vip-packages_kn">
-   <rect x="581.5" y="121.9" width="42.6" height="23.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(595.58 137.71)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">KN</text>
+  <g data-section="main-stand_u1">
+   <polygon points="162.2 693.1 235.4 693.1 235.4 803.5 221.5 803.5 162.2 746" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="203.301" y="738.666" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">U1</text>
   </g>
-  <g data-section="vip-packages_l11">
-   <rect x="230.3" y="607.4" width="51.4" height="32.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(250.58 628.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">L11</text>
+  <g data-section="main-stand_u2">
+   <rect x="239" y="693.1" width="56.1" height="110.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="267.05" y="748.35" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">U2</text>
   </g>
-  <g data-section="vip-packages_l12">
-   <rect x="284.6" y="607.4" width="58.5" height="32.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(309.58 628.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">L12</text>
+  <g data-section="main-stand_u3">
+   <rect x="299" y="693.1" width="50.4" height="110.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="324.2" y="748.35" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">U3</text>
   </g>
-  <g data-section="vip-packages_l13">
-   <rect x="345.9" y="607.4" width="60.2" height="32.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(369.58 628.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">L13</text>
+  <g data-section="main-stand_u4">
+   <rect x="353" y="693.1" width="51.6" height="110.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="378.8" y="748.35" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">U4</text>
   </g>
-  <g data-section="vip-packages_l14">
-   <rect x="477.1" y="607.4" width="58.4" height="32.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="vip-packages"/>
-   <text transform="translate(500.58 628.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">L14</text>
+  <g data-section="main-stand_u5">
+   <rect x="409" y="693.1" width="64.8" height="110.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="441.4" y="748.35" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">U5</text>
   </g>
- </g>
- <g data-category="away-fan-section">
-  <g data-section="away-fan-section_al7">
-   <rect x="141.3" y="403.9" width="73.6" height="46.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="away-fan-section"/>
-   <text transform="translate(168.81 431.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AL7</text>
+  <g data-section="main-stand_u6">
+   <rect x="478" y="693.1" width="50.8" height="110.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="503.4" y="748.35" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">U6</text>
   </g>
-  <g data-section="away-fan-section_al8">
-   <rect x="141.3" y="453.9" width="73.6" height="44.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="away-fan-section"/>
-   <text transform="translate(168.81 480.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AL8</text>
+  <g data-section="main-stand_u7">
+   <rect x="533" y="693.1" width="52" height="110.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="559" y="748.35" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">U7</text>
   </g>
-  <g data-section="away-fan-section_al9">
-   <polygon points="214.9 501.1 141.3 501.1 141.3 551.2 169.6 551.2 214.9 511.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="away-fan-section"/>
-   <text transform="translate(160.81 526.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AL9</text>
+  <g data-section="main-stand_u8">
+   <rect x="589" y="693.1" width="53.6" height="110.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="615.8" y="748.35" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">U8</text>
   </g>
- </g>
- <g data-category="beautiful-game-hospitality">
-  <g data-section="beautiful-game-hospitality_m4">
-   <rect x="345.9" y="644.5" width="60.2" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="beautiful-game-hospitality"/>
-   <text transform="translate(368.58 671.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">M4</text>
+  <g data-section="main-stand_u9">
+   <polygon points="645.3 693.1 645.3 803.4 661.1 803.4 719.5 744.6 719.5 693.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="main-stand"/>
+   <text x="677.719" y="738.812" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">U9</text>
   </g>
  </g>
- <g data-category="chemistry-lounge-hospitality">
-  <g data-section="chemistry-lounge-hospitality_m6">
-   <rect x="477.1" y="644.5" width="58.4" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="chemistry-lounge-hospitality"/>
-   <text transform="translate(498.58 671.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">M6</text>
+ <g data-category="anfield-road-stand">
+  <g data-section="anfield-road-stand_al1">
+   <rect x="177.3" y="162.2" width="37.6" height="42.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="196.1" y="183.65" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AL1</text>
+  </g>
+  <g data-section="anfield-road-stand_al3">
+   <rect x="141.3" y="208.2" width="73.6" height="45.3" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="178.1" y="230.85" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AL3</text>
+  </g>
+  <g data-section="anfield-road-stand_al4">
+   <rect x="141.3" y="256.2" width="73.6" height="46.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="178.1" y="279.55" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AL4</text>
+  </g>
+  <g data-section="anfield-road-stand_al5">
+   <rect x="141.3" y="305.8" width="73.6" height="46.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="178.1" y="328.85" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AL5</text>
+  </g>
+  <g data-section="anfield-road-stand_al6">
+   <rect x="141.3" y="354.8" width="73.6" height="46.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="178.1" y="377.85" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AL6</text>
+  </g>
+  <g data-section="anfield-road-stand_al7">
+   <rect x="141.3" y="403.9" width="73.6" height="46.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="178.1" y="427.35" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AL7</text>
+  </g>
+  <g data-section="anfield-road-stand_al8">
+   <rect x="141.3" y="453.9" width="73.6" height="44.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="178.1" y="476.15" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AL8</text>
+  </g>
+  <g data-section="anfield-road-stand_al9">
+   <polygon points="214.9 501.1 141.3 501.1 141.3 551.2 169.6 551.2 214.9 511.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="171.102" y="522.339" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AL9</text>
+  </g>
+  <g data-section="anfield-road-stand_am8">
+   <rect x="87.3" y="501.1" width="50.9" height="50.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="112.75" y="526.15" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AM8</text>
+  </g>
+  <g data-section="anfield-road-stand_am7">
+   <rect x="87.3" y="453.9" width="50.9" height="44.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="112.75" y="476.15" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AM7</text>
+  </g>
+  <g data-section="anfield-road-stand_am6">
+   <rect x="87.3" y="403.9" width="50.9" height="46.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="112.75" y="427.35" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AM6</text>
+  </g>
+  <g data-section="anfield-road-stand_am5">
+   <rect x="87.3" y="354.8" width="50.9" height="46.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="112.75" y="377.85" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AM5</text>
+  </g>
+  <g data-section="anfield-road-stand_am4">
+   <rect x="87.3" y="305.8" width="50.9" height="46.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="112.75" y="328.85" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AM4</text>
+  </g>
+  <g data-section="anfield-road-stand_am3">
+   <rect x="87.3" y="256.2" width="50.9" height="46.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="112.75" y="279.55" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AM3</text>
+  </g>
+  <g data-section="anfield-road-stand_am2">
+   <rect x="87.3" y="208.2" width="50.9" height="45.3" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="112.75" y="230.85" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AM2</text>
+  </g>
+  <g data-section="anfield-road-stand_am1">
+   <rect x="87.3" y="162.2" width="50.9" height="42.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="112.75" y="183.65" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AM1</text>
+  </g>
+  <g data-section="anfield-road-stand_al2">
+   <rect x="141.3" y="162.2" width="32.9" height="42.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="157.75" y="183.65" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AL2</text>
+  </g>
+  <g data-section="anfield-road-stand_au1">
+   <polygon points="43.6 162.2 32.8 205.2 83.7 205.2 83.7 162.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="60.8432" y="184.551" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AU1</text>
+  </g>
+  <g data-section="anfield-road-stand_au2">
+   <rect x="32.3" y="208.2" width="51.4" height="45.3" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="58" y="230.85" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AU2</text>
+  </g>
+  <g data-section="anfield-road-stand_au3">
+   <rect x="32.3" y="256.2" width="51.4" height="46.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="58" y="279.55" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AU3</text>
+  </g>
+  <g data-section="anfield-road-stand_au4">
+   <rect x="32.3" y="305.8" width="51.4" height="46.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="58" y="328.85" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AU4</text>
+  </g>
+  <g data-section="anfield-road-stand_au5">
+   <rect x="32.3" y="354.8" width="51.4" height="46.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="58" y="377.85" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AU5</text>
+  </g>
+  <g data-section="anfield-road-stand_au6">
+   <rect x="32.3" y="403.9" width="51.4" height="46.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="58" y="427.35" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AU6</text>
+  </g>
+  <g data-section="anfield-road-stand_au7">
+   <rect x="32.3" y="453.9" width="51.4" height="44.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="58" y="476.15" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AU7</text>
+  </g>
+  <g data-section="anfield-road-stand_au8">
+   <polygon points="83.7 501.1 83.7 551.2 43.9 551.2 32.3 511.6 32.3 501.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" stroke-width="1px" data-seat="anfield-road-stand"/>
+   <text x="60.138" y="524.99" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">AU8</text>
   </g>
  </g>
- <g data-category="the-dugout-hospitality">
-  <g data-section="the-dugout-hospitality_m1">
-   <rect x="162.2" y="644.5" width="56.5" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="the-dugout-hospitality"/>
-   <text transform="translate(184.58 671.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">M1</text>
-  </g>
-  <g data-section="the-dugout-hospitality_m2">
-   <rect x="221.5" y="644.5" width="60.2" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="the-dugout-hospitality"/>
-   <text transform="translate(245.58 671.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">M2</text>
-  </g>
-  <g data-section="the-dugout-hospitality_m3">
-   <rect x="284.6" y="644.5" width="58.5" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="the-dugout-hospitality"/>
-   <text transform="translate(307.58 671.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">M3</text>
-  </g>
-  <g data-section="the-dugout-hospitality_m5">
-   <rect x="408.9" y="644.5" width="65.3" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="the-dugout-hospitality"/>
-   <text transform="translate(433.58 671.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">M5</text>
-  </g>
-  <g data-section="the-dugout-hospitality_m7">
-   <rect x="538.4" y="644.5" width="58.5" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="the-dugout-hospitality"/>
-   <text transform="translate(560.58 671.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">M7</text>
-  </g>
-  <g data-section="the-dugout-hospitality_m8">
-   <rect x="599.9" y="644.5" width="60" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="the-dugout-hospitality"/>
-   <text transform="translate(622.58 671.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">M8</text>
-  </g>
-  <g data-section="the-dugout-hospitality_m9">
-   <rect x="662.9" y="644.5" width="56.7" height="45.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="the-dugout-hospitality"/>
-   <text transform="translate(683.58 671.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">M9</text>
-  </g>
- </g>
- <g data-category="beat-lounge-hospitality">
-  <g data-section="beat-lounge-hospitality_l15">
-   <rect x="538.4" y="607.4" width="58.5" height="32.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="beat-lounge-hospitality"/>
-   <text transform="translate(561.58 628.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">L15</text>
-  </g>
-  <g data-section="beat-lounge-hospitality_l16">
-   <rect x="599.9" y="607.4" width="64.7" height="32.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="beat-lounge-hospitality"/>
-   <text transform="translate(624.58 628.48)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">L16</text>
-  </g>
- </g>
- <g data-category="longside-hospitality">
-  <g data-section="longside-hospitality_ce1">
-   <rect x="224.5" y="32.9" width="36.4" height="54.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-hospitality"/>
-   <text transform="translate(233.58 64.708)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE1</text>
-  </g>
-  <g data-section="longside-hospitality_ce2">
-   <rect x="264.5" y="32.9" width="42.1" height="54.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-hospitality"/>
-   <text transform="translate(276.58 64.708)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE2</text>
-  </g>
-  <g data-section="longside-hospitality_ce3">
-   <rect x="310.5" y="32.9" width="49.5" height="54.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-hospitality"/>
-   <text transform="translate(325.58 64.708)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE3</text>
-  </g>
-  <g data-section="longside-hospitality_ce4">
-   <rect x="363.5" y="32.9" width="51.8" height="54.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-hospitality"/>
-   <text transform="translate(380.58 64.708)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE4</text>
-  </g>
-  <g data-section="longside-hospitality_ce5">
-   <rect x="419.5" y="32.9" width="49.2" height="54.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-hospitality"/>
-   <text transform="translate(434.58 64.708)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE5</text>
-  </g>
-  <g data-section="longside-hospitality_ce6">
-   <rect x="472.5" y="32.9" width="52.1" height="54.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-hospitality"/>
-   <text transform="translate(489.58 64.708)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE6</text>
-  </g>
-  <g data-section="longside-hospitality_ce7">
-   <rect x="528.5" y="32.9" width="49.1" height="54.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-hospitality"/>
-   <text transform="translate(543.58 64.708)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE7</text>
-  </g>
-  <g data-section="longside-hospitality_ce8">
-   <rect x="581.5" y="32.9" width="42.6" height="54.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-hospitality"/>
-   <text transform="translate(593.58 64.708)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE8</text>
-  </g>
-  <g data-section="longside-hospitality_ce9">
-   <rect x="627.5" y="32.9" width="36.2" height="54.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="longside-hospitality"/>
-   <text transform="translate(635.58 64.708)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">CE9</text>
-  </g>
- </g>
- <g data-category="anfield-road-upper-offsite-hospitality">
-  <g data-section="anfield-road-upper-offsite-hospitality_au1">
-   <polygon points="43.6 162.2 32.8 205.2 83.7 205.2 83.7 162.2" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="anfield-road-upper-offsite-hospitality"/>
-   <text transform="translate(51.813 188.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AU1</text>
-  </g>
-  <g data-section="anfield-road-upper-offsite-hospitality_au2">
-   <rect x="32.3" y="208.2" width="51.4" height="45.3" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="anfield-road-upper-offsite-hospitality"/>
-   <text transform="translate(47.813 235.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AU2</text>
-  </g>
-  <g data-section="anfield-road-upper-offsite-hospitality_au3">
-   <rect x="32.3" y="256.2" width="51.4" height="46.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="anfield-road-upper-offsite-hospitality"/>
-   <text transform="translate(47.813 285.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AU3</text>
-  </g>
-  <g data-section="anfield-road-upper-offsite-hospitality_au4">
-   <rect x="32.3" y="305.8" width="51.4" height="46.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="anfield-road-upper-offsite-hospitality"/>
-   <text transform="translate(47.813 333.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AU4</text>
-  </g>
-  <g data-section="anfield-road-upper-offsite-hospitality_au5">
-   <rect x="32.3" y="354.8" width="51.4" height="46.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="anfield-road-upper-offsite-hospitality"/>
-   <text transform="translate(47.813 382.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AU5</text>
-  </g>
-  <g data-section="anfield-road-upper-offsite-hospitality_au6">
-   <rect x="32.3" y="403.9" width="51.4" height="46.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="anfield-road-upper-offsite-hospitality"/>
-   <text transform="translate(47.813 431.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AU6</text>
-  </g>
-  <g data-section="anfield-road-upper-offsite-hospitality_au7">
-   <rect x="32.3" y="453.9" width="51.4" height="44.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="anfield-road-upper-offsite-hospitality"/>
-   <text transform="translate(47.813 480.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AU7</text>
-  </g>
-  <g data-section="anfield-road-upper-offsite-hospitality_au8">
-   <polygon points="83.7 501.1 83.7 551.2 43.9 551.2 32.3 511.6 32.3 501.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="anfield-road-upper-offsite-hospitality"/>
-   <text transform="translate(47.813 528.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AU8</text>
-  </g>
- </g>
- <g data-category="anfield-road-middle-tier-hospitality">
-  <g data-section="anfield-road-middle-tier-hospitality_am1">
-   <rect x="87.3" y="162.2" width="50.9" height="42.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="anfield-road-middle-tier-hospitality"/>
-   <text transform="translate(103.81 188.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AM1</text>
-  </g>
-  <g data-section="anfield-road-middle-tier-hospitality_am2">
-   <rect x="87.3" y="208.2" width="50.9" height="45.3" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="anfield-road-middle-tier-hospitality"/>
-   <text transform="translate(101.81 235.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AM2</text>
-  </g>
-  <g data-section="anfield-road-middle-tier-hospitality_am3">
-   <rect x="87.3" y="256.2" width="50.9" height="46.7" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="anfield-road-middle-tier-hospitality"/>
-   <text transform="translate(101.81 285.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AM3</text>
-  </g>
-  <g data-section="anfield-road-middle-tier-hospitality_am4">
-   <rect x="87.3" y="305.8" width="50.9" height="46.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="anfield-road-middle-tier-hospitality"/>
-   <text transform="translate(101.81 333.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AM4</text>
-  </g>
-  <g data-section="anfield-road-middle-tier-hospitality_am5">
-   <rect x="87.3" y="354.8" width="50.9" height="46.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="anfield-road-middle-tier-hospitality"/>
-   <text transform="translate(101.81 382.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AM5</text>
-  </g>
-  <g data-section="anfield-road-middle-tier-hospitality_am6">
-   <rect x="87.3" y="403.9" width="50.9" height="46.9" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="anfield-road-middle-tier-hospitality"/>
-   <text transform="translate(101.81 431.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AM6</text>
-  </g>
-  <g data-section="anfield-road-middle-tier-hospitality_am7">
-   <rect x="87.3" y="453.9" width="50.9" height="44.5" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="anfield-road-middle-tier-hospitality"/>
-   <text transform="translate(101.81 480.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AM7</text>
-  </g>
-  <g data-section="anfield-road-middle-tier-hospitality_am8">
-   <rect x="87.3" y="501.1" width="50.9" height="50.1" fill="none" stroke="#C6CDD2" stroke-miterlimit="10" data-seat="anfield-road-middle-tier-hospitality"/>
-   <text transform="translate(101.81 528.04)" fill="#503FA5" font-family="'proxima-nova'" font-size="11px">AM8</text>
-  </g>
- </g>
- <g>
+ <g transform="translate(.50887 -.51618)">
   <g>
-   <text transform="translate(391.85 208.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="15px">LONGSIDE TIER</text>
+   <text x="344.83899" y="18.4335" fill="#503fa5" font-family="proxima-nova" font-size="15px">SIR KENNY DALGLISH STAND</text>
   </g>
   <g>
-   <text transform="matrix(6.1232e-17 -1 1 6.1232e-17 237.29 406.25)" fill="#503FA5" font-family="'proxima-nova'" font-size="15px">SHORTSIDE TIER</text>
+   <text transform="rotate(90 284.77 601.87)" fill="#503fa5" font-family="proxima-nova" font-size="15px">THE KOP</text>
   </g>
   <g>
-   <text transform="matrix(3.2679e-7 1 -1 3.2679e-7 652.65 290.11)" fill="#503FA5" font-family="'proxima-nova'" font-size="15px">SHORTSIDE TIER</text>
+   <text transform="rotate(-90 221.94 205.66)" fill="#503fa5" font-family="proxima-nova" font-size="15px">ANFIELD ROAD STAND</text>
   </g>
   <g>
-   <text transform="translate(391.85 497.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="15px">LONGSIDE TIER</text>
+   <text x="400.83899" y="830.43298" fill="#503fa5" font-family="proxima-nova" font-size="15px">MAIN STAND</text>
   </g>
   <g>
-   <text transform="translate(344.85 18.441)" fill="#503FA5" font-family="'proxima-nova'" font-size="15px">SIR KENNY DALGLISH STAND</text>
-  </g>
-  <g>
-   <text transform="matrix(3.2679e-7 1 -1 3.2679e-7 886.65 317.11)" fill="#503FA5" font-family="'proxima-nova'" font-size="15px">THE KOP</text>
-  </g>
-  <g>
-   <text transform="matrix(5.2066e-15 -1 1 5.2066e-15 16.294 427.61)" fill="#503FA5" font-family="'proxima-nova'" font-size="15px">ANFIELD ROAD STAND</text>
-  </g>
-  <g>
-   <text transform="translate(400.85 830.44)" fill="#503FA5" font-family="'proxima-nova'" font-size="15px">MAIN STAND</text>
-  </g>
-  <g>
-   <rect x="249.6" y="223.3" width="388.4" height="251.5" fill="#96CC6A"/>
-   <path d="m616 460.2h-18.1v-222.5h18.1v222.5zm-36.2 0h-18.1v-222.5h18.1v222.5zm-36.3 0h-18.1v-222.5h18.1v222.5zm-36.2 0h-18.1v-222.5h18.1v222.5zm-36.2 0h-18.1v-222.5h18.1v222.5zm-36.2 0h-18.1v-222.5h18.1v222.5zm-36.3 0h-18.1v-222.5h18.1v222.5zm-36.2 0h-18.1v-222.5h18.1v222.5zm-36.2 0h-18.1v-222.5h18.1v222.5zm-36.2 0h-18.1v-222.5h18.1v222.5z" fill="#fff" fill-opacity=".08"/>
-   <path d="m590.2 382.7v-67.6h25.8v67.6h-25.8zm-47.2-33.8c0 10.4 4.8 19.8 12.2 26v-52c-7.4 6.2-12.2 15.6-12.2 26zm73 69.4v-138.7h-60.7v138.8zm0 33.8c-4.5 0-8.1 3.6-8.1 8.1h8.1zm0-206.3v-8.1h-8.1c-0.1 4.5 3.6 8.1 8.1 8.1zm-318.4 136.9v-67.6h-25.7v67.6h25.7zm35-59.7v52c7.5-6.2 12.2-15.5 12.2-26s-4.7-19.9-12.2-26zm0 95.3v-138.7h-60.6v138.8zm-60.7 41.9h8.1c0-4.5-3.6-8.1-8.1-8.1zm344.1-8.1v-206.3c-4.5 0-8.1-3.6-8.1-8.1h-327.9c0 4.5-3.6 8.1-8.1 8.1v206.3c4.5 0 8.1 3.6 8.1 8.1h327.8c0-4.5 3.7-8.1 8.2-8.1zm-336-214.4h-8.1v8.1c4.5 0 8.1-3.6 8.1-8.1zm163.9 222.5v-222.5m0 140.3c16 0 29-13 29-29s-13-29-29-29-29 13-29 29 13 29 29 29z" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width=".8777"/>
+   <rect x="249.59" y="223.29" width="388.4" height="251.5" fill="#96cc6a"/>
+   <path d="m615.99 460.19h-18.1v-222.5h18.1zm-36.2 0h-18.1v-222.5h18.1zm-36.3 0h-18.1v-222.5h18.1zm-36.2 0h-18.1v-222.5h18.1zm-36.2 0h-18.1v-222.5h18.1zm-36.2 0h-18.1v-222.5h18.1zm-36.3 0h-18.1v-222.5h18.1zm-36.2 0h-18.1v-222.5h18.1zm-36.2 0h-18.1v-222.5h18.1zm-36.2 0h-18.1v-222.5h18.1z" fill="#fff" fill-opacity=".08"/>
+   <path d="m590.19 382.69v-67.6h25.8v67.6zm-47.2-33.8c0 10.4 4.8 19.8 12.2 26v-52c-7.4 6.2-12.2 15.6-12.2 26zm73 69.4v-138.7h-60.7v138.8zm0 33.8c-4.5 0-8.1 3.6-8.1 8.1h8.1zm0-206.3v-8.1h-8.1c-0.1 4.5 3.6 8.1 8.1 8.1zm-318.4 136.9v-67.6h-25.7v67.6zm35-59.7v52c7.5-6.2 12.2-15.5 12.2-26s-4.7-19.9-12.2-26zm0 95.3v-138.7h-60.6v138.8zm-60.7 41.9h8.1c0-4.5-3.6-8.1-8.1-8.1zm344.1-8.1v-206.3c-4.5 0-8.1-3.6-8.1-8.1h-327.9c0 4.5-3.6 8.1-8.1 8.1v206.3c4.5 0 8.1 3.6 8.1 8.1h327.8c0-4.5 3.7-8.1 8.2-8.1zm-336-214.4h-8.1v8.1c4.5 0 8.1-3.6 8.1-8.1zm163.9 222.5v-222.5m0 140.3c16 0 29-13 29-29s-13-29-29-29-29 13-29 29 13 29 29 29z" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width=".8777"/>
   </g>
  </g>
 </svg>
