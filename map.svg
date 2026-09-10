@@ -38,31 +38,31 @@
    <text x="645.6" y="75.75" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">CE9</text>
   </g>
   <g data-section="sir-kenny-dalglish-stand_kg">
-   <path d="m224.6 121.9v66.4h82v-34.785-3.5156-28.1h-45.799-4.457-31.744z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <path d="m224.6 121.9v66.4h82v-66.401h-82z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
    <text x="265.6" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KG</text>
   </g>
   <g data-section="sir-kenny-dalglish-stand_kh">
-   <path d="m310.5 121.9v27 6.6152 32.785h49.5v-32.785-6.6152-27h-49.5z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <path d="m310.5 121.9v66.4h49.5v-66.4h-49.5z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
    <text x="335.25" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KH</text>
   </g>
   <g data-section="sir-kenny-dalglish-stand_kj">
-   <path d="m363.5 121.9v27 9.8125 29.588h51.801v-29.588-9.8125-27h-51.801z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <path d="m363.5 121.9v66.4h51.801v-66.4h-51.801z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
    <text x="389.4" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KJ</text>
   </g>
   <g data-section="sir-kenny-dalglish-stand_kk">
-   <path d="m419.5 121.9v27 7.1328 32.268h49.199v-32.268-7.1328-27h-49.199z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <path d="m419.5 121.9v66.401h49.199v-66.401h-49.199z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
    <text x="444.1" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KK</text>
   </g>
   <g data-section="sir-kenny-dalglish-stand_kl">
-   <path d="m472.5 121.9v27 9.1738 30.227h52.1v-30.227-9.1738-27h-52.1z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <path d="m472.5 121.9v66.401h52.1v-66.401h-52.1z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
    <text x="498.55" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KL</text>
   </g>
   <g data-section="sir-kenny-dalglish-stand_km">
-   <path d="m528.5 124.2v24.701 3.6367 35.764h49.1v-35.764-3.6367-24.701h-49.1z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <path d="m528.5 121.93v66.376h49.1v-66.376z" fill="none" stroke="#c6cdd2" stroke-width="1.0173px" data-seat="sir-kenny-dalglish-stand"/>
    <text x="553.05" y="156.25" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KM</text>
   </g>
   <g data-section="sir-kenny-dalglish-stand_kn">
-   <path d="m581.5 121.9v27 1.6562 37.744h42.6v-37.744-1.6562-27h-42.6z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
+   <path d="m581.5 121.9v66.4h42.6v-66.4h-42.6z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
    <text x="602.8" y="155.101" dominant-baseline="central" fill="#503FA5" font-family="Proxima Nova" font-size="11px" text-anchor="middle">KN</text>
   </g>
   <g data-section="sir-kenny-dalglish-stand_kp">
