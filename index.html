@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Prototype</title>
     <style>
         * { box-sizing: border-box; }
@@ -11,64 +11,407 @@
             padding: 0; 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
             background-color: #ffffff; 
-            color: #111; 
+            color: #111827; 
             overflow: hidden; 
             height: 100vh; 
             display: flex; 
             flex-direction: column; 
         }
 
-        .app-header { padding: 12px 20px; border-bottom: 1px solid #eaeaea; }
-        .app-header h1 { margin: 0 0 4px 0; font-size: 18px; display: flex; align-items: center; gap: 8px; }
-        .app-header p { margin: 0; font-size: 13px; color: #555; display: flex; align-items: center; gap: 5px; }
-        .flags { font-size: 18px; }
+        body.is-resizing {
+            cursor: col-resize !important;
+            user-select: none !important;
+        }
 
-        .toolbar { padding: 12px 20px; display: flex; gap: 12px; border-bottom: 1px solid #eaeaea; align-items: center; overflow-x: auto; }
-        .toolbar button { padding: 8px 12px; border: 1px solid #ddd; background: white; border-radius: 6px; font-size: 13px; cursor: pointer; white-space: nowrap; font-weight: 500; color: #333; display: flex; align-items: center; gap: 6px;}
-        .toolbar button:hover { border-color: #bbb; }
-        .toolbar button.icon-btn { padding: 8px; justify-content: center; }
-        
-        .toolbar .toggle-group { display: flex; align-items: center; gap: 8px; font-size: 13px; margin-left: 10px; color: #555; }
-        .spacer { flex: 1; }
+        /* Top Platform Navigation */
+        .site-nav {
+            height: 41.6px;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            font-size: 13px;
+            flex-shrink: 0;
+            z-index: 30;
+        }
+        .nav-left { display: flex; align-items: center; gap: 14px; }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .nav-brand img {
+            height: 20px;
+            width: auto;
+            display: block;
+        }
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #6b7280;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .breadcrumbs span.sep { color: #d1d5db; font-weight: 400; }
+        .breadcrumbs a { color: #6b7280; text-decoration: none; }
+        .breadcrumbs a:hover { color: #111827; }
+        .breadcrumbs .breadcrumb-current {
+            color: #111827;
+            font-weight: 500;
+        }
 
-        .switch { position: relative; display: inline-block; width: 36px; height: 20px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #e5e7eb; transition: .3s; border-radius: 20px; }
-        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 2px; bottom: 2px; background-color: white; transition: .3s; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
-        input:checked + .slider { background-color: #e5e7eb; } 
-        input:checked + .slider:before { transform: translateX(16px); }
+        .nav-right { display: flex; align-items: center; gap: 18px; font-weight: 500; font-size: 13px; color: #374151; }
+        .nav-link { display: flex; align-items: center; gap: 6px; cursor: pointer; text-decoration: none; color: inherit; }
+        .nav-link:hover { color: #111827; }
+        .btn-login {
+            background: #111827;
+            color: #ffffff;
+            border: none;
+            padding: 3.5px 9px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s;
+            line-height: 1.2;
+        }
+        .btn-login:hover { background: #1f2937; }
 
-        .categories-bar { display: flex; align-items: center; padding: 12px 20px; border-bottom: 1px solid #eaeaea; gap: 16px; background: #fff; }
-        .categories { display: flex; gap: 10px; align-items: center; overflow-x: auto; flex: 1; scrollbar-width: none; }
+        .mobile-nav-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            align-items: center;
+            color: #111827;
+        }
+
+        /* Two-Column App Layout */
+        .page-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Left Side: Match Header + Categories + Stadium Map */
+        .content-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            background: #ffffff;
+            min-width: 320px;
+            container-type: inline-size;
+        }
+
+        /* Event Top Bar */
+        .event-header {
+            background: #ffffff;
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #edf0f2;
+            flex-shrink: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .event-main {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .event-card-thumb {
+            width: 68px;
+            height: 68px;
+            border-radius: 12px;
+            object-fit: cover;
+            flex-shrink: 0;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e5e7eb;
+            display: block;
+        }
+
+        .event-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 3px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .event-title-container {
+            display: block;
+            line-height: 1.2;
+        }
+
+        .event-title {
+            display: inline;
+            margin: 0;
+            font-size: clamp(14px, 2.2cqi + 4px, 20px);
+            font-weight: 700;
+            color: #2b3947;
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+            word-break: break-word;
+        }
+
+        .dropdown-chevron-icon {
+            display: none;
+            width: 18px;
+            height: 18px;
+            color: #111827;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .topbar-actions {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: 10px;
+            vertical-align: -2px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .action-flag-icon,
+        .action-heart-icon {
+            width: 18px;
+            height: 18px;
+            color: #29CCA2;
+            fill: currentColor;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: transform 0.15s ease, color 0.15s ease;
+            display: inline-block;
+        }
+
+        .action-flag-icon:hover,
+        .action-heart-icon:hover {
+            transform: scale(1.12);
+            color: #20bc82;
+        }
+
+        .event-meta-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            font-size: clamp(12px, 1.1cqi + 6px, 13.5px);
+            color: #374151;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            line-height: 1.35;
+        }
+
+        .meta-icon {
+            width: 14px;
+            height: 14px;
+            fill: #374151;
+            flex-shrink: 0;
+        }
+
+        .meta-link {
+            color: #374151;
+            text-decoration: underline;
+            text-underline-offset: 2.5px;
+            cursor: pointer;
+        }
+
+        .meta-link:hover {
+            color: #111827;
+        }
+
+        /* Compact Container Adaptations */
+        @container (max-width: 520px) {
+            .event-header {
+                padding: 8px 14px;
+            }
+            .event-main {
+                gap: 12px;
+            }
+            .event-card-thumb {
+                width: 52px;
+                height: 52px;
+                border-radius: 9px;
+            }
+            .topbar-actions {
+                gap: 8px;
+                margin-left: 6px;
+            }
+            .action-flag-icon,
+            .action-heart-icon {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        /* Category Filter Bar */
+        .categories-bar {
+            display: flex;
+            align-items: center;
+            padding: 8px 24px 13px 24px;
+            gap: 10px;
+            background: #ffffff;
+            flex-shrink: 0;
+            position: relative;
+        }
+        .categories {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            overflow-x: auto;
+            flex: 1;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+        }
         .categories::-webkit-scrollbar { display: none; }
         
         .cat-pill { 
-            border: 1px solid #ddd; 
-            border-radius: 24px; 
-            padding: 6px 14px; 
+            border: 1px solid #e5e7eb; 
+            border-radius: 20px; 
+            padding: 8px 18px; 
             display: flex; 
             align-items: center; 
-            gap: 8px; 
+            gap: 9px; 
             white-space: nowrap; 
+            font-size: 14px; 
             font-weight: 700; 
-            color: #111; 
-            font-size: 13px; 
+            color: #111827; 
+            line-height: 1.35;
+            letter-spacing: -0.2px;
             cursor: pointer; 
             user-select: none;
-            transition: all 0.2s ease;
-            background: #fff;
+            transition: all 0.15s ease;
+            background: #ffffff;
         }
-        .cat-pill:hover { border-color: #999; background: #fafafa; }
-        .cat-pill.active { border-color: #111; background: #111; color: #fff; }
-        .cat-dot { width: 12px; height: 12px; border-radius: 50%; }
-        
-        .qty-btn { background: #2cdb9f; color: #000; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 800; cursor: pointer; font-size: 13px; white-space: nowrap; }
-        .qty-btn:hover { background: #26c48d; }
+        .cat-pill:hover { 
+            border-color: #29CCA2; 
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); 
+        }
+        .cat-pill.active { 
+            border-color: #111827; 
+            background: #111827; 
+            color: #ffffff; 
+            box-shadow: 0 2px 6px rgba(17, 24, 39, 0.15);
+        }
+        .cat-dot { 
+            width: 10px; 
+            height: 10px; 
+            border-radius: 50%; 
+            flex-shrink: 0;
+        }
 
-        .main-area { display: flex; flex: 1; overflow: hidden; position: relative; }
+        .cat-scroll-arrow {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #29CCA2;
+            color: #000;
+            border: none;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background 0.15s, transform 0.1s;
+        }
+        .cat-scroll-arrow svg {
+            width: 18px;
+            height: 18px;
+        }
+        .cat-scroll-arrow:hover { background: #20bc82; }
+        .cat-scroll-arrow:active { transform: scale(0.92); }
 
+        /* Map Canvas */
         #map-container { flex: 1; position: relative; background: #ffffff; overflow: hidden; }
         #map-container canvas { display: block; width: 100% !important; height: 100% !important; outline: none; }
+
+        /* Bottom-Left Prices Toggle Widget */
+        .map-bottom-left-widget {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            display: flex;
+            align-items: center;
+            z-index: 15;
+            user-select: none;
+        }
+
+        .prices-switch-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            user-select: none;
+            background: transparent;
+            padding: 0;
+        }
+
+        .prices-switch {
+            position: relative;
+            display: inline-block;
+            width: 42px;
+            height: 24px;
+        }
+
+        .prices-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .prices-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #cbd5e1;
+            transition: .25s ease;
+            border-radius: 24px;
+        }
+
+        .prices-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: #ffffff;
+            transition: .25s ease;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+        }
+
+        .prices-switch input:checked + .prices-slider {
+            background-color: #29CCA2;
+        }
+
+        .prices-switch input:checked + .prices-slider:before {
+            transform: translateX(18px);
+        }
+
+        .prices-switch-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #111827;
+            letter-spacing: -0.2px;
+        }
 
         .map-controls-widget {
             position: absolute;
@@ -81,9 +424,9 @@
             user-select: none;
         }
         .map-ctrl-btn {
-            width: 44px;
-            height: 44px;
-            background: #f1f4f6;
+            width: 40px;
+            height: 40px;
+            background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 10px;
             display: flex;
@@ -91,80 +434,366 @@
             justify-content: center;
             cursor: pointer;
             color: #334155;
-            font-size: 22px;
-            font-weight: 400;
-            transition: background 0.15s;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            font-size: 20px;
+            font-weight: 500;
+            transition: all 0.15s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
             outline: none;
             padding: 0;
         }
-        .map-ctrl-btn:hover { background: #e2e8f0; color: #0f172a; }
+        .map-ctrl-btn:hover { background: #f1f5f9; color: #0f172a; }
         .map-ctrl-btn.active-mode { background: #111827; color: #ffffff; border-color: #111827; }
         .map-ctrl-btn.active-mode:hover { background: #1f2937; color: #ffffff; }
 
         .map-ctrl-btn.mode-2d-btn {
-            font-size: 15px;
+            font-size: 13px;
             font-weight: 700;
-            background: #f1f4f6;
+            background: #ffffff;
             color: #334155;
             border: 1px solid #e2e8f0;
             display: none;
         }
-        .map-ctrl-btn.mode-2d-btn:hover {
-            background: #e2e8f0;
-            color: #0f172a;
+
+        /* Dotted Resizer Handle Bar */
+        .resizer-divider {
+            width: 18px;
+            background-color: #f7f9fa;
+            border-left: 1px solid #eef0f2;
+            cursor: col-resize;
+            position: relative;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            user-select: none;
+            touch-action: none;
         }
 
-        .sidebar { width: 650px; border-left: 1px solid #eaeaea; display: flex; flex-direction: column; background: #ffffff; position: relative; overflow: hidden;}
-        .ticket-list { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 14px; background: #fafafa; }
+        .resizer-grip {
+            display: grid;
+            grid-template-columns: 3.5px 3.5px;
+            grid-auto-rows: 3.5px;
+            gap: 3.5px 3.5px;
+            align-content: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .resizer-grip span {
+            width: 3.5px;
+            height: 3.5px;
+            background: #b5bcc5;
+            border-radius: 0.5px;
+            display: block;
+        }
+
+        /* Right Column: Resizable Listings Sidebar */
+        .sidebar { 
+            width: 40%; 
+            min-width: 40%;
+            max-width: 60%;
+            display: flex; 
+            flex-direction: column; 
+            background: #f7f9fa; 
+            position: relative; 
+            overflow: hidden;
+            flex-shrink: 0;
+            height: 100%;
+        }
+        .sidebar-header {
+            padding: 14px 24px 14px 7px;
+            background: #f7f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 15px;
+            font-weight: 700;
+            color: #111827;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .sidebar-header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sidebar-header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .filter-toggle-btn {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: all 0.15s ease;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+            padding: 0;
+        }
+        .filter-toggle-btn:hover { background: #f3f4f6; border-color: #d1d5db; }
+
+        /* Hide / Show Map Pill Button (Hidden on desktop, shown on mobile) */
+        .btn-toggle-map {
+            display: none;
+            align-items: center;
+            gap: 9px;
+            background: #111827;
+            color: #ffffff;
+            border: none;
+            padding: 0 18px;
+            height: 40px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.15s ease;
+            flex-shrink: 0;
+        }
+        .btn-toggle-map:hover {
+            background: #1f2937;
+        }
+        .btn-toggle-map svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .qty-badge-btn {
+            width: 99.16px;
+            height: 40px;
+            padding: 0 16px;
+            background: #29CCA2;
+            color: #000000;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.1;
+            flex-shrink: 0;
+            transition: background 0.15s ease;
+        }
+        .qty-badge-btn:hover { background: #23b791; }
+        .qty-badge-main {
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: -0.2px;
+        }
+        .qty-badge-sub {
+            font-size: 8px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .ticket-list { 
+            flex: 1; 
+            overflow-y: auto; 
+            padding: 0 20px 20px 7px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+            background: #f7f9fa; 
+        }
+
+        /* Show More Lazy Loading Container */
+        .show-more-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px 0 24px 0;
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .btn-show-more {
+            background: #ffffff;
+            color: #111827;
+            border: 1px solid #d1d5db;
+            border-radius: 24px;
+            padding: 10px 32px;
+            font-size: 13.5px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            transition: all 0.15s ease;
+            outline: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-show-more:hover {
+            border-color: #9ca3af;
+            background: #f9fafb;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .btn-show-more:active {
+            transform: translateY(0);
+        }
+
+        /* Ticombo Listing Card */
         .ticket-card { 
-            background: white; 
-            border: 1px solid #eaeaea; 
-            border-radius: 14px; 
+            background: #ffffff; 
+            border: 1px solid #e5e7eb; 
+            border-radius: 20px; 
             display: flex; 
             align-items: stretch;
             overflow: hidden; 
-            transition: box-shadow 0.2s, border-color 0.2s; 
+            transition: border-color 0.15s ease, box-shadow 0.15s ease; 
             cursor: pointer; 
-            min-height: 100px;
+            min-height: 94px;
+            position: relative;
+            box-sizing: border-box;
+            width: 100%;
         }
-        .ticket-card:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.07); border-color: #cbd5e1; }
-        .card-color { width: 8px; flex-shrink: 0; }
-        .card-thumb { 
-            width: 114px; 
-            height: 78px; 
-            object-fit: cover; 
-            border-radius: 10px; 
-            flex-shrink: 0; 
-            background: #f0f0f0; 
-            border: 1px solid #e5e7eb; 
+        .ticket-card:hover { 
+            border-color: #29CCA2; 
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); 
         }
 
+        .card-color { 
+            width: 13px; 
+            flex-shrink: 0; 
+            display: block;
+        }
+        
         .card-content { 
-            padding: 11px 18px 11px 10px; 
+            padding: 10px 12px 10px 10px; 
             flex: 1; 
+            min-width: 0;
             display: flex; 
-            justify-content: space-between; 
             align-items: center; 
+            justify-content: space-between; 
             gap: 14px; 
         }
-        .card-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
-        .card-info h3 { margin: 0; font-size: 12px; font-weight: 700; color: #111; line-height: 1.35; letter-spacing: -0.1px; }
-        .card-info p { margin: 0; font-size: 12px; color: #555; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; line-height: 1.3; }
-        .rating { color: #555; display: flex; align-items: center; gap: 4px; }
-        .rating-star { color: #fbbf24; font-size: 13px; }
-        
-        .buy-btn { 
-            background: #2cdb9f; color: #000; border: none; 
-            padding: 10px 0; width: 114px; flex-shrink: 0; 
-            border-radius: 26px; font-weight: 800; cursor: pointer; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            line-height: 1.2; font-size: 16px; transition: background-color 0.15s;
+        .card-thumb { 
+            width: 108px; 
+            height: 74px; 
+            object-fit: cover; 
+            border-radius: 8px; 
+            flex-shrink: 0; 
+            background: #f1f5f9; 
+            border: 1px solid #e2e8f0; 
+            display: block;
         }
-        .buy-btn:hover { background: #26c48d; }
-        .buy-btn small { font-size: 10px; font-weight: 700; opacity: 0.8; }
-        .badge-green { color: #10b981; font-weight: 600; font-size: 12px; }
+        .card-info { 
+            flex: 1; 
+            min-width: 0; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 4px; 
+            overflow: hidden;
+        }
+        .card-info h3 { 
+            margin: 0; 
+            font-size: 14px; 
+            font-weight: 700; 
+            color: #111827; 
+            line-height: 1.35;
+            letter-spacing: -0.2px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            word-break: break-word;
+        }
+        .card-meta-row { 
+            margin: 0; 
+            font-size: 11.5px; 
+            color: #4b5563; 
+            display: flex; 
+            align-items: center; 
+            gap: 6px; 
+            flex-wrap: wrap; 
+        }
+        .seller-rating { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 3px; 
+            font-weight: 600; 
+            color: #1f2937; 
+        }
+        .seller-tag {
+            font-size: 10px;
+            color: #6b7280;
+            background: #f3f4f6;
+            padding: 1px 6px;
+            border-radius: 4px;
+        }
+        .badge-green { 
+            color: #059669; 
+            font-weight: 600; 
+            font-size: 11.5px; 
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 1px;
+        }
 
+        .buy-btn-wrap {
+            position: relative;
+            flex-shrink: 0;
+            display: inline-flex;
+            width: 107.55px;
+            height: 32px;
+            margin-right: 0;
+            margin-top: 2px;
+            align-self: flex-start;
+        }
+        .buy-btn { 
+            width: 107.55px;
+            height: 32px;
+            background: #29CCA2; 
+            color: #000000; 
+            border: none; 
+            padding: 0 10px;
+            border-radius: 16px; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            white-space: nowrap;
+            transition: background-color 0.15s ease;
+        }
+        .buy-btn:hover { background: #23b791; }
+        .buy-btn-text {
+            font-size: 14.5px;
+            font-weight: 900;
+            letter-spacing: -0.2px;
+            line-height: 1;
+        }
+        .buy-btn-badge {
+            position: absolute;
+            bottom: -3px;
+            right: -3px;
+            background: #000000;
+            color: #29CCA2;
+            font-size: 7.5px;
+            font-weight: 900;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            padding: 1.5px 4.5px;
+            border-radius: 6px;
+            line-height: 1;
+            pointer-events: none;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+        }
+
+        /* Detail Drawer inside Sidebar */
         .detail-view { 
             display: flex; 
             flex-direction: column; 
@@ -173,48 +802,75 @@
             position: absolute; 
             top: 0; 
             left: 0; 
-            background: #ffffff; 
-            z-index: 20;
+            background: #f7f9fa; 
+            z-index: 25;
             transform: translateX(100%); 
-            transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .detail-view.active { transform: translateX(0); }
-        .detail-header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #eaeaea; }
-        .back-btn { background: none; border: none; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 0;}
-        .back-btn .back-circle { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #000; color: #fff; border-radius: 50%; }
+        .detail-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 16px 24px; 
+            border-bottom: 1px solid #e5e7eb; 
+            background: #ffffff; 
+        }
+        .back-btn { 
+            background: none; 
+            border: none; 
+            font-size: 14px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            padding: 0;
+            color: #111827; 
+        }
+        .back-btn .back-circle { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 26px; 
+            height: 26px; 
+            background: #111827; 
+            color: #ffffff; 
+            border-radius: 50%; 
+        }
         
-        .detail-content { flex: 1; overflow-y: auto; padding: 20px; font-size: 14px; color: #111; }
+        .detail-content { flex: 1; overflow-y: auto; padding: 18px 24px; font-size: 13.5px; color: #1f2937; }
         .detail-features { 
             display: flex; 
             flex-wrap: wrap; 
-            gap: 16px 24px; 
-            margin-bottom: 20px; 
-            background: #fafafa;
+            gap: 12px 20px; 
+            margin-bottom: 18px; 
+            background: #ffffff; 
             padding: 12px 16px;
-            border-radius: 8px;
-            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb; 
         }
-        .detail-row { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 13px; color: #333;}
-        .detail-row svg { width: 16px; height: 16px; flex-shrink: 0; color: #555; }
+        .detail-row { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 12.5px; color: #374151;}
+        .detail-row svg { width: 15px; height: 15px; flex-shrink: 0; color: #6b7280; }
         
         #panorama-container {
             width: 100%;
-            height: 312px;
-            border-radius: 12px;
+            height: 300px;
+            border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 24px;
-            background: #e5e7eb;
+            margin-bottom: 20px;
+            background: #e2e8f0;
             position: relative;
             cursor: grab;
-            border: 1px solid #eaeaea;
+            border: 1px solid #e5e7eb; 
         }
         #panorama-container:active { cursor: grabbing; }
         #panorama-container canvas { display: block; width: 100% !important; height: 100% !important; outline: none; }
         #pano-loading {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             display: flex; align-items: center; justify-content: center;
-            background: rgba(245, 245, 245, 0.9);
-            color: #555; font-weight: 600; font-size: 14px;
+            background: rgba(248, 250, 252, 0.9);
+            color: #475569; font-weight: 600; font-size: 13px;
             z-index: 5; pointer-events: none;
         }
 
@@ -228,67 +884,252 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
-            background: rgba(0, 0, 0, 0.65);
+            gap: 6px;
+            background: rgba(17, 24, 39, 0.75);
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
             color: #ffffff;
-            padding: 12px 20px;
-            border-radius: 28px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            padding: 10px 18px;
+            border-radius: 24px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.3s ease;
         }
-
         .pano-hint.active { opacity: 1; }
         .pano-hint-icon {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
             animation: panoSwipeAnim 1.6s ease-in-out infinite alternate;
         }
-
         .pano-hint-icon svg {
-            width: 26px;
-            height: 26px;
+            width: 22px;
+            height: 22px;
             fill: none;
             stroke: #ffffff;
             stroke-width: 2;
             stroke-linecap: round;
             stroke-linejoin: round;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
         }
-
         .pano-hint span {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.2px;
             white-space: nowrap;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
         }
 
         @keyframes panoSwipeAnim {
-            0% { transform: translateX(-26px); }
-            100% { transform: translateX(26px); }
+            0% { transform: translateX(-20px); }
+            100% { transform: translateX(20px); }
         }
         
         .total-box { margin-bottom: 20px; }
-        .total-title { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; margin-bottom: 16px; }
-        .math-row { display: flex; align-items: center; gap: 16px; font-size: 16px; font-weight: 700; margin-bottom: 20px; }
-        .math-controls { display: flex; align-items: center; gap: 16px; background: #fff; border: 1px solid #eaeaea; padding: 8px 16px; border-radius: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);}
-        .math-controls span { cursor: pointer; user-select: none; font-size: 18px; }
+        .total-title { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; margin-bottom: 12px; }
+        .math-row { display: flex; align-items: center; gap: 14px; font-size: 15px; font-weight: 700; margin-bottom: 16px; }
+        .math-controls { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid #e5e7eb; padding: 6px 14px; border-radius: 18px; }
+        .math-controls span { cursor: pointer; user-select: none; font-size: 17px; }
         
-        .propose-wrapper { display: flex; border: 1px solid #eaeaea; border-radius: 24px; overflow: hidden; height: 44px; align-items: center; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);}
-        .propose-wrapper input { border: none; outline: none; padding: 0 16px; flex: 1; font-size: 14px; font-weight: 600;}
-        .propose-btn { background: #000; color: #fff; border: none; padding: 0 24px; height: 100%; font-weight: 700; cursor: pointer; border-radius: 24px;}
+        .propose-wrapper { display: flex; border: 1px solid #e5e7eb; border-radius: 22px; overflow: hidden; height: 40px; align-items: center; margin-bottom: 18px; background: #ffffff; }
+        .propose-wrapper input { border: none; outline: none; padding: 0 14px; flex: 1; font-size: 13px; font-weight: 600; background: transparent; }
+        .propose-btn { background: #111827; color: #fff; border: none; padding: 0 20px; height: 100%; font-weight: 700; cursor: pointer; font-size: 13px; }
         
-        .section-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; margin-top: 24px; margin-bottom: 8px;}
-        .section-desc { color: #444; margin-bottom: 16px; font-size: 14px; line-height: 1.5; margin-left: 26px;}
-        .detail-footer { padding: 20px; border-top: 1px solid #eaeaea; background: #fff; }
-        .checkout-btn { width: 100%; background: #2cdb9f; color: #000; border: none; padding: 16px; border-radius: 30px; font-size: 16px; font-weight: 800; cursor: pointer; transition: background 0.2s;}
-        .checkout-btn:hover { background: #26c48d; }
+        .section-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; margin-top: 20px; margin-bottom: 6px;}
+        .section-desc { color: #4b5563; margin-bottom: 14px; font-size: 13px; line-height: 1.45; margin-left: 24px;}
+        .detail-footer { padding: 16px 24px; border-top: 1px solid #e5e7eb; background: #ffffff; }
+        .checkout-btn { width: 100%; background: #29CCA2; color: #000000; border: none; padding: 14px; border-radius: 24px; font-size: 16px; font-weight: 900; cursor: pointer; transition: background 0.15s;}
+        .checkout-btn:hover { background: #23b791; }
+
+        /* Floating Support Mascot / Chat on Mobile */
+        .mobile-floating-mascot {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #29CCA2;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            cursor: pointer;
+        }
+        .mobile-floating-mascot svg {
+            width: 26px;
+            height: 26px;
+            fill: #000000;
+        }
+
+        /* RESPONSIVE MOBILE ADAPTATIONS (screen <= 768px) */
+        @media (max-width: 768px) {
+            body {
+                overflow: hidden !important;
+                height: 100vh;
+                height: 100dvh;
+            }
+
+            .site-nav {
+                height: 44px;
+                padding: 0 14px;
+                flex-shrink: 0;
+            }
+            .nav-right .nav-link,
+            .nav-right .btn-login {
+                display: none;
+            }
+            .mobile-nav-btn {
+                display: flex;
+            }
+
+            .resizer-divider {
+                display: none;
+            }
+
+            .page-body {
+                flex-direction: column;
+                height: calc(100vh - 44px);
+                height: calc(100dvh - 44px);
+                overflow: hidden;
+            }
+
+            /* Sticky Map Block: Always fixed at top of screen */
+            .content-left {
+                flex: none;
+                width: 100%;
+                min-width: 100%;
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                z-index: 10;
+                background: #ffffff;
+                border-bottom: 1px solid #e5e7eb;
+            }
+
+            .content-left.is-hidden {
+                display: none;
+            }
+
+            .event-header {
+                padding: 8px 14px;
+            }
+            .event-card-thumb {
+                display: none;
+            }
+            .topbar-actions {
+                display: none;
+            }
+            .dropdown-chevron-icon {
+                display: block;
+            }
+            .event-title-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 8px;
+            }
+            .event-title {
+                font-size: 15px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .event-meta-lines {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px;
+                font-size: 12px;
+            }
+
+            .categories-bar {
+                padding: 6px 12px 8px 12px;
+                gap: 6px;
+            }
+            
+            /* Category scroll arrows on mobile with proper sizing */
+            .cat-scroll-arrow {
+                width: 32px;
+                height: 32px;
+                display: none;
+                flex-shrink: 0;
+            }
+            .cat-scroll-arrow svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            #map-container {
+                height: 250px;
+                min-height: 250px;
+                max-height: 250px;
+                flex: none;
+            }
+
+            .map-bottom-left-widget {
+                bottom: 14px;
+                left: 14px;
+            }
+            .map-controls-widget {
+                bottom: 14px;
+                right: 14px;
+            }
+            .map-ctrl-btn {
+                border-radius: 50%;
+                width: 36px;
+                height: 36px;
+            }
+
+            /* Scrollable Listings Sidebar underneath the sticky map */
+            .sidebar {
+                width: 100% !important;
+                min-width: 100% !important;
+                max-width: 100% !important;
+                flex: 1;
+                height: auto;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                background: #f7f9fa;
+                z-index: 5;
+            }
+
+            .sidebar-header {
+                flex-shrink: 0;
+                background: #f7f9fa;
+                padding: 10px 14px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            }
+
+            /* Hide listings count on mobile and display Hide/Show Map pill button */
+            #listing-count-header {
+                display: none;
+            }
+            .btn-toggle-map {
+                display: inline-flex;
+            }
+
+            .ticket-list {
+                flex: 1;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: 10px 14px 70px 14px;
+            }
+
+            .detail-view {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: 150;
+            }
+
+            .mobile-floating-mascot {
+                display: flex;
+            }
+        }
     </style>
     <script type="importmap">
         {
@@ -301,52 +1142,180 @@
 </head>
 <body>
 
-    <header class="app-header">
-        <h1><span class="flags">🇬🇧</span> TBD vs TBD</h1>
-        <p>📅 Date TBD · 📍 Anfield Stadium, Liverpool, United Kingdom</p>
+    <!-- Platform Header -->
+    <header class="site-nav">
+        <div class="nav-left">
+            <a href="#" class="nav-brand">
+                <img src="https://www.ticombo.com/imgs/logo/logo.svg" alt="Ticombo Logo">
+            </a>
+            <div class="breadcrumbs">
+                <span class="sep">/</span>
+                <a href="#">Sports</a>
+                <span class="sep">/</span>
+                <a href="#">Football</a>
+                <span class="sep">/</span>
+                <span class="breadcrumb-current">Premier League</span>
+            </div>
+        </div>
+        <div class="nav-right">
+            <!-- Mobile Action Icons -->
+            <button class="mobile-nav-btn" aria-label="Search">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+            <button class="mobile-nav-btn" aria-label="Account">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </button>
+            <button class="mobile-nav-btn" aria-label="Menu">
+                <svg width="22" height="22" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.3"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+
+            <!-- Desktop Links -->
+            <span class="nav-link" title="Search">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </span>
+            <span class="nav-link">🇬🇧 EN</span>
+            <span class="nav-link">📞 +49</span>
+            <span class="nav-link">💶 EUR</span>
+            <span class="nav-link">Sell your tickets</span>
+            <button class="btn-login">Login</button>
+        </div>
     </header>
 
-    <div class="toolbar">
-        <button class="icon-btn">
-            <svg viewBox="0 0 24 24" width="16" height="16" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-            </svg>
-        </button>
-        <button>€ 85 - 1,894 ▾</button>
-        <button>All Sellers (31) ▾</button>
-        <button>Fan Sections ▾</button>
-        <div class="toggle-group">
-            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-            <span class="toggle-label">Below Original price</span>
-        </div>
-        <div class="spacer"></div>
-        <button>Price: Low to High ▾</button>
-    </div>
+    <!-- Main Two-Column Structure -->
+    <div class="page-body" id="page-body">
+        
+        <!-- Left Side: Event Details, Filter Strip, Stadium Map -->
+        <div class="content-left" id="map-section-panel">
+            <div class="event-header">
+                <div class="event-main">
+                    <!-- Match Thumbnail Image -->
+                    <img 
+                        class="event-card-thumb" 
+                        src="https://imgs.ticombo.com/tc-images-main/thumbnail/events/sports/liverpool-fc-vs-manchester-city-fc-premier-league/thumbnail-thumbnail-b33e5cf1-7fa1-4aa2-9f31-826846af637a.png" 
+                        alt="Liverpool FC vs Manchester City FC"
+                    >
 
-    <div class="categories-bar">
-        <div class="categories" id="categories-container"></div>
-        <button class="qty-btn">2 TICKETS</button>
-    </div>
+                    <!-- Event Details -->
+                    <div class="event-info">
+                        <div class="event-title-container">
+                            <h1 class="event-title">Liverpool FC vs Manchester City FC Premier League tickets</h1>
+                            
+                            <!-- Mobile Dropdown Caret -->
+                            <svg class="dropdown-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
 
-    <div class="main-area">
-        <div id="map-container">
-            <div class="map-controls-widget">
-                <button class="map-ctrl-btn" id="ctrl-zoom-in" title="Zoom In">+</button>
-                <button class="map-ctrl-btn" id="ctrl-zoom-out" title="Zoom Out">−</button>
-                <button class="map-ctrl-btn" id="ctrl-reset-view" title="Reset View">
-                    <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; stroke: currentColor; stroke-width: 2.2; fill: none;">
-                        <path d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
-                        <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
-                    </svg>
+                            <span class="topbar-actions">
+                                <!-- Solid Flag Icon correctly centered in a 20x20 box -->
+                                <svg class="action-flag-icon" viewBox="0 0 20 20" aria-label="Flag">
+                                    <path d="M12.4 4.5L12 3H3v14h2v-6h5.4l.4 1.5h6.2V4.5h-4.6z"/>
+                                </svg>
+                                <!-- Clean Heart Icon -->
+                                <svg class="action-heart-icon" viewBox="0 0 24 24" aria-label="Favorite">
+                                    <path d="M12 21.1c-.3 0-.6-.1-.8-.3C6.3 16.3 2 12.3 2 7.8 2 4.6 4.5 2 7.7 2c2 0 3.7 1 4.3 2.5C12.6 3 14.3 2 16.3 2 19.5 2 22 4.6 22 7.8c0 4.5-4.3 8.5-9.2 13-.2.2-.5.3-.8.3z"/>
+                                </svg>
+                            </span>
+                        </div>
+
+                        <div class="event-meta-lines">
+                            <!-- Date & Time -->
+                            <div class="meta-item">
+                                <svg class="meta-icon" viewBox="0 0 24 24">
+                                    <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9.5 14.5l-2.5-2.5-1.41 1.41L9.5 17.33l7.91-7.91-1.41-1.42z"/>
+                                </svg>
+                                <span>Sun, Oct 11 26, 16:30 BST - Sun, Oct 11 26, 18:15 BST</span>
+                            </div>
+
+                            <!-- Venue Location -->
+                            <div class="meta-item">
+                                <svg class="meta-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                </svg>
+                                <a class="meta-link" href="#">Anfield, Liverpool, United Kingdom</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="categories-bar">
+                <button class="cat-scroll-arrow" id="cat-scroll-left" title="Scroll categories left">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                 </button>
-                <button class="map-ctrl-btn" id="ctrl-toggle-seats" title="Toggle Seats/Rows" style="font-size: 16px; font-weight: 700;">R</button>
-                <button class="map-ctrl-btn mode-2d-btn" id="ctrl-mode-2d" title="Switch to 2D Top View">2D</button>
+                <div class="categories" id="categories-container"></div>
+                <button class="cat-scroll-arrow" id="cat-scroll-right" title="Scroll categories right">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+
+            <div id="map-container">
+                <!-- Bottom Left Prices Toggle Widget (Restored) -->
+                <div class="map-bottom-left-widget">
+                    <label class="prices-switch-label">
+                        <span class="prices-switch">
+                            <input type="checkbox" id="toggle-prices-checkbox" checked>
+                            <span class="prices-slider"></span>
+                        </span>
+                        <span class="prices-switch-text">Prices</span>
+                    </label>
+                </div>
+
+                <div class="map-controls-widget">
+                    <button class="map-ctrl-btn" id="ctrl-zoom-in" title="Zoom In">+</button>
+                    <button class="map-ctrl-btn" id="ctrl-zoom-out" title="Zoom Out">−</button>
+                    <button class="map-ctrl-btn" id="ctrl-reset-view" title="Reset View">
+                        <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; stroke: currentColor; stroke-width: 2.2; fill: none;">
+                            <path d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                            <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
+                        </svg>
+                    </button>
+                    <button class="map-ctrl-btn" id="ctrl-toggle-seats" title="Toggle Seats/Rows" style="font-size: 15px; font-weight: 700;">R</button>
+                    <button class="map-ctrl-btn mode-2d-btn" id="ctrl-mode-2d" title="Switch to 2D Top View">2D</button>
+                </div>
             </div>
         </div>
 
-        <div class="sidebar">
+        <!-- Draggable Resizer with Dotted Grip -->
+        <div class="resizer-divider" id="resizer-divider" title="Drag to resize panel">
+            <div class="resizer-grip">
+                <span></span><span></span>
+                <span></span><span></span>
+                <span></span><span></span>
+                <span></span><span></span>
+                <span></span><span></span>
+                <span></span><span></span>
+                <span></span><span></span>
+                <span></span><span></span>
+            </div>
+        </div>
+
+        <!-- Right Side: Resizable Listings Sidebar -->
+        <div class="sidebar" id="sidebar-panel">
+            <div class="sidebar-header">
+                <div class="sidebar-header-left">
+                    <span id="listing-count-header">160 listings</span>
+                    <!-- Hide / Show Map Button with Football Pitch Icon (Mobile Only) -->
+                    <button class="btn-toggle-map" id="btn-toggle-map">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="2.5" y="4.5" width="19" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                            <line x1="12" y1="4.5" x2="12" y2="19.5" stroke="currentColor" stroke-width="1.8"/>
+                            <path d="M2.5 8.5h3.5v7H2.5z M18 8.5h3.5v7H18z" fill="currentColor"/>
+                        </svg>
+                        <span id="btn-toggle-map-label">Hide Map</span>
+                    </button>
+                </div>
+                <div class="sidebar-header-right">
+                    <button class="filter-toggle-btn" title="Filter listings">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"></line><line x1="7" y1="12" x2="17" y2="12"></line><line x1="10" y1="18" x2="14" y2="18"></line></svg>
+                    </button>
+                    <button class="qty-badge-btn">
+                        <span class="qty-badge-main">2 Tickets</span>
+                        <span class="qty-badge-sub">TOGETHER</span>
+                    </button>
+                </div>
+            </div>
+
             <div class="ticket-list" id="ticket-list-container">
-                <div style="padding: 20px; text-align: center; color: #888; font-size: 14px;">
+                <div style="padding: 24px; text-align: center; color: #94a3b8; font-size: 13.5px;">
                     Loading venue tickets...
                 </div>
             </div>
@@ -355,14 +1324,14 @@
                 <div class="detail-header">
                     <button class="back-btn" id="back-to-list-btn">
                         <div class="back-circle">
-                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="15 18 9 12 15 6"></polyline>
                             </svg>
                         </div>
                         Back To Listings
                     </button>
-                    <button class="icon-btn" style="border:none; background:none; cursor:pointer;">
-                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="#000" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <button class="icon-btn" style="border:none; background:none; cursor:pointer; padding:4px;">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="#111827" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
                         </svg>
                     </button>
@@ -371,19 +1340,19 @@
                 <div class="detail-content">
                     <div class="detail-features">
                         <div class="detail-row">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
                             <span id="dt-cat"></span>
                         </div>
                         <div class="detail-row">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                             2 seats together
                         </div>
                         <div class="detail-row">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             Clear view
                         </div>
                         <div class="detail-row">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                             E-ticket
                         </div>
                     </div>
@@ -405,16 +1374,16 @@
 
                     <div class="total-box">
                         <div class="total-title">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                             Total (Incl. All Fees)
                         </div>
                         <div class="math-row">
                             <div class="math-controls">
                                 <span>−</span>
-                                <span style="font-size: 16px;">2</span>
+                                <span style="font-size: 15px;">2</span>
                                 <span>+</span>
                             </div>
-                            <span style="color: #666;">x</span> <span id="dt-price">€113</span> = <span id="dt-total" style="font-size: 20px;">€226</span>
+                            <span style="color: #64748b;">x</span> <span id="dt-price">€113</span> = <span id="dt-total" style="font-size: 19px; color:#059669;">€226</span>
                         </div>
                         <div class="propose-wrapper">
                             <input type="text" placeholder="EUR | 0.00">
@@ -423,28 +1392,28 @@
                     </div>
 
                     <div class="section-header">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
                         Concessions
                     </div>
                     <div class="section-desc">Seated Together • No Fan Restrictions</div>
 
                     <div class="section-header">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                         Where are my seats?
                     </div>
                     <div class="section-desc">Once purchase is confirmed, we will assign the best available seats in <span id="dt-cat-desc">Shortside</span>.</div>
 
                     <div class="section-header">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                         Buy safely and securely
                     </div>
-                    <div class="section-desc">1.6+ million Users. The No.1 marketplace for World Cup tickets. <strong>Rated 4.5 out of 5 on Trustpilot.</strong></div>
+                    <div class="section-desc">1.6+ million Users. The No.1 marketplace for verified football tickets. <strong>Rated 4.8 out of 5 on Trustpilot.</strong></div>
 
                     <div class="section-header">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                         24-hour support
                     </div>
-                    <div class="section-desc" style="margin-bottom: 40px;">We have multilingual 24-hour support, 7 days a week, by Chat, Telephone or WhatsApp.</div>
+                    <div class="section-desc" style="margin-bottom: 30px;">We have multilingual 24-hour support, 7 days a week, by Chat, Telephone or WhatsApp.</div>
                 </div>
 
                 <div class="detail-footer">
@@ -454,6 +1423,11 @@
         </div>
     </div>
 
+    <!-- Floating Support Mascot on Mobile -->
+    <div class="mobile-floating-mascot" title="Help & Support">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-10 10c0 2.22.73 4.28 1.96 5.95L3 22l4.24-.92A9.95 9.95 0 0 0 12 22a10 10 0 0 0 10-10A10 10 0 0 0 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
+    </div>
+
     <script type="module">
         import * as THREE from 'three';
         import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
@@ -461,12 +1435,34 @@
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
         let showSeats = true;
+        let showPrices = true;
         const ACTIVE_SEAT_COLOR = 0x2cdb9f;
         const INACTIVE_SEAT_OPACITY = 0.7;
         const ACTIVE_SEAT_OPACITY = 1.0;
 
         const mapContainer = document.getElementById('map-container');
+        const mapSectionPanel = document.getElementById('map-section-panel');
         const mode2dBtn = document.getElementById('ctrl-mode-2d');
+        const btnToggleMap = document.getElementById('btn-toggle-map');
+        const btnToggleMapLabel = document.getElementById('btn-toggle-map-label');
+
+        let isMapVisible = true;
+
+        /* Toggle Hide/Show Map Handler */
+        btnToggleMap.addEventListener('click', (e) => {
+            e.stopPropagation();
+            isMapVisible = !isMapVisible;
+            if (isMapVisible) {
+                mapSectionPanel.classList.remove('is-hidden');
+                btnToggleMapLabel.textContent = 'Hide Map';
+                setTimeout(() => {
+                    updateCanvasSize();
+                }, 40);
+            } else {
+                mapSectionPanel.classList.add('is-hidden');
+                btnToggleMapLabel.textContent = 'Show Map';
+            }
+        });
 
         const scene = new THREE.Scene();
         scene.background = new THREE.Color('#ffffff');
@@ -482,10 +1478,10 @@
         dirLight2.position.set(-300, 400, 400);
         scene.add(dirLight2);
 
-        const camera = new THREE.PerspectiveCamera(45, mapContainer.clientWidth / mapContainer.clientHeight, 1, 10000);
+        const camera = new THREE.PerspectiveCamera(45, mapContainer.clientWidth / (mapContainer.clientHeight || 1), 1, 10000);
         const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
         renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(mapContainer.clientWidth, mapContainer.clientHeight);
+        renderer.setSize(mapContainer.clientWidth, mapContainer.clientHeight || 250);
         mapContainer.appendChild(renderer.domElement);
 
         const controls = new MapControls(camera, renderer.domElement);
@@ -533,12 +1529,73 @@
 
         panoContainer.addEventListener('pointerdown', hidePanoHint);
 
+        /* Resizable Sidebar Logic */
+        const resizer = document.getElementById('resizer-divider');
+        const sidebar = document.getElementById('sidebar-panel');
+        const pageBody = document.getElementById('page-body');
+        let isDraggingResizer = false;
+
+        function updateCanvasSize() {
+            const width = mapContainer.clientWidth;
+            const height = mapContainer.clientHeight;
+            if (width === 0 || height === 0) return;
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        }
+
+        resizer.addEventListener('pointerdown', (e) => {
+            isDraggingResizer = true;
+            resizer.classList.add('dragging');
+            document.body.classList.add('is-resizing');
+            resizer.setPointerCapture(e.pointerId);
+        });
+
+        window.addEventListener('pointermove', (e) => {
+            if (!isDraggingResizer) return;
+            const bodyRect = pageBody.getBoundingClientRect();
+            const totalWidth = bodyRect.width;
+
+            const minSidebarWidth = totalWidth * 0.40;
+            const maxSidebarWidth = totalWidth * 0.60;
+
+            const nextWidth = THREE.MathUtils.clamp(bodyRect.right - e.clientX, minSidebarWidth, maxSidebarWidth);
+            sidebar.style.width = `${nextWidth}px`;
+            updateCanvasSize();
+            updateCategoryScrollButtons();
+        });
+
+        function stopResizing(e) {
+            if (!isDraggingResizer) return;
+            isDraggingResizer = false;
+            resizer.classList.remove('dragging');
+            document.body.classList.remove('is-resizing');
+            if (e && e.pointerId && resizer.hasPointerCapture(e.pointerId)) {
+                resizer.releasePointerCapture(e.pointerId);
+            }
+            updateCanvasSize();
+            updateCategoryScrollButtons();
+        }
+
+        window.addEventListener('pointerup', stopResizing);
+        window.addEventListener('pointercancel', stopResizing);
+        window.addEventListener('resize', () => {
+            updateCanvasSize();
+            updateCategoryScrollButtons();
+            if (window.innerWidth > 768 && !isMapVisible) {
+                isMapVisible = true;
+                mapSectionPanel.classList.remove('is-hidden');
+                btnToggleMapLabel.textContent = 'Hide Map';
+            }
+        });
+
         const PALETTE = [
             0xfca5a5, 0xc4b5fd, 0xf9a8d4, 0xfde047, 0xd1d5db, 0x9ca3af, 0x93c5fd, 0xfecdd3, 
             0x86efac, 0x5eead4, 0x67e8f9, 0xa5b4fc, 0xf0abfc, 0xfda4af, 0xfdba74, 0xfcd34d, 0xbef264, 0x6ee7b7 
         ];
         
         let categoryColors = {};
+        let categoryCounts = {};
         let colorIndex = 0;
 
         function getCategoryColor(category) {
@@ -550,15 +1607,11 @@
             return categoryColors[category];
         }
 
-        // Geometry Calculations: radius 0.7px, padding 0.4px => pitch 1.8px
         const SEAT_RADIUS = 0.7;
         const SEAT_PADDING = 0.4;
-        const SEAT_PITCH = (SEAT_RADIUS * 2) + SEAT_PADDING; // 1.8px
+        const SEAT_PITCH = (SEAT_RADIUS * 2) + SEAT_PADDING;
 
-        // Shared 0.7px circle geometry for instanced standard seats
         const sharedSeatCircleGeom = new THREE.CircleGeometry(SEAT_RADIUS, 24);
-
-        // Real 1.1px circle geometry for active seats
         const ACTIVE_SEAT_RADIUS = 1.1;
         const activeSeatCircleGeom = new THREE.CircleGeometry(ACTIVE_SEAT_RADIUS, 24);
 
@@ -576,6 +1629,11 @@
         let allListingsData = [];
         let activeFilterSection = null;
         let activeFilterCategory = null;
+
+        /* Pagination & Lazy Loading State */
+        const PAGE_SIZE = 25;
+        let currentVisibleCount = PAGE_SIZE;
+        let currentFilteredListings = [];
 
         let activeSection = null; 
         let selectedRowGroup = null;
@@ -615,8 +1673,11 @@
         }
 
         function getDisplayCategory(rawCategory) {
-            if (!rawCategory) return 'STANDARD';
-            return rawCategory.replace(/-/g, ' ').toUpperCase();
+            if (!rawCategory) return 'Standard';
+            return rawCategory
+                .replace(/-/g, ' ')
+                .toLowerCase()
+                .replace(/\b\w/g, l => l.toUpperCase());
         }
 
         function applySectionOpacities() {
@@ -660,16 +1721,11 @@
 
                 const isFocused = (rGroup === hoveredRowGroup || rGroup === selectedRowGroup);
 
-                // Row stroke line opacity calculation
                 let targetLineOpacity;
                 if (is3D) {
-                    if (isFocused) {
-                        targetLineOpacity = 0.75;
-                    } else if (hasActive) {
-                        targetLineOpacity = 0.9;
-                    } else {
-                        targetLineOpacity = 0.45;
-                    }
+                    if (isFocused) targetLineOpacity = 0.75;
+                    else if (hasActive) targetLineOpacity = 0.9;
+                    else targetLineOpacity = 0.45;
                 } else {
                     if (showSeats) {
                         targetLineOpacity = hasActive ? 0.6 : 0.4;
@@ -683,11 +1739,8 @@
                     if (child.userData && child.userData.isDebugDotGroup) {
                         child.visible = showSeats;
 
-                        // Target opacity for inactive seats in this row
-                        let targetInactiveSeatOp = INACTIVE_SEAT_OPACITY; // 0.7 by default
-                        if (is3D && isFocused) {
-                            targetInactiveSeatOp = 0.9;
-                        }
+                        let targetInactiveSeatOp = INACTIVE_SEAT_OPACITY;
+                        if (is3D && isFocused) targetInactiveSeatOp = 0.9;
 
                         if (child.userData.instancedSeatsMesh) {
                             const instMesh = child.userData.instancedSeatsMesh;
@@ -695,7 +1748,6 @@
                             instMesh.material.needsUpdate = true;
                         }
 
-                        // Seats with active listings remain at 1.0 opacity
                         if (child.userData.activeSeatsGroup) {
                             child.userData.activeSeatsGroup.children.forEach(item => {
                                 if (item.userData && item.userData.isSeatCircle) {
@@ -748,6 +1800,15 @@
             applySectionOpacities();
             applyRowOpacities();
             renderPriceBadges(lastMinPricesByRow, lastMinPricesBySeat, lastMinPricesBySection);
+        });
+
+        /* Prices Toggle Implementation */
+        const pricesCheckbox = document.getElementById('toggle-prices-checkbox');
+        pricesCheckbox.addEventListener('change', (e) => {
+            showPrices = e.target.checked;
+            if (labelsGroup) {
+                labelsGroup.visible = showPrices;
+            }
         });
 
         const seatSpriteMatCache = {};
@@ -867,6 +1928,7 @@
 
             labelsGroup = new THREE.Group();
             labelsGroup.name = "PriceLabelsGroup";
+            labelsGroup.visible = showPrices;
 
             const BADGE_WIDTH = 47.32;
             const BADGE_HEIGHT = BADGE_WIDTH * (340 / 512);
@@ -953,7 +2015,7 @@
         const _projPos = new THREE.Vector3();
 
         function updateScreenSpacePriceLabelScales() {
-            if (!labelsGroup || defaultCameraPos.z === 0) return;
+            if (!labelsGroup || defaultCameraPos.z === 0 || !showPrices) return;
 
             const refDist = defaultCameraPos.length();
             const currentCameraDist = camera.position.distanceTo(controls.target);
@@ -1056,9 +2118,48 @@
             }
         }
 
+        /* Scroll Buttons Dynamic Visibility Controller */
+        const catContainer = document.getElementById('categories-container');
+        const catScrollLeftBtn = document.getElementById('cat-scroll-left');
+        const catScrollRightBtn = document.getElementById('cat-scroll-right');
+
+        function updateCategoryScrollButtons() {
+            if (!catContainer) return;
+            const scrollLeft = catContainer.scrollLeft;
+            const scrollWidth = catContainer.scrollWidth;
+            const clientWidth = catContainer.clientWidth;
+            const maxScroll = scrollWidth - clientWidth;
+
+            if (maxScroll > 2) {
+                catScrollLeftBtn.style.display = scrollLeft > 4 ? 'flex' : 'none';
+                catScrollRightBtn.style.display = scrollLeft < (maxScroll - 4) ? 'flex' : 'none';
+            } else {
+                catScrollLeftBtn.style.display = 'none';
+                catScrollRightBtn.style.display = 'none';
+            }
+        }
+
+        if (catContainer) {
+            catContainer.addEventListener('scroll', updateCategoryScrollButtons, { passive: true });
+        }
+
+        if (catScrollLeftBtn) {
+            catScrollLeftBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                catContainer.scrollBy({ left: -220, behavior: 'smooth' });
+            });
+        }
+
+        if (catScrollRightBtn) {
+            catScrollRightBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                catContainer.scrollBy({ left: 220, behavior: 'smooth' });
+            });
+        }
+
         function renderCategoriesLegend() {
-            const container = document.getElementById('categories-container');
-            container.innerHTML = ''; 
+            if (!catContainer) return;
+            catContainer.innerHTML = ''; 
             for (const [categoryName, hexColor] of Object.entries(categoryColors)) {
                 const colorString = '#' + hexColor.toString(16).padStart(6, '0');
                 const pill = document.createElement('div');
@@ -1071,13 +2172,15 @@
                     filterListingsByCategory(categoryName);
                 };
 
+                const count = categoryCounts[categoryName] || 0;
                 const dot = document.createElement('div');
                 dot.className = 'cat-dot';
                 dot.style.background = colorString;
                 pill.appendChild(dot);
-                pill.appendChild(document.createTextNode(' ' + getDisplayCategory(categoryName)));
-                container.appendChild(pill);
+                pill.appendChild(document.createTextNode(` ${getDisplayCategory(categoryName)} (${count})`));
+                catContainer.appendChild(pill);
             }
+            requestAnimationFrame(updateCategoryScrollButtons);
         }
 
         function createCylinderConnecting(p1, p2, radius, material) {
@@ -1441,11 +2544,8 @@
             box.getSize(size);
             
             const radial = new THREE.Vector2(center.x, center.y);
-            if (radial.length() > 0.001) {
-                radial.normalize();
-            } else {
-                radial.set(0, -1);
-            }
+            if (radial.length() > 0.001) radial.normalize();
+            else radial.set(0, -1);
 
             const pitchAngleRad = THREE.MathUtils.degToRad(48);
             const vFovRad = THREE.MathUtils.degToRad(camera.fov);
@@ -1616,117 +2716,168 @@
 
         document.getElementById('back-to-list-btn').addEventListener('click', closeDetailView);
 
+        function createListingCardElement(item) {
+            const card = document.createElement('div');
+            card.className = 'ticket-card';
+            card.dataset.section = item.section;
+            card.onclick = () => {
+                openDetailView(item.section, item.price, item.displayCategoryName);
+            };
+            
+            card.addEventListener('mouseenter', () => {
+                if (lockedSectionGroup) return; 
+                isUiHoverActive = true;
+                const targetGroup = sectionGroups[item.section];
+                hoveredSectionGroup = targetGroup;
+                const rKey = `${item.section}::${item.rowNum}`;
+                hoveredRowGroup = (rowGroups[rKey] && (rowGroups[rKey].userData.hasActiveListings || activeSection === targetGroup))
+                    ? rowGroups[rKey]
+                    : null;
+                applySectionOpacities();
+                applyRowOpacities();
+            });
+
+            card.addEventListener('mouseleave', () => {
+                if (lockedSectionGroup) return; 
+                isUiHoverActive = false;
+                hoveredSectionGroup = activeSection;
+                hoveredRowGroup = null;
+                applySectionOpacities();
+                applyRowOpacities();
+            });
+
+            const colorStrip = document.createElement('div');
+            colorStrip.className = 'card-color';
+            colorStrip.style.background = item.colorString;
+            card.appendChild(colorStrip);
+
+            const content = document.createElement('div');
+            content.className = 'card-content';
+            
+            const thumbImg = document.createElement('img');
+            thumbImg.className = 'card-thumb';
+            thumbImg.src = `https://honeybadger7846.github.io/thumbnail/${item.displaySectionName}.jpg`;
+            thumbImg.alt = `Section ${item.displaySectionName} View`;
+            thumbImg.loading = 'lazy';
+            thumbImg.onerror = () => { thumbImg.style.display = 'none'; };
+            content.appendChild(thumbImg);
+
+            const info = document.createElement('div');
+            info.className = 'card-info';
+            
+            const title = document.createElement('h3');
+            const seatDisplay = item.seatNum ? ` · Seat ${item.seatNum}` : '';
+            title.textContent = `${item.displayCategoryName} · Section ${item.displaySectionName} · Row ${item.rowNum}${seatDisplay}`;
+            info.appendChild(title);
+
+            const metaRow = document.createElement('div');
+            metaRow.className = 'card-meta-row';
+
+            if (item.isIndividual) {
+                metaRow.innerHTML = `<span>👤 Individual Seller</span> <span>•</span> <span>📱 M-ticket</span>`;
+            } else {
+                metaRow.innerHTML = `
+                    <span class="seller-rating">★ ${item.ratingScore} (${item.ratingCount})</span>
+                    ${item.isTrusted ? '<span class="seller-tag">Trusted Seller</span>' : ''}
+                    <span>•</span>
+                    <span>🎫 E-ticket</span>
+                `;
+            }
+            info.appendChild(metaRow);
+
+            if (item.hasShield) {
+                const badge = document.createElement('div');
+                badge.className = 'badge-green';
+                badge.innerHTML = `<span>🛡️</span> ${item.shieldText}`;
+                info.appendChild(badge);
+            }
+
+            content.appendChild(info);
+
+            const btnWrap = document.createElement('div');
+            btnWrap.className = 'buy-btn-wrap';
+
+            const btn = document.createElement('button');
+            btn.className = 'buy-btn';
+            btn.innerHTML = `<span class="buy-btn-text">BUY €${item.price}</span>`;
+
+            const badge = document.createElement('span');
+            badge.className = 'buy-btn-badge';
+            badge.textContent = 'EACH';
+
+            btnWrap.appendChild(btn);
+            btnWrap.appendChild(badge);
+            content.appendChild(btnWrap);
+
+            card.appendChild(content);
+            return card;
+        }
+
+        function appendMoreListings() {
+            const container = document.getElementById('ticket-list-container');
+            const oldShowMore = document.getElementById('show-more-wrap');
+            if (oldShowMore) oldShowMore.remove();
+
+            const startIndex = currentVisibleCount;
+            const endIndex = Math.min(startIndex + PAGE_SIZE, currentFilteredListings.length);
+            
+            for (let i = startIndex; i < endIndex; i++) {
+                container.appendChild(createListingCardElement(currentFilteredListings[i]));
+            }
+
+            currentVisibleCount = endIndex;
+
+            if (currentVisibleCount < currentFilteredListings.length) {
+                renderShowMoreButton(container);
+            }
+        }
+
+        function renderShowMoreButton(container) {
+            const wrap = document.createElement('div');
+            wrap.className = 'show-more-container';
+            wrap.id = 'show-more-wrap';
+
+            const btn = document.createElement('button');
+            btn.className = 'btn-show-more';
+            btn.textContent = 'SHOW MORE';
+            btn.onclick = () => {
+                appendMoreListings();
+            };
+
+            wrap.appendChild(btn);
+            container.appendChild(wrap);
+        }
+
         function renderListings(items) {
+            currentFilteredListings = items || [];
+            currentVisibleCount = PAGE_SIZE;
+
             const container = document.getElementById('ticket-list-container');
             container.innerHTML = ''; 
             
+            const headerCount = document.getElementById('listing-count-header');
+            if (headerCount) {
+                headerCount.textContent = `${items.length} listings`;
+            }
+
             if (items.length === 0) {
                 const emptyMsg = document.createElement('div');
-                emptyMsg.style.padding = '30px 20px';
+                emptyMsg.style.padding = '40px 20px';
                 emptyMsg.style.textAlign = 'center';
-                emptyMsg.style.color = '#888';
+                emptyMsg.style.color = '#94a3b8';
                 emptyMsg.style.fontSize = '14px';
-                emptyMsg.textContent = 'No tickets available for this filter.';
+                emptyMsg.textContent = 'No tickets match the selected filter.';
                 container.appendChild(emptyMsg);
                 return;
             }
 
-            for (const item of items) {
-                const card = document.createElement('div');
-                card.className = 'ticket-card';
-                card.onclick = () => {
-                    openDetailView(item.section, item.price, item.displayCategoryName);
-                };
-                
-                card.addEventListener('mouseenter', () => {
-                    if (lockedSectionGroup) return; 
-                    isUiHoverActive = true;
-                    const targetGroup = sectionGroups[item.section];
-                    hoveredSectionGroup = targetGroup;
-                    const rKey = `${item.section}::${item.rowNum}`;
-                    hoveredRowGroup = (rowGroups[rKey] && (rowGroups[rKey].userData.hasActiveListings || activeSection === targetGroup))
-                        ? rowGroups[rKey]
-                        : null;
-                    applySectionOpacities();
-                    applyRowOpacities();
-                });
+            const initialSlice = currentFilteredListings.slice(0, currentVisibleCount);
+            for (const item of initialSlice) {
+                container.appendChild(createListingCardElement(item));
+            }
 
-                card.addEventListener('mouseleave', () => {
-                    if (lockedSectionGroup) return; 
-                    isUiHoverActive = false;
-                    hoveredSectionGroup = activeSection;
-                    hoveredRowGroup = null;
-                    applySectionOpacities();
-                    applyRowOpacities();
-                });
-
-                const colorStrip = document.createElement('div');
-                colorStrip.className = 'card-color';
-                colorStrip.style.background = item.colorString;
-                card.appendChild(colorStrip);
-
-                const content = document.createElement('div');
-                content.className = 'card-content';
-                
-                const thumbImg = document.createElement('img');
-                thumbImg.className = 'card-thumb';
-                thumbImg.src = `https://honeybadger7846.github.io/thumbnail/${item.displaySectionName}.jpg`;
-                thumbImg.alt = `Section ${item.displaySectionName} View`;
-                thumbImg.loading = 'lazy';
-                thumbImg.onerror = () => { thumbImg.style.display = 'none'; };
-                content.appendChild(thumbImg);
-
-                const info = document.createElement('div');
-                info.className = 'card-info';
-                
-                const title = document.createElement('h3');
-                const seatDisplay = item.seatNum ? ` · Seat ${item.seatNum}` : '';
-                title.textContent = `${item.displayCategoryName} · Section ${item.displaySectionName} · Row ${item.rowNum}${seatDisplay}`;
-                info.appendChild(title);
-
-                const sellerP = document.createElement('p');
-                if (item.isIndividual) {
-                    sellerP.textContent = '👤 Individual Seller 📱 M-ticket';
-                } else {
-                    const ratingSpan = document.createElement('span');
-                    ratingSpan.className = 'rating';
-                    const star = document.createElement('span');
-                    star.className = 'rating-star';
-                    star.textContent = '★';
-                    ratingSpan.appendChild(star);
-                    ratingSpan.appendChild(document.createTextNode(` ${item.ratingScore} (${item.ratingCount}) `));
-                    sellerP.appendChild(ratingSpan);
-                    sellerP.appendChild(document.createTextNode('🎫 E-ticket'));
-                }
-                info.appendChild(sellerP);
-
-                if (!item.isIndividual && item.isTrusted) {
-                    const trustedP = document.createElement('p');
-                    trustedP.style.color = '#888';
-                    trustedP.style.fontSize = '12px';
-                    trustedP.textContent = 'Trusted Seller';
-                    info.appendChild(trustedP);
-                }
-
-                if (item.hasShield) {
-                    const badge = document.createElement('p');
-                    badge.className = 'badge-green';
-                    badge.textContent = item.shieldText;
-                    info.appendChild(badge);
-                }
-
-                content.appendChild(info);
-
-                const btn = document.createElement('button');
-                btn.className = 'buy-btn';
-                btn.textContent = `BUY €${item.price} `;
-                const small = document.createElement('small');
-                small.textContent = 'EACH';
-                btn.appendChild(small);
-                
-                content.appendChild(btn);
-                card.appendChild(content);
-                container.appendChild(card);
+            if (currentFilteredListings.length > currentVisibleCount) {
+                renderShowMoreButton(container);
             }
         }
 
@@ -1744,6 +2895,8 @@
 
         function generateListings(parsedSections) {
             allListingsData = [];
+            categoryCounts = {};
+
             if (parsedSections.length === 0) {
                 document.getElementById('ticket-list-container').textContent = 'No sections found in SVG.';
                 return;
@@ -1782,17 +2935,18 @@
                 const colorString = hexColor !== undefined ? '#' + hexColor.toString(16).padStart(6, '0') : '#cccccc';
 
                 const isIndividual = Math.random() > 0.5;
-                const hasShield = Math.random() > 0.7;
+                const hasShield = Math.random() > 0.6;
                 const ratingCount = Math.floor(Math.random() * 1000) + 5;
                 const ratingScore = (Math.random() * 0.5 + 4.5).toFixed(1);
 
                 const displaySectionName = getDisplaySection(sec.section);
                 const displayCategoryName = getDisplayCategory(sec.category);
 
-                const shieldTexts = ['Lowest event price on 🛡️', 'Lowest category price on 🛡️'];
+                const shieldTexts = ['Lowest event price', 'Ticombo Choice', 'Lowest category price'];
                 const shieldText = shieldTexts[Math.floor(Math.random() * shieldTexts.length)];
 
                 sectionsWithListings.add(sec.section);
+                categoryCounts[sec.category] = (categoryCounts[sec.category] || 0) + 1;
 
                 const rowKey = `${sec.section}::${rowNum}`;
                 const hasValidSvgRow = !!rowGroups[rowKey];
@@ -1838,7 +2992,8 @@
                 });
             }
 
-            // Sync instanced standard seats (0.7px) vs active real meshes (1.1px)
+            renderCategoriesLegend();
+
             for (const [key, rGroup] of Object.entries(rowGroups)) {
                 const isActiveRow = activeRowKeys.has(key);
                 rGroup.userData.hasActiveListings = isActiveRow;
@@ -1865,7 +3020,6 @@
                         if (activeSeats.has(seatNumber)) {
                             instMesh.setMatrixAt(i, hideMatrix);
 
-                            // Active seat: real mesh with 1.1px radius, #2cdb9f, opacity = 1.0
                             const activeMat = new THREE.MeshBasicMaterial({
                                 color: ACTIVE_SEAT_COLOR,
                                 transparent: true,
@@ -1905,6 +3059,7 @@
 
         async function loadSVGString(svgText) {
             categoryColors = {};
+            categoryCounts = {};
             colorIndex = 0;
             sectionGroups = {}; 
             rowGroups = {};
@@ -1975,13 +3130,13 @@
                 const node = path.userData.node;
                 const catNode = node ? node.closest('[data-category]') : null;
                 const secNode = node ? node.closest('[data-section]') : null;
-                const rowNode = node ? node.closest('[data-row]') : null;
+                const rowId = node ? node.closest('[data-row]') : null;
                 
                 const category = catNode ? catNode.getAttribute('data-category') : null;
                 const section = secNode ? secNode.getAttribute('data-section') : null;
-                const rowId = rowNode ? rowNode.getAttribute('data-row') : null;
+                const rowIdVal = rowId ? rowId.getAttribute('data-row') : null;
 
-                const isNonSectionStroke = !section && !rowId &&
+                const isNonSectionStroke = !section && !rowIdVal &&
                     (path.userData.style.fill === 'none' || (node && node.getAttribute('fill') === 'none')) && 
                     (path.userData.style.stroke !== undefined && path.userData.style.stroke !== 'none');
 
@@ -2040,8 +3195,8 @@
                     }
                 }
 
-                if (rowId && section) {
-                    const rowKey = `${section}::${rowId}`;
+                if (rowIdVal && section) {
+                    const rowKey = `${section}::${rowIdVal}`;
                     
                     if (!rowGroups[rowKey]) {
                         const rGroup = new THREE.Group();
@@ -2049,8 +3204,8 @@
                         rGroup.userData = { 
                             isRowGroup: true, 
                             sectionName: section, 
-                            rowId: rowId, 
-                            label: meta.text || rowId,
+                            rowId: rowIdVal, 
+                            label: meta.text || rowIdVal,
                             textColor: meta.color || parsedHex,
                             rowColor: parsedHex,
                             categoryName: category, 
@@ -2091,7 +3246,7 @@
                                 }));
                                 rowLineMesh.position.z = 0.08;
                                 rowLineMesh.renderOrder = 380;
-                                rowLineMesh.userData = { section, category, rowId, isRow: true };
+                                rowLineMesh.userData = { section, category, rowId: rowIdVal, isRow: true };
                                 rowGroups[rowKey].add(rowLineMesh);
                             }
                         } catch (e) {}
@@ -2113,7 +3268,7 @@
                                 }));
                                 hitMesh.position.z = 0.09;
                                 hitMesh.renderOrder = 390;
-                                hitMesh.userData = { section, category, rowId, isRow: true, isHitProxy: true };
+                                hitMesh.userData = { section, category, rowId: rowIdVal, isRow: true, isHitProxy: true };
                                 rowGroups[rowKey].add(hitMesh);
                             }
                         } catch (e) {}
@@ -2157,7 +3312,6 @@
                 }
             }
 
-            // Geometry generation: radius 0.7px, padding 0.4px (SEAT_PITCH = 1.8px)
             for (const [rowKey, allRowPoints] of Object.entries(rowAccumulatedPoints)) {
                 if (allRowPoints.length < 2) continue;
 
@@ -2191,7 +3345,6 @@
 
                 const rowColorHex = rowGroups[rowKey].userData.rowColor || '#00ffff';
 
-                // Standard seats InstancedMesh: 0.7px radius, opacity 0.7
                 const instancedMat = new THREE.MeshBasicMaterial({
                     color: new THREE.Color(rowColorHex),
                     transparent: true,
@@ -2252,8 +3405,6 @@
 
             rowTextSpritesGroup = renderRowSprites(rowGroups);
             scene.add(rowTextSpritesGroup);
-
-            renderCategoriesLegend();
 
             const maxDim = Math.max(geomSize.x, geomSize.y);
             camera.position.set(0, 0, maxDim * 1.2);
@@ -2425,7 +3576,7 @@
         }
 
         window.addEventListener('click', (e) => {
-            if (e.target.closest('.cat-pill') || e.target.closest('.ticket-card') || e.target.closest('#map-container canvas') || e.target.closest('.toolbar') || e.target.closest('.sidebar')) {
+            if (e.target.closest('.cat-pill') || e.target.closest('.ticket-card') || e.target.closest('#map-container canvas') || e.target.closest('.site-nav') || e.target.closest('.sidebar') || e.target.closest('.event-header') || e.target.closest('#resizer-divider') || e.target.closest('.btn-show-more') || e.target.closest('.btn-toggle-map') || e.target.closest('.map-bottom-left-widget')) {
                 return;
             }
             if (activeFilterCategory) {
@@ -2449,14 +3600,13 @@
         });
 
         const resizeObserver = new ResizeObserver(() => {
-            const width = mapContainer.clientWidth;
-            const height = mapContainer.clientHeight;
-            if (width === 0 || height === 0) return;
-            camera.aspect = width / height;
-            camera.updateProjectionMatrix();
-            renderer.setSize(width, height);
+            updateCanvasSize();
+            updateCategoryScrollButtons();
         });
         resizeObserver.observe(mapContainer);
+        if (catContainer) {
+            resizeObserver.observe(catContainer);
+        }
 
         function animate() {
             requestAnimationFrame(animate);
@@ -2529,7 +3679,9 @@
                 document.body.style.cursor = (targetRowGroup || targetSectionGroup) ? 'pointer' : 'default';
             }
             
-            renderer.render(scene, camera);
+            if (isMapVisible) {
+                renderer.render(scene, camera);
+            }
 
             if (document.getElementById('detail-view').classList.contains('active')) {
                 panoControls.update();
