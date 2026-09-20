@@ -458,6 +458,58 @@
             box-shadow: none;
         }
 
+        .minimap-widget {
+            position: absolute;
+            bottom: 24px;
+            right: 70px;
+            width: 196px;
+            height: 158px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 24px;
+            box-shadow: none;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            z-index: 15;
+            padding: 10px;
+            cursor: pointer;
+            transition: border-color 0.15s ease, transform 0.1s ease;
+        }
+
+        .minimap-widget:hover {
+            border-color: #29CCA2;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .minimap-widget svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            pointer-events: auto;
+        }
+
+        .minimap-sec {
+            fill: #e5e7eb;
+            stroke: #ffffff;
+            stroke-width: 1;
+            cursor: pointer;
+            transition: fill 0.15s ease, opacity 0.15s ease;
+        }
+
+        .minimap-sec:hover {
+            fill: #cbd5e1;
+        }
+
+        .minimap-sec.active {
+            stroke: #111827 !important;
+            stroke-width: 1.5 !important;
+            opacity: 1 !important;
+            filter: none;
+        }
+
         .resizer-divider {
             width: 18px;
             background-color: #f7f9fa;
@@ -1043,6 +1095,15 @@
                 height: 32px;
             }
 
+            .minimap-widget {
+                bottom: 14px;
+                right: 54px;
+                width: 80px;
+                height: 64px;
+                padding: 4px;
+                border-radius: 14px;
+            }
+
             .sidebar {
                 width: 100% !important;
                 min-width: 100% !important;
@@ -1257,6 +1318,14 @@
                 height: 28px;
             }
 
+            .minimap-widget {
+                bottom: 8px;
+                right: 44px;
+                width: 72px;
+                height: 52px;
+                border-radius: 12px;
+            }
+
             .map-controls-widget,
             .map-bottom-left-widget {
                 bottom: 8px;
@@ -1412,6 +1481,8 @@
                         <span class="prices-switch-text">Prices</span>
                     </label>
                 </div>
+
+                <div id="map-minimap" class="minimap-widget" title="Minimap (Click to reset view)"></div>
 
                 <div class="map-controls-widget">
                     <button class="map-ctrl-btn" id="ctrl-zoom-in" title="Zoom In" aria-label="Zoom In">
@@ -1593,6 +1664,7 @@
         const mode2dBtn = document.getElementById('ctrl-mode-2d');
         const btnToggleMap = document.getElementById('btn-toggle-map');
         const btnToggleMapLabel = document.getElementById('btn-toggle-map-label');
+        const minimapContainer = document.getElementById('map-minimap');
 
         let isMapVisible = window.innerWidth > 768;
 
@@ -2329,6 +2401,88 @@
             }
         }
 
+        function setupMinimap(svgText) {
+            if (!minimapContainer) return;
+
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(svgText, 'image/svg+xml');
+            const svgEl = doc.querySelector('svg');
+            if (!svgEl) return;
+
+            doc.querySelectorAll('text, tspan').forEach(t => t.remove());
+
+            const minSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            const vb = svgEl.getAttribute('viewBox') || `0 0 ${svgEl.getAttribute('width') || 888} ${svgEl.getAttribute('height') || 700}`;
+            minSvg.setAttribute('viewBox', vb);
+            minSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+
+            doc.querySelectorAll('[data-section]').forEach(secNode => {
+                const secName = secNode.getAttribute('data-section');
+                const paths = secNode.querySelectorAll('path, polygon, rect');
+
+                paths.forEach(p => {
+                    const clone = p.cloneNode(true);
+                    clone.removeAttribute('style');
+                    clone.removeAttribute('fill');
+                    clone.removeAttribute('stroke');
+                    clone.classList.add('minimap-sec');
+                    clone.setAttribute('data-minimap-section', secName);
+                    
+                    clone.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const targetGroup = sectionGroups[secName];
+                        if (targetGroup) {
+                            activate3DView(targetGroup);
+                            filterListingsBySection(secName);
+                        }
+                    });
+                    minSvg.appendChild(clone);
+                });
+            });
+
+            minimapContainer.innerHTML = '';
+            minimapContainer.appendChild(minSvg);
+
+            minimapContainer.onclick = (e) => {
+                if (!e.target.hasAttribute('data-minimap-section')) {
+                    closeDetailView();
+                    resetTo2DTopView();
+                    filterListingsBySection(null);
+                }
+            };
+        }
+
+        function updateMinimapHighlight(activeSecName) {
+            if (!minimapContainer) return;
+
+            if (!activeSecName) {
+                minimapContainer.style.display = 'none';
+                return;
+            }
+
+            minimapContainer.style.display = 'flex';
+            const allSecPaths = minimapContainer.querySelectorAll('.minimap-sec');
+
+            const targetGroup = sectionGroups[activeSecName];
+            const categoryName = targetGroup && targetGroup.userData ? targetGroup.userData.categoryName : null;
+            const catHex = categoryName && categoryColors[categoryName] !== undefined
+                ? '#' + categoryColors[categoryName].toString(16).padStart(6, '0')
+                : '#29CCA2';
+
+            allSecPaths.forEach(el => {
+                if (el.getAttribute('data-minimap-section') === activeSecName) {
+                    el.classList.add('active');
+                    el.style.fill = catHex;
+                    el.style.opacity = '1.0';
+                    el.parentNode.appendChild(el);
+                } else {
+                    el.classList.remove('active');
+                    el.style.fill = '';
+                    el.style.opacity = '';
+                }
+            });
+        }
+
         function filterListingsByCategory(categoryName) {
             activeFilterCategory = (activeFilterCategory === categoryName) ? null : categoryName;
             activeFilterSection = null;
@@ -2370,6 +2524,7 @@
             setSelectedRow(null);
             applySectionOpacities();
             applyRowOpacities();
+            updateMinimapHighlight(null);
 
             mode2dBtn.style.display = 'flex';
 
@@ -2788,6 +2943,8 @@
             mode2dBtn.style.display = 'flex';
 
             const secName = targetGroup.userData.sectionName;
+            updateMinimapHighlight(secName);
+
             const sectionHasActiveRows = Object.values(rowGroups).some(
                 rg => rg.userData.sectionName === secName && rg.userData.hasActiveListings
             );
@@ -2811,6 +2968,7 @@
             setHighlightedSections(null);
             applySectionOpacities();
             applyRowOpacities();
+            updateMinimapHighlight(null);
 
             mode2dBtn.style.display = 'none';
 
@@ -3326,6 +3484,8 @@
             if (rowTextSpritesGroup) { scene.remove(rowTextSpritesGroup); rowTextSpritesGroup = null; }
             if (staticTextOverlayMesh) { scene.remove(staticTextOverlayMesh); staticTextOverlayMesh = null; }
             if (currentSvgGroup) { scene.remove(currentSvgGroup); }
+
+            setupMinimap(svgText);
 
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(svgText, 'image/svg+xml');
@@ -3870,7 +4030,7 @@
         }
 
         window.addEventListener('click', (e) => {
-            if (e.target.closest('.cat-pill') || e.target.closest('.ticket-card') || e.target.closest('#map-container canvas') || e.target.closest('.site-nav') || e.target.closest('.sidebar') || e.target.closest('.event-header') || e.target.closest('#resizer-divider') || e.target.closest('.btn-show-more') || e.target.closest('.btn-toggle-map') || e.target.closest('.map-bottom-left-widget') || e.target.closest('.map-controls-widget')) {
+            if (e.target.closest('.cat-pill') || e.target.closest('.ticket-card') || e.target.closest('#map-container canvas') || e.target.closest('.site-nav') || e.target.closest('.sidebar') || e.target.closest('.event-header') || e.target.closest('#resizer-divider') || e.target.closest('.btn-show-more') || e.target.closest('.btn-toggle-map') || e.target.closest('.map-bottom-left-widget') || e.target.closest('.map-controls-widget') || e.target.closest('#map-minimap')) {
                 return;
             }
             if (activeFilterCategory) {
