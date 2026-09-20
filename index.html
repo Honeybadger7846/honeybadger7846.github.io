@@ -23,7 +23,6 @@
             user-select: none !important;
         }
 
-        /* Top Platform Navigation */
         .site-nav {
             height: 41.6px;
             background: #ffffff;
@@ -92,7 +91,6 @@
             color: #111827;
         }
 
-        /* Two-Column App Layout */
         .page-body {
             display: flex;
             flex: 1;
@@ -100,7 +98,6 @@
             position: relative;
         }
 
-        /* Left Side: Match Header + Categories + Stadium Map */
         .content-left {
             flex: 1;
             display: flex;
@@ -112,7 +109,6 @@
             container-type: inline-size;
         }
 
-        /* Event Top Bar */
         .event-header {
             background: #ffffff;
             padding: 10px 24px;
@@ -239,7 +235,6 @@
             color: #111827;
         }
 
-        /* Compact Container Adaptations */
         @container (max-width: 520px) {
             .event-header {
                 padding: 8px 14px;
@@ -263,7 +258,6 @@
             }
         }
 
-        /* Category Filter Bar */
         .categories-bar {
             display: flex;
             align-items: center;
@@ -340,11 +334,9 @@
         .cat-scroll-arrow:hover { background: #20bc82; }
         .cat-scroll-arrow:active { transform: scale(0.92); }
 
-        /* Map Canvas */
         #map-container { flex: 1; position: relative; background: #ffffff; overflow: hidden; }
         #map-container canvas { display: block; width: 100% !important; height: 100% !important; outline: none; }
 
-        /* Bottom-Left Prices Toggle Widget */
         .map-bottom-left-widget {
             position: absolute;
             bottom: 24px;
@@ -415,7 +407,6 @@
             letter-spacing: -0.2px;
         }
 
-        /* Circular Controls Widget: 20% smaller, no shadow, clean outline */
         .map-controls-widget {
             position: absolute;
             bottom: 24px;
@@ -467,7 +458,6 @@
             box-shadow: none;
         }
 
-        /* Dotted Resizer Handle Bar */
         .resizer-divider {
             width: 18px;
             background-color: #f7f9fa;
@@ -500,7 +490,6 @@
             display: block;
         }
 
-        /* Right Column: Resizable Listings Sidebar */
         .sidebar { 
             width: 40%; 
             min-width: 40%;
@@ -552,7 +541,6 @@
         }
         .filter-toggle-btn:hover { background: #f3f4f6; border-color: #d1d5db; }
 
-        /* Hide / Show Map Pill Button (Hidden on desktop, shown on mobile) */
         .btn-toggle-map {
             display: none;
             align-items: center;
@@ -619,7 +607,6 @@
             background: #f7f9fa; 
         }
 
-        /* Show More Lazy Loading Container */
         .show-more-container {
             display: flex;
             justify-content: center;
@@ -658,7 +645,6 @@
             transform: translateY(0);
         }
 
-        /* Ticombo Listing Card */
         .ticket-card { 
             background: #ffffff; 
             border: 1px solid #e5e7eb; 
@@ -806,7 +792,6 @@
             box-shadow: 0 1px 2px rgba(0,0,0,0.25);
         }
 
-        /* Detail Drawer inside Sidebar */
         .detail-view { 
             display: flex; 
             flex-direction: column; 
@@ -954,7 +939,6 @@
         .checkout-btn { width: 100%; background: #29CCA2; color: #000000; border: none; padding: 14px; border-radius: 24px; font-size: 16px; font-weight: 900; cursor: pointer; transition: background 0.15s;}
         .checkout-btn:hover { background: #23b791; }
 
-        /* RESPONSIVE MOBILE ADAPTATIONS (screen <= 768px) */
         @media (max-width: 768px) {
             body {
                 overflow: hidden !important;
@@ -1005,7 +989,6 @@
                 overflow: hidden;
             }
 
-            /* Map Block: Hidden by default on mobile */
             .content-left {
                 display: none;
                 flex: none;
@@ -1074,6 +1057,7 @@
                 min-height: 250px;
                 max-height: 250px;
                 flex: none;
+                touch-action: none;
             }
 
             .map-bottom-left-widget {
@@ -1145,7 +1129,6 @@
 </head>
 <body>
 
-    <!-- Platform Header -->
     <header class="site-nav">
         <div class="nav-left">
             <a href="#" class="nav-brand">
@@ -1161,7 +1144,6 @@
             </div>
         </div>
         <div class="nav-right">
-            <!-- Mobile Action Icons -->
             <button class="mobile-nav-btn" aria-label="Search">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </button>
@@ -1172,7 +1154,6 @@
                 <svg width="22" height="22" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.3"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
 
-            <!-- Desktop Links -->
             <span class="nav-link" title="Search">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </span>
@@ -1184,26 +1165,21 @@
         </div>
     </header>
 
-    <!-- Main Two-Column Structure -->
     <div class="page-body" id="page-body">
         
-        <!-- Left Side: Event Details, Filter Strip, Stadium Map -->
         <div class="content-left" id="map-section-panel">
             <div class="event-header">
                 <div class="event-main">
-                    <!-- Match Thumbnail Image -->
                     <img 
                         class="event-card-thumb" 
                         src="https://imgs.ticombo.com/tc-images-main/thumbnail/events/sports/liverpool-fc-vs-manchester-city-fc-premier-league/thumbnail-thumbnail-b33e5cf1-7fa1-4aa2-9f31-826846af637a.png" 
                         alt="Liverpool FC vs Manchester City FC"
                     >
 
-                    <!-- Event Details -->
                     <div class="event-info">
                         <div class="event-title-container">
                             <h1 class="event-title">Liverpool FC vs Manchester City FC Premier League tickets</h1>
                             
-                            <!-- Mobile Dropdown Caret -->
                             <svg class="dropdown-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
 
                             <span class="topbar-actions">
@@ -1217,7 +1193,6 @@
                         </div>
 
                         <div class="event-meta-lines">
-                            <!-- Date & Time -->
                             <div class="meta-item">
                                 <svg class="meta-icon" viewBox="0 0 24 24">
                                     <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9.5 14.5l-2.5-2.5-1.41 1.41L9.5 17.33l7.91-7.91-1.41-1.42z"/>
@@ -1225,7 +1200,6 @@
                                 <span>Sun, Oct 11 26, 16:30 BST - Sun, Oct 11 26, 18:15 BST</span>
                             </div>
 
-                            <!-- Venue Location -->
                             <div class="meta-item">
                                 <svg class="meta-icon" viewBox="0 0 24 24">
                                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
@@ -1248,7 +1222,6 @@
             </div>
 
             <div id="map-container">
-                <!-- Bottom Left Prices Toggle Widget -->
                 <div class="map-bottom-left-widget">
                     <label class="prices-switch-label">
                         <span class="prices-switch">
@@ -1259,7 +1232,6 @@
                     </label>
                 </div>
 
-                <!-- Circular Map Controls: 20% smaller, no shadow, clean outline -->
                 <div class="map-controls-widget">
                     <button class="map-ctrl-btn" id="ctrl-zoom-in" title="Zoom In" aria-label="Zoom In">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
@@ -1286,7 +1258,6 @@
             </div>
         </div>
 
-        <!-- Draggable Resizer with Dotted Grip -->
         <div class="resizer-divider" id="resizer-divider" title="Drag to resize panel">
             <div class="resizer-grip">
                 <span></span><span></span>
@@ -1300,12 +1271,10 @@
             </div>
         </div>
 
-        <!-- Right Side: Resizable Listings Sidebar -->
         <div class="sidebar" id="sidebar-panel">
             <div class="sidebar-header">
                 <div class="sidebar-header-left">
                     <span id="listing-count-header">160 listings</span>
-                    <!-- Hide / Show Map Button with Football Pitch Icon (Mobile Only) -->
                     <button class="btn-toggle-map" id="btn-toggle-map">
                         <svg viewBox="0 0 24 24">
                             <rect x="2.5" y="4.5" width="19" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
@@ -1352,8 +1321,10 @@
 
                 <div class="detail-content">
                     <div class="detail-features">
-                        <div class="detail-row">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                       <div class="detail-row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            </svg>
                             <span id="dt-cat"></span>
                         </div>
                         <div class="detail-row">
@@ -1455,7 +1426,6 @@
 
         let isMapVisible = window.innerWidth > 768;
 
-        /* Toggle Hide/Show Map Handler */
         btnToggleMap.addEventListener('click', (e) => {
             e.stopPropagation();
             isMapVisible = !isMapVisible;
@@ -1494,8 +1464,12 @@
         const controls = new MapControls(camera, renderer.domElement);
         controls.enableRotate = false;
         controls.enableDamping = false;
-        controls.enableZoom = false; 
         controls.screenSpacePanning = true;
+
+        function updateMobileZoomState() {
+            controls.enableZoom = window.innerWidth <= 768;
+        }
+        updateMobileZoomState();
 
         const panoContainer = document.getElementById('panorama-container');
         const panoScene = new THREE.Scene();
@@ -1536,7 +1510,6 @@
 
         panoContainer.addEventListener('pointerdown', hidePanoHint);
 
-        /* Resizable Sidebar Logic */
         const resizer = document.getElementById('resizer-divider');
         const sidebar = document.getElementById('sidebar-panel');
         const pageBody = document.getElementById('page-body');
@@ -1589,6 +1562,7 @@
         window.addEventListener('resize', () => {
             updateCanvasSize();
             updateCategoryScrollButtons();
+            updateMobileZoomState();
             if (window.innerWidth > 768) {
                 isMapVisible = true;
                 mapSectionPanel.classList.remove('is-visible');
@@ -1640,7 +1614,6 @@
         let activeFilterSection = null;
         let activeFilterCategory = null;
 
-        /* Pagination & Lazy Loading State */
         const PAGE_SIZE = 25;
         let currentVisibleCount = PAGE_SIZE;
         let currentFilteredListings = [];
@@ -1870,7 +1843,6 @@
             applyRowOpacities();
         }
 
-        /* Prices Toggle Implementation */
         const pricesCheckbox = document.getElementById('toggle-prices-checkbox');
         pricesCheckbox.addEventListener('change', (e) => {
             showPrices = e.target.checked;
@@ -2042,7 +2014,6 @@
                 labelsGroup.add(sprite);
             }
 
-            // 1. Badges for individual allocated seats
             for (const [seatKey, price] of Object.entries(lastMinPricesBySeat)) {
                 const sepIdx = seatKey.lastIndexOf('::');
                 if (sepIdx === -1) continue;
@@ -2062,14 +2033,12 @@
                 addBadge(activeSeatCircle, `€${price}`, 'seat', price, rGroup.userData.sectionName, rowKey);
             }
 
-            // 2. Badges for rows that have listings
             for (const [rowKey, price] of Object.entries(lastMinPricesByRow)) {
                 const rGroup = rowGroups[rowKey];
                 if (!rGroup) continue;
                 addBadge(rGroup, `€${price}`, 'row', price, rGroup.userData.sectionName, rowKey);
             }
 
-            // 3. Badges for sections
             for (const [sectionName, price] of Object.entries(lastMinPricesBySection)) {
                 const sGroup = sectionGroups[sectionName];
                 if (!sGroup) continue;
@@ -2088,7 +2057,6 @@
 
         const _projPos = new THREE.Vector3();
 
-        /* Screen-space badge projection and collision engine */
         function updateScreenSpacePriceLabelScales() {
             if (!labelsGroup || defaultCameraPos.z === 0 || !showPrices) return;
 
@@ -2221,7 +2189,6 @@
             }
         }
 
-        /* Focus bounding box of all sections belonging to a category strictly in 2D Top View */
         function focusCategoryIn2DView(categoryName) {
             const matchingGroups = Object.values(sectionGroups).filter(
                 g => g.userData && g.userData.categoryName === categoryName
@@ -2268,7 +2235,6 @@
             });
         }
 
-        /* Scroll Buttons Dynamic Visibility Controller */
         const catContainer = document.getElementById('categories-container');
         const catScrollLeftBtn = document.getElementById('cat-scroll-left');
         const catScrollRightBtn = document.getElementById('cat-scroll-right');
@@ -2455,7 +2421,7 @@
                 box.getSize(size);
 
                 const rowLabel = rGroup.userData.label || rGroup.userData.rowId;
-                const fontSize = 2; //Math.max(2.8, Math.min(size.x * 0.4, size.y * 0.55, 5));
+                const fontSize = 2;
                 
                 const sprite = createSectionTextSprite(String(rowLabel), fontSize, '#000000');
                 sprite.name = `sprite_${key}`;
@@ -2751,7 +2717,6 @@
                 panoCamera.updateProjectionMatrix();
             }, 50);
 
-            // Focus Mode Handling: Only tilt into 3D if a specific section was clicked
             const targetGroup = sectionName ? sectionGroups[sectionName] : null;
             if (targetGroup) {
                 lockedSectionGroup = targetGroup;
@@ -2787,7 +2752,6 @@
                 if (item.section) {
                     openDetailView(item.section, item.price, item.displayCategoryName);
                 } else {
-                    // Category-only: Open detail view with preview image, staying strictly in 2D top mode
                     filterListingsByCategory(item.category);
                     openDetailView(null, item.price, item.displayCategoryName, item.category);
                 }
@@ -2837,8 +2801,6 @@
             const content = document.createElement('div');
             content.className = 'card-content';
             
-            // --- TEMPORARY / HARDCODED FALLBACK IMAGE LOGIC ---
-            // If listing has a specific section, use that; if it's category-only, fall back to a random section from that category/stand
             const imageSection = item.displaySectionName || (item.previewSectionName ? getDisplaySection(item.previewSectionName) : null);
             if (imageSection) {
                 const thumbImg = document.createElement('img');
@@ -2849,7 +2811,6 @@
                 thumbImg.onerror = () => { thumbImg.style.display = 'none'; };
                 content.appendChild(thumbImg);
             }
-            // --- END TEMPORARY FALLBACK ---
 
             const info = document.createElement('div');
             info.className = 'card-info';
@@ -3018,7 +2979,6 @@
 
             const uniqueCategories = [...new Set(parsedSections.map(s => s.category).filter(Boolean))];
 
-            // Build map of category -> available sections for fallback preview thumbnails
             const categoryToSections = {};
             parsedSections.forEach(s => {
                 if (!categoryToSections[s.category]) categoryToSections[s.category] = [];
@@ -3028,11 +2988,10 @@
             for (let i = 0; i < TOTAL_LISTINGS; i++) {
                 const randType = Math.random();
                 let listingType;
-                // Distribution: 10% Category-only, 30% Section-only, 35% Section + Row, 25% Section + Row + Seat
-                if (randType < 0.10) listingType = 'category';        // 10% Category-only
-                else if (randType < 0.40) listingType = 'section';    // 30% Section-only
-                else if (randType < 0.75) listingType = 'row';        // 35% Section + Row
-                else listingType = 'seat';                            // 25% Section + Row + Seat
+                if (randType < 0.10) listingType = 'category';
+                else if (randType < 0.40) listingType = 'section';
+                else if (randType < 0.75) listingType = 'row';
+                else listingType = 'seat';
 
                 let category = null;
                 let sec = null;
@@ -3042,13 +3001,10 @@
 
                 if (listingType === 'category') {
                     category = uniqueCategories[Math.floor(Math.random() * uniqueCategories.length)];
-                    
-                    // --- TEMPORARY / HARDCODED: Pick a random section from this stand/category for thumbnail preview ---
                     const standSections = categoryToSections[category] || [];
                     if (standSections.length > 0) {
                         previewSectionName = standSections[Math.floor(Math.random() * standSections.length)];
                     }
-                    // --- END TEMPORARY ---
                 } else {
                     sec = parsedSections[Math.floor(Math.random() * parsedSections.length)];
                     category = sec.category;
@@ -3122,7 +3078,7 @@
                     category: category,
                     rowNum: rowNum,
                     seatNum: displaySeat,
-                    previewSectionName: previewSectionName, // Used for category fallback thumbnail
+                    previewSectionName: previewSectionName,
                     price,
                     colorString,
                     isIndividual,
@@ -3549,6 +3505,10 @@
             controls.target.set(0, 0, 0);
             controls.enablePan = true;
             controls.enableRotate = false;
+
+            controls.minDistance = 25;
+            controls.maxDistance = maxDim * 4.0;
+
             controls.update();
 
             defaultCameraPos.copy(camera.position);
@@ -3662,7 +3622,6 @@
             controls.update();
         }, { passive: false });
 
-        /* Accurate Screen/Touch Coordinate Converter */
         function updateRaycasterCoords(clientX, clientY) {
             const rect = renderer.domElement.getBoundingClientRect();
             if (rect.width === 0 || rect.height === 0) return false;
@@ -3684,7 +3643,6 @@
 
             if (lockedSectionGroup) return; 
 
-            // Recalculate coordinates exactly at tap/click location
             if (!updateRaycasterCoords(clientX, clientY)) return;
 
             raycaster.setFromCamera(mouse, camera);
@@ -3769,7 +3727,6 @@
             }
         });
 
-        // Mobile-robust Touch and Pointer Listeners
         let pointerDownPos = { x: 0, y: 0 };
 
         renderer.domElement.addEventListener('pointermove', onPointerMove, { passive: true });
@@ -3780,7 +3737,8 @@
         }, { passive: true });
 
         renderer.domElement.addEventListener('pointerup', (e) => {
-            // Drag vs tap threshold: if pointer moved more than 6px, treat as pan, not click
+            if (e.pointerType === 'touch' && !e.isPrimary) return;
+
             const dx = Math.abs(e.clientX - pointerDownPos.x);
             const dy = Math.abs(e.clientY - pointerDownPos.y);
             if (dx > 6 || dy > 6) {
@@ -3803,6 +3761,7 @@
         const resizeObserver = new ResizeObserver(() => {
             updateCanvasSize();
             updateCategoryScrollButtons();
+            updateMobileZoomState();
         });
         resizeObserver.observe(mapContainer);
         if (catContainer) {
