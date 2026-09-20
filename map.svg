@@ -10066,8 +10066,8 @@
    <text x="400.83899" y="830.43298" fill="#503fa5" font-family="proxima-nova" font-size="15px">MAIN STAND</text>
   </g>
   <g transform="matrix(.34451 0 0 .34451 243.84 223.74)">
-   <rect width="1150" height="740" fill="#74ac56"/>
-   <g id="pitch-stripes">
+   <path d="m0 0h1150v740h-1150zm50 50v640h1050v-640z" fill="#74ac56" fill-rule="evenodd"/>
+   <g>
     <rect x="50" y="50" width="70" height="640" fill="#84c25e"/>
     <rect x="120" y="50" width="70" height="640" fill="#74ac56"/>
     <rect x="190" y="50" width="70" height="640" fill="#84c25e"/>
