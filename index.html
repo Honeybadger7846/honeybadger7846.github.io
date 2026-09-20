@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Prototype</title>
     <style>
-        * { box-sizing: border-box; }
-        body { 
-            margin: 0; 
-            padding: 0; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-            background-color: #ffffff; 
-            color: #111827; 
-            overflow: hidden; 
-            height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            color: #111827;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         body.is-resizing {
@@ -35,17 +39,25 @@
             flex-shrink: 0;
             z-index: 30;
         }
-        .nav-left { display: flex; align-items: center; gap: 14px; }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
         .nav-brand {
             display: flex;
             align-items: center;
             text-decoration: none;
         }
+
         .nav-brand img {
             height: 20px;
             width: auto;
             display: block;
         }
+
         .breadcrumbs {
             display: flex;
             align-items: center;
@@ -55,18 +67,49 @@
             font-weight: 500;
             white-space: nowrap;
         }
-        .breadcrumbs span.sep { color: #d1d5db; font-weight: 400; }
-        .breadcrumbs a { color: #6b7280; text-decoration: none; }
-        .breadcrumbs a:hover { color: #111827; }
+
+        .breadcrumbs span.sep {
+            color: #d1d5db;
+            font-weight: 400;
+        }
+
+        .breadcrumbs a {
+            color: #6b7280;
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            color: #111827;
+        }
+
         .breadcrumbs .breadcrumb-current {
             color: #111827;
             font-weight: 500;
             white-space: nowrap;
         }
 
-        .nav-right { display: flex; align-items: center; gap: 18px; font-weight: 500; font-size: 13px; color: #374151; }
-        .nav-link { display: flex; align-items: center; gap: 6px; cursor: pointer; text-decoration: none; color: inherit; }
-        .nav-link:hover { color: #111827; }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-weight: 500;
+            font-size: 13px;
+            color: #374151;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .nav-link:hover {
+            color: #111827;
+        }
+
         .btn-login {
             background: #111827;
             color: #ffffff;
@@ -79,7 +122,10 @@
             transition: background 0.15s;
             line-height: 1.2;
         }
-        .btn-login:hover { background: #1f2937; }
+
+        .btn-login:hover {
+            background: #1f2937;
+        }
 
         .mobile-nav-btn {
             display: none;
@@ -239,18 +285,22 @@
             .event-header {
                 padding: 8px 14px;
             }
+
             .event-main {
                 gap: 12px;
             }
+
             .event-card-thumb {
                 width: 52px;
                 height: 52px;
                 border-radius: 9px;
             }
+
             .topbar-actions {
                 gap: 8px;
                 margin-left: 6px;
             }
+
             .action-flag-icon,
             .action-heart-icon {
                 width: 16px;
@@ -267,6 +317,7 @@
             flex-shrink: 0;
             position: relative;
         }
+
         .categories {
             display: flex;
             gap: 10px;
@@ -276,40 +327,46 @@
             scrollbar-width: none;
             scroll-behavior: smooth;
         }
-        .categories::-webkit-scrollbar { display: none; }
-        
-        .cat-pill { 
-            border: 1px solid #e5e7eb; 
-            border-radius: 20px; 
-            padding: 8px 18px; 
-            display: flex; 
-            align-items: center; 
-            gap: 9px; 
-            white-space: nowrap; 
-            font-size: 14px; 
-            font-weight: 700; 
-            color: #111827; 
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cat-pill {
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 8px 18px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            white-space: nowrap;
+            font-size: 14px;
+            font-weight: 700;
+            color: #111827;
             line-height: 1.35;
             letter-spacing: -0.2px;
-            cursor: pointer; 
+            cursor: pointer;
             user-select: none;
             transition: all 0.15s ease;
             background: #ffffff;
         }
-        .cat-pill:hover { 
-            border-color: #29CCA2; 
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); 
+
+        .cat-pill:hover {
+            border-color: #29CCA2;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
-        .cat-pill.active { 
-            border-color: #111827; 
-            background: #111827; 
-            color: #ffffff; 
+
+        .cat-pill.active {
+            border-color: #111827;
+            background: #111827;
+            color: #ffffff;
             box-shadow: 0 2px 6px rgba(17, 24, 39, 0.15);
         }
-        .cat-dot { 
-            width: 10px; 
-            height: 10px; 
-            border-radius: 50%; 
+
+        .cat-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
             flex-shrink: 0;
         }
 
@@ -327,15 +384,33 @@
             flex-shrink: 0;
             transition: background 0.15s, transform 0.1s;
         }
+
         .cat-scroll-arrow svg {
             width: 18px;
             height: 18px;
         }
-        .cat-scroll-arrow:hover { background: #20bc82; }
-        .cat-scroll-arrow:active { transform: scale(0.92); }
 
-        #map-container { flex: 1; position: relative; background: #ffffff; overflow: hidden; }
-        #map-container canvas { display: block; width: 100% !important; height: 100% !important; outline: none; }
+        .cat-scroll-arrow:hover {
+            background: #20bc82;
+        }
+
+        .cat-scroll-arrow:active {
+            transform: scale(0.92);
+        }
+
+        #map-container {
+            flex: 1;
+            position: relative;
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        #map-container canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+            outline: none;
+        }
 
         .map-bottom-left-widget {
             position: absolute;
@@ -373,7 +448,10 @@
         .prices-slider {
             position: absolute;
             cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background-color: #cbd5e1;
             transition: .25s ease;
             border-radius: 24px;
@@ -392,11 +470,11 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
         }
 
-        .prices-switch input:checked + .prices-slider {
+        .prices-switch input:checked+.prices-slider {
             background-color: #29CCA2;
         }
 
-        .prices-switch input:checked + .prices-slider:before {
+        .prices-switch input:checked+.prices-slider:before {
             transform: translateX(18px);
         }
 
@@ -417,6 +495,7 @@
             z-index: 15;
             user-select: none;
         }
+
         .map-ctrl-btn {
             width: 35px;
             height: 35px;
@@ -433,15 +512,18 @@
             outline: none;
             padding: 0;
         }
+
         .map-ctrl-btn:hover {
             background: #f8fafc;
             border-color: #d1d5db;
             color: #000000;
             box-shadow: none;
         }
+
         .map-ctrl-btn:active {
             transform: scale(0.94);
         }
+
         .map-ctrl-btn svg {
             display: block;
             pointer-events: none;
@@ -534,6 +616,7 @@
             justify-content: center;
             pointer-events: none;
         }
+
         .resizer-grip span {
             width: 3.5px;
             height: 3.5px;
@@ -542,18 +625,19 @@
             display: block;
         }
 
-        .sidebar { 
-            width: 40%; 
+        .sidebar {
+            width: 40%;
             min-width: 40%;
             max-width: 60%;
-            display: flex; 
-            flex-direction: column; 
-            background: #f7f9fa; 
-            position: relative; 
+            display: flex;
+            flex-direction: column;
+            background: #f7f9fa;
+            position: relative;
             overflow: hidden;
             flex-shrink: 0;
             height: 100%;
         }
+
         .sidebar-header {
             padding: 14px 24px 14px 7px;
             background: #f7f9fa;
@@ -566,16 +650,19 @@
             flex-shrink: 0;
             line-height: 1;
         }
+
         .sidebar-header-left {
             display: flex;
             align-items: center;
             gap: 10px;
         }
+
         .sidebar-header-right {
             display: flex;
             align-items: center;
             gap: 12px;
         }
+
         .filter-toggle-btn {
             background: #ffffff;
             border: 1px solid #e5e7eb;
@@ -588,10 +675,14 @@
             height: 40px;
             border-radius: 50%;
             transition: all 0.15s ease;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
             padding: 0;
         }
-        .filter-toggle-btn:hover { background: #f3f4f6; border-color: #d1d5db; }
+
+        .filter-toggle-btn:hover {
+            background: #f3f4f6;
+            border-color: #d1d5db;
+        }
 
         .btn-toggle-map {
             display: none;
@@ -610,9 +701,11 @@
             transition: background 0.15s ease;
             flex-shrink: 0;
         }
+
         .btn-toggle-map:hover {
             background: #1f2937;
         }
+
         .btn-toggle-map svg {
             width: 18px;
             height: 18px;
@@ -636,12 +729,17 @@
             flex-shrink: 0;
             transition: background 0.15s ease;
         }
-        .qty-badge-btn:hover { background: #23b791; }
+
+        .qty-badge-btn:hover {
+            background: #23b791;
+        }
+
         .qty-badge-main {
             font-size: 15px;
             font-weight: 900;
             letter-spacing: -0.2px;
         }
+
         .qty-badge-sub {
             font-size: 8px;
             font-weight: 900;
@@ -649,14 +747,14 @@
             text-transform: uppercase;
         }
 
-        .ticket-list { 
-            flex: 1; 
-            overflow-y: auto; 
-            padding: 0 20px 20px 7px; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 12px; 
-            background: #f7f9fa; 
+        .ticket-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 20px 20px 7px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #f7f9fa;
         }
 
         .show-more-container {
@@ -697,40 +795,42 @@
             transform: translateY(0);
         }
 
-        .ticket-card { 
-            background: #ffffff; 
-            border: 1px solid #e5e7eb; 
-            border-radius: 20px; 
-            display: flex; 
+        .ticket-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            display: flex;
             align-items: stretch;
-            overflow: hidden; 
-            transition: border-color 0.15s ease, box-shadow 0.15s ease; 
-            cursor: pointer; 
+            overflow: hidden;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+            cursor: pointer;
             min-height: 94px;
             position: relative;
             box-sizing: border-box;
             width: 100%;
         }
-        .ticket-card:hover { 
-            border-color: #29CCA2; 
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); 
+
+        .ticket-card:hover {
+            border-color: #29CCA2;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
-        .card-color { 
-            width: 13px; 
-            flex-shrink: 0; 
+        .card-color {
+            width: 13px;
+            flex-shrink: 0;
             display: block;
         }
-        
-        .card-content { 
-            padding: 10px 12px 10px 10px; 
-            flex: 1; 
-            min-width: 0; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            gap: 14px; 
+
+        .card-content {
+            padding: 10px 12px 10px 10px;
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
         }
+
         .card-top-row {
             display: flex;
             align-items: center;
@@ -738,29 +838,32 @@
             flex: 1;
             min-width: 0;
         }
-        .card-thumb { 
-            width: 108px; 
-            height: 74px; 
-            object-fit: cover; 
-            border-radius: 8px; 
-            flex-shrink: 0; 
-            background: #f1f5f9; 
-            border: 1px solid #e2e8f0; 
+
+        .card-thumb {
+            width: 108px;
+            height: 74px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
             display: block;
         }
-        .card-info { 
-            flex: 1; 
-            min-width: 0; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 4px; 
+
+        .card-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
             overflow: hidden;
         }
-        .card-info h3 { 
-            margin: 0; 
-            font-size: 14px; 
-            font-weight: 700; 
-            color: #111827; 
+
+        .card-info h3 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 700;
+            color: #111827;
             line-height: 1.35;
             letter-spacing: -0.2px;
             display: -webkit-box;
@@ -769,22 +872,25 @@
             overflow: hidden;
             word-break: break-word;
         }
-        .card-meta-row { 
-            margin: 0; 
-            font-size: 11.5px; 
-            color: #4b5563; 
-            display: flex; 
-            align-items: center; 
-            gap: 6px; 
-            flex-wrap: wrap; 
+
+        .card-meta-row {
+            margin: 0;
+            font-size: 11.5px;
+            color: #4b5563;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
         }
-        .seller-rating { 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 3px; 
-            font-weight: 600; 
-            color: #1f2937; 
+
+        .seller-rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-weight: 600;
+            color: #1f2937;
         }
+
         .seller-tag {
             font-size: 10px;
             color: #6b7280;
@@ -792,10 +898,11 @@
             padding: 1px 6px;
             border-radius: 4px;
         }
-        .badge-green { 
-            color: #059669; 
-            font-weight: 600; 
-            font-size: 11.5px; 
+
+        .badge-green {
+            color: #059669;
+            font-weight: 600;
+            font-size: 11.5px;
             display: flex;
             align-items: center;
             gap: 4px;
@@ -812,28 +919,34 @@
             margin-top: 2px;
             align-self: flex-start;
         }
-        .buy-btn { 
+
+        .buy-btn {
             width: 107.55px;
             height: 32px;
-            background: #29CCA2; 
-            color: #000000; 
-            border: none; 
+            background: #29CCA2;
+            color: #000000;
+            border: none;
             padding: 0 10px;
-            border-radius: 16px; 
-            cursor: pointer; 
-            display: flex; 
-            align-items: center; 
+            border-radius: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
             justify-content: center;
             white-space: nowrap;
             transition: background-color 0.15s ease;
         }
-        .buy-btn:hover { background: #23b791; }
+
+        .buy-btn:hover {
+            background: #23b791;
+        }
+
         .buy-btn-text {
             font-size: 14.5px;
             font-weight: 900;
             letter-spacing: -0.2px;
             line-height: 1;
         }
+
         .buy-btn-badge {
             position: absolute;
             bottom: -3px;
@@ -848,69 +961,96 @@
             border-radius: 6px;
             line-height: 1;
             pointer-events: none;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
         }
 
-        .detail-view { 
-            display: flex; 
-            flex-direction: column; 
-            height: 100%; 
-            width: 100%; 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            background: #f7f9fa; 
+        .detail-view {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #f7f9fa;
             z-index: 25;
-            transform: translateX(100%); 
+            transform: translateX(100%);
             transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        .detail-view.active { transform: translateX(0); }
-        .detail-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 16px 24px; 
-            border-bottom: 1px solid #e5e7eb; 
-            background: #ffffff; 
+
+        .detail-view.active {
+            transform: translateX(0);
+        }
+
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            border-bottom: 1px solid #e5e7eb;
+            background: #ffffff;
             flex-shrink: 0;
         }
-        .back-btn { 
-            background: none; 
-            border: none; 
-            font-size: 14px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
+
+        .back-btn {
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             padding: 0;
-            color: #111827; 
+            color: #111827;
         }
-        .back-btn .back-circle { 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            width: 26px; 
-            height: 26px; 
-            background: #111827; 
-            color: #ffffff; 
-            border-radius: 50%; 
+
+        .back-btn .back-circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            background: #111827;
+            color: #ffffff;
+            border-radius: 50%;
         }
-        
-        .detail-content { flex: 1; overflow-y: auto; padding: 18px 24px; font-size: 13.5px; color: #1f2937; }
-        .detail-features { 
-            display: flex; 
-            flex-wrap: wrap; 
-            gap: 12px 20px; 
-            margin-bottom: 18px; 
-            background: #ffffff; 
+
+        .detail-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px 24px;
+            font-size: 13.5px;
+            color: #1f2937;
+        }
+
+        .detail-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            margin-bottom: 18px;
+            background: #ffffff;
             padding: 12px 16px;
             border-radius: 10px;
-            border: 1px solid #e5e7eb; 
+            border: 1px solid #e5e7eb;
         }
-        .detail-row { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 12.5px; color: #374151;}
-        .detail-row svg { width: 15px; height: 15px; flex-shrink: 0; color: #6b7280; }
-        
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            font-size: 12.5px;
+            color: #374151;
+        }
+
+        .detail-row svg {
+            width: 15px;
+            height: 15px;
+            flex-shrink: 0;
+            color: #6b7280;
+        }
+
         #panorama-container {
             width: 100%;
             height: 270px;
@@ -919,17 +1059,19 @@
             margin-bottom: 8px;
             background: #f1f5f9;
             position: relative;
-            border: 1px solid #e5e7eb; 
+            border: 1px solid #e5e7eb;
             display: flex;
             align-items: center;
             justify-content: center;
         }
+
         #detail-preview-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
+
         .photo-caption {
             font-size: 11.5px;
             color: #64748b;
@@ -939,35 +1081,135 @@
             font-weight: 500;
             letter-spacing: -0.1px;
         }
+
         #pano-loading {
-            position: absolute; 
-            top: 0; left: 0; right: 0; bottom: 0;
-            display: none; 
-            align-items: center; 
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+            align-items: center;
             justify-content: center;
             background: rgba(248, 250, 252, 0.9);
-            color: #475569; 
-            font-weight: 600; 
+            color: #475569;
+            font-weight: 600;
             font-size: 13px;
-            z-index: 5; 
+            z-index: 5;
             pointer-events: none;
         }
-        
-        .total-box { margin-bottom: 20px; }
-        .total-title { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; margin-bottom: 12px; }
-        .math-row { display: flex; align-items: center; gap: 14px; font-size: 15px; font-weight: 700; margin-bottom: 16px; }
-        .math-controls { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid #e5e7eb; padding: 6px 14px; border-radius: 18px; }
-        .math-controls span { cursor: pointer; user-select: none; font-size: 17px; }
-        
-        .propose-wrapper { display: flex; border: 1px solid #e5e7eb; border-radius: 22px; overflow: hidden; height: 40px; align-items: center; margin-bottom: 18px; background: #ffffff; }
-        .propose-wrapper input { border: none; outline: none; padding: 0 14px; flex: 1; font-size: 13px; font-weight: 600; background: transparent; }
-        .propose-btn { background: #111827; color: #fff; border: none; padding: 0 20px; height: 100%; font-weight: 700; cursor: pointer; font-size: 13px; }
-        
-        .section-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; margin-top: 20px; margin-bottom: 6px;}
-        .section-desc { color: #4b5563; margin-bottom: 14px; font-size: 13px; line-height: 1.45; margin-left: 24px;}
-        .detail-footer { padding: 16px 24px; border-top: 1px solid #e5e7eb; background: #ffffff; flex-shrink: 0; }
-        .checkout-btn { width: 100%; background: #29CCA2; color: #000000; border: none; padding: 14px; border-radius: 24px; font-size: 16px; font-weight: 900; cursor: pointer; transition: background 0.15s;}
-        .checkout-btn:hover { background: #23b791; }
+
+        .total-box {
+            margin-bottom: 20px;
+        }
+
+        .total-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .math-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .math-controls {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            padding: 6px 14px;
+            border-radius: 18px;
+        }
+
+        .math-controls span {
+            cursor: pointer;
+            user-select: none;
+            font-size: 17px;
+        }
+
+        .propose-wrapper {
+            display: flex;
+            border: 1px solid #e5e7eb;
+            border-radius: 22px;
+            overflow: hidden;
+            height: 40px;
+            align-items: center;
+            margin-bottom: 18px;
+            background: #ffffff;
+        }
+
+        .propose-wrapper input {
+            border: none;
+            outline: none;
+            padding: 0 14px;
+            flex: 1;
+            font-size: 13px;
+            font-weight: 600;
+            background: transparent;
+        }
+
+        .propose-btn {
+            background: #111827;
+            color: #fff;
+            border: none;
+            padding: 0 20px;
+            height: 100%;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-top: 20px;
+            margin-bottom: 6px;
+        }
+
+        .section-desc {
+            color: #4b5563;
+            margin-bottom: 14px;
+            font-size: 13px;
+            line-height: 1.45;
+            margin-left: 24px;
+        }
+
+        .detail-footer {
+            padding: 16px 24px;
+            border-top: 1px solid #e5e7eb;
+            background: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #29CCA2;
+            color: #000000;
+            border: none;
+            padding: 14px;
+            border-radius: 24px;
+            font-size: 16px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .checkout-btn:hover {
+            background: #23b791;
+        }
 
         @media (max-width: 768px) {
             body {
@@ -981,10 +1223,12 @@
                 padding: 0 14px;
                 flex-shrink: 0;
             }
+
             .nav-right .nav-link,
             .nav-right .btn-login {
                 display: none;
             }
+
             .mobile-nav-btn {
                 display: flex;
             }
@@ -1038,27 +1282,33 @@
             .event-header {
                 padding: 8px 14px;
             }
+
             .event-card-thumb {
                 display: none;
             }
+
             .topbar-actions {
                 display: none;
             }
+
             .dropdown-chevron-icon {
                 display: block;
             }
+
             .event-title-container {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 gap: 8px;
             }
+
             .event-title {
                 font-size: 15px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
+
             .event-meta-lines {
                 flex-direction: column;
                 align-items: flex-start;
@@ -1070,13 +1320,14 @@
                 padding: 6px 12px 8px 12px;
                 gap: 6px;
             }
-            
+
             .cat-scroll-arrow {
                 width: 32px;
                 height: 32px;
                 display: none;
                 flex-shrink: 0;
             }
+
             .cat-scroll-arrow svg {
                 width: 16px;
                 height: 16px;
@@ -1094,10 +1345,12 @@
                 bottom: 14px;
                 left: 14px;
             }
+
             .map-controls-widget {
                 bottom: 14px;
                 right: 14px;
             }
+
             .map-ctrl-btn {
                 border-radius: 50%;
                 width: 32px;
@@ -1130,12 +1383,13 @@
                 flex-shrink: 0;
                 background: #f7f9fa;
                 padding: 10px 14px;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             }
 
             #listing-count-header {
                 display: none;
             }
+
             .btn-toggle-map {
                 display: inline-flex;
             }
@@ -1245,7 +1499,7 @@
                 border-radius: 6px !important;
                 line-height: 1 !important;
                 pointer-events: none !important;
-                box-shadow: 0 1px 2px rgba(0,0,0,0.25) !important;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25) !important;
             }
 
             .detail-view {
@@ -1288,7 +1542,8 @@
             }
         }
 
-        @media (max-width: 950px) and (orientation: landscape), (max-height: 520px) {
+        @media (max-width: 950px) and (orientation: landscape),
+        (max-height: 520px) {
             .site-nav {
                 height: 38px;
             }
@@ -1386,6 +1641,7 @@
         }
     </script>
 </head>
+
 <body>
 
     <header class="site-nav">
@@ -1404,17 +1660,30 @@
         </div>
         <div class="nav-right">
             <button class="mobile-nav-btn" aria-label="Search">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
             </button>
             <button class="mobile-nav-btn" aria-label="Account">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                </svg>
             </button>
             <button class="mobile-nav-btn" aria-label="Menu">
-                <svg width="22" height="22" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.3"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.3">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
             </button>
 
             <span class="nav-link" title="Search">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
             </span>
             <span class="nav-link">🇬🇧 EN</span>
             <span class="nav-link">📞 +49</span>
@@ -1425,28 +1694,30 @@
     </header>
 
     <div class="page-body" id="page-body">
-        
+
         <div class="content-left" id="map-section-panel">
             <div class="event-header">
                 <div class="event-main">
-                    <img 
-                        class="event-card-thumb" 
-                        src="https://imgs.ticombo.com/tc-images-main/thumbnail/events/sports/liverpool-fc-vs-manchester-city-fc-premier-league/thumbnail-thumbnail-b33e5cf1-7fa1-4aa2-9f31-826846af637a.png" 
-                        alt="Liverpool FC vs Manchester City FC"
-                    >
+                    <img class="event-card-thumb"
+                        src="https://imgs.ticombo.com/tc-images-main/thumbnail/events/sports/liverpool-fc-vs-manchester-city-fc-premier-league/thumbnail-thumbnail-b33e5cf1-7fa1-4aa2-9f31-826846af637a.png"
+                        alt="Liverpool FC vs Manchester City FC">
 
                     <div class="event-info">
                         <div class="event-title-container">
                             <h1 class="event-title">Liverpool FC vs Manchester City FC Premier League tickets</h1>
-                            
-                            <svg class="dropdown-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+
+                            <svg class="dropdown-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
 
                             <span class="topbar-actions">
                                 <svg class="action-flag-icon" viewBox="0 0 20 20" aria-label="Flag">
-                                    <path d="M12.4 4.5L12 3H3v14h2v-6h5.4l.4 1.5h6.2V4.5h-4.6z"/>
+                                    <path d="M12.4 4.5L12 3H3v14h2v-6h5.4l.4 1.5h6.2V4.5h-4.6z" />
                                 </svg>
                                 <svg class="action-heart-icon" viewBox="0 0 24 24" aria-label="Favorite">
-                                    <path d="M12 21.1c-.3 0-.6-.1-.8-.3C6.3 16.3 2 12.3 2 7.8 2 4.6 4.5 2 7.7 2c2 0 3.7 1 4.3 2.5C12.6 3 14.3 2 16.3 2 19.5 2 22 4.6 22 7.8c0 4.5-4.3 8.5-9.2 13-.2.2-.5.3-.8.3z"/>
+                                    <path
+                                        d="M12 21.1c-.3 0-.6-.1-.8-.3C6.3 16.3 2 12.3 2 7.8 2 4.6 4.5 2 7.7 2c2 0 3.7 1 4.3 2.5C12.6 3 14.3 2 16.3 2 19.5 2 22 4.6 22 7.8c0 4.5-4.3 8.5-9.2 13-.2.2-.5.3-.8.3z" />
                                 </svg>
                             </span>
                         </div>
@@ -1454,14 +1725,16 @@
                         <div class="event-meta-lines">
                             <div class="meta-item">
                                 <svg class="meta-icon" viewBox="0 0 24 24">
-                                    <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9.5 14.5l-2.5-2.5-1.41 1.41L9.5 17.33l7.91-7.91-1.41-1.42z"/>
+                                    <path
+                                        d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9.5 14.5l-2.5-2.5-1.41 1.41L9.5 17.33l7.91-7.91-1.41-1.42z" />
                                 </svg>
                                 <span>Sun, Oct 11 26, 16:30 BST - Sun, Oct 11 26, 18:15 BST</span>
                             </div>
 
                             <div class="meta-item">
                                 <svg class="meta-icon" viewBox="0 0 24 24">
-                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    <path
+                                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                                 </svg>
                                 <a class="meta-link" href="#">Anfield, Liverpool, United Kingdom</a>
                             </div>
@@ -1472,11 +1745,17 @@
 
             <div class="categories-bar">
                 <button class="cat-scroll-arrow" id="cat-scroll-left" title="Scroll categories left">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
                 </button>
                 <div class="categories" id="categories-container"></div>
                 <button class="cat-scroll-arrow" id="cat-scroll-right" title="Scroll categories right">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
                 </button>
             </div>
 
@@ -1495,18 +1774,22 @@
 
                 <div class="map-controls-widget">
                     <button class="map-ctrl-btn" id="ctrl-zoom-in" title="Zoom In" aria-label="Zoom In">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.6" stroke-linecap="round">
                             <line x1="12" y1="5" x2="12" y2="19"></line>
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
                     </button>
                     <button class="map-ctrl-btn" id="ctrl-zoom-out" title="Zoom Out" aria-label="Zoom Out">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.6" stroke-linecap="round">
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
                     </button>
-                    <button class="map-ctrl-btn" id="ctrl-reset-view" title="Reset Position" aria-label="Reset Position">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <button class="map-ctrl-btn" id="ctrl-reset-view" title="Reset Position"
+                        aria-label="Reset Position">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M5 9V5h4"></path>
                             <path d="M19 9V5h-4"></path>
                             <path d="M5 15v4h4"></path>
@@ -1538,17 +1821,23 @@
                     <span id="listing-count-header">160 listings</span>
                     <button class="btn-toggle-map" id="btn-toggle-map">
                         <svg viewBox="0 0 24 24">
-                            <rect x="2.5" y="4.5" width="19" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
-                            <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                            <line x1="12" y1="4.5" x2="12" y2="19.5" stroke="currentColor" stroke-width="1.8"/>
-                            <path d="M2.5 8.5h3.5v7H2.5z M18 8.5h3.5v7H18z" fill="currentColor"/>
+                            <rect x="2.5" y="4.5" width="19" height="15" rx="2" fill="none" stroke="currentColor"
+                                stroke-width="2" />
+                            <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8" />
+                            <line x1="12" y1="4.5" x2="12" y2="19.5" stroke="currentColor" stroke-width="1.8" />
+                            <path d="M2.5 8.5h3.5v7H2.5z M18 8.5h3.5v7H18z" fill="currentColor" />
                         </svg>
                         <span id="btn-toggle-map-label">Show Map</span>
                     </button>
                 </div>
                 <div class="sidebar-header-right">
                     <button class="filter-toggle-btn" title="Filter listings">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"></line><line x1="7" y1="12" x2="17" y2="12"></line><line x1="10" y1="18" x2="14" y2="18"></line></svg>
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="4" y1="6" x2="20" y2="6"></line>
+                            <line x1="7" y1="12" x2="17" y2="12"></line>
+                            <line x1="10" y1="18" x2="14" y2="18"></line>
+                        </svg>
                     </button>
                     <button class="qty-badge-btn">
                         <span class="qty-badge-main">2 Tickets</span>
@@ -1567,37 +1856,61 @@
                 <div class="detail-header">
                     <button class="back-btn" id="back-to-list-btn">
                         <div class="back-circle">
-                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="3"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="15 18 9 12 15 6"></polyline>
                             </svg>
                         </div>
                         Back To Listings
                     </button>
                     <button class="icon-btn" style="border:none; background:none; cursor:pointer; padding:4px;">
-                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="#111827" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="#111827" stroke-width="2" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
                         </svg>
                     </button>
                 </div>
 
                 <div class="detail-content">
                     <div class="detail-features">
-                       <div class="detail-row">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                        <div class="detail-row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
                             </svg>
                             <span id="dt-cat"></span>
                         </div>
                         <div class="detail-row">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
                             2 seats together
                         </div>
                         <div class="detail-row">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
                             Clear view
                         </div>
                         <div class="detail-row">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
                             E-ticket
                         </div>
                     </div>
@@ -1610,7 +1923,11 @@
 
                     <div class="total-box">
                         <div class="total-title">
-                            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
                             Total (Incl. All Fees)
                         </div>
                         <div class="math-row">
@@ -1619,7 +1936,8 @@
                                 <span style="font-size: 15px;">2</span>
                                 <span>+</span>
                             </div>
-                            <span style="color: #64748b;">x</span> <span id="dt-price">€113</span> = <span id="dt-total" style="font-size: 19px; color:#059669;">€226</span>
+                            <span style="color: #64748b;">x</span> <span id="dt-price">€113</span> = <span id="dt-total"
+                                style="font-size: 19px; color:#059669;">€226</span>
                         </div>
                         <div class="propose-wrapper">
                             <input type="text" placeholder="EUR | 0.00">
@@ -1628,28 +1946,50 @@
                     </div>
 
                     <div class="section-header">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                            </path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
                         Concessions
                     </div>
                     <div class="section-desc">Seated Together • No Fan Restrictions</div>
 
                     <div class="section-header">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
                         Where are my seats?
                     </div>
-                    <div class="section-desc">Once purchase is confirmed, we will assign the best available seats in <span id="dt-cat-desc">Shortside</span>.</div>
+                    <div class="section-desc">Once purchase is confirmed, we will assign the best available seats in
+                        <span id="dt-cat-desc">Shortside</span>.</div>
 
                     <div class="section-header">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
                         Buy safely and securely
                     </div>
-                    <div class="section-desc">1.6+ million Users. The No.1 marketplace for verified football tickets. <strong>Rated 4.8 out of 5 on Trustpilot.</strong></div>
+                    <div class="section-desc">1.6+ million Users. The No.1 marketplace for verified football tickets.
+                        <strong>Rated 4.8 out of 5 on Trustpilot.</strong></div>
 
                     <div class="section-header">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
                         24-hour support
                     </div>
-                    <div class="section-desc" style="margin-bottom: 30px;">We have multilingual 24-hour support, 7 days a week, by Chat, Telephone or WhatsApp.</div>
+                    <div class="section-desc" style="margin-bottom: 30px;">We have multilingual 24-hour support, 7 days
+                        a week, by Chat, Telephone or WhatsApp.</div>
                 </div>
 
                 <div class="detail-footer">
@@ -1661,8 +2001,8 @@
 
     <script type="module">
         import * as THREE from 'three';
-        import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
-        import { MapControls } from 'three/addons/controls/MapControls.js';
+        import {SVGLoader} from 'three/addons/loaders/SVGLoader.js';
+        import {MapControls} from 'three/addons/controls/MapControls.js';
 
         let showPrices = true;
         const ACTIVE_SEAT_COLOR = 0x2cdb9f;
@@ -1709,7 +2049,7 @@
         scene.add(dirLight2);
 
         const camera = new THREE.PerspectiveCamera(45, mapContainer.clientWidth / (mapContainer.clientHeight || 1), 1, 10000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+        const renderer = new THREE.WebGLRenderer({antialias: true, powerPreference: 'high-performance'});
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setSize(mapContainer.clientWidth, mapContainer.clientHeight || 250);
         mapContainer.appendChild(renderer.domElement);
@@ -1746,7 +2086,7 @@
 
             const PADDING = 0.90;
             const distForHeight = (size.y / PADDING) / (2 * Math.tan(vFovRad / 2));
-            const distForWidth  = (size.x / PADDING) / (2 * Math.tan(hFovRad / 2));
+            const distForWidth = (size.x / PADDING) / (2 * Math.tan(hFovRad / 2));
 
             return Math.max(distForHeight, distForWidth, 30);
         }
@@ -1824,10 +2164,26 @@
         });
 
         const PALETTE = [
-            0xfca5a5, 0xc4b5fd, 0xf9a8d4, 0xfde047, 0xd1d5db, 0x9ca3af, 0x93c5fd, 0xfecdd3, 
-            0x86efac, 0x5eead4, 0x67e8f9, 0xa5b4fc, 0xf0abfc, 0xfda4af, 0xfdba74, 0xfcd34d, 0xbef264, 0x6ee7b7 
+            0x2dd4bf,
+            0xfbbf24,
+            0xa78bfa,
+            0xf87171,
+            0x38bdf8,
+            0x4ade80,
+            0xfb923c,
+            0xe879f9,
+            0x818cf8,
+            0x22d3ee,
+            0xf472b6,
+            0xa3e635,
+            0x94a3b8,
+            0x60a5fa,
+            0xfacc15,
+            0x34d399,
+            0xc084fc,
+            0xe2e8f0
         ];
-        
+
         let categoryColors = {};
         let categoryCounts = {};
         let colorIndex = 0;
@@ -1854,8 +2210,8 @@
 
         let currentSvgGroup = null;
         let labelsGroup = null;
-        let sectionGroups = {}; 
-        let rowGroups = {}; 
+        let sectionGroups = {};
+        let rowGroups = {};
         let sectionTextSpritesGroup = null;
         let rowTextSpritesGroup = null;
         let staticTextOverlayMesh = null;
@@ -1868,11 +2224,11 @@
         let currentVisibleCount = PAGE_SIZE;
         let currentFilteredListings = [];
 
-        let activeSection = null; 
+        let activeSection = null;
         let selectedRowGroup = null;
         const defaultCameraPos = new THREE.Vector3();
         const defaultControlsTarget = new THREE.Vector3();
-        
+
         const raycaster = new THREE.Raycaster();
         const mouse = new THREE.Vector2();
         let needsRaycast = false;
@@ -1886,10 +2242,10 @@
         let lastMinPricesBySection = {};
 
         const STAND_ROW_LIMITS = {
-            DALGLISH: { min: 1, max: 31 },
-            KOP:      { min: 1, max: 76 },
-            MAIN:     { min: 1, max: 93 },
-            ANFIELD:  { min: 1, max: 44 }
+            DALGLISH: {min: 1, max: 31},
+            KOP: {min: 1, max: 76},
+            MAIN: {min: 1, max: 93},
+            ANFIELD: {min: 1, max: 44}
         };
 
         function getStandRowRange(sectionName) {
@@ -2144,7 +2500,7 @@
                     depthTest: false,
                     depthWrite: false
                 });
-                seatSpriteMatCache[cacheKey].userData = { aspect: canvas.width / canvas.height };
+                seatSpriteMatCache[cacheKey].userData = {aspect: canvas.width / canvas.height};
             }
 
             const spriteMat = seatSpriteMatCache[cacheKey];
@@ -2153,7 +2509,7 @@
             const worldH = 1.30;
             const worldW = worldH * aspect;
             sprite.scale.set(worldW, worldH, 1);
-            sprite.raycast = () => {};
+            sprite.raycast = () => { };
             sprite.renderOrder = 2050;
             return sprite;
         }
@@ -2258,13 +2614,13 @@
                 const sprite = new THREE.Sprite(spriteMat);
                 sprite.center.set(0.5, 0.0);
                 sprite.scale.set(BADGE_WIDTH, BADGE_HEIGHT, 1);
-                
+
                 const zElevation = badgeType === 'seat' ? 1.05 : (badgeType === 'row' ? 0.98 : 0.90);
                 sprite.position.set(center.x, center.y + BADGE_CLEARANCE, zElevation);
 
                 sprite.userData = {
                     isPriceLabel: true,
-                    badgeType: badgeType, 
+                    badgeType: badgeType,
                     isRowBadge: badgeType === 'row',
                     isSeatBadge: badgeType === 'seat',
                     rowKey: rowKey,
@@ -2330,7 +2686,7 @@
             const refDist = defaultCameraPos.length();
             const currentCameraDist = camera.position.distanceTo(controls.target);
             const t = THREE.MathUtils.clamp((refDist - currentCameraDist) / (refDist * 0.65), 0, 1);
-            
+
             const isMobile = window.innerWidth <= 768;
             const mobileBoost = isMobile ? 1.95 : 1.0;
             const screenMultiplier = (1.0 + (0.10 * t)) * mobileBoost;
@@ -2403,7 +2759,7 @@
             });
 
             candidates.sort((a, b) => {
-                const typePriority = { seat: 1, row: 2, section: 3 };
+                const typePriority = {seat: 1, row: 2, section: 3};
                 const pA = typePriority[a.badgeType] || 4;
                 const pB = typePriority[b.badgeType] || 4;
                 if (pA !== pB) return pA - pB;
@@ -2462,7 +2818,7 @@
                     clone.removeAttribute('stroke');
                     clone.classList.add('minimap-sec');
                     clone.setAttribute('data-minimap-section', secName);
-                    
+
                     clone.addEventListener('click', (e) => {
                         e.stopPropagation();
                         const targetGroup = sectionGroups[secName];
@@ -2575,7 +2931,7 @@
 
             const PADDING = 0.72;
             const distForHeight = (size.y / PADDING) / (2 * Math.tan(vFovRad / 2));
-            const distForWidth  = (size.x / PADDING) / (2 * Math.tan(hFovRad / 2));
+            const distForWidth = (size.x / PADDING) / (2 * Math.tan(hFovRad / 2));
             const targetDist = Math.max(distForHeight, distForWidth, 100);
 
             const targetPos = new THREE.Vector3(center.x, center.y, targetDist);
@@ -2608,26 +2964,26 @@
         }
 
         if (catContainer) {
-            catContainer.addEventListener('scroll', updateCategoryScrollButtons, { passive: true });
+            catContainer.addEventListener('scroll', updateCategoryScrollButtons, {passive: true});
         }
 
         if (catScrollLeftBtn) {
             catScrollLeftBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                catContainer.scrollBy({ left: -220, behavior: 'smooth' });
+                catContainer.scrollBy({left: -220, behavior: 'smooth'});
             });
         }
 
         if (catScrollRightBtn) {
             catScrollRightBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                catContainer.scrollBy({ left: 220, behavior: 'smooth' });
+                catContainer.scrollBy({left: 220, behavior: 'smooth'});
             });
         }
 
         function renderCategoriesLegend() {
             if (!catContainer) return;
-            catContainer.innerHTML = ''; 
+            catContainer.innerHTML = '';
             for (const [categoryName, hexColor] of Object.entries(categoryColors)) {
                 const colorString = '#' + hexColor.toString(16).padStart(6, '0');
                 const pill = document.createElement('div');
@@ -2681,7 +3037,7 @@
                 const cached = sectionSpriteMatCache[cacheKey];
                 const sprite = new THREE.Sprite(cached.material);
                 sprite.scale.set(cached.worldW, cached.worldH, 1);
-                sprite.raycast = () => {};
+                sprite.raycast = () => { };
                 sprite.renderOrder = 450;
                 return sprite;
             }
@@ -2726,11 +3082,11 @@
             const worldH = fontPx * 1.25;
             const worldW = worldH * aspect;
 
-            sectionSpriteMatCache[cacheKey] = { material: spriteMat, worldW, worldH };
+            sectionSpriteMatCache[cacheKey] = {material: spriteMat, worldW, worldH};
 
             const sprite = new THREE.Sprite(spriteMat);
             sprite.scale.set(worldW, worldH, 1);
-            sprite.raycast = () => {};
+            sprite.raycast = () => { };
             sprite.renderOrder = 450;
             return sprite;
         }
@@ -2766,7 +3122,7 @@
                 const sprite = createSectionTextSprite(cleanLabel, fontSize, '#000000');
                 sprite.position.set(center.x, center.y, 0.08);
                 sprite.name = `secLabel_${secInfo.section}`;
-                sprite.userData = { sectionName: secInfo.section };
+                sprite.userData = {sectionName: secInfo.section};
                 group.add(sprite);
             });
 
@@ -2788,7 +3144,7 @@
 
                 const rowLabel = rGroup.userData.label || rGroup.userData.rowId;
                 const fontSize = 3;
-                
+
                 const sprite = createSectionTextSprite(String(rowLabel), fontSize, '#000000');
                 sprite.name = `sprite_${key}`;
                 sprite.position.set(center.x, center.y, 0.35);
@@ -2832,7 +3188,7 @@
             }
 
             const textOnlySvg = new XMLSerializer().serializeToString(doc);
-            const blob = new Blob([textOnlySvg], { type: 'image/svg+xml;charset=utf-8' });
+            const blob = new Blob([textOnlySvg], {type: 'image/svg+xml;charset=utf-8'});
             const url = URL.createObjectURL(blob);
 
             const img = new Image();
@@ -2869,7 +3225,7 @@
 
             const textMesh = new THREE.Mesh(planeGeom, planeMat);
             textMesh.position.set(0, 0, 0.04);
-            textMesh.raycast = () => {};
+            textMesh.raycast = () => { };
             textMesh.renderOrder = 300;
             return textMesh;
         }
@@ -2927,7 +3283,7 @@
             box.getCenter(center);
             const size = new THREE.Vector3();
             box.getSize(size);
-            
+
             const radial = new THREE.Vector2(center.x, center.y);
             if (radial.length() > 0.001) radial.normalize();
             else radial.set(0, -1);
@@ -2939,7 +3295,7 @@
 
             const FILL_RATIO = 0.68;
             const distForHeight = (size.y / FILL_RATIO) / (2 * Math.tan(vFovRad / 2));
-            const distForWidth  = (size.x / FILL_RATIO) / (2 * Math.tan(hFovRad / 2));
+            const distForWidth = (size.x / FILL_RATIO) / (2 * Math.tan(hFovRad / 2));
             let targetDistance = Math.max(distForHeight, distForWidth, 50);
 
             const lookTarget = new THREE.Vector3(center.x, center.y, 0);
@@ -3051,11 +3407,11 @@
             document.getElementById('dt-cat').innerText = displayCategoryName;
             document.getElementById('dt-cat-desc').innerText = displayCategoryName;
             document.getElementById('dt-price').innerText = `€${price}`;
-            document.getElementById('dt-total').innerText = `€${price * 2}`; 
+            document.getElementById('dt-total').innerText = `€${price * 2}`;
 
             const upperSection = sectionName ? getDisplaySection(sectionName) : '';
             const imgUrl = upperSection ? `https://honeybadger7846.github.io/panoramic/${upperSection}.jpeg` : '';
-            
+
             if (upperSection) {
                 photoCaptionEl.textContent = `Representative view from Section ${upperSection}`;
                 photoCaptionEl.style.display = 'block';
@@ -3123,9 +3479,9 @@
                     openDetailView(null, item.price, item.displayCategoryName, item.category);
                 }
             };
-            
+
             card.addEventListener('mouseenter', () => {
-                if (lockedSectionGroup) return; 
+                if (lockedSectionGroup) return;
                 isUiHoverActive = true;
 
                 if (item.section) {
@@ -3145,7 +3501,7 @@
             });
 
             card.addEventListener('mouseleave', () => {
-                if (lockedSectionGroup) return; 
+                if (lockedSectionGroup) return;
                 isUiHoverActive = false;
                 hoveredRowGroup = null;
 
@@ -3170,7 +3526,7 @@
 
             const topRow = document.createElement('div');
             topRow.className = 'card-top-row';
-            
+
             const imageSection = item.displaySectionName || (item.previewSectionName ? getDisplaySection(item.previewSectionName) : null);
             if (imageSection) {
                 const thumbImg = document.createElement('img');
@@ -3179,13 +3535,13 @@
                 thumbImg.alt = `Stand View`;
                 thumbImg.title = `Representative view from Section ${imageSection}`;
                 thumbImg.loading = 'lazy';
-                thumbImg.onerror = () => { thumbImg.style.display = 'none'; };
+                thumbImg.onerror = () => {thumbImg.style.display = 'none';};
                 topRow.appendChild(thumbImg);
             }
 
             const info = document.createElement('div');
             info.className = 'card-info';
-            
+
             const title = document.createElement('h3');
             let locationTitle = item.displayCategoryName;
             if (item.displaySectionName) {
@@ -3251,7 +3607,7 @@
 
             const startIndex = currentVisibleCount;
             const endIndex = Math.min(startIndex + PAGE_SIZE, currentFilteredListings.length);
-            
+
             for (let i = startIndex; i < endIndex; i++) {
                 container.appendChild(createListingCardElement(currentFilteredListings[i]));
             }
@@ -3284,8 +3640,8 @@
             currentVisibleCount = PAGE_SIZE;
 
             const container = document.getElementById('ticket-list-container');
-            container.innerHTML = ''; 
-            
+            container.innerHTML = '';
+
             const headerCount = document.getElementById('listing-count-header');
             if (headerCount) {
                 headerCount.textContent = `${items.length} listings`;
@@ -3325,7 +3681,7 @@
                 const secCategory = targetSecGroup ? targetSecGroup.userData.categoryName : null;
 
                 setHighlightedSections(sectionName);
-                renderListings(allListingsData.filter(item => 
+                renderListings(allListingsData.filter(item =>
                     item.section === sectionName || (!item.section && item.category === secCategory)
                 ));
             }
@@ -3512,7 +3868,7 @@
 
                             const textSprite = createSeatTextSprite(seatNumber, '#000000');
                             textSprite.position.set(pos.x, pos.y, 0.26);
-                            textSprite.userData = { isSeatTextSprite: true, seatNumber: seatNumber };
+                            textSprite.userData = {isSeatTextSprite: true, seatNumber: seatNumber};
                             activeSeatsGroup.add(textSprite);
                         } else {
                             dummyMatrix.makeTranslation(pos.x, pos.y, 0.23);
@@ -3533,23 +3889,23 @@
             categoryColors = {};
             categoryCounts = {};
             colorIndex = 0;
-            sectionGroups = {}; 
+            sectionGroups = {};
             rowGroups = {};
             allListingsData = [];
             activeFilterSection = null;
             activeFilterCategory = null;
 
-            if (labelsGroup) { scene.remove(labelsGroup); labelsGroup = null; }
-            if (sectionTextSpritesGroup) { scene.remove(sectionTextSpritesGroup); sectionTextSpritesGroup = null; }
-            if (rowTextSpritesGroup) { scene.remove(rowTextSpritesGroup); rowTextSpritesGroup = null; }
-            if (staticTextOverlayMesh) { scene.remove(staticTextOverlayMesh); staticTextOverlayMesh = null; }
-            if (currentSvgGroup) { scene.remove(currentSvgGroup); }
+            if (labelsGroup) {scene.remove(labelsGroup); labelsGroup = null;}
+            if (sectionTextSpritesGroup) {scene.remove(sectionTextSpritesGroup); sectionTextSpritesGroup = null;}
+            if (rowTextSpritesGroup) {scene.remove(rowTextSpritesGroup); rowTextSpritesGroup = null;}
+            if (staticTextOverlayMesh) {scene.remove(staticTextOverlayMesh); staticTextOverlayMesh = null;}
+            if (currentSvgGroup) {scene.remove(currentSvgGroup);}
 
             setupMinimap(svgText);
 
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(svgText, 'image/svg+xml');
-            
+
             const svgEl = xmlDoc.querySelector('svg');
             let vbX = 0, vbY = 0, vbW = 888, vbH = 700;
             if (svgEl) {
@@ -3572,7 +3928,7 @@
                 const sName = secNode.getAttribute('data-section');
                 const rName = rNode.getAttribute('data-row');
                 const textEl = rNode.querySelector('text, tspan');
-                
+
                 if (textEl && textEl.textContent.trim()) {
                     rowLabelsMap[`${sName}::${rName}`] = {
                         text: textEl.textContent.trim(),
@@ -3589,10 +3945,10 @@
 
             const loader = new SVGLoader();
             const svgData = loader.parse(geometrySvgText);
-            
+
             currentSvgGroup = new THREE.Group();
             currentSvgGroup.scale.y = -1;
-            
+
             const uniqueSectionsForListings = [];
             const rowAccumulatedPoints = {};
 
@@ -3601,13 +3957,13 @@
                 const catNode = node ? node.closest('[data-category]') : null;
                 const secNode = node ? node.closest('[data-section]') : null;
                 const rowId = node ? node.closest('[data-row]') : null;
-                
+
                 const category = catNode ? catNode.getAttribute('data-category') : null;
                 const section = secNode ? secNode.getAttribute('data-section') : null;
                 const rowIdVal = rowId ? rowId.getAttribute('data-row') : null;
 
                 const isNonSectionStroke = !section && !rowIdVal &&
-                    (path.userData.style.fill === 'none' || (node && node.getAttribute('fill') === 'none')) && 
+                    (path.userData.style.fill === 'none' || (node && node.getAttribute('fill') === 'none')) &&
                     (path.userData.style.stroke !== undefined && path.userData.style.stroke !== 'none');
 
                 if (isNonSectionStroke) {
@@ -3635,7 +3991,7 @@
                                     depthWrite: true
                                 }));
                             }
-                        } catch (e) {}
+                        } catch (e) { }
 
                         if (!lineMesh) {
                             const lineGeom = new THREE.BufferGeometry().setFromPoints(points);
@@ -3657,29 +4013,29 @@
 
                 if (section && !sectionGroups[section]) {
                     sectionGroups[section] = new THREE.Group();
-                    sectionGroups[section].userData = { isSection: true, sectionName: section, categoryName: category, hasActiveListings: false };
+                    sectionGroups[section].userData = {isSection: true, sectionName: section, categoryName: category, hasActiveListings: false};
                     currentSvgGroup.add(sectionGroups[section]);
-                    
+
                     if (category) {
-                        uniqueSectionsForListings.push({ section, category });
+                        uniqueSectionsForListings.push({section, category});
                     }
                 }
 
                 if (rowIdVal && section) {
                     const rowKey = `${section}::${rowIdVal}`;
-                    
+
                     if (!rowGroups[rowKey]) {
                         const rGroup = new THREE.Group();
                         const meta = rowLabelsMap[rowKey] || {};
-                        rGroup.userData = { 
-                            isRowGroup: true, 
-                            sectionName: section, 
-                            rowId: rowIdVal, 
+                        rGroup.userData = {
+                            isRowGroup: true,
+                            sectionName: section,
+                            rowId: rowIdVal,
                             label: meta.text || rowIdVal,
                             textColor: '#000000',
                             rowColor: parsedHex,
-                            categoryName: category, 
-                            hasActiveListings: false 
+                            categoryName: category,
+                            hasActiveListings: false
                         };
                         rGroup.visible = false;
                         rowGroups[rowKey] = rGroup;
@@ -3716,10 +4072,10 @@
                                 }));
                                 rowLineMesh.position.z = 0.08;
                                 rowLineMesh.renderOrder = 380;
-                                rowLineMesh.userData = { section, category, rowId: rowIdVal, isRow: true };
+                                rowLineMesh.userData = {section, category, rowId: rowIdVal, isRow: true};
                                 rowGroups[rowKey].add(rowLineMesh);
                             }
-                        } catch (e) {}
+                        } catch (e) { }
 
                         try {
                             const hitGeom = SVGLoader.pointsToStroke(points, {
@@ -3738,10 +4094,10 @@
                                 }));
                                 hitMesh.position.z = 0.09;
                                 hitMesh.renderOrder = 390;
-                                hitMesh.userData = { section, category, rowId: rowIdVal, isRow: true, isHitProxy: true };
+                                hitMesh.userData = {section, category, rowId: rowIdVal, isRow: true, isHitProxy: true};
                                 rowGroups[rowKey].add(hitMesh);
                             }
-                        } catch (e) {}
+                        } catch (e) { }
                     }
                     continue;
                 }
@@ -3766,11 +4122,11 @@
                 for (const shape of shapes) {
                     const geometry = new THREE.ShapeGeometry(shape);
                     const mesh = new THREE.Mesh(geometry, material);
-                    mesh.userData = { 
-                        section, 
-                        category, 
+                    mesh.userData = {
+                        section,
+                        category,
                         originalColor: materialColor,
-                        originalOpacity: fillOpacity 
+                        originalOpacity: fillOpacity
                     };
 
                     if (section) {
@@ -3811,7 +4167,7 @@
                 rowGroups[rowKey].userData.dotCount = dotCount;
 
                 const debugDotGroup = new THREE.Group();
-                debugDotGroup.userData = { isDebugDotGroup: true };
+                debugDotGroup.userData = {isDebugDotGroup: true};
 
                 const rowColorHex = rowGroups[rowKey].userData.rowColor || '#00ffff';
 
@@ -3826,14 +4182,14 @@
 
                 const instancedMesh = new THREE.InstancedMesh(sharedSeatCircleGeom, instancedMat, dotCount);
                 instancedMesh.renderOrder = 2000;
-                instancedMesh.raycast = () => {};
+                instancedMesh.raycast = () => { };
 
                 const seatPositions = [];
                 for (let i = 0; i < dotCount; i++) {
                     const t = i / (dotCount - 1);
                     const px = THREE.MathUtils.lerp(startPt.x, endPt.x, t);
                     const py = THREE.MathUtils.lerp(startPt.y, endPt.y, t);
-                    seatPositions.push({ x: px, y: py });
+                    seatPositions.push({x: px, y: py});
 
                     dummyMatrix.makeTranslation(px, py, 0.23);
                     instancedMesh.setMatrixAt(i, dummyMatrix);
@@ -4003,7 +4359,7 @@
             controls.update();
             needsRaycast = true;
             triggerRender();
-        }, { passive: false });
+        }, {passive: false});
 
         function updateRaycasterCoords(clientX, clientY) {
             const rect = renderer.domElement.getBoundingClientRect();
@@ -4027,12 +4383,12 @@
                 return;
             }
 
-            if (lockedSectionGroup) return; 
+            if (lockedSectionGroup) return;
 
             if (!updateRaycasterCoords(clientX, clientY)) return;
 
             raycaster.setFromCamera(mouse, camera);
-            raycaster.params.Line = { threshold: 2.5 };
+            raycaster.params.Line = {threshold: 2.5};
 
             let targetRowGroup = null;
             const visibleRowGroups = Object.values(rowGroups).filter(rg => rg.visible);
@@ -4113,14 +4469,14 @@
             }
         });
 
-        let pointerDownPos = { x: 0, y: 0 };
+        let pointerDownPos = {x: 0, y: 0};
 
-        renderer.domElement.addEventListener('pointermove', onPointerMove, { passive: true });
+        renderer.domElement.addEventListener('pointermove', onPointerMove, {passive: true});
 
         renderer.domElement.addEventListener('pointerdown', (e) => {
             pointerDownPos.x = e.clientX;
             pointerDownPos.y = e.clientY;
-        }, { passive: true });
+        }, {passive: true});
 
         renderer.domElement.addEventListener('pointerup', (e) => {
             if (e.pointerType === 'touch' && !e.isPrimary) return;
@@ -4133,7 +4489,7 @@
             e.preventDefault();
             handleMapSelection(e.clientX, e.clientY);
         });
-        
+
         renderer.domElement.addEventListener('pointerleave', () => {
             mouse.x = -9999;
             mouse.y = -9999;
@@ -4202,7 +4558,7 @@
             if (needsRaycast && currentSvgGroup && !isUiHoverActive && !lockedSectionGroup) {
                 needsRaycast = false;
                 raycaster.setFromCamera(mouse, camera);
-                raycaster.params.Line = { threshold: 2.5 };
+                raycaster.params.Line = {threshold: 2.5};
 
                 let targetRowGroup = null;
                 const visibleRowGroups = Object.values(rowGroups).filter(rg => rg.visible);
@@ -4236,12 +4592,12 @@
                         }
                     }
                 }
-                
+
                 setHoveredRow(targetRowGroup);
                 setHoveredSection(targetSectionGroup || activeSection);
                 document.body.style.cursor = (targetRowGroup || targetSectionGroup) ? 'pointer' : 'default';
             }
-            
+
             if (isMapVisible) {
                 renderer.render(scene, camera);
             }
@@ -4250,4 +4606,5 @@
         triggerRender();
     </script>
 </body>
+
 </html>
