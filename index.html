@@ -1709,7 +1709,7 @@
 
         const camera = new THREE.PerspectiveCamera(45, mapContainer.clientWidth / (mapContainer.clientHeight || 1), 1, 10000);
         const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
-        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setSize(mapContainer.clientWidth, mapContainer.clientHeight || 250);
         mapContainer.appendChild(renderer.domElement);
 
@@ -1867,6 +1867,7 @@
         
         const raycaster = new THREE.Raycaster();
         const mouse = new THREE.Vector2();
+        let needsRaycast = false;
         let hoveredSectionGroup = null;
         let hoveredRowGroup = null;
         let isUiHoverActive = false;
@@ -2100,7 +2101,7 @@
             if (!seatSpriteMatCache[cacheKey]) {
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
-                const renderPx = 96;
+                const renderPx = 64;
                 const fontName = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
 
                 ctx.font = `bold ${renderPx}px ${fontName}`;
@@ -2121,8 +2122,8 @@
 
                 const texture = new THREE.CanvasTexture(canvas);
                 texture.colorSpace = THREE.SRGBColorSpace;
-                texture.generateMipmaps = true;
-                texture.minFilter = THREE.LinearMipmapLinearFilter;
+                texture.generateMipmaps = false;
+                texture.minFilter = THREE.LinearFilter;
                 texture.magFilter = THREE.LinearFilter;
 
                 seatSpriteMatCache[cacheKey] = new THREE.SpriteMaterial({
@@ -2145,20 +2146,27 @@
             return sprite;
         }
 
+        const badgeTextureCache = {};
+        const badgeMaterialCache = {};
+
         function createPinBadgeTexture(priceText) {
+            if (badgeTextureCache[priceText]) {
+                return badgeTextureCache[priceText];
+            }
+
             const canvas = document.createElement('canvas');
-            canvas.width = 512;
-            canvas.height = 340;
+            canvas.width = 256;
+            canvas.height = 170;
             const ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            const x = 60, y = 40, w = 392, h = 200, r = 48, tipW = 44, tipH = 32;
+            const x = 30, y = 20, w = 196, h = 100, r = 24, tipW = 22, tipH = 16;
             const centerX = canvas.width / 2;
 
             ctx.save();
             ctx.shadowColor = 'rgba(0, 0, 0, 0.08)';
-            ctx.shadowBlur = 8;
-            ctx.shadowOffsetY = 3;
+            ctx.shadowBlur = 4;
+            ctx.shadowOffsetY = 2;
 
             ctx.beginPath();
             ctx.moveTo(x + r, y);
@@ -2178,19 +2186,36 @@
             ctx.fillStyle = '#ffffff';
             ctx.fill();
             ctx.strokeStyle = '#e4e4e7';
-            ctx.lineWidth = 3;
+            ctx.lineWidth = 2;
             ctx.stroke();
             ctx.restore();
 
             ctx.fillStyle = '#000000';
-            ctx.font = '600 86px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+            ctx.font = '600 43px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillText(priceText, centerX, y + (h / 2) + 4);
+            ctx.fillText(priceText, centerX, y + (h / 2) + 2);
 
             const texture = new THREE.CanvasTexture(canvas);
             texture.colorSpace = THREE.SRGBColorSpace;
+            texture.generateMipmaps = false;
+            texture.minFilter = THREE.LinearFilter;
+            texture.magFilter = THREE.LinearFilter;
+
+            badgeTextureCache[priceText] = texture;
             return texture;
+        }
+
+        function getBadgeMaterial(priceText) {
+            if (!badgeMaterialCache[priceText]) {
+                badgeMaterialCache[priceText] = new THREE.SpriteMaterial({
+                    map: createPinBadgeTexture(priceText),
+                    transparent: true,
+                    depthWrite: false,
+                    depthTest: false
+                });
+            }
+            return badgeMaterialCache[priceText];
         }
 
         function renderPriceBadges(minPricesByRow, minPricesBySeat, minPricesBySectionFallback) {
@@ -2200,12 +2225,6 @@
 
             if (labelsGroup) {
                 scene.remove(labelsGroup);
-                labelsGroup.traverse(child => {
-                    if (child.material) {
-                        if (child.material.map) child.material.map.dispose();
-                        child.material.dispose();
-                    }
-                });
             }
 
             labelsGroup = new THREE.Group();
@@ -2223,14 +2242,7 @@
                 const center = new THREE.Vector3();
                 box.getCenter(center);
 
-                const texture = createPinBadgeTexture(priceText);
-                const spriteMat = new THREE.SpriteMaterial({
-                    map: texture,
-                    transparent: true,
-                    depthWrite: false,
-                    depthTest: false
-                });
-
+                const spriteMat = getBadgeMaterial(priceText);
                 const sprite = new THREE.Sprite(spriteMat);
                 sprite.center.set(0.5, 0.0);
                 sprite.scale.set(BADGE_WIDTH, BADGE_HEIGHT, 1);
@@ -2648,11 +2660,23 @@
             requestAnimationFrame(updateCategoryScrollButtons);
         }
 
+        const sectionSpriteMatCache = {};
+
         function createSectionTextSprite(textStr, fontPx, fillHex) {
+            const cacheKey = `${textStr}_${fontPx}_${fillHex || '#000000'}`;
+            if (sectionSpriteMatCache[cacheKey]) {
+                const cached = sectionSpriteMatCache[cacheKey];
+                const sprite = new THREE.Sprite(cached.material);
+                sprite.scale.set(cached.worldW, cached.worldH, 1);
+                sprite.raycast = () => {};
+                sprite.renderOrder = 450;
+                return sprite;
+            }
+
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
 
-            const superRatio = 8;
+            const superRatio = 4;
             const renderPx = Math.round(fontPx * superRatio);
             const fontName = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
 
@@ -2674,8 +2698,8 @@
 
             const texture = new THREE.CanvasTexture(canvas);
             texture.colorSpace = THREE.SRGBColorSpace;
-            texture.generateMipmaps = true;
-            texture.minFilter = THREE.LinearMipmapLinearFilter;
+            texture.generateMipmaps = false;
+            texture.minFilter = THREE.LinearFilter;
             texture.magFilter = THREE.LinearFilter;
 
             const spriteMat = new THREE.SpriteMaterial({
@@ -2685,11 +2709,13 @@
                 depthWrite: false
             });
 
-            const sprite = new THREE.Sprite(spriteMat);
             const aspect = canvas.width / canvas.height;
             const worldH = fontPx * 1.25;
             const worldW = worldH * aspect;
 
+            sectionSpriteMatCache[cacheKey] = { material: spriteMat, worldW, worldH };
+
+            const sprite = new THREE.Sprite(spriteMat);
             sprite.scale.set(worldW, worldH, 1);
             sprite.raycast = () => {};
             sprite.renderOrder = 450;
@@ -2781,8 +2807,8 @@
             });
 
             const svgEl = doc.querySelector('svg');
-            const maxTex = Math.min(renderer.capabilities.maxTextureSize || 8192, 8192);
-            const scaleFactor = Math.min(8, maxTex / Math.max(vbW, vbH));
+            const TARGET_MAX_DIM = 2048;
+            const scaleFactor = Math.min(2.5, TARGET_MAX_DIM / Math.max(vbW, vbH));
 
             const rasterW = Math.round(vbW * scaleFactor);
             const rasterH = Math.round(vbH * scaleFactor);
@@ -2816,8 +2842,8 @@
 
             const texture = new THREE.CanvasTexture(canvas);
             texture.colorSpace = THREE.SRGBColorSpace;
-            texture.generateMipmaps = true;
-            texture.minFilter = THREE.LinearMipmapLinearFilter;
+            texture.generateMipmaps = false;
+            texture.minFilter = THREE.LinearFilter;
             texture.magFilter = THREE.LinearFilter;
 
             const planeGeom = new THREE.PlaneGeometry(vbW, vbH);
@@ -3884,6 +3910,7 @@
                 camera.position.copy(controls.target).add(offset);
                 camera.lookAt(controls.target);
                 controls.update();
+                needsRaycast = true;
                 return;
             }
 
@@ -3892,6 +3919,7 @@
             offset.setLength(newDist);
             camera.position.copy(controls.target).add(offset);
             controls.update();
+            needsRaycast = true;
         }
 
         document.getElementById('ctrl-zoom-in').addEventListener('click', (e) => {
@@ -3933,6 +3961,7 @@
                 camera.position.copy(controls.target).add(offset);
                 camera.lookAt(controls.target);
                 controls.update();
+                needsRaycast = true;
                 return;
             }
 
@@ -3954,6 +3983,7 @@
             camera.position.lerp(planeIntersectPoint, 1 - zoomFactor);
             controls.target.lerp(planeIntersectPoint, 1 - zoomFactor);
             controls.update();
+            needsRaycast = true;
         }, { passive: false });
 
         function updateRaycasterCoords(clientX, clientY) {
@@ -3965,7 +3995,9 @@
         }
 
         function onPointerMove(event) {
-            updateRaycasterCoords(event.clientX, event.clientY);
+            if (updateRaycasterCoords(event.clientX, event.clientY)) {
+                needsRaycast = true;
+            }
         }
 
         function handleMapSelection(clientX, clientY) {
@@ -4085,6 +4117,7 @@
         renderer.domElement.addEventListener('pointerleave', () => {
             mouse.x = -9999;
             mouse.y = -9999;
+            needsRaycast = false;
             if (!lockedSectionGroup) {
                 setHoveredSection(activeSection);
                 setHoveredRow(null);
@@ -4096,6 +4129,7 @@
             updateCanvasSize();
             updateCategoryScrollButtons();
             updateMobileZoomState();
+            needsRaycast = true;
         });
         resizeObserver.observe(mapContainer);
         if (catContainer) {
@@ -4114,6 +4148,7 @@
                 controls.target.lerpVectors(cameraAnim.startTarget, cameraAnim.endTarget, t);
                 camera.up.lerpVectors(cameraAnim.startUp, cameraAnim.endUp, t).normalize();
                 camera.lookAt(controls.target);
+                needsRaycast = true;
 
                 if (progress >= 1.0) {
                     cameraAnim.active = false;
@@ -4125,13 +4160,15 @@
                         cameraAnim.onComplete();
                         cameraAnim.onComplete = null;
                     }
+                    needsRaycast = true;
                 }
             }
 
             controls.update();
             updateScreenSpacePriceLabelScales();
 
-            if (currentSvgGroup && !isUiHoverActive && !lockedSectionGroup) {
+            if (needsRaycast && currentSvgGroup && !isUiHoverActive && !lockedSectionGroup) {
+                needsRaycast = false;
                 raycaster.setFromCamera(mouse, camera);
                 raycaster.params.Line = { threshold: 2.5 };
 
