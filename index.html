@@ -1691,7 +1691,6 @@
         }
         updateMobileZoomState();
 
-        // --- 150° Panoramic Viewer Setup ---
         const PANO_FOV_X_DEG = 150;
         const panoFovXRad = THREE.MathUtils.degToRad(PANO_FOV_X_DEG);
 
@@ -1712,7 +1711,6 @@
         panoControls.dampingFactor = 0.08;
         panoControls.rotateSpeed = -0.5;
 
-        // Lock vertical tilt strictly to horizontal horizon
         panoControls.minPolarAngle = Math.PI / 2;
         panoControls.maxPolarAngle = Math.PI / 2;
 
@@ -3018,7 +3016,6 @@
                         panoLoading.style.display = 'none';
                         showPanoHint();
 
-                        // Dynamically compute exact vertical FOV from texture aspect ratio
                         if (texture.image && texture.image.naturalWidth && texture.image.naturalHeight) {
                             const imgAspect = texture.image.naturalWidth / texture.image.naturalHeight;
                             const exactFovYDeg = PANO_FOV_X_DEG / imgAspect;
@@ -3057,7 +3054,6 @@
 
                     updatePanoAzimuthLimits();
 
-                    // Center camera looking straight down -Z
                     panoControls.target.set(0, 0, 0);
                     panoCamera.position.set(0, 0, 0.1);
                     panoControls.update();
