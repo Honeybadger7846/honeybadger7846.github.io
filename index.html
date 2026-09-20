@@ -54,6 +54,7 @@
             color: #6b7280;
             font-size: 12px;
             font-weight: 500;
+            white-space: nowrap;
         }
         .breadcrumbs span.sep { color: #d1d5db; font-weight: 400; }
         .breadcrumbs a { color: #6b7280; text-decoration: none; }
@@ -61,6 +62,7 @@
         .breadcrumbs .breadcrumb-current {
             color: #111827;
             font-weight: 500;
+            white-space: nowrap;
         }
 
         .nav-right { display: flex; align-items: center; gap: 18px; font-weight: 500; font-size: 13px; color: #374151; }
@@ -413,6 +415,7 @@
             letter-spacing: -0.2px;
         }
 
+        /* Circular Controls Widget: 20% smaller, no shadow, clean outline */
         .map-controls-widget {
             position: absolute;
             bottom: 24px;
@@ -424,34 +427,44 @@
             user-select: none;
         }
         .map-ctrl-btn {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            color: #334155;
-            font-size: 20px;
-            font-weight: 500;
-            transition: all 0.15s;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+            color: #111827;
+            transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+            box-shadow: none;
             outline: none;
             padding: 0;
         }
-        .map-ctrl-btn:hover { background: #f1f5f9; color: #0f172a; }
-        .map-ctrl-btn.active-mode { background: #111827; color: #ffffff; border-color: #111827; }
-        .map-ctrl-btn.active-mode:hover { background: #1f2937; color: #ffffff; }
+        .map-ctrl-btn:hover {
+            background: #f8fafc;
+            border-color: #d1d5db;
+            color: #000000;
+            box-shadow: none;
+        }
+        .map-ctrl-btn:active {
+            transform: scale(0.94);
+        }
+        .map-ctrl-btn svg {
+            display: block;
+            pointer-events: none;
+        }
 
         .map-ctrl-btn.mode-2d-btn {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             background: #ffffff;
             color: #334155;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #e5e7eb;
             display: none;
+            border-radius: 50%;
+            box-shadow: none;
         }
 
         /* Dotted Resizer Handle Bar */
@@ -674,7 +687,7 @@
         .card-content { 
             padding: 10px 12px 10px 10px; 
             flex: 1; 
-            min-width: 0;
+            min-width: 0; 
             display: flex; 
             align-items: center; 
             justify-content: space-between; 
@@ -941,28 +954,6 @@
         .checkout-btn { width: 100%; background: #29CCA2; color: #000000; border: none; padding: 14px; border-radius: 24px; font-size: 16px; font-weight: 900; cursor: pointer; transition: background 0.15s;}
         .checkout-btn:hover { background: #23b791; }
 
-        /* Floating Support Mascot / Chat on Mobile */
-        .mobile-floating-mascot {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #29CCA2;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-            z-index: 100;
-            cursor: pointer;
-        }
-        .mobile-floating-mascot svg {
-            width: 26px;
-            height: 26px;
-            fill: #000000;
-        }
-
         /* RESPONSIVE MOBILE ADAPTATIONS (screen <= 768px) */
         @media (max-width: 768px) {
             body {
@@ -984,6 +975,25 @@
                 display: flex;
             }
 
+            .nav-left {
+                min-width: 0;
+                flex: 1;
+                overflow: hidden;
+            }
+
+            .breadcrumbs {
+                min-width: 0;
+                flex: 1;
+                overflow: hidden;
+                white-space: nowrap;
+                -webkit-mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
+                mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
+            }
+
+            .breadcrumbs .breadcrumb-current {
+                white-space: nowrap;
+            }
+
             .resizer-divider {
                 display: none;
             }
@@ -995,12 +1005,12 @@
                 overflow: hidden;
             }
 
-            /* Sticky Map Block: Always fixed at top of screen */
+            /* Map Block: Hidden by default on mobile */
             .content-left {
+                display: none;
                 flex: none;
                 width: 100%;
                 min-width: 100%;
-                display: flex;
                 flex-direction: column;
                 position: relative;
                 z-index: 10;
@@ -1008,8 +1018,8 @@
                 border-bottom: 1px solid #e5e7eb;
             }
 
-            .content-left.is-hidden {
-                display: none;
+            .content-left.is-visible {
+                display: flex;
             }
 
             .event-header {
@@ -1048,7 +1058,6 @@
                 gap: 6px;
             }
             
-            /* Category scroll arrows on mobile with proper sizing */
             .cat-scroll-arrow {
                 width: 32px;
                 height: 32px;
@@ -1077,11 +1086,10 @@
             }
             .map-ctrl-btn {
                 border-radius: 50%;
-                width: 36px;
-                height: 36px;
+                width: 32px;
+                height: 32px;
             }
 
-            /* Scrollable Listings Sidebar underneath the sticky map */
             .sidebar {
                 width: 100% !important;
                 min-width: 100% !important;
@@ -1102,7 +1110,6 @@
                 box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             }
 
-            /* Hide listings count on mobile and display Hide/Show Map pill button */
             #listing-count-header {
                 display: none;
             }
@@ -1124,10 +1131,6 @@
                 width: 100vw;
                 height: 100vh;
                 z-index: 150;
-            }
-
-            .mobile-floating-mascot {
-                display: flex;
             }
         }
     </style>
@@ -1204,11 +1207,9 @@
                             <svg class="dropdown-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
 
                             <span class="topbar-actions">
-                                <!-- Solid Flag Icon correctly centered in a 20x20 box -->
                                 <svg class="action-flag-icon" viewBox="0 0 20 20" aria-label="Flag">
                                     <path d="M12.4 4.5L12 3H3v14h2v-6h5.4l.4 1.5h6.2V4.5h-4.6z"/>
                                 </svg>
-                                <!-- Clean Heart Icon -->
                                 <svg class="action-heart-icon" viewBox="0 0 24 24" aria-label="Favorite">
                                     <path d="M12 21.1c-.3 0-.6-.1-.8-.3C6.3 16.3 2 12.3 2 7.8 2 4.6 4.5 2 7.7 2c2 0 3.7 1 4.3 2.5C12.6 3 14.3 2 16.3 2 19.5 2 22 4.6 22 7.8c0 4.5-4.3 8.5-9.2 13-.2.2-.5.3-.8.3z"/>
                                 </svg>
@@ -1247,7 +1248,7 @@
             </div>
 
             <div id="map-container">
-                <!-- Bottom Left Prices Toggle Widget (Restored) -->
+                <!-- Bottom Left Prices Toggle Widget -->
                 <div class="map-bottom-left-widget">
                     <label class="prices-switch-label">
                         <span class="prices-switch">
@@ -1258,16 +1259,28 @@
                     </label>
                 </div>
 
+                <!-- Circular Map Controls: 20% smaller, no shadow, clean outline -->
                 <div class="map-controls-widget">
-                    <button class="map-ctrl-btn" id="ctrl-zoom-in" title="Zoom In">+</button>
-                    <button class="map-ctrl-btn" id="ctrl-zoom-out" title="Zoom Out">−</button>
-                    <button class="map-ctrl-btn" id="ctrl-reset-view" title="Reset View">
-                        <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; stroke: currentColor; stroke-width: 2.2; fill: none;">
-                            <path d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
-                            <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
+                    <button class="map-ctrl-btn" id="ctrl-zoom-in" title="Zoom In" aria-label="Zoom In">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
                     </button>
-                    <button class="map-ctrl-btn" id="ctrl-toggle-seats" title="Toggle Seats/Rows" style="font-size: 15px; font-weight: 700;">R</button>
+                    <button class="map-ctrl-btn" id="ctrl-zoom-out" title="Zoom Out" aria-label="Zoom Out">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </button>
+                    <button class="map-ctrl-btn" id="ctrl-reset-view" title="Reset Position" aria-label="Reset Position">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 9V5h4"></path>
+                            <path d="M19 9V5h-4"></path>
+                            <path d="M5 15v4h4"></path>
+                            <path d="M19 15v4h-4"></path>
+                            <circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"></circle>
+                        </svg>
+                    </button>
                     <button class="map-ctrl-btn mode-2d-btn" id="ctrl-mode-2d" title="Switch to 2D Top View">2D</button>
                 </div>
             </div>
@@ -1300,7 +1313,7 @@
                             <line x1="12" y1="4.5" x2="12" y2="19.5" stroke="currentColor" stroke-width="1.8"/>
                             <path d="M2.5 8.5h3.5v7H2.5z M18 8.5h3.5v7H18z" fill="currentColor"/>
                         </svg>
-                        <span id="btn-toggle-map-label">Hide Map</span>
+                        <span id="btn-toggle-map-label">Show Map</span>
                     </button>
                 </div>
                 <div class="sidebar-header-right">
@@ -1423,21 +1436,15 @@
         </div>
     </div>
 
-    <!-- Floating Support Mascot on Mobile -->
-    <div class="mobile-floating-mascot" title="Help & Support">
-        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-10 10c0 2.22.73 4.28 1.96 5.95L3 22l4.24-.92A9.95 9.95 0 0 0 12 22a10 10 0 0 0 10-10A10 10 0 0 0 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
-    </div>
-
     <script type="module">
         import * as THREE from 'three';
         import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
         import { MapControls } from 'three/addons/controls/MapControls.js';
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-        let showSeats = true;
         let showPrices = true;
         const ACTIVE_SEAT_COLOR = 0x2cdb9f;
-        const INACTIVE_SEAT_OPACITY = 0.7;
+        const INACTIVE_SEAT_OPACITY = 0.4;
         const ACTIVE_SEAT_OPACITY = 1.0;
 
         const mapContainer = document.getElementById('map-container');
@@ -1446,20 +1453,20 @@
         const btnToggleMap = document.getElementById('btn-toggle-map');
         const btnToggleMapLabel = document.getElementById('btn-toggle-map-label');
 
-        let isMapVisible = true;
+        let isMapVisible = window.innerWidth > 768;
 
         /* Toggle Hide/Show Map Handler */
         btnToggleMap.addEventListener('click', (e) => {
             e.stopPropagation();
             isMapVisible = !isMapVisible;
             if (isMapVisible) {
-                mapSectionPanel.classList.remove('is-hidden');
+                mapSectionPanel.classList.add('is-visible');
                 btnToggleMapLabel.textContent = 'Hide Map';
                 setTimeout(() => {
                     updateCanvasSize();
                 }, 40);
             } else {
-                mapSectionPanel.classList.add('is-hidden');
+                mapSectionPanel.classList.remove('is-visible');
                 btnToggleMapLabel.textContent = 'Show Map';
             }
         });
@@ -1582,10 +1589,13 @@
         window.addEventListener('resize', () => {
             updateCanvasSize();
             updateCategoryScrollButtons();
-            if (window.innerWidth > 768 && !isMapVisible) {
+            if (window.innerWidth > 768) {
                 isMapVisible = true;
-                mapSectionPanel.classList.remove('is-hidden');
+                mapSectionPanel.classList.remove('is-visible');
                 btnToggleMapLabel.textContent = 'Hide Map';
+            } else if (!mapSectionPanel.classList.contains('is-visible')) {
+                isMapVisible = false;
+                btnToggleMapLabel.textContent = 'Show Map';
             }
         });
 
@@ -1680,14 +1690,87 @@
                 .replace(/\b\w/g, l => l.toUpperCase());
         }
 
+        const LIGHT_GRAY_COLOR = new THREE.Color('#e2e8f0');
+
+        function setHighlightedSections(sections) {
+            let targetSet = null;
+            if (typeof sections === 'string' && sections.trim().length > 0) {
+                targetSet = new Set([sections.trim()]);
+            } else if (Array.isArray(sections) && sections.length > 0) {
+                targetSet = new Set(sections.map(s => String(s).trim()));
+            } else if (sections instanceof Set && sections.size > 0) {
+                targetSet = sections;
+            }
+
+            const isFilteringActive = targetSet !== null && targetSet.size > 0;
+
+            for (const [secName, sGroup] of Object.entries(sectionGroups)) {
+                const isTarget = isFilteringActive && targetSet.has(secName);
+
+                sGroup.children.forEach(child => {
+                    if (child.userData && child.userData.section) {
+                        const origColor = child.userData.originalColor;
+                        if (!isFilteringActive || isTarget) {
+                            child.material.color.set(origColor);
+                        } else {
+                            child.material.color.copy(LIGHT_GRAY_COLOR);
+                        }
+                        child.material.needsUpdate = true;
+                    }
+                });
+
+                const secRowKeys = Object.keys(rowGroups).filter(k => k.startsWith(`${secName}::`));
+                secRowKeys.forEach(rKey => {
+                    const rGroup = rowGroups[rKey];
+                    const origRowColor = new THREE.Color(rGroup.userData.rowColor || 0xcccccc);
+
+                    rGroup.children.forEach(child => {
+                        if (child.userData && child.userData.isHitProxy) return;
+
+                        if (child.userData && child.userData.isDebugDotGroup) {
+                            if (child.userData.instancedSeatsMesh) {
+                                const instMesh = child.userData.instancedSeatsMesh;
+                                if (!isFilteringActive || isTarget) {
+                                    instMesh.material.color.copy(origRowColor);
+                                } else {
+                                    instMesh.material.color.copy(LIGHT_GRAY_COLOR);
+                                }
+                                instMesh.material.needsUpdate = true;
+                            }
+
+                            if (child.userData.activeSeatsGroup) {
+                                child.userData.activeSeatsGroup.children.forEach(activeSeatChild => {
+                                    if (activeSeatChild.userData && activeSeatChild.userData.isSeatCircle) {
+                                        if (!isFilteringActive || isTarget) {
+                                            activeSeatChild.material.color.set(ACTIVE_SEAT_COLOR);
+                                        } else {
+                                            activeSeatChild.material.color.copy(LIGHT_GRAY_COLOR);
+                                        }
+                                        activeSeatChild.material.needsUpdate = true;
+                                    }
+                                });
+                            }
+                        } else if (child.isMesh || child.isLine) {
+                            if (!isFilteringActive || isTarget) {
+                                child.material.color.copy(origRowColor);
+                            } else {
+                                child.material.color.copy(LIGHT_GRAY_COLOR);
+                            }
+                            child.material.needsUpdate = true;
+                        }
+                    });
+                });
+            }
+        }
+
         function applySectionOpacities() {
-            const baseOp = showSeats ? 0.2 : 0.3;
+            const baseOp = 0.2;
             for (const [secName, group] of Object.entries(sectionGroups)) {
                 let targetOpacity = baseOp;
                 if (group === activeSection || group === hoveredSectionGroup) {
-                    targetOpacity = showSeats ? 0.35 : 0.75;
+                    targetOpacity = 0.45;
                 } else if (group.userData && group.userData.hasActiveListings) {
-                    targetOpacity = showSeats ? 0.25 : 0.5;
+                    targetOpacity = 0.35;
                 }
 
                 group.children.forEach(child => {
@@ -1725,19 +1808,15 @@
                 if (is3D) {
                     if (isFocused) targetLineOpacity = 0.75;
                     else if (hasActive) targetLineOpacity = 0.9;
-                    else targetLineOpacity = 0.45;
+                    else targetLineOpacity = 0.2;
                 } else {
-                    if (showSeats) {
-                        targetLineOpacity = hasActive ? 0.6 : 0.4;
-                    } else {
-                        targetLineOpacity = (!hasActive && isCurrentSectionRow) ? (isFocused ? 0.75 : 0.45) : (isFocused ? 1.0 : 0.9);
-                    }
+                    targetLineOpacity = hasActive ? 0.6 : 0.2;
                 }
 
                 rGroup.children.forEach(child => {
                     if (child.userData && child.userData.isHitProxy) return;
                     if (child.userData && child.userData.isDebugDotGroup) {
-                        child.visible = showSeats;
+                        child.visible = true;
 
                         let targetInactiveSeatOp = INACTIVE_SEAT_OPACITY;
                         if (is3D && isFocused) targetInactiveSeatOp = 0.9;
@@ -1791,17 +1870,6 @@
             applyRowOpacities();
         }
 
-        const seatToggleBtn = document.getElementById('ctrl-toggle-seats');
-        seatToggleBtn.classList.toggle('active-mode', !showSeats);
-        seatToggleBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            showSeats = !showSeats;
-            seatToggleBtn.classList.toggle('active-mode', !showSeats);
-            applySectionOpacities();
-            applyRowOpacities();
-            renderPriceBadges(lastMinPricesByRow, lastMinPricesBySeat, lastMinPricesBySection);
-        });
-
         /* Prices Toggle Implementation */
         const pricesCheckbox = document.getElementById('toggle-prices-checkbox');
         pricesCheckbox.addEventListener('change', (e) => {
@@ -1830,7 +1898,7 @@
                 canvas.height = Math.max(16, h + 16);
 
                 ctx.font = `bold ${renderPx}px ${fontName}`;
-                ctx.fillStyle = textColorHexStr || '#ffffff';
+                ctx.fillStyle = textColorHexStr || '#000000';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 ctx.imageSmoothingEnabled = true;
@@ -1934,7 +2002,7 @@
             const BADGE_HEIGHT = BADGE_WIDTH * (340 / 512);
             const BADGE_CLEARANCE = 2.45;
 
-            function addBadge(targetObject, priceText, isRowBadge = false, numericPrice = 0, sectionName = '') {
+            function addBadge(targetObject, priceText, badgeType = 'section', numericPrice = 0, sectionName = '', rowKey = '') {
                 const box = new THREE.Box3().setFromObject(targetObject);
                 if (box.isEmpty()) return;
 
@@ -1952,11 +2020,16 @@
                 const sprite = new THREE.Sprite(spriteMat);
                 sprite.center.set(0.5, 0.0);
                 sprite.scale.set(BADGE_WIDTH, BADGE_HEIGHT, 1);
-                sprite.position.set(center.x, center.y + BADGE_CLEARANCE, 0.90);
+                
+                const zElevation = badgeType === 'seat' ? 1.05 : (badgeType === 'row' ? 0.98 : 0.90);
+                sprite.position.set(center.x, center.y + BADGE_CLEARANCE, zElevation);
 
                 sprite.userData = {
                     isPriceLabel: true,
-                    isRowBadge: isRowBadge,
+                    badgeType: badgeType, 
+                    isRowBadge: badgeType === 'row',
+                    isSeatBadge: badgeType === 'seat',
+                    rowKey: rowKey,
                     price: numericPrice,
                     sectionName: sectionName,
                     baseWidth: BADGE_WIDTH,
@@ -1969,37 +2042,38 @@
                 labelsGroup.add(sprite);
             }
 
-            if (showSeats) {
-                for (const [seatKey, price] of Object.entries(lastMinPricesBySeat)) {
-                    const sepIdx = seatKey.lastIndexOf('::');
-                    if (sepIdx === -1) continue;
-                    const rowKey = seatKey.substring(0, sepIdx);
-                    const seatNum = parseInt(seatKey.substring(sepIdx + 2), 10);
-                    const rGroup = rowGroups[rowKey];
-                    if (!rGroup) continue;
+            // 1. Badges for individual allocated seats
+            for (const [seatKey, price] of Object.entries(lastMinPricesBySeat)) {
+                const sepIdx = seatKey.lastIndexOf('::');
+                if (sepIdx === -1) continue;
+                const rowKey = seatKey.substring(0, sepIdx);
+                const seatNum = parseInt(seatKey.substring(sepIdx + 2), 10);
+                const rGroup = rowGroups[rowKey];
+                if (!rGroup) continue;
 
-                    const debugDotGroup = rGroup.children.find(c => c.userData && c.userData.isDebugDotGroup);
-                    if (!debugDotGroup || !debugDotGroup.userData.activeSeatsGroup) continue;
+                const debugDotGroup = rGroup.children.find(c => c.userData && c.userData.isDebugDotGroup);
+                if (!debugDotGroup || !debugDotGroup.userData.activeSeatsGroup) continue;
 
-                    const activeSeatCircle = debugDotGroup.userData.activeSeatsGroup.children.find(
-                        c => c.userData && c.userData.isSeatCircle && c.userData.seatNumber === seatNum
-                    );
-                    if (!activeSeatCircle) continue;
+                const activeSeatCircle = debugDotGroup.userData.activeSeatsGroup.children.find(
+                    c => c.userData && c.userData.isSeatCircle && c.userData.seatNumber === seatNum
+                );
+                if (!activeSeatCircle) continue;
 
-                    addBadge(activeSeatCircle, `€${price}`, true, price, rGroup.userData.sectionName);
-                }
-            } else {
-                for (const [rowKey, price] of Object.entries(lastMinPricesByRow)) {
-                    const rGroup = rowGroups[rowKey];
-                    if (!rGroup) continue;
-                    addBadge(rGroup, `€${price}`, true, price, rGroup.userData.sectionName);
-                }
+                addBadge(activeSeatCircle, `€${price}`, 'seat', price, rGroup.userData.sectionName, rowKey);
             }
 
+            // 2. Badges for rows that have listings
+            for (const [rowKey, price] of Object.entries(lastMinPricesByRow)) {
+                const rGroup = rowGroups[rowKey];
+                if (!rGroup) continue;
+                addBadge(rGroup, `€${price}`, 'row', price, rGroup.userData.sectionName, rowKey);
+            }
+
+            // 3. Badges for sections
             for (const [sectionName, price] of Object.entries(lastMinPricesBySection)) {
                 const sGroup = sectionGroups[sectionName];
                 if (!sGroup) continue;
-                addBadge(sGroup, `€${price}`, false, price, sectionName);
+                addBadge(sGroup, `€${price}`, 'section', price, sectionName, '');
             }
 
             scene.add(labelsGroup);
@@ -2014,23 +2088,34 @@
 
         const _projPos = new THREE.Vector3();
 
+        /* Screen-space badge projection and collision engine */
         function updateScreenSpacePriceLabelScales() {
             if (!labelsGroup || defaultCameraPos.z === 0 || !showPrices) return;
 
             const refDist = defaultCameraPos.length();
             const currentCameraDist = camera.position.distanceTo(controls.target);
             const t = THREE.MathUtils.clamp((refDist - currentCameraDist) / (refDist * 0.65), 0, 1);
-            const screenMultiplier = 1.0 + (0.35 * t);
+            
+            const screenMultiplier = 1.0 + (0.10 * t);
 
             const w = mapContainer.clientWidth;
             const h = mapContainer.clientHeight;
             if (w === 0 || h === 0) return;
 
-            const tanHalfFov = Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2);
-            const sectionBadges = {};
+            const candidates = [];
+
+            const VISIBLE_WIDTH_RATIO = 392 / 512;
+            const VISIBLE_HEIGHT_RATIO = 232 / 340;
+
+            const activeSectionName = activeSection ? activeSection.userData.sectionName : null;
 
             labelsGroup.children.forEach(sprite => {
                 if (!sprite.userData || !sprite.userData.isPriceLabel) return;
+
+                if (activeSectionName && sprite.userData.sectionName !== activeSectionName) {
+                    sprite.visible = false;
+                    return;
+                }
 
                 const distToSprite = camera.position.distanceTo(sprite.position);
                 const perspectiveCompensation = distToSprite / refDist;
@@ -2047,7 +2132,7 @@
                 _projPos.copy(sprite.position);
                 _projPos.project(camera);
 
-                if (_projPos.z > 1) {
+                if (_projPos.z > 1 || _projPos.x < -1.1 || _projPos.x > 1.1 || _projPos.y < -1.1 || _projPos.y > 1.1) {
                     sprite.visible = false;
                     return;
                 }
@@ -2055,50 +2140,61 @@
                 const screenX = (_projPos.x * 0.5 + 0.5) * w;
                 const screenY = (-(_projPos.y) * 0.5 + 0.5) * h;
 
-                const visibleHeightAtDist = 2 * tanHalfFov * distToSprite;
-                const pixelsPerWorldUnit = h / visibleHeightAtDist;
-                const pixelW = sprite.scale.x * pixelsPerWorldUnit;
-                const pixelH = sprite.scale.y * pixelsPerWorldUnit;
+                const halfFovRad = THREE.MathUtils.degToRad(camera.fov / 2);
+                const visibleHeightAtDist = 2 * Math.tan(halfFovRad) * distToSprite;
+                const pxPerUnit = h / visibleHeightAtDist;
 
-                const margin = 2;
+                const actualBadgeW = (sprite.scale.x * pxPerUnit) * VISIBLE_WIDTH_RATIO;
+                const actualBadgeH = (sprite.scale.y * pxPerUnit) * VISIBLE_HEIGHT_RATIO;
+
+                const margin = 1;
+                const halfW = (actualBadgeW * 0.5) - margin;
+
                 const box = {
-                    minX: screenX - pixelW * 0.5 - margin,
-                    maxX: screenX + pixelW * 0.5 + margin,
-                    minY: screenY - pixelH - margin,
-                    maxY: screenY + margin
+                    minX: screenX - halfW,
+                    maxX: screenX + halfW,
+                    minY: screenY - actualBadgeH + margin,
+                    maxY: screenY - margin
                 };
 
-                const sec = sprite.userData.sectionName || 'default';
-                if (!sectionBadges[sec]) sectionBadges[sec] = [];
-                sectionBadges[sec].push({ sprite, box, price: sprite.userData.price || 0 });
+                candidates.push({
+                    sprite,
+                    box,
+                    price: sprite.userData.price || 0,
+                    badgeType: sprite.userData.badgeType || 'section'
+                });
             });
 
-            for (const sec in sectionBadges) {
-                const list = sectionBadges[sec];
-                list.sort((a, b) => a.price - b.price);
+            candidates.sort((a, b) => {
+                const typePriority = { seat: 1, row: 2, section: 3 };
+                const pA = typePriority[a.badgeType] || 4;
+                const pB = typePriority[b.badgeType] || 4;
+                if (pA !== pB) return pA - pB;
+                return a.price - b.price;
+            });
 
-                const accepted = [];
-                for (let i = 0; i < list.length; i++) {
-                    const item = list[i];
-                    let overlaps = false;
+            const acceptedBoxes = [];
 
-                    for (let j = 0; j < accepted.length; j++) {
-                        const acc = accepted[j];
-                        if (!(item.box.maxX < acc.minX || 
-                              item.box.minX > acc.maxX || 
-                              item.box.maxY < acc.minY || 
-                              item.box.minY > acc.maxY)) {
-                            overlaps = true;
-                            break;
-                        }
+            for (let i = 0; i < candidates.length; i++) {
+                const item = candidates[i];
+                let overlaps = false;
+
+                for (let j = 0; j < acceptedBoxes.length; j++) {
+                    const acc = acceptedBoxes[j];
+                    const xOverlap = item.box.minX < acc.maxX && item.box.maxX > acc.minX;
+                    const yOverlap = item.box.minY < acc.maxY && item.box.maxY > acc.minY;
+
+                    if (xOverlap && yOverlap) {
+                        overlaps = true;
+                        break;
                     }
+                }
 
-                    if (overlaps) {
-                        item.sprite.visible = false;
-                    } else {
-                        item.sprite.visible = true;
-                        accepted.push(item.box);
-                    }
+                if (overlaps) {
+                    item.sprite.visible = false;
+                } else {
+                    item.sprite.visible = true;
+                    acceptedBoxes.push(item.box);
                 }
             }
         }
@@ -2112,10 +2208,64 @@
             });
 
             if (!activeFilterCategory) {
+                setHighlightedSections(null);
                 renderListings(allListingsData);
+                resetTo2DTopView();
             } else {
+                const secList = Object.entries(sectionGroups)
+                    .filter(([secKey, group]) => group.userData && group.userData.categoryName === activeFilterCategory)
+                    .map(([secKey]) => secKey);
+                setHighlightedSections(secList);
                 renderListings(allListingsData.filter(item => item.category === activeFilterCategory));
+                focusCategoryIn2DView(activeFilterCategory);
             }
+        }
+
+        /* Focus bounding box of all sections belonging to a category strictly in 2D Top View */
+        function focusCategoryIn2DView(categoryName) {
+            const matchingGroups = Object.values(sectionGroups).filter(
+                g => g.userData && g.userData.categoryName === categoryName
+            );
+            if (matchingGroups.length === 0) return;
+
+            const box = new THREE.Box3();
+            matchingGroups.forEach(g => box.expandByObject(g));
+            if (box.isEmpty()) return;
+
+            const center = new THREE.Vector3();
+            box.getCenter(center);
+            const size = new THREE.Vector3();
+            box.getSize(size);
+
+            activeSection = null;
+            setSelectedRow(null);
+            applySectionOpacities();
+            applyRowOpacities();
+
+            mode2dBtn.style.display = 'flex';
+
+            if (sectionTextSpritesGroup) {
+                sectionTextSpritesGroup.children.forEach(sprite => {
+                    sprite.visible = true;
+                });
+            }
+
+            const vFovRad = THREE.MathUtils.degToRad(camera.fov);
+            const aspect = Math.max(camera.aspect, 0.1);
+            const hFovRad = 2 * Math.atan(Math.tan(vFovRad / 2) * aspect);
+
+            const PADDING = 0.72;
+            const distForHeight = (size.y / PADDING) / (2 * Math.tan(vFovRad / 2));
+            const distForWidth  = (size.x / PADDING) / (2 * Math.tan(hFovRad / 2));
+            const targetDist = Math.max(distForHeight, distForWidth, 100);
+
+            const targetPos = new THREE.Vector3(center.x, center.y, targetDist);
+            const targetLookAt = new THREE.Vector3(center.x, center.y, 0);
+
+            animateCameraTo(targetPos, targetLookAt, new THREE.Vector3(0, 1, 0), 600, () => {
+                controls.enablePan = true;
+                controls.enableRotate = false;
+            });
         }
 
         /* Scroll Buttons Dynamic Visibility Controller */
@@ -2167,6 +2317,28 @@
                 pill.dataset.category = categoryName;
                 if (activeFilterCategory === categoryName) pill.classList.add('active');
 
+                const getCategorySections = () => {
+                    return Object.entries(sectionGroups)
+                        .filter(([secKey, group]) => group.userData && group.userData.categoryName === categoryName)
+                        .map(([secKey]) => secKey);
+                };
+
+                pill.addEventListener('mouseenter', () => {
+                    if (activeFilterCategory) return;
+                    setHighlightedSections(getCategorySections());
+                });
+
+                pill.addEventListener('mouseleave', () => {
+                    if (activeFilterCategory) {
+                        const activeSecs = Object.entries(sectionGroups)
+                            .filter(([secKey, group]) => group.userData && group.userData.categoryName === activeFilterCategory)
+                            .map(([secKey]) => secKey);
+                        setHighlightedSections(activeSecs);
+                    } else {
+                        setHighlightedSections(null);
+                    }
+                });
+
                 pill.onclick = (e) => {
                     e.stopPropagation();
                     filterListingsByCategory(categoryName);
@@ -2181,130 +2353,6 @@
                 catContainer.appendChild(pill);
             }
             requestAnimationFrame(updateCategoryScrollButtons);
-        }
-
-        function createCylinderConnecting(p1, p2, radius, material) {
-            const dir = new THREE.Vector3().subVectors(p2, p1);
-            const length = dir.length();
-            if (length < 0.001) return new THREE.Group();
-
-            const geom = new THREE.CylinderGeometry(radius, radius, length, 16);
-            geom.translate(0, length / 2, 0);
-            geom.rotateX(Math.PI / 2);
-
-            const mesh = new THREE.Mesh(geom, material);
-            mesh.position.copy(p1);
-            mesh.lookAt(p2);
-            return mesh;
-        }
-
-        function createNetTexture() {
-            const canvas = document.createElement('canvas');
-            canvas.width = 128;
-            canvas.height = 128;
-            const ctx = canvas.getContext('2d');
-            ctx.clearRect(0, 0, 128, 128);
-
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
-            ctx.lineWidth = 4;
-            ctx.beginPath();
-            ctx.moveTo(0, 0); ctx.lineTo(128, 0);
-            ctx.moveTo(0, 64); ctx.lineTo(128, 64);
-            ctx.moveTo(0, 128); ctx.lineTo(128, 128);
-            ctx.moveTo(0, 0); ctx.lineTo(0, 128);
-            ctx.moveTo(64, 0); ctx.lineTo(64, 128);
-            ctx.moveTo(128, 0); ctx.lineTo(128, 128);
-            ctx.stroke();
-
-            const texture = new THREE.CanvasTexture(canvas);
-            texture.wrapS = THREE.RepeatWrapping;
-            texture.wrapT = THREE.RepeatWrapping;
-            return texture;
-        }
-
-        const netMaterialGlobal = new THREE.MeshBasicMaterial({
-            map: createNetTexture(),
-            transparent: true,
-            opacity: 0.85,
-            color: 0xffffff,
-            side: THREE.DoubleSide,
-            depthWrite: false
-        });
-
-        function buildGoal3D(xLine, xBack, y1, y2) {
-            const goalGroup = new THREE.Group();
-            const H = 9.3; 
-            const postRadius = 0.55;
-            const backRadius = 0.45;
-
-            const postMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-            const frameMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-
-            const p1_base = new THREE.Vector3(xLine, y1, 0);
-            const p1_top  = new THREE.Vector3(xLine, y1, H);
-            const p2_base = new THREE.Vector3(xLine, y2, 0);
-            const p2_top  = new THREE.Vector3(xLine, y2, H);
-
-            const b1_base = new THREE.Vector3(xBack, y1, 0);
-            const b1_top  = new THREE.Vector3(xBack, y1, H);
-            const b2_base = new THREE.Vector3(xBack, y2, 0);
-            const b2_top  = new THREE.Vector3(xBack, y2, H);
-
-            goalGroup.add(createCylinderConnecting(p1_base, p1_top, postRadius, postMat));
-            goalGroup.add(createCylinderConnecting(p2_base, p2_top, postRadius, postMat));
-            goalGroup.add(createCylinderConnecting(p1_top, p2_top, postRadius, postMat));
-
-            const jointGeom = new THREE.SphereGeometry(postRadius, 16, 16);
-            const j1 = new THREE.Mesh(jointGeom, postMat);
-            j1.position.copy(p1_top);
-            goalGroup.add(j1);
-            const j2 = new THREE.Mesh(jointGeom, postMat);
-            j2.position.copy(p2_top);
-            goalGroup.add(j2);
-
-            const jb1 = new THREE.Mesh(jointGeom, frameMat);
-            jb1.position.copy(b1_top);
-            goalGroup.add(jb1);
-            const jb2 = new THREE.Mesh(jointGeom, frameMat);
-            jb2.position.copy(b2_top);
-            goalGroup.add(jb2);
-
-            goalGroup.add(createCylinderConnecting(p1_top, b1_top, backRadius, frameMat));
-            goalGroup.add(createCylinderConnecting(p2_top, b2_top, backRadius, frameMat));
-            goalGroup.add(createCylinderConnecting(b1_top, b2_top, backRadius, frameMat));
-            goalGroup.add(createCylinderConnecting(b1_top, b1_base, backRadius, frameMat));
-            goalGroup.add(createCylinderConnecting(b2_top, b2_base, backRadius, frameMat));
-            goalGroup.add(createCylinderConnecting(p1_base, b1_base, backRadius, frameMat));
-            goalGroup.add(createCylinderConnecting(p2_base, b2_base, backRadius, frameMat));
-            goalGroup.add(createCylinderConnecting(b1_base, b2_base, backRadius, frameMat));
-
-            const netGeom = new THREE.BufferGeometry();
-            const vertices = [];
-            const uvs = [];
-
-            function addQuad(A, B, C, D, uScale, vScale) {
-                vertices.push(A.x, A.y, A.z,  B.x, B.y, B.z,  C.x, C.y, C.z);
-                uvs.push(0, 0,  uScale, 0,  uScale, vScale);
-                vertices.push(A.x, A.y, A.z,  C.x, C.y, C.z,  D.x, D.y, D.z);
-                uvs.push(0, 0,  uScale, vScale,  0, vScale);
-            }
-
-            addQuad(p1_top, p2_top, b2_top, b1_top, 6, 2);
-            addQuad(b1_top, b2_top, b2_base, b1_base, 6, 3);
-            addQuad(p1_base, p1_top, b1_top, b1_base, 2, 3);
-            addQuad(p2_base, p2_top, b2_top, b2_base, 2, 3);
-
-            netGeom.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-            netGeom.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
-            netGeom.computeVertexNormals();
-
-            goalGroup.add(new THREE.Mesh(netGeom, netMaterialGlobal));
-            return goalGroup;
-        }
-
-        function add3DGoals(parentGroup) {
-            parentGroup.add(buildGoal3D(271.9, 264.7, 335.0, 362.9));
-            parentGroup.add(buildGoal3D(616.0, 623.1, 335.0, 362.9));
         }
 
         function createSectionTextSprite(textStr, fontPx, fillHex) {
@@ -2324,7 +2372,7 @@
             canvas.height = Math.max(16, h + 16);
 
             ctx.font = `400 ${renderPx}px ${fontName}`;
-            ctx.fillStyle = fillHex || '#3b2384';
+            ctx.fillStyle = fillHex || '#000000';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.imageSmoothingEnabled = true;
@@ -2383,7 +2431,7 @@
                 if (!isSectionCode(cleanLabel)) return;
 
                 const fontSize = Math.max(5.5, Math.min(size.x * 0.32, size.y * 0.42, 11));
-                const sprite = createSectionTextSprite(cleanLabel, fontSize, '#3b2384');
+                const sprite = createSectionTextSprite(cleanLabel, fontSize, '#000000');
                 sprite.position.set(center.x, center.y, 0.08);
                 sprite.name = `secLabel_${secInfo.section}`;
                 sprite.userData = { sectionName: secInfo.section };
@@ -2407,10 +2455,9 @@
                 box.getSize(size);
 
                 const rowLabel = rGroup.userData.label || rGroup.userData.rowId;
-                const fontSize = Math.max(2.8, Math.min(size.x * 0.4, size.y * 0.55, 5));
-                const rowTextColor = rGroup.userData.textColor || '#ffffff';
+                const fontSize = 2; //Math.max(2.8, Math.min(size.x * 0.4, size.y * 0.55, 5));
                 
-                const sprite = createSectionTextSprite(String(rowLabel), fontSize, rowTextColor);
+                const sprite = createSectionTextSprite(String(rowLabel), fontSize, '#000000');
                 sprite.name = `sprite_${key}`;
                 sprite.position.set(center.x, center.y, 0.35);
                 sprite.renderOrder = 3000;
@@ -2427,11 +2474,16 @@
 
             doc.querySelectorAll('path, rect, circle, ellipse, polygon, polyline, line').forEach(el => el.remove());
 
-            doc.querySelectorAll('text').forEach(t => {
+            doc.querySelectorAll('text, tspan').forEach(t => {
                 const isInsideRow = !!t.closest('[data-row]');
                 const textVal = (t.textContent || '').trim().toUpperCase();
                 if (isInsideRow || isSectionCode(textVal)) {
                     t.remove();
+                } else {
+                    t.setAttribute('fill', '#000000');
+                    if (t.style) {
+                        t.style.fill = '#000000';
+                    }
                 }
             });
 
@@ -2628,6 +2680,7 @@
         function resetTo2DTopView() {
             activeSection = null;
             setSelectedRow(null);
+            setHighlightedSections(null);
             applySectionOpacities();
             applyRowOpacities();
 
@@ -2652,10 +2705,7 @@
             filterListingsBySection(null);
         });
 
-        function openDetailView(sectionName, price, displayCategoryName) {
-            const targetGroup = sectionGroups[sectionName];
-            if (!targetGroup) return;
-
+        function openDetailView(sectionName, price, displayCategoryName, categoryKey = null) {
             isUiHoverActive = false;
             document.getElementById('detail-view').classList.add('active');
             document.getElementById('dt-cat').innerText = displayCategoryName;
@@ -2663,8 +2713,8 @@
             document.getElementById('dt-price').innerText = `€${price}`;
             document.getElementById('dt-total').innerText = `€${price * 2}`; 
 
-            const upperSection = getDisplaySection(sectionName);
-            const panoUrl = `https://honeybadger7846.github.io/panoramic/${upperSection}.jpeg`;
+            const upperSection = sectionName ? getDisplaySection(sectionName) : '';
+            const panoUrl = upperSection ? `https://honeybadger7846.github.io/panoramic/${upperSection}.jpeg` : '';
             
             const panoLoading = document.getElementById('pano-loading');
             panoLoading.style.display = 'flex';
@@ -2674,20 +2724,24 @@
 
             hidePanoHint();
 
-            new THREE.TextureLoader().load(panoUrl, 
-                (texture) => {
-                    texture.colorSpace = THREE.SRGBColorSpace;
-                    panoMaterial.map = texture;
-                    panoMaterial.needsUpdate = true;
-                    panoLoading.style.display = 'none';
-                    showPanoHint();
-                },
-                undefined,
-                () => {
-                    panoLoading.innerText = '360° View not available for this section';
-                    hidePanoHint();
-                }
-            );
+            if (panoUrl) {
+                new THREE.TextureLoader().load(panoUrl, 
+                    (texture) => {
+                        texture.colorSpace = THREE.SRGBColorSpace;
+                        panoMaterial.map = texture;
+                        panoMaterial.needsUpdate = true;
+                        panoLoading.style.display = 'none';
+                        showPanoHint();
+                    },
+                    undefined,
+                    () => {
+                        panoLoading.innerText = '360° View not available for this section';
+                        hidePanoHint();
+                    }
+                );
+            } else {
+                panoLoading.innerText = '360° View not available';
+            }
 
             setTimeout(() => {
                 const w = panoContainer.clientWidth;
@@ -2697,9 +2751,16 @@
                 panoCamera.updateProjectionMatrix();
             }, 50);
 
-            lockedSectionGroup = targetGroup;
-            activate3DView(targetGroup);
-            setHoveredSection(targetGroup);
+            // Focus Mode Handling: Only tilt into 3D if a specific section was clicked
+            const targetGroup = sectionName ? sectionGroups[sectionName] : null;
+            if (targetGroup) {
+                lockedSectionGroup = targetGroup;
+                activate3DView(targetGroup);
+                setHoveredSection(targetGroup);
+            } else if (categoryKey) {
+                lockedSectionGroup = null;
+                focusCategoryIn2DView(categoryKey);
+            }
         }
 
         function closeDetailView() {
@@ -2719,30 +2780,52 @@
         function createListingCardElement(item) {
             const card = document.createElement('div');
             card.className = 'ticket-card';
-            card.dataset.section = item.section;
+            card.dataset.section = item.section || '';
+            card.dataset.category = item.category || '';
+
             card.onclick = () => {
-                openDetailView(item.section, item.price, item.displayCategoryName);
+                if (item.section) {
+                    openDetailView(item.section, item.price, item.displayCategoryName);
+                } else {
+                    // Category-only: Open detail view with preview image, staying strictly in 2D top mode
+                    filterListingsByCategory(item.category);
+                    openDetailView(null, item.price, item.displayCategoryName, item.category);
+                }
             };
             
             card.addEventListener('mouseenter', () => {
                 if (lockedSectionGroup) return; 
                 isUiHoverActive = true;
-                const targetGroup = sectionGroups[item.section];
-                hoveredSectionGroup = targetGroup;
-                const rKey = `${item.section}::${item.rowNum}`;
-                hoveredRowGroup = (rowGroups[rKey] && (rowGroups[rKey].userData.hasActiveListings || activeSection === targetGroup))
-                    ? rowGroups[rKey]
-                    : null;
-                applySectionOpacities();
+
+                if (item.section) {
+                    setHighlightedSections(item.section);
+                    const rKey = item.rowNum ? `${item.section}::${item.rowNum}` : null;
+                    hoveredRowGroup = (rKey && rowGroups[rKey] && (rowGroups[rKey].userData.hasActiveListings || activeSection === sectionGroups[item.section]))
+                        ? rowGroups[rKey]
+                        : null;
+                } else {
+                    const secList = Object.entries(sectionGroups)
+                        .filter(([secKey, group]) => group.userData && group.userData.categoryName === item.category)
+                        .map(([secKey]) => secKey);
+                    setHighlightedSections(secList);
+                    hoveredRowGroup = null;
+                }
                 applyRowOpacities();
             });
 
             card.addEventListener('mouseleave', () => {
                 if (lockedSectionGroup) return; 
                 isUiHoverActive = false;
-                hoveredSectionGroup = activeSection;
                 hoveredRowGroup = null;
-                applySectionOpacities();
+
+                if (activeFilterCategory) {
+                    const activeSecs = Object.entries(sectionGroups)
+                        .filter(([secKey, group]) => group.userData && group.userData.categoryName === activeFilterCategory)
+                        .map(([secKey]) => secKey);
+                    setHighlightedSections(activeSecs);
+                } else {
+                    setHighlightedSections(null);
+                }
                 applyRowOpacities();
             });
 
@@ -2754,20 +2837,35 @@
             const content = document.createElement('div');
             content.className = 'card-content';
             
-            const thumbImg = document.createElement('img');
-            thumbImg.className = 'card-thumb';
-            thumbImg.src = `https://honeybadger7846.github.io/thumbnail/${item.displaySectionName}.jpg`;
-            thumbImg.alt = `Section ${item.displaySectionName} View`;
-            thumbImg.loading = 'lazy';
-            thumbImg.onerror = () => { thumbImg.style.display = 'none'; };
-            content.appendChild(thumbImg);
+            // --- TEMPORARY / HARDCODED FALLBACK IMAGE LOGIC ---
+            // If listing has a specific section, use that; if it's category-only, fall back to a random section from that category/stand
+            const imageSection = item.displaySectionName || (item.previewSectionName ? getDisplaySection(item.previewSectionName) : null);
+            if (imageSection) {
+                const thumbImg = document.createElement('img');
+                thumbImg.className = 'card-thumb';
+                thumbImg.src = `https://honeybadger7846.github.io/thumbnail/${imageSection}.jpg`;
+                thumbImg.alt = `Stand View`;
+                thumbImg.loading = 'lazy';
+                thumbImg.onerror = () => { thumbImg.style.display = 'none'; };
+                content.appendChild(thumbImg);
+            }
+            // --- END TEMPORARY FALLBACK ---
 
             const info = document.createElement('div');
             info.className = 'card-info';
             
             const title = document.createElement('h3');
-            const seatDisplay = item.seatNum ? ` · Seat ${item.seatNum}` : '';
-            title.textContent = `${item.displayCategoryName} · Section ${item.displaySectionName} · Row ${item.rowNum}${seatDisplay}`;
+            let locationTitle = item.displayCategoryName;
+            if (item.displaySectionName) {
+                locationTitle += ` · Section ${item.displaySectionName}`;
+            }
+            if (item.rowNum) {
+                locationTitle += ` · Row ${item.rowNum}`;
+            }
+            if (item.seatNum) {
+                locationTitle += ` · Seat ${item.seatNum}`;
+            }
+            title.textContent = locationTitle;
             info.appendChild(title);
 
             const metaRow = document.createElement('div');
@@ -2865,7 +2963,7 @@
                 emptyMsg.style.padding = '40px 20px';
                 emptyMsg.style.textAlign = 'center';
                 emptyMsg.style.color = '#94a3b8';
-                emptyMsg.style.fontSize = '14px';
+                emptyMsg.fontSize = '14px';
                 emptyMsg.textContent = 'No tickets match the selected filter.';
                 container.appendChild(emptyMsg);
                 return;
@@ -2887,9 +2985,16 @@
             document.querySelectorAll('.cat-pill').forEach(pill => pill.classList.remove('active'));
 
             if (!sectionName) {
+                setHighlightedSections(null);
                 renderListings(allListingsData);
             } else {
-                renderListings(allListingsData.filter(item => item.section === sectionName));
+                const targetSecGroup = sectionGroups[sectionName];
+                const secCategory = targetSecGroup ? targetSecGroup.userData.categoryName : null;
+
+                setHighlightedSections(sectionName);
+                renderListings(allListingsData.filter(item => 
+                    item.section === sectionName || (!item.section && item.category === secCategory)
+                ));
             }
         }
 
@@ -2911,27 +3016,62 @@
 
             const TOTAL_LISTINGS = 160;
 
+            const uniqueCategories = [...new Set(parsedSections.map(s => s.category).filter(Boolean))];
+
+            // Build map of category -> available sections for fallback preview thumbnails
+            const categoryToSections = {};
+            parsedSections.forEach(s => {
+                if (!categoryToSections[s.category]) categoryToSections[s.category] = [];
+                categoryToSections[s.category].push(s.section);
+            });
+
             for (let i = 0; i < TOTAL_LISTINGS; i++) {
-                const sec = parsedSections[Math.floor(Math.random() * parsedSections.length)];
-                const matchingRowKeys = Object.keys(rowGroups).filter(k => k.startsWith(`${sec.section}::`));
-                const standLimits = getStandRowRange(sec.section);
+                const randType = Math.random();
+                let listingType;
+                // Distribution: 10% Category-only, 30% Section-only, 35% Section + Row, 25% Section + Row + Seat
+                if (randType < 0.10) listingType = 'category';        // 10% Category-only
+                else if (randType < 0.40) listingType = 'section';    // 30% Section-only
+                else if (randType < 0.75) listingType = 'row';        // 35% Section + Row
+                else listingType = 'seat';                            // 25% Section + Row + Seat
 
+                let category = null;
+                let sec = null;
                 let rowNum = null;
-                const validSvgRowKeys = matchingRowKeys.filter(k => {
-                    const rowVal = parseInt(rowGroups[k].userData.rowId, 10);
-                    return !isNaN(rowVal) ? (rowVal >= standLimits.min && rowVal <= standLimits.max) : true;
-                });
+                let displaySeat = null;
+                let previewSectionName = null;
 
-                let chosenKey = null;
-                if (validSvgRowKeys.length > 0 && Math.random() < 0.75) {
-                    chosenKey = validSvgRowKeys[Math.floor(Math.random() * validSvgRowKeys.length)];
-                    rowNum = rowGroups[chosenKey].userData.rowId;
+                if (listingType === 'category') {
+                    category = uniqueCategories[Math.floor(Math.random() * uniqueCategories.length)];
+                    
+                    // --- TEMPORARY / HARDCODED: Pick a random section from this stand/category for thumbnail preview ---
+                    const standSections = categoryToSections[category] || [];
+                    if (standSections.length > 0) {
+                        previewSectionName = standSections[Math.floor(Math.random() * standSections.length)];
+                    }
+                    // --- END TEMPORARY ---
                 } else {
-                    rowNum = String(Math.floor(Math.random() * (standLimits.max - standLimits.min + 1)) + standLimits.min);
+                    sec = parsedSections[Math.floor(Math.random() * parsedSections.length)];
+                    category = sec.category;
+                    const matchingRowKeys = Object.keys(rowGroups).filter(k => k.startsWith(`${sec.section}::`));
+                    const standLimits = getStandRowRange(sec.section);
+
+                    if (listingType !== 'section') {
+                        const validSvgRowKeys = matchingRowKeys.filter(k => {
+                            const rowVal = parseInt(rowGroups[k].userData.rowId, 10);
+                            return !isNaN(rowVal) ? (rowVal >= standLimits.min && rowVal <= standLimits.max) : true;
+                        });
+
+                        if (validSvgRowKeys.length > 0 && Math.random() < 0.85) {
+                            const chosenKey = validSvgRowKeys[Math.floor(Math.random() * validSvgRowKeys.length)];
+                            rowNum = rowGroups[chosenKey].userData.rowId;
+                        } else {
+                            rowNum = String(Math.floor(Math.random() * (standLimits.max - standLimits.min + 1)) + standLimits.min);
+                        }
+                    }
                 }
 
                 const price = Math.floor(Math.random() * 300) + 75;
-                const hexColor = categoryColors[sec.category];
+                const hexColor = categoryColors[category];
                 const colorString = hexColor !== undefined ? '#' + hexColor.toString(16).padStart(6, '0') : '#cccccc';
 
                 const isIndividual = Math.random() > 0.5;
@@ -2939,46 +3079,50 @@
                 const ratingCount = Math.floor(Math.random() * 1000) + 5;
                 const ratingScore = (Math.random() * 0.5 + 4.5).toFixed(1);
 
-                const displaySectionName = getDisplaySection(sec.section);
-                const displayCategoryName = getDisplayCategory(sec.category);
+                const displaySectionName = sec ? getDisplaySection(sec.section) : null;
+                const displayCategoryName = getDisplayCategory(category);
 
                 const shieldTexts = ['Lowest event price', 'Ticombo Choice', 'Lowest category price'];
                 const shieldText = shieldTexts[Math.floor(Math.random() * shieldTexts.length)];
 
-                sectionsWithListings.add(sec.section);
-                categoryCounts[sec.category] = (categoryCounts[sec.category] || 0) + 1;
+                categoryCounts[category] = (categoryCounts[category] || 0) + 1;
 
-                const rowKey = `${sec.section}::${rowNum}`;
-                const hasValidSvgRow = !!rowGroups[rowKey];
+                if (sec) {
+                    sectionsWithListings.add(sec.section);
+                    const rowKey = rowNum ? `${sec.section}::${rowNum}` : null;
+                    const hasValidSvgRow = !!(rowKey && rowGroups[rowKey]);
 
-                let displaySeat = null;
+                    if (hasValidSvgRow) {
+                        activeRowKeys.add(rowKey);
 
-                if (hasValidSvgRow) {
-                    activeRowKeys.add(rowKey);
-                    if (!minPricesByRow[rowKey] || price < minPricesByRow[rowKey]) {
-                        minPricesByRow[rowKey] = price;
-                    }
-                    
-                    const dotCount = rowGroups[rowKey].userData.dotCount || 20;
-                    displaySeat = Math.floor(Math.random() * dotCount) + 1;
-                    if (!activeSeatsByRow[rowKey]) activeSeatsByRow[rowKey] = new Set();
-                    activeSeatsByRow[rowKey].add(displaySeat);
+                        if (!minPricesByRow[rowKey] || price < minPricesByRow[rowKey]) {
+                            minPricesByRow[rowKey] = price;
+                        }
 
-                    const seatKey = `${rowKey}::${displaySeat}`;
-                    if (!minPricesBySeat[seatKey] || price < minPricesBySeat[seatKey]) {
-                        minPricesBySeat[seatKey] = price;
-                    }
-                } else {
-                    if (!minPricesBySectionFallback[sec.section] || price < minPricesBySectionFallback[sec.section]) {
-                        minPricesBySectionFallback[sec.section] = price;
+                        if (listingType === 'seat') {
+                            const dotCount = rowGroups[rowKey].userData.dotCount || 20;
+                            displaySeat = Math.floor(Math.random() * dotCount) + 1;
+                            if (!activeSeatsByRow[rowKey]) activeSeatsByRow[rowKey] = new Set();
+                            activeSeatsByRow[rowKey].add(displaySeat);
+
+                            const seatKey = `${rowKey}::${displaySeat}`;
+                            if (!minPricesBySeat[seatKey] || price < minPricesBySeat[seatKey]) {
+                                minPricesBySeat[seatKey] = price;
+                            }
+                        }
+                    } else {
+                        if (!minPricesBySectionFallback[sec.section] || price < minPricesBySectionFallback[sec.section]) {
+                            minPricesBySectionFallback[sec.section] = price;
+                        }
                     }
                 }
 
                 allListingsData.push({
-                    section: sec.section,
-                    category: sec.category,
+                    section: sec ? sec.section : null,
+                    category: category,
                     rowNum: rowNum,
                     seatNum: displaySeat,
+                    previewSectionName: previewSectionName, // Used for category fallback thumbnail
                     price,
                     colorString,
                     isIndividual,
@@ -3100,13 +3244,9 @@
                 const textEl = rNode.querySelector('text, tspan');
                 
                 if (textEl && textEl.textContent.trim()) {
-                    let textColor = textEl.getAttribute('fill') || (textEl.style && textEl.style.fill);
-                    if ((!textColor || textColor === 'none') && textEl.parentElement) {
-                        textColor = textEl.parentElement.getAttribute('fill');
-                    }
                     rowLabelsMap[`${sName}::${rName}`] = {
                         text: textEl.textContent.trim(),
-                        color: textColor
+                        color: '#000000'
                     };
                 }
             });
@@ -3206,7 +3346,7 @@
                             sectionName: section, 
                             rowId: rowIdVal, 
                             label: meta.text || rowIdVal,
-                            textColor: meta.color || parsedHex,
+                            textColor: '#000000',
                             rowColor: parsedHex,
                             categoryName: category, 
                             hasActiveListings: false 
@@ -3378,12 +3518,10 @@
                 debugDotGroup.userData.instancedSeatsMesh = instancedMesh;
                 debugDotGroup.userData.activeSeatsGroup = activeSeatsGroup;
                 debugDotGroup.userData.seatPositions = seatPositions;
-                debugDotGroup.visible = showSeats;
+                debugDotGroup.visible = true;
 
                 rowGroups[rowKey].add(debugDotGroup);
             }
-
-            add3DGoals(currentSvgGroup);
 
             const geomBox = new THREE.Box3().setFromObject(currentSvgGroup);
             const geomCenter = new THREE.Vector3();
@@ -3504,10 +3642,10 @@
                 return;
             }
 
-            const rect = mapContainer.getBoundingClientRect();
+            const rect = renderer.domElement.getBoundingClientRect();
             const mouseCoord = new THREE.Vector2(
-                ((e.clientX - rect.left) / mapContainer.clientWidth) * 2 - 1,
-                -((e.clientY - rect.top) / mapContainer.clientHeight) * 2 + 1
+                ((e.clientX - rect.left) / rect.width) * 2 - 1,
+                -((e.clientY - rect.top) / rect.height) * 2 + 1
             );
 
             wheelRaycaster.setFromCamera(mouseCoord, camera);
@@ -3524,15 +3662,20 @@
             controls.update();
         }, { passive: false });
 
-        function onPointerMove(event) {
-            const rect = mapContainer.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-            mouse.x = (x / mapContainer.clientWidth) * 2 - 1;
-            mouse.y = -(y / mapContainer.clientHeight) * 2 + 1;
+        /* Accurate Screen/Touch Coordinate Converter */
+        function updateRaycasterCoords(clientX, clientY) {
+            const rect = renderer.domElement.getBoundingClientRect();
+            if (rect.width === 0 || rect.height === 0) return false;
+            mouse.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+            return true;
         }
 
-        function onClick(event) {
+        function onPointerMove(event) {
+            updateRaycasterCoords(event.clientX, event.clientY);
+        }
+
+        function handleMapSelection(clientX, clientY) {
             const detailView = document.getElementById('detail-view');
             if (detailView.classList.contains('active')) {
                 closeDetailView();
@@ -3541,29 +3684,68 @@
 
             if (lockedSectionGroup) return; 
 
-            if (hoveredRowGroup) {
-                const sectionName = hoveredRowGroup.userData.sectionName;
+            // Recalculate coordinates exactly at tap/click location
+            if (!updateRaycasterCoords(clientX, clientY)) return;
+
+            raycaster.setFromCamera(mouse, camera);
+            raycaster.params.Line = { threshold: 2.5 };
+
+            let targetRowGroup = null;
+            const visibleRowGroups = Object.values(rowGroups).filter(rg => rg.visible);
+
+            if (visibleRowGroups.length > 0) {
+                const rowIntersects = raycaster.intersectObjects(visibleRowGroups, true);
+                if (rowIntersects.length > 0) {
+                    for (let i = 0; i < rowIntersects.length; i++) {
+                        const hitObj = rowIntersects[i].object;
+                        if (hitObj.userData && hitObj.userData.isRow && hitObj.parent && hitObj.parent.visible) {
+                            targetRowGroup = hitObj.parent;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            let targetSectionGroup = null;
+            if (targetRowGroup) {
+                targetSectionGroup = targetRowGroup.parent;
+            } else if (currentSvgGroup) {
+                const allIntersects = raycaster.intersectObject(currentSvgGroup, true);
+                for (let i = 0; i < allIntersects.length; i++) {
+                    const hitMesh = allIntersects[i].object;
+                    if (hitMesh.userData && (hitMesh.userData.isPriceLabel || hitMesh.userData.isSvgText || hitMesh.userData.isRow)) {
+                        continue;
+                    }
+                    if (hitMesh.userData && hitMesh.userData.section) {
+                        targetSectionGroup = hitMesh.parent;
+                        break;
+                    }
+                }
+            }
+
+            if (targetRowGroup) {
+                const sectionName = targetRowGroup.userData.sectionName;
                 const parentSecGroup = sectionGroups[sectionName];
 
                 if (parentSecGroup && activeSection !== parentSecGroup) {
                     activate3DView(parentSecGroup);
                     filterListingsBySection(sectionName);
                 } else if (activeSection === parentSecGroup) {
-                    focusRowIn3DView(hoveredRowGroup);
+                    focusRowIn3DView(targetRowGroup);
                 }
 
-                setSelectedRow(selectedRowGroup === hoveredRowGroup ? null : hoveredRowGroup);
+                setSelectedRow(selectedRowGroup === targetRowGroup ? null : targetRowGroup);
                 return;
             }
 
-            if (hoveredSectionGroup) {
+            if (targetSectionGroup) {
                 setSelectedRow(null);
-                if (activeSection === hoveredSectionGroup && !cameraAnim.active) {
+                if (activeSection === targetSectionGroup && !cameraAnim.active) {
                     resetTo2DTopView();
                     filterListingsBySection(null);
                 } else {
-                    activate3DView(hoveredSectionGroup);
-                    filterListingsBySection(hoveredSectionGroup.userData.sectionName);
+                    activate3DView(targetSectionGroup);
+                    filterListingsBySection(targetSectionGroup.userData.sectionName);
                 }
             } else {
                 if (activeSection || activeFilterSection || activeFilterCategory || selectedRowGroup) {
@@ -3576,20 +3758,39 @@
         }
 
         window.addEventListener('click', (e) => {
-            if (e.target.closest('.cat-pill') || e.target.closest('.ticket-card') || e.target.closest('#map-container canvas') || e.target.closest('.site-nav') || e.target.closest('.sidebar') || e.target.closest('.event-header') || e.target.closest('#resizer-divider') || e.target.closest('.btn-show-more') || e.target.closest('.btn-toggle-map') || e.target.closest('.map-bottom-left-widget')) {
+            if (e.target.closest('.cat-pill') || e.target.closest('.ticket-card') || e.target.closest('#map-container canvas') || e.target.closest('.site-nav') || e.target.closest('.sidebar') || e.target.closest('.event-header') || e.target.closest('#resizer-divider') || e.target.closest('.btn-show-more') || e.target.closest('.btn-toggle-map') || e.target.closest('.map-bottom-left-widget') || e.target.closest('.map-controls-widget')) {
                 return;
             }
             if (activeFilterCategory) {
                 activeFilterCategory = null;
                 document.querySelectorAll('.cat-pill').forEach(pill => pill.classList.remove('active'));
+                setHighlightedSections(null);
                 renderListings(allListingsData);
             }
         });
 
-        mapContainer.addEventListener('mousemove', onPointerMove);
-        mapContainer.addEventListener('click', onClick);
+        // Mobile-robust Touch and Pointer Listeners
+        let pointerDownPos = { x: 0, y: 0 };
+
+        renderer.domElement.addEventListener('pointermove', onPointerMove, { passive: true });
+
+        renderer.domElement.addEventListener('pointerdown', (e) => {
+            pointerDownPos.x = e.clientX;
+            pointerDownPos.y = e.clientY;
+        }, { passive: true });
+
+        renderer.domElement.addEventListener('pointerup', (e) => {
+            // Drag vs tap threshold: if pointer moved more than 6px, treat as pan, not click
+            const dx = Math.abs(e.clientX - pointerDownPos.x);
+            const dy = Math.abs(e.clientY - pointerDownPos.y);
+            if (dx > 6 || dy > 6) {
+                return;
+            }
+            e.preventDefault();
+            handleMapSelection(e.clientX, e.clientY);
+        });
         
-        mapContainer.addEventListener('mouseleave', () => {
+        renderer.domElement.addEventListener('pointerleave', () => {
             mouse.x = -9999;
             mouse.y = -9999;
             if (!lockedSectionGroup) {
