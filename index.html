@@ -865,70 +865,31 @@
             border-radius: 10px;
             overflow: hidden;
             margin-bottom: 20px;
-            background: #000000;
+            background: #f1f5f9;
             position: relative;
-            cursor: grab;
             border: 1px solid #e5e7eb; 
-        }
-        #panorama-container:active { cursor: grabbing; }
-        #panorama-container canvas { display: block; width: 100% !important; height: 100% !important; outline: none; }
-        #pano-loading {
-            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            display: flex; align-items: center; justify-content: center;
-            background: rgba(248, 250, 252, 0.9);
-            color: #475569; font-weight: 600; font-size: 13px;
-            z-index: 5; pointer-events: none;
-        }
-
-        .pano-hint {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            pointer-events: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            background: rgba(17, 24, 39, 0.75);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            color: #ffffff;
-            padding: 10px 18px;
-            border-radius: 24px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .pano-hint.active { opacity: 1; }
-        .pano-hint-icon {
-            width: 24px;
-            height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: panoSwipeAnim 1.6s ease-in-out infinite alternate;
         }
-        .pano-hint-icon svg {
-            width: 22px;
-            height: 22px;
-            fill: none;
-            stroke: #ffffff;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+        #detail-preview-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
-        .pano-hint span {
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.2px;
-            white-space: nowrap;
-        }
-
-        @keyframes panoSwipeAnim {
-            0% { transform: translateX(-20px); }
-            100% { transform: translateX(20px); }
+        #pano-loading {
+            position: absolute; 
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: none; 
+            align-items: center; 
+            justify-content: center;
+            background: rgba(248, 250, 252, 0.9);
+            color: #475569; 
+            font-weight: 600; 
+            font-size: 13px;
+            z-index: 5; 
+            pointer-events: none;
         }
         
         .total-box { margin-bottom: 20px; }
@@ -1563,17 +1524,7 @@
 
                     <div id="panorama-container">
                         <div id="pano-loading">Loading View...</div>
-                        <div id="pano-hint" class="pano-hint">
-                            <div class="pano-hint-icon">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"></path>
-                                    <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"></path>
-                                    <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"></path>
-                                    <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path>
-                                </svg>
-                            </div>
-                            <span>Drag to look around</span>
-                        </div>
+                        <img id="detail-preview-img" src="" alt="Seat view preview">
                     </div>
 
                     <div class="total-box">
@@ -1631,7 +1582,6 @@
         import * as THREE from 'three';
         import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
         import { MapControls } from 'three/addons/controls/MapControls.js';
-        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
         let showPrices = true;
         const ACTIVE_SEAT_COLOR = 0x2cdb9f;
@@ -1690,99 +1640,6 @@
             controls.enableZoom = window.innerWidth <= 768;
         }
         updateMobileZoomState();
-
-        const PANO_FOV_X_DEG = 150;
-        const panoFovXRad = THREE.MathUtils.degToRad(PANO_FOV_X_DEG);
-
-        const panoContainer = document.getElementById('panorama-container');
-        const panoScene = new THREE.Scene();
-        const panoCamera = new THREE.PerspectiveCamera(65, 1, 0.1, 1000);
-        panoCamera.position.set(0, 0, 0.1);
-
-        const panoRenderer = new THREE.WebGLRenderer({ antialias: true });
-        panoRenderer.setPixelRatio(window.devicePixelRatio);
-        panoContainer.appendChild(panoRenderer.domElement);
-
-        const panoControls = new OrbitControls(panoCamera, panoRenderer.domElement);
-        panoControls.target.set(0, 0, 0);
-        panoControls.enableZoom = false;
-        panoControls.enablePan = false;
-        panoControls.enableDamping = true;
-        panoControls.dampingFactor = 0.08;
-        panoControls.rotateSpeed = -0.5;
-
-        panoControls.minPolarAngle = Math.PI / 2;
-        panoControls.maxPolarAngle = Math.PI / 2;
-
-        let currentPanoMesh = null;
-        let currentPanoFovYDeg = 65;
-
-        function rebuildPanoGeometry(fovYDeg) {
-            currentPanoFovYDeg = fovYDeg;
-            const fovYRad = THREE.MathUtils.degToRad(fovYDeg);
-            const phiStart = (Math.PI * 1.5) - (panoFovXRad / 2);
-            const thetaStart = (Math.PI - fovYRad) / 2;
-
-            if (currentPanoMesh) {
-                currentPanoMesh.geometry.dispose();
-                currentPanoMesh.geometry = new THREE.SphereGeometry(
-                    500,
-                    64,
-                    32,
-                    phiStart,
-                    panoFovXRad,
-                    thetaStart,
-                    fovYRad
-                );
-                currentPanoMesh.geometry.scale(-1, 1, 1);
-            }
-        }
-
-        const initialPanoGeom = new THREE.SphereGeometry(
-            500, 
-            64, 
-            32, 
-            (Math.PI * 1.5) - (panoFovXRad / 2), 
-            panoFovXRad, 
-            (Math.PI - THREE.MathUtils.degToRad(65)) / 2, 
-            THREE.MathUtils.degToRad(65)
-        );
-        initialPanoGeom.scale(-1, 1, 1); 
-
-        const panoMaterial = new THREE.MeshBasicMaterial({ 
-            color: 0xffffff,
-            side: THREE.DoubleSide
-        });
-        currentPanoMesh = new THREE.Mesh(initialPanoGeom, panoMaterial);
-        panoScene.add(currentPanoMesh);
-
-        function updatePanoAzimuthLimits() {
-            const aspect = panoCamera.aspect || 1;
-            const vFovRad = THREE.MathUtils.degToRad(panoCamera.fov);
-            const camHdeg = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(vFovRad / 2) * aspect));
-
-            const maxRotationDeg = Math.max(0, PANO_FOV_X_DEG - camHdeg);
-            const halfLimitRad = THREE.MathUtils.degToRad(maxRotationDeg / 2);
-
-            panoControls.minAzimuthAngle = -halfLimitRad;
-            panoControls.maxAzimuthAngle = halfLimitRad;
-        }
-
-        const panoHint = document.getElementById('pano-hint');
-        let panoHintTimeout = null;
-
-        function showPanoHint() {
-            clearTimeout(panoHintTimeout);
-            panoHint.classList.add('active');
-            panoHintTimeout = setTimeout(() => { hidePanoHint(); }, 3200);
-        }
-
-        function hidePanoHint() {
-            clearTimeout(panoHintTimeout);
-            panoHint.classList.remove('active');
-        }
-
-        panoContainer.addEventListener('pointerdown', hidePanoHint);
 
         const resizer = document.getElementById('resizer-divider');
         const sidebar = document.getElementById('sidebar-panel');
@@ -1873,18 +1730,6 @@
             } else if (!mapSectionPanel.classList.contains('is-visible')) {
                 isMapVisible = false;
                 btnToggleMapLabel.textContent = 'Show Map';
-            }
-
-            if (document.getElementById('detail-view').classList.contains('active')) {
-                const w = panoContainer.clientWidth;
-                const h = panoContainer.clientHeight;
-                if (w > 0 && h > 0) {
-                    panoRenderer.setSize(w, h);
-                    panoCamera.aspect = w / h;
-                    panoCamera.fov = currentPanoFovYDeg;
-                    panoCamera.updateProjectionMatrix();
-                    updatePanoAzimuthLimits();
-                }
             }
         });
 
@@ -2988,6 +2833,9 @@
             filterListingsBySection(null);
         });
 
+        const detailImg = document.getElementById('detail-preview-img');
+        const panoLoading = document.getElementById('pano-loading');
+
         function openDetailView(sectionName, price, displayCategoryName, categoryKey = null) {
             isUiHoverActive = false;
             document.getElementById('detail-view').classList.add('active');
@@ -2997,68 +2845,28 @@
             document.getElementById('dt-total').innerText = `€${price * 2}`; 
 
             const upperSection = sectionName ? getDisplaySection(sectionName) : '';
-            const panoUrl = upperSection ? `https://honeybadger7846.github.io/panoramic/${upperSection}.jpeg` : '';
+            const imgUrl = upperSection ? `https://honeybadger7846.github.io/panoramic/${upperSection}.jpeg` : '';
             
-            const panoLoading = document.getElementById('pano-loading');
-            panoLoading.style.display = 'flex';
-            panoLoading.innerText = 'Loading View...';
-            panoMaterial.map = null;
-            panoMaterial.needsUpdate = true;
+            if (imgUrl) {
+                panoLoading.style.display = 'flex';
+                panoLoading.innerText = 'Loading View...';
+                detailImg.style.display = 'none';
 
-            hidePanoHint();
-
-            if (panoUrl) {
-                new THREE.TextureLoader().load(panoUrl, 
-                    (texture) => {
-                        texture.colorSpace = THREE.SRGBColorSpace;
-                        panoMaterial.map = texture;
-                        panoMaterial.needsUpdate = true;
-                        panoLoading.style.display = 'none';
-                        showPanoHint();
-
-                        if (texture.image && texture.image.naturalWidth && texture.image.naturalHeight) {
-                            const imgAspect = texture.image.naturalWidth / texture.image.naturalHeight;
-                            const exactFovYDeg = PANO_FOV_X_DEG / imgAspect;
-
-                            rebuildPanoGeometry(exactFovYDeg);
-
-                            const w = panoContainer.clientWidth;
-                            const h = panoContainer.clientHeight;
-                            if (w > 0 && h > 0) {
-                                panoRenderer.setSize(w, h);
-                                panoCamera.aspect = w / h;
-                                panoCamera.fov = exactFovYDeg;
-                                panoCamera.updateProjectionMatrix();
-                                updatePanoAzimuthLimits();
-                            }
-                        }
-                    },
-                    undefined,
-                    () => {
-                        panoLoading.innerText = 'View not available for this section';
-                        hidePanoHint();
-                    }
-                );
+                detailImg.onload = () => {
+                    panoLoading.style.display = 'none';
+                    detailImg.style.display = 'block';
+                };
+                detailImg.onerror = () => {
+                    detailImg.style.display = 'none';
+                    panoLoading.style.display = 'flex';
+                    panoLoading.innerText = 'View not available for this section';
+                };
+                detailImg.src = imgUrl;
             } else {
+                detailImg.style.display = 'none';
+                panoLoading.style.display = 'flex';
                 panoLoading.innerText = 'View not available';
             }
-
-            setTimeout(() => {
-                const w = panoContainer.clientWidth;
-                const h = panoContainer.clientHeight;
-                if (w > 0 && h > 0) {
-                    panoRenderer.setSize(w, h);
-                    panoCamera.aspect = w / h;
-                    panoCamera.fov = currentPanoFovYDeg;
-                    panoCamera.updateProjectionMatrix();
-
-                    updatePanoAzimuthLimits();
-
-                    panoControls.target.set(0, 0, 0);
-                    panoCamera.position.set(0, 0, 0.1);
-                    panoControls.update();
-                }
-            }, 60);
 
             const targetGroup = sectionName ? sectionGroups[sectionName] : null;
             if (targetGroup) {
@@ -3080,7 +2888,6 @@
             applySectionOpacities();
             applyRowOpacities();
             document.body.style.cursor = 'default';
-            hidePanoHint();
         }
 
         document.getElementById('back-to-list-btn').addEventListener('click', closeDetailView);
@@ -4188,11 +3995,6 @@
             
             if (isMapVisible) {
                 renderer.render(scene, camera);
-            }
-
-            if (document.getElementById('detail-view').classList.contains('active')) {
-                panoControls.update();
-                panoRenderer.render(panoScene, panoCamera);
             }
         }
 
