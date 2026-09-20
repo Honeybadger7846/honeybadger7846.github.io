@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg enable-background="new 0 0 902.3 835" version="1.1" viewBox="0 0 902.3 835" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <pattern id="stripes" width="10.5" height="68" patternUnits="userSpaceOnUse">
+   <rect width="5.25" height="68" fill="#7cb859"/>
+   <rect x="5.25" width="5.25" height="68" fill="#8cc663"/>
+  </pattern>
+ </defs>
  <g data-category="sir-kenny-dalglish-stand">
   <g data-section="sir-kenny-dalglish-stand_kg">
    <path d="m224.6 121.9v66.4h82v-66.401h-82z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
@@ -10065,10 +10071,29 @@
   <g>
    <text x="400.83899" y="830.43298" fill="#503fa5" font-family="proxima-nova" font-size="15px">MAIN STAND</text>
   </g>
-  <g transform="matrix(.43887 0 0 .43887 249.59 223.29)">
-   <rect width="885" height="573" fill="#96cc6a"/>
-   <path d="m834.8 539.8h-41.3v-507h41.3zm-82.5 0h-41.3v-507h41.3zm-82.6 0h-41.3v-507h41.3zm-82.5 0h-41.3v-507h41.3zm-82.5 0h-41.3v-507h41.3zm-82.5 0h-41.3v-507h41.3zm-82.6 0h-41.3v-507h41.3zm-82.5 0h-41.3v-507h41.3zm-82.5 0h-41.3v-507h41.3zm-82.5 0h-41.3v-507h41.3z" fill="#fff" fill-opacity=".08"/>
-   <path d="m776.2 363.3v-154h58.6v154zm-107.6-77c0 23.8 10.9 45.2 27.9 59.2v-118.4c-17 14.1-27.9 35.4-27.9 59.2zm166.2 158.1v-316.1h-138.3v316.2h138.3zm0 77c-10.2 0-18.5 8.3-18.5 18.5h18.5zm0-470.1v-18.5h-18.5c0 10.3 8.3 18.5 18.5 18.5zm16.3 266.8v-63.5h-16.3v63.5zm-741.7 45.2v-154h-58.6v154zm79.6-136.2v118.5c17.1-14.1 27.9-35.4 27.9-59.2s-10.8-45.2-27.9-59.3zm0 217.3v-316.1h-138.2v316.2h138.2zm-138.2 95.4h18.5c0-10.2-8.3-18.5-18.5-18.5zm784-18.4v-470c-10.2 0-18.5-8.3-18.5-18.5h-747c0 10.2-8.3 18.5-18.5 18.5v470c10.2 0 18.5 8.3 18.5 18.5h747c0-10.3 8.3-18.5 18.5-18.5zm-765.5-488.6h-18.5v18.5c10.2 0 18.5-8.2 18.5-18.5zm-18.5 285.3v-63.5h-16.4v63.5zm392 221.7v-507m0 319.7c36.5 0 66.1-29.6 66.1-66.1s-29.6-66.1-66.1-66.1-66.1 29.6-66.1 66.1 29.6 66.1 66.1 66.1z" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2"/>
+  <g transform="matrix(3.1867 0 0 3.1867 274.94 242.86)">
+   <rect x="-8.44" y="-6" width="121.88" height="80" fill="#7cb859"/>
+   <rect width="105" height="68" fill="url(#stripes)"/>
+   <g fill="#fff">
+    <path d="m0 0h105v68h-105zm0.24 0.24v67.52h104.52v-67.52z" fill-rule="evenodd"/>
+    <rect x="52.38" y=".24" width=".24" height="67.52"/>
+    <path d="m52.5 24.85a9.15 9.15 0 1 0 1e-3 0zm0 0.24a8.91 8.91 0 1 1-1e-3 0z" fill-rule="evenodd"/>
+    <circle cx="52.5" cy="34" r=".24"/>
+    <circle cx="11" cy="34" r=".24"/>
+    <circle cx="94" cy="34" r=".24"/>
+    <path d="m0.24 13.84h16.26v40.32h-16.26v-0.24h16.02v-39.84h-16.02z" fill-rule="evenodd"/>
+    <path d="m0.24 24.84h5.26v18.32h-5.26v-0.24h5.02v-17.84h-5.02z" fill-rule="evenodd"/>
+    <path d="m16.5 26.68a9.15 9.15 0 0 1 0 14.64v-0.37a8.91 8.91 0 0 0 0-13.9z" fill-rule="evenodd"/>
+    <path d="m104.76 13.84h-16.26v40.32h16.26v-0.24h-16.02v-39.84h16.02z" fill-rule="evenodd"/>
+    <path d="m104.76 24.84h-5.26v18.32h5.26v-0.24h-5.02v-17.84h5.02z" fill-rule="evenodd"/>
+    <path d="m88.5 26.68a9.15 9.15 0 0 0 0 14.64v-0.37a8.91 8.91 0 0 1 0-13.9z" fill-rule="evenodd"/>
+    <path d="m0.24 1a1 1 0 0 0 0.76-0.76h-0.24a0.76 0.76 0 0 1-0.52 0.52z" fill-rule="evenodd"/>
+    <path d="m104 0.24a1 1 0 0 0 0.76 0.76v-0.24a0.76 0.76 0 0 1-0.52-0.52z" fill-rule="evenodd"/>
+    <path d="m104.76 67a1 1 0 0 0-0.76 0.76h0.24a0.76 0.76 0 0 1 0.52-0.52z" fill-rule="evenodd"/>
+    <path d="m1 67.76a1 1 0 0 0-0.76-0.76v0.24a0.76 0.76 0 0 1 0.52 0.52z" fill-rule="evenodd"/>
+    <path d="m0 30.34h-2.44v7.32h2.44v-0.24h-2.2v-6.84h2.2z" fill-rule="evenodd"/>
+    <path d="m105 30.34h2.44v7.32h-2.44v-0.24h2.2v-6.84h-2.2z" fill-rule="evenodd"/>
+   </g>
   </g>
  </g>
 </svg>
