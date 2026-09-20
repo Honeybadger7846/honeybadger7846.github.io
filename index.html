@@ -859,14 +859,13 @@
         .detail-row { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 12.5px; color: #374151;}
         .detail-row svg { width: 15px; height: 15px; flex-shrink: 0; color: #6b7280; }
         
-        /* Desktop: height reduced by 10% (300px -> 270px) */
         #panorama-container {
             width: 100%;
             height: 270px;
             border-radius: 10px;
             overflow: hidden;
             margin-bottom: 20px;
-            background: #e2e8f0;
+            background: #000000;
             position: relative;
             cursor: grab;
             border: 1px solid #e5e7eb; 
@@ -1117,7 +1116,6 @@
                 padding: 10px 14px 70px 14px;
             }
 
-            /* Mobile card: Allow auto-height and wrap to fit both rows */
             .ticket-card {
                 flex-direction: row;
                 align-items: stretch;
@@ -1139,7 +1137,6 @@
                 min-width: 0;
             }
 
-            /* Top row: Left image + Right text info */
             .card-top-row {
                 display: flex;
                 align-items: center;
@@ -1175,7 +1172,6 @@
                 overflow: hidden;
             }
 
-            /* Bottom row: Button spans full width inside card padding */
             .buy-btn-wrap {
                 width: 100% !important;
                 height: 34px !important;
@@ -1221,7 +1217,6 @@
                 box-shadow: 0 1px 2px rgba(0,0,0,0.25) !important;
             }
 
-            /* Mobile Detail View positioned properly below navbar */
             .detail-view {
                 position: fixed;
                 top: 44px;
@@ -1252,7 +1247,6 @@
                 padding: 14px;
             }
 
-            /* Mobile: height reduced by 35% (300px -> 195px) */
             #panorama-container {
                 height: 195px;
                 margin-bottom: 16px;
@@ -1260,6 +1254,87 @@
 
             .detail-footer {
                 padding: 12px 14px;
+            }
+        }
+
+        @media (max-width: 950px) and (orientation: landscape), (max-height: 520px) {
+            .site-nav {
+                height: 38px;
+            }
+
+            .page-body {
+                height: calc(100vh - 38px) !important;
+                height: calc(100dvh - 38px) !important;
+            }
+
+            .event-header {
+                padding: 4px 12px;
+            }
+
+            .event-meta-lines {
+                display: none;
+            }
+
+            .categories-bar {
+                padding: 3px 10px 4px 10px;
+                gap: 5px;
+            }
+
+            .cat-pill {
+                padding: 3px 10px;
+                font-size: 11.5px;
+            }
+
+            #map-container {
+                height: 160px !important;
+                min-height: 150px !important;
+                max-height: 165px !important;
+            }
+
+            .map-ctrl-btn {
+                width: 28px;
+                height: 28px;
+            }
+
+            .map-controls-widget,
+            .map-bottom-left-widget {
+                bottom: 8px;
+            }
+
+            .sidebar-header {
+                padding: 6px 12px;
+            }
+
+            .btn-toggle-map {
+                height: 30px;
+                padding: 0 10px;
+                font-size: 12px;
+            }
+
+            .filter-toggle-btn {
+                width: 30px;
+                height: 30px;
+            }
+
+            .qty-badge-btn {
+                height: 30px;
+                padding: 0 10px;
+            }
+
+            .ticket-list {
+                padding: 8px 12px 60px 12px;
+                gap: 8px;
+            }
+
+            .detail-view {
+                top: 38px;
+                height: calc(100vh - 38px) !important;
+                height: calc(100dvh - 38px) !important;
+            }
+
+            #panorama-container {
+                height: 140px;
+                margin-bottom: 12px;
             }
         }
     </style>
@@ -1487,7 +1562,7 @@
                     </div>
 
                     <div id="panorama-container">
-                        <div id="pano-loading">Loading 360° View...</div>
+                        <div id="pano-loading">Loading View...</div>
                         <div id="pano-hint" class="pano-hint">
                             <div class="pano-hint-icon">
                                 <svg viewBox="0 0 24 24">
@@ -1616,9 +1691,13 @@
         }
         updateMobileZoomState();
 
+        // --- 150° Panoramic Viewer Setup ---
+        const PANO_FOV_X_DEG = 150;
+        const panoFovXRad = THREE.MathUtils.degToRad(PANO_FOV_X_DEG);
+
         const panoContainer = document.getElementById('panorama-container');
         const panoScene = new THREE.Scene();
-        const panoCamera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+        const panoCamera = new THREE.PerspectiveCamera(65, 1, 0.1, 1000);
         panoCamera.position.set(0, 0, 0.1);
 
         const panoRenderer = new THREE.WebGLRenderer({ antialias: true });
@@ -1626,18 +1705,70 @@
         panoContainer.appendChild(panoRenderer.domElement);
 
         const panoControls = new OrbitControls(panoCamera, panoRenderer.domElement);
+        panoControls.target.set(0, 0, 0);
         panoControls.enableZoom = false;
         panoControls.enablePan = false;
         panoControls.enableDamping = true;
-        panoControls.dampingFactor = 0.05;
+        panoControls.dampingFactor = 0.08;
         panoControls.rotateSpeed = -0.5;
 
-        const panoGeometry = new THREE.SphereGeometry(500, 60, 40);
-        panoGeometry.scale(-1, 1, 1); 
-        const panoMaterial = new THREE.MeshBasicMaterial({ color: 0xcccccc });
-        const panoMesh = new THREE.Mesh(panoGeometry, panoMaterial);
-        panoMesh.rotation.y = -Math.PI / 2; 
-        panoScene.add(panoMesh);
+        // Lock vertical tilt strictly to horizontal horizon
+        panoControls.minPolarAngle = Math.PI / 2;
+        panoControls.maxPolarAngle = Math.PI / 2;
+
+        let currentPanoMesh = null;
+        let currentPanoFovYDeg = 65;
+
+        function rebuildPanoGeometry(fovYDeg) {
+            currentPanoFovYDeg = fovYDeg;
+            const fovYRad = THREE.MathUtils.degToRad(fovYDeg);
+            const phiStart = (Math.PI * 1.5) - (panoFovXRad / 2);
+            const thetaStart = (Math.PI - fovYRad) / 2;
+
+            if (currentPanoMesh) {
+                currentPanoMesh.geometry.dispose();
+                currentPanoMesh.geometry = new THREE.SphereGeometry(
+                    500,
+                    64,
+                    32,
+                    phiStart,
+                    panoFovXRad,
+                    thetaStart,
+                    fovYRad
+                );
+                currentPanoMesh.geometry.scale(-1, 1, 1);
+            }
+        }
+
+        const initialPanoGeom = new THREE.SphereGeometry(
+            500, 
+            64, 
+            32, 
+            (Math.PI * 1.5) - (panoFovXRad / 2), 
+            panoFovXRad, 
+            (Math.PI - THREE.MathUtils.degToRad(65)) / 2, 
+            THREE.MathUtils.degToRad(65)
+        );
+        initialPanoGeom.scale(-1, 1, 1); 
+
+        const panoMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0xffffff,
+            side: THREE.DoubleSide
+        });
+        currentPanoMesh = new THREE.Mesh(initialPanoGeom, panoMaterial);
+        panoScene.add(currentPanoMesh);
+
+        function updatePanoAzimuthLimits() {
+            const aspect = panoCamera.aspect || 1;
+            const vFovRad = THREE.MathUtils.degToRad(panoCamera.fov);
+            const camHdeg = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(vFovRad / 2) * aspect));
+
+            const maxRotationDeg = Math.max(0, PANO_FOV_X_DEG - camHdeg);
+            const halfLimitRad = THREE.MathUtils.degToRad(maxRotationDeg / 2);
+
+            panoControls.minAzimuthAngle = -halfLimitRad;
+            panoControls.maxAzimuthAngle = halfLimitRad;
+        }
 
         const panoHint = document.getElementById('pano-hint');
         let panoHintTimeout = null;
@@ -1660,6 +1791,23 @@
         const pageBody = document.getElementById('page-body');
         let isDraggingResizer = false;
 
+        let svgGeomSize = new THREE.Vector3();
+
+        function calculateBestFitZoom(size) {
+            const w = mapContainer.clientWidth || 1;
+            const h = mapContainer.clientHeight || 1;
+            const aspect = w / h;
+
+            const vFovRad = THREE.MathUtils.degToRad(camera.fov);
+            const hFovRad = 2 * Math.atan(Math.tan(vFovRad / 2) * aspect);
+
+            const PADDING = 0.90;
+            const distForHeight = (size.y / PADDING) / (2 * Math.tan(vFovRad / 2));
+            const distForWidth  = (size.x / PADDING) / (2 * Math.tan(hFovRad / 2));
+
+            return Math.max(distForHeight, distForWidth, 30);
+        }
+
         function updateCanvasSize() {
             const width = mapContainer.clientWidth;
             const height = mapContainer.clientHeight;
@@ -1667,6 +1815,18 @@
             camera.aspect = width / height;
             camera.updateProjectionMatrix();
             renderer.setSize(width, height);
+
+            if (svgGeomSize.length() > 0) {
+                const targetZ = calculateBestFitZoom(svgGeomSize);
+                defaultCameraPos.set(0, 0, targetZ);
+                defaultControlsTarget.set(0, 0, 0);
+
+                if (!activeSection && !cameraAnim.active && (!activeFilterCategory || activeFilterCategory === null)) {
+                    camera.position.z = targetZ;
+                    controls.target.set(0, 0, 0);
+                    controls.update();
+                }
+            }
         }
 
         resizer.addEventListener('pointerdown', (e) => {
@@ -1715,6 +1875,18 @@
             } else if (!mapSectionPanel.classList.contains('is-visible')) {
                 isMapVisible = false;
                 btnToggleMapLabel.textContent = 'Show Map';
+            }
+
+            if (document.getElementById('detail-view').classList.contains('active')) {
+                const w = panoContainer.clientWidth;
+                const h = panoContainer.clientHeight;
+                if (w > 0 && h > 0) {
+                    panoRenderer.setSize(w, h);
+                    panoCamera.aspect = w / h;
+                    panoCamera.fov = currentPanoFovYDeg;
+                    panoCamera.updateProjectionMatrix();
+                    updatePanoAzimuthLimits();
+                }
             }
         });
 
@@ -2831,7 +3003,7 @@
             
             const panoLoading = document.getElementById('pano-loading');
             panoLoading.style.display = 'flex';
-            panoLoading.innerText = 'Loading 360° View...';
+            panoLoading.innerText = 'Loading View...';
             panoMaterial.map = null;
             panoMaterial.needsUpdate = true;
 
@@ -2845,24 +3017,52 @@
                         panoMaterial.needsUpdate = true;
                         panoLoading.style.display = 'none';
                         showPanoHint();
+
+                        // Dynamically compute exact vertical FOV from texture aspect ratio
+                        if (texture.image && texture.image.naturalWidth && texture.image.naturalHeight) {
+                            const imgAspect = texture.image.naturalWidth / texture.image.naturalHeight;
+                            const exactFovYDeg = PANO_FOV_X_DEG / imgAspect;
+
+                            rebuildPanoGeometry(exactFovYDeg);
+
+                            const w = panoContainer.clientWidth;
+                            const h = panoContainer.clientHeight;
+                            if (w > 0 && h > 0) {
+                                panoRenderer.setSize(w, h);
+                                panoCamera.aspect = w / h;
+                                panoCamera.fov = exactFovYDeg;
+                                panoCamera.updateProjectionMatrix();
+                                updatePanoAzimuthLimits();
+                            }
+                        }
                     },
                     undefined,
                     () => {
-                        panoLoading.innerText = '360° View not available for this section';
+                        panoLoading.innerText = 'View not available for this section';
                         hidePanoHint();
                     }
                 );
             } else {
-                panoLoading.innerText = '360° View not available';
+                panoLoading.innerText = 'View not available';
             }
 
             setTimeout(() => {
                 const w = panoContainer.clientWidth;
                 const h = panoContainer.clientHeight;
-                panoRenderer.setSize(w, h);
-                panoCamera.aspect = w / h;
-                panoCamera.updateProjectionMatrix();
-            }, 50);
+                if (w > 0 && h > 0) {
+                    panoRenderer.setSize(w, h);
+                    panoCamera.aspect = w / h;
+                    panoCamera.fov = currentPanoFovYDeg;
+                    panoCamera.updateProjectionMatrix();
+
+                    updatePanoAzimuthLimits();
+
+                    // Center camera looking straight down -Z
+                    panoControls.target.set(0, 0, 0);
+                    panoCamera.position.set(0, 0, 0.1);
+                    panoControls.update();
+                }
+            }, 60);
 
             const targetGroup = sectionName ? sectionGroups[sectionName] : null;
             if (targetGroup) {
@@ -3633,8 +3833,7 @@
             const geomBox = new THREE.Box3().setFromObject(currentSvgGroup);
             const geomCenter = new THREE.Vector3();
             geomBox.getCenter(geomCenter);
-            const geomSize = new THREE.Vector3();
-            geomBox.getSize(geomSize);
+            geomBox.getSize(svgGeomSize);
 
             currentSvgGroup.position.x = -geomCenter.x;
             currentSvgGroup.position.y = -geomCenter.y;
@@ -3651,12 +3850,13 @@
             rowTextSpritesGroup = renderRowSprites(rowGroups);
             scene.add(rowTextSpritesGroup);
 
-            const maxDim = Math.max(geomSize.x, geomSize.y);
-            camera.position.set(0, 0, maxDim * 1.2);
+            const initialDist = calculateBestFitZoom(svgGeomSize);
+            camera.position.set(0, 0, initialDist);
             controls.target.set(0, 0, 0);
             controls.enablePan = true;
             controls.enableRotate = false;
 
+            const maxDim = Math.max(svgGeomSize.x, svgGeomSize.y);
             controls.minDistance = 25;
             controls.maxDistance = maxDim * 4.0;
 
