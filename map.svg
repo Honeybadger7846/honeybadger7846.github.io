@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg enable-background="new 0 0 902.3 835" version="1.1" viewBox="0 0 902.3 835" xmlns="http://www.w3.org/2000/svg">
- <defs>
-  <pattern id="stripes" width="10.5" height="68" patternUnits="userSpaceOnUse">
-   <rect width="5.25" height="68" fill="#7cb859"/>
-   <rect x="5.25" width="5.25" height="68" fill="#8cc663"/>
-  </pattern>
- </defs>
  <g data-category="sir-kenny-dalglish-stand">
   <g data-section="sir-kenny-dalglish-stand_kg">
    <path d="m224.6 121.9v66.4h82v-66.401h-82z" fill="none" stroke="#C6CDD2" stroke-width="1px" data-seat="sir-kenny-dalglish-stand"/>
@@ -10071,28 +10065,44 @@
   <g>
    <text x="400.83899" y="830.43298" fill="#503fa5" font-family="proxima-nova" font-size="15px">MAIN STAND</text>
   </g>
-  <g transform="matrix(3.1867 0 0 3.1867 274.94 242.86)">
-   <rect x="-8.44" y="-6" width="121.88" height="80" fill="#7cb859"/>
-   <rect width="105" height="68" fill="url(#stripes)"/>
-   <g fill="#fff">
-    <path d="m0 0h105v68h-105zm0.24 0.24v67.52h104.52v-67.52z" fill-rule="evenodd"/>
-    <rect x="52.38" y=".24" width=".24" height="67.52"/>
-    <path d="m52.5 24.85a9.15 9.15 0 1 0 1e-3 0zm0 0.24a8.91 8.91 0 1 1-1e-3 0z" fill-rule="evenodd"/>
-    <circle cx="52.5" cy="34" r=".24"/>
-    <circle cx="11" cy="34" r=".24"/>
-    <circle cx="94" cy="34" r=".24"/>
-    <path d="m0.24 13.84h16.26v40.32h-16.26v-0.24h16.02v-39.84h-16.02z" fill-rule="evenodd"/>
-    <path d="m0.24 24.84h5.26v18.32h-5.26v-0.24h5.02v-17.84h-5.02z" fill-rule="evenodd"/>
-    <path d="m16.5 26.68a9.15 9.15 0 0 1 0 14.64v-0.37a8.91 8.91 0 0 0 0-13.9z" fill-rule="evenodd"/>
-    <path d="m104.76 13.84h-16.26v40.32h16.26v-0.24h-16.02v-39.84h16.02z" fill-rule="evenodd"/>
-    <path d="m104.76 24.84h-5.26v18.32h5.26v-0.24h-5.02v-17.84h5.02z" fill-rule="evenodd"/>
-    <path d="m88.5 26.68a9.15 9.15 0 0 0 0 14.64v-0.37a8.91 8.91 0 0 1 0-13.9z" fill-rule="evenodd"/>
-    <path d="m0.24 1a1 1 0 0 0 0.76-0.76h-0.24a0.76 0.76 0 0 1-0.52 0.52z" fill-rule="evenodd"/>
-    <path d="m104 0.24a1 1 0 0 0 0.76 0.76v-0.24a0.76 0.76 0 0 1-0.52-0.52z" fill-rule="evenodd"/>
-    <path d="m104.76 67a1 1 0 0 0-0.76 0.76h0.24a0.76 0.76 0 0 1 0.52-0.52z" fill-rule="evenodd"/>
-    <path d="m1 67.76a1 1 0 0 0-0.76-0.76v0.24a0.76 0.76 0 0 1 0.52 0.52z" fill-rule="evenodd"/>
-    <path d="m0 30.34h-2.44v7.32h2.44v-0.24h-2.2v-6.84h2.2z" fill-rule="evenodd"/>
-    <path d="m105 30.34h2.44v7.32h-2.44v-0.24h2.2v-6.84h-2.2z" fill-rule="evenodd"/>
+  <g transform="matrix(.34451 0 0 .34451 243.84 223.74)">
+   <rect width="1150" height="740" fill="#74ac56"/>
+   <g id="pitch-stripes">
+    <rect x="50" y="50" width="70" height="640" fill="#84c25e"/>
+    <rect x="120" y="50" width="70" height="640" fill="#74ac56"/>
+    <rect x="190" y="50" width="70" height="640" fill="#84c25e"/>
+    <rect x="260" y="50" width="70" height="640" fill="#74ac56"/>
+    <rect x="330" y="50" width="70" height="640" fill="#84c25e"/>
+    <rect x="400" y="50" width="70" height="640" fill="#74ac56"/>
+    <rect x="470" y="50" width="70" height="640" fill="#84c25e"/>
+    <rect x="540" y="50" width="70" height="640" fill="#74ac56"/>
+    <rect x="610" y="50" width="70" height="640" fill="#84c25e"/>
+    <rect x="680" y="50" width="70" height="640" fill="#74ac56"/>
+    <rect x="750" y="50" width="70" height="640" fill="#84c25e"/>
+    <rect x="820" y="50" width="70" height="640" fill="#74ac56"/>
+    <rect x="890" y="50" width="70" height="640" fill="#84c25e"/>
+    <rect x="960" y="50" width="70" height="640" fill="#74ac56"/>
+    <rect x="1030" y="50" width="70" height="640" fill="#84c25e"/>
+   </g>
+   <g fill="none" stroke="#fff" stroke-width="2">
+    <rect x="50" y="50" width="1050" height="640"/>
+    <line x1="575" x2="575" y1="50" y2="690"/>
+    <circle cx="575" cy="370" r="91.5"/>
+    <circle cx="575" cy="370" r="2"/>
+    <rect x="50" y="188.5" width="165" height="363"/>
+    <rect x="50" y="279.5" width="55" height="181"/>
+    <path d="m215 317.5a91.5 91.5 0 0 1 0 105"/>
+    <circle cx="160" cy="370" r="2"/>
+    <rect x="34" y="333.5" width="16" height="73"/>
+    <rect x="935" y="188.5" width="165" height="363"/>
+    <rect x="1045" y="279.5" width="55" height="181"/>
+    <path d="m935 317.5a91.5 91.5 0 0 0 0 105"/>
+    <circle cx="990" cy="370" r="2"/>
+    <rect x="1100" y="333.5" width="16" height="73"/>
+    <path d="m50 65a15 15 0 0 0 15-15"/>
+    <path d="m50 675a15 15 0 0 1 15 15"/>
+    <path d="m1100 65a15 15 0 0 1-15-15"/>
+    <path d="m1100 675a15 15 0 0 0-15 15"/>
    </g>
   </g>
  </g>
