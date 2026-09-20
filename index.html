@@ -679,6 +679,13 @@
             justify-content: space-between; 
             gap: 14px; 
         }
+        .card-top-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex: 1;
+            min-width: 0;
+        }
         .card-thumb { 
             width: 108px; 
             height: 74px; 
@@ -813,6 +820,7 @@
             padding: 16px 24px; 
             border-bottom: 1px solid #e5e7eb; 
             background: #ffffff; 
+            flex-shrink: 0;
         }
         .back-btn { 
             background: none; 
@@ -851,9 +859,10 @@
         .detail-row { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 12.5px; color: #374151;}
         .detail-row svg { width: 15px; height: 15px; flex-shrink: 0; color: #6b7280; }
         
+        /* Desktop: height reduced by 10% (300px -> 270px) */
         #panorama-container {
             width: 100%;
-            height: 300px;
+            height: 270px;
             border-radius: 10px;
             overflow: hidden;
             margin-bottom: 20px;
@@ -935,7 +944,7 @@
         
         .section-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; margin-top: 20px; margin-bottom: 6px;}
         .section-desc { color: #4b5563; margin-bottom: 14px; font-size: 13px; line-height: 1.45; margin-left: 24px;}
-        .detail-footer { padding: 16px 24px; border-top: 1px solid #e5e7eb; background: #ffffff; }
+        .detail-footer { padding: 16px 24px; border-top: 1px solid #e5e7eb; background: #ffffff; flex-shrink: 0; }
         .checkout-btn { width: 100%; background: #29CCA2; color: #000000; border: none; padding: 14px; border-radius: 24px; font-size: 16px; font-weight: 900; cursor: pointer; transition: background 0.15s;}
         .checkout-btn:hover { background: #23b791; }
 
@@ -1108,13 +1117,149 @@
                 padding: 10px 14px 70px 14px;
             }
 
+            /* Mobile card: Allow auto-height and wrap to fit both rows */
+            .ticket-card {
+                flex-direction: row;
+                align-items: stretch;
+                min-height: auto;
+                overflow: visible;
+            }
+
+            .card-color {
+                border-top-left-radius: 19px;
+                border-bottom-left-radius: 19px;
+            }
+
+            .card-content {
+                display: flex;
+                flex-direction: column;
+                padding: 12px 14px 12px 10px;
+                gap: 10px;
+                width: 100%;
+                min-width: 0;
+            }
+
+            /* Top row: Left image + Right text info */
+            .card-top-row {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                width: 100%;
+                min-width: 0;
+            }
+
+            .card-thumb {
+                width: 104px;
+                height: 70px;
+                border-radius: 8px;
+                flex-shrink: 0;
+                margin: 0;
+            }
+
+            .card-info {
+                flex: 1;
+                min-width: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 3px;
+            }
+
+            .card-info h3 {
+                font-size: 14px;
+                line-height: 1.3;
+                font-weight: 700;
+                color: #111827;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            /* Bottom row: Button spans full width inside card padding */
+            .buy-btn-wrap {
+                width: 100% !important;
+                height: 34px !important;
+                margin: 0 !important;
+                position: relative !important;
+                display: flex !important;
+                align-self: stretch !important;
+            }
+
+            .buy-btn {
+                width: 100% !important;
+                height: 34px !important;
+                background: #29CCA2 !important;
+                color: #000000 !important;
+                border-radius: 17px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                padding: 0 16px !important;
+            }
+
+            .buy-btn-text {
+                font-size: 15px !important;
+                font-weight: 900 !important;
+                letter-spacing: -0.2px !important;
+                line-height: 1 !important;
+            }
+
+            .buy-btn-badge {
+                position: absolute !important;
+                bottom: -3px !important;
+                right: -2px !important;
+                background: #000000 !important;
+                color: #29CCA2 !important;
+                font-size: 7.5px !important;
+                font-weight: 900 !important;
+                letter-spacing: 0.4px !important;
+                text-transform: uppercase !important;
+                padding: 1.5px 5px !important;
+                border-radius: 6px !important;
+                line-height: 1 !important;
+                pointer-events: none !important;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.25) !important;
+            }
+
+            /* Mobile Detail View positioned properly below navbar */
             .detail-view {
                 position: fixed;
-                top: 0;
+                top: 44px;
                 left: 0;
                 width: 100vw;
-                height: 100vh;
+                height: calc(100vh - 44px);
+                height: calc(100dvh - 44px);
                 z-index: 150;
+                display: flex;
+                flex-direction: column;
+                background: #f7f9fa;
+                overflow: hidden;
+            }
+
+            .detail-header {
+                padding: 12px 14px;
+                position: sticky;
+                top: 0;
+                z-index: 10;
+                background: #ffffff;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            }
+
+            .detail-content {
+                flex: 1;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: 14px;
+            }
+
+            /* Mobile: height reduced by 35% (300px -> 195px) */
+            #panorama-container {
+                height: 195px;
+                margin-bottom: 16px;
+            }
+
+            .detail-footer {
+                padding: 12px 14px;
             }
         }
     </style>
@@ -2064,7 +2209,9 @@
             const currentCameraDist = camera.position.distanceTo(controls.target);
             const t = THREE.MathUtils.clamp((refDist - currentCameraDist) / (refDist * 0.65), 0, 1);
             
-            const screenMultiplier = 1.0 + (0.10 * t);
+            const isMobile = window.innerWidth <= 768;
+            const mobileBoost = isMobile ? 1.95 : 1.0;
+            const screenMultiplier = (1.0 + (0.10 * t)) * mobileBoost;
 
             const w = mapContainer.clientWidth;
             const h = mapContainer.clientHeight;
@@ -2800,6 +2947,9 @@
 
             const content = document.createElement('div');
             content.className = 'card-content';
+
+            const topRow = document.createElement('div');
+            topRow.className = 'card-top-row';
             
             const imageSection = item.displaySectionName || (item.previewSectionName ? getDisplaySection(item.previewSectionName) : null);
             if (imageSection) {
@@ -2809,7 +2959,7 @@
                 thumbImg.alt = `Stand View`;
                 thumbImg.loading = 'lazy';
                 thumbImg.onerror = () => { thumbImg.style.display = 'none'; };
-                content.appendChild(thumbImg);
+                topRow.appendChild(thumbImg);
             }
 
             const info = document.createElement('div');
@@ -2851,7 +3001,8 @@
                 info.appendChild(badge);
             }
 
-            content.appendChild(info);
+            topRow.appendChild(info);
+            content.appendChild(topRow);
 
             const btnWrap = document.createElement('div');
             btnWrap.className = 'buy-btn-wrap';
@@ -3415,8 +3566,8 @@
                 let endPt = allRowPoints[1];
                 let maxDistSq = 0;
 
-                for (let i = 0; i < allRowPoints.length; i++) {
-                    for (let j = i + 1; j < allRowPoints.length; j++) {
+                for (let i = allRowPoints.length - 1; i >= 0; i--) {
+                    for (let j = i - 1; j >= 0; j--) {
                         const dSq = allRowPoints[i].distanceToSquared(allRowPoints[j]);
                         if (dSq > maxDistSq) {
                             maxDistSq = dSq;
