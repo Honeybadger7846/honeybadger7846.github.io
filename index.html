@@ -556,40 +556,15 @@
             overflow: hidden;
             z-index: 15;
             padding: 10px;
-            cursor: pointer;
-            transition: border-color 0.15s ease, transform 0.1s ease;
+            pointer-events: none;
+            user-select: none;
         }
 
-        .minimap-widget:hover {
-            border-color: #29CCA2;
-            box-shadow: none;
-            transform: none;
-        }
-
-        .minimap-widget svg {
-            width: 100%;
-            height: 100%;
+        .minimap-widget canvas {
             display: block;
-            pointer-events: auto;
-        }
-
-        .minimap-sec {
-            fill: #e5e7eb;
-            stroke: #ffffff;
-            stroke-width: 1;
-            cursor: pointer;
-            transition: fill 0.15s ease, opacity 0.15s ease;
-        }
-
-        .minimap-sec:hover {
-            fill: #cbd5e1;
-        }
-
-        .minimap-sec.active {
-            stroke: #111827 !important;
-            stroke-width: 1.5 !important;
-            opacity: 1 !important;
-            filter: none;
+            width: 100% !important;
+            height: 100% !important;
+            pointer-events: none;
         }
 
         .resizer-divider {
@@ -1770,7 +1745,7 @@
                     </label>
                 </div>
 
-                <div id="map-minimap" class="minimap-widget" title="Minimap (Click to reset view)"></div>
+                <div id="map-minimap" class="minimap-widget"></div>
 
                 <div class="map-controls-widget">
                     <button class="map-ctrl-btn" id="ctrl-zoom-in" title="Zoom In" aria-label="Zoom In">
@@ -2054,6 +2029,146 @@
         renderer.setSize(mapContainer.clientWidth, mapContainer.clientHeight || 250);
         mapContainer.appendChild(renderer.domElement);
 
+        // --- Dedicated Three.js Micro Minimap ---
+        let minimapScene = null;
+        let minimapCamera = null;
+        let minimapRenderer = null;
+        const minimapSectionMeshes = {};
+
+        const MINIMAP_INACTIVE_COLOR = new THREE.Color(0xd1d5db);
+        const MINIMAP_INACTIVE_OPACITY = 0.5;
+
+        function initMinimapRenderer() {
+            if (!minimapContainer) return;
+            minimapContainer.innerHTML = '';
+
+            const canvas = document.createElement('canvas');
+            minimapContainer.appendChild(canvas);
+
+            minimapRenderer = new THREE.WebGLRenderer({
+                canvas,
+                alpha: true,
+                antialias: true,
+                powerPreference: 'low-power'
+            });
+            minimapRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            minimapScene = new THREE.Scene();
+            minimapCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 100);
+            minimapCamera.position.set(0, 0, 10);
+            minimapCamera.lookAt(0, 0, 0);
+        }
+
+        initMinimapRenderer();
+
+        function setupMinimap() {
+            if (!minimapScene) return;
+
+            while (minimapScene.children.length > 0) {
+                const child = minimapScene.children[0];
+                if (child.geometry) child.geometry.dispose();
+                if (child.material) child.material.dispose();
+                minimapScene.remove(child);
+            }
+            for (const key in minimapSectionMeshes) delete minimapSectionMeshes[key];
+
+            const combinedBox = new THREE.Box3();
+
+            for (const [secName, sGroup] of Object.entries(sectionGroups)) {
+                minimapSectionMeshes[secName] = [];
+
+                sGroup.children.forEach(child => {
+                    if (child.userData && child.userData.isRowGroup) return;
+                    if (child.isMesh && child.userData && child.userData.section) {
+                        const miniMat = new THREE.MeshBasicMaterial({
+                            color: MINIMAP_INACTIVE_COLOR.clone(),
+                            transparent: true,
+                            opacity: MINIMAP_INACTIVE_OPACITY,
+                            side: THREE.DoubleSide,
+                            depthWrite: false
+                        });
+
+                        const miniMesh = new THREE.Mesh(child.geometry, miniMat);
+                        miniMesh.position.copy(child.position);
+                        miniMesh.position.x += currentSvgGroup.position.x;
+                        miniMesh.position.y = (miniMesh.position.y * -1) - currentSvgGroup.position.y;
+                        miniMesh.scale.set(1, -1, 1);
+
+                        miniMesh.updateMatrixWorld(true);
+                        combinedBox.expandByObject(miniMesh);
+
+                        minimapScene.add(miniMesh);
+                        minimapSectionMeshes[secName].push(miniMesh);
+                    }
+                });
+            }
+
+            if (!combinedBox.isEmpty()) {
+                const center = new THREE.Vector3();
+                const size = new THREE.Vector3();
+                combinedBox.getCenter(center);
+                combinedBox.getSize(size);
+
+                const PADDING = 1.15;
+                const aspect = (minimapContainer.clientWidth || 196) / (minimapContainer.clientHeight || 158);
+                const halfH = (size.y * PADDING) / 2;
+                const halfW = (size.x * PADDING) / 2;
+
+                if (halfW / halfH > aspect) {
+                    const adjH = halfW / aspect;
+                    minimapCamera.left = center.x - halfW;
+                    minimapCamera.right = center.x + halfW;
+                    minimapCamera.top = center.y + adjH;
+                    minimapCamera.bottom = center.y - adjH;
+                } else {
+                    const adjW = halfH * aspect;
+                    minimapCamera.left = center.x - adjW;
+                    minimapCamera.right = center.x + adjW;
+                    minimapCamera.top = center.y + halfH;
+                    minimapCamera.bottom = center.y - halfH;
+                }
+
+                minimapCamera.updateProjectionMatrix();
+            }
+        }
+
+        function updateMinimapHighlight(activeSecName) {
+            if (!minimapContainer || !minimapRenderer || !minimapScene) return;
+
+            if (!activeSecName) {
+                minimapContainer.style.display = 'none';
+                return;
+            }
+
+            minimapContainer.style.display = 'flex';
+
+            const w = minimapContainer.clientWidth || 196;
+            const h = minimapContainer.clientHeight || 158;
+            minimapRenderer.setSize(w, h, false);
+
+            const targetGroup = sectionGroups[activeSecName];
+            const catName = targetGroup && targetGroup.userData ? targetGroup.userData.categoryName : null;
+            const activeColorHex = catName ? getCategoryColor(catName) : 0x29CCA2;
+            const activeColor = new THREE.Color(activeColorHex);
+
+            for (const [secName, meshList] of Object.entries(minimapSectionMeshes)) {
+                const isActive = (secName === activeSecName);
+                meshList.forEach(mesh => {
+                    if (isActive) {
+                        mesh.material.color.copy(activeColor);
+                        mesh.material.opacity = 0.95;
+                        mesh.renderOrder = 10;
+                    } else {
+                        mesh.material.color.copy(MINIMAP_INACTIVE_COLOR);
+                        mesh.material.opacity = MINIMAP_INACTIVE_OPACITY;
+                        mesh.renderOrder = 1;
+                    }
+                });
+            }
+
+            minimapRenderer.render(minimapScene, minimapCamera);
+        }
+
         const controls = new MapControls(camera, renderer.domElement);
         controls.enableRotate = false;
         controls.enableDamping = false;
@@ -2138,7 +2253,7 @@
             if (!isDraggingResizer) return;
             isDraggingResizer = false;
             resizer.classList.remove('dragging');
-            document.body.classList.remove('is-resizing');
+            document.body.classList.add('is-resizing');
             if (e && e.pointerId && resizer.hasPointerCapture(e.pointerId)) {
                 resizer.releasePointerCapture(e.pointerId);
             }
@@ -2790,88 +2905,6 @@
                     acceptedBoxes.push(item.box);
                 }
             }
-        }
-
-        function setupMinimap(svgText) {
-            if (!minimapContainer) return;
-
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(svgText, 'image/svg+xml');
-            const svgEl = doc.querySelector('svg');
-            if (!svgEl) return;
-
-            doc.querySelectorAll('text, tspan').forEach(t => t.remove());
-
-            const minSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            const vb = svgEl.getAttribute('viewBox') || `0 0 ${svgEl.getAttribute('width') || 888} ${svgEl.getAttribute('height') || 700}`;
-            minSvg.setAttribute('viewBox', vb);
-            minSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-
-            doc.querySelectorAll('[data-section]').forEach(secNode => {
-                const secName = secNode.getAttribute('data-section');
-                const paths = secNode.querySelectorAll('path, polygon, rect');
-
-                paths.forEach(p => {
-                    const clone = p.cloneNode(true);
-                    clone.removeAttribute('style');
-                    clone.removeAttribute('fill');
-                    clone.removeAttribute('stroke');
-                    clone.classList.add('minimap-sec');
-                    clone.setAttribute('data-minimap-section', secName);
-
-                    clone.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const targetGroup = sectionGroups[secName];
-                        if (targetGroup) {
-                            activate3DView(targetGroup);
-                            filterListingsBySection(secName);
-                        }
-                    });
-                    minSvg.appendChild(clone);
-                });
-            });
-
-            minimapContainer.innerHTML = '';
-            minimapContainer.appendChild(minSvg);
-
-            minimapContainer.onclick = (e) => {
-                if (!e.target.hasAttribute('data-minimap-section')) {
-                    closeDetailView();
-                    resetTo2DTopView();
-                    filterListingsBySection(null);
-                }
-            };
-        }
-
-        function updateMinimapHighlight(activeSecName) {
-            if (!minimapContainer) return;
-
-            if (!activeSecName) {
-                minimapContainer.style.display = 'none';
-                return;
-            }
-
-            minimapContainer.style.display = 'flex';
-            const allSecPaths = minimapContainer.querySelectorAll('.minimap-sec');
-
-            const targetGroup = sectionGroups[activeSecName];
-            const categoryName = targetGroup && targetGroup.userData ? targetGroup.userData.categoryName : null;
-            const catHex = categoryName && categoryColors[categoryName] !== undefined
-                ? '#' + categoryColors[categoryName].toString(16).padStart(6, '0')
-                : '#29CCA2';
-
-            allSecPaths.forEach(el => {
-                if (el.getAttribute('data-minimap-section') === activeSecName) {
-                    el.classList.add('active');
-                    el.style.fill = catHex;
-                    el.style.opacity = '0.4';
-                    el.parentNode.appendChild(el);
-                } else {
-                    el.classList.remove('active');
-                    el.style.fill = '';
-                    el.style.opacity = '';
-                }
-            });
         }
 
         function filterListingsByCategory(categoryName) {
@@ -3916,8 +3949,6 @@
             if (staticTextOverlayMesh) {scene.remove(staticTextOverlayMesh); staticTextOverlayMesh = null;}
             if (currentSvgGroup) {scene.remove(currentSvgGroup);}
 
-            setupMinimap(svgText);
-
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(svgText, 'image/svg+xml');
 
@@ -4234,6 +4265,9 @@
             currentSvgGroup.updateMatrixWorld(true);
 
             scene.add(currentSvgGroup);
+
+            // Configure minimap directly from transformed section geometries
+            setupMinimap();
 
             staticTextOverlayMesh = await buildNonSectionTextLayer(svgText, vbX, vbY, vbW, vbH);
             scene.add(staticTextOverlayMesh);
