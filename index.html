@@ -3401,7 +3401,7 @@
         const panoLoading = document.getElementById('pano-loading');
         const photoCaptionEl = document.getElementById('dt-photo-caption');
 
-        function openDetailView(sectionName, price, displayCategoryName, categoryKey = null) {
+        function openDetailView(sectionName, price, displayCategoryName, categoryKey = null, exactImageName = null) {
             isUiHoverActive = false;
             document.getElementById('detail-view').classList.add('active');
             document.getElementById('dt-cat').innerText = displayCategoryName;
@@ -3409,36 +3409,49 @@
             document.getElementById('dt-price').innerText = `€${price}`;
             document.getElementById('dt-total').innerText = `€${price * 2}`;
 
-            const upperSection = sectionName ? getDisplaySection(sectionName) : '';
-            const imgUrl = upperSection ? `https://honeybadger7846.github.io/panoramic/${upperSection}.jpeg` : '';
+            const rawTargetName = (exactImageName || (sectionName ? getDisplaySection(sectionName) : displayCategoryName) || '').trim();
 
-            if (upperSection) {
-                photoCaptionEl.textContent = `Representative view from Section ${upperSection}`;
+            if (rawTargetName) {
+                photoCaptionEl.textContent = `Representative view from ${rawTargetName}`;
                 photoCaptionEl.style.display = 'block';
-            } else {
-                photoCaptionEl.textContent = '';
-                photoCaptionEl.style.display = 'none';
-            }
 
-            if (imgUrl) {
+                const candidateUrls = [
+                    `https://honeybadger7846.github.io/panoramic/${encodeURI(rawTargetName)}.jpeg`,
+                    `https://honeybadger7846.github.io/panoramic/${encodeURI(rawTargetName)}.jpg`
+                ];
+
                 panoLoading.style.display = 'flex';
                 panoLoading.innerText = 'Loading View...';
                 detailImg.style.display = 'none';
 
-                detailImg.onload = () => {
-                    panoLoading.style.display = 'none';
-                    detailImg.style.display = 'block';
+                let currentIdx = 0;
+
+                const tryLoadImage = () => {
+                    if (currentIdx >= candidateUrls.length) {
+                        detailImg.style.display = 'none';
+                        panoLoading.style.display = 'flex';
+                        panoLoading.innerText = 'View not available for this section';
+                        return;
+                    }
+
+                    const url = candidateUrls[currentIdx++];
+                    detailImg.onload = () => {
+                        panoLoading.style.display = 'none';
+                        detailImg.style.display = 'block';
+                    };
+                    detailImg.onerror = () => {
+                        tryLoadImage();
+                    };
+                    detailImg.src = url;
                 };
-                detailImg.onerror = () => {
-                    detailImg.style.display = 'none';
-                    panoLoading.style.display = 'flex';
-                    panoLoading.innerText = 'View not available for this section';
-                };
-                detailImg.src = imgUrl;
+
+                tryLoadImage();
             } else {
+                photoCaptionEl.textContent = '';
+                photoCaptionEl.style.display = 'none';
                 detailImg.style.display = 'none';
                 panoLoading.style.display = 'flex';
-                panoLoading.innerText = 'View not available';
+                panoLoading.innerText = 'View not available for this section';
             }
 
             const targetGroup = sectionName ? sectionGroups[sectionName] : null;
@@ -3472,11 +3485,13 @@
             card.dataset.category = item.category || '';
 
             card.onclick = () => {
+                const exactName = item.section ? getDisplaySection(item.section) : item.displayCategoryName;
+
                 if (item.section) {
-                    openDetailView(item.section, item.price, item.displayCategoryName);
+                    openDetailView(item.section, item.price, item.displayCategoryName, null, exactName);
                 } else {
                     filterListingsByCategory(item.category);
-                    openDetailView(null, item.price, item.displayCategoryName, item.category);
+                    openDetailView(null, item.price, item.displayCategoryName, item.category, exactName);
                 }
             };
 
@@ -3527,15 +3542,15 @@
             const topRow = document.createElement('div');
             topRow.className = 'card-top-row';
 
-            const imageSection = item.displaySectionName || (item.previewSectionName ? getDisplaySection(item.previewSectionName) : null);
-            if (imageSection) {
+            const thumbName = item.displaySectionName || item.displayCategoryName;
+            if (thumbName) {
                 const thumbImg = document.createElement('img');
                 thumbImg.className = 'card-thumb';
-                thumbImg.src = `https://honeybadger7846.github.io/thumbnail/${imageSection}.jpg`;
+                thumbImg.src = `https://honeybadger7846.github.io/thumbnail/${encodeURI(thumbName)}.jpg`;
                 thumbImg.alt = `Stand View`;
-                thumbImg.title = `Representative view from Section ${imageSection}`;
+                thumbImg.title = `Representative view from ${thumbName}`;
                 thumbImg.loading = 'lazy';
-                thumbImg.onerror = () => {thumbImg.style.display = 'none';};
+                thumbImg.onerror = () => { thumbImg.style.display = 'none'; };
                 topRow.appendChild(thumbImg);
             }
 
