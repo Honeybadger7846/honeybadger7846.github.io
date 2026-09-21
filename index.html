@@ -2253,7 +2253,7 @@
             if (!isDraggingResizer) return;
             isDraggingResizer = false;
             resizer.classList.remove('dragging');
-            document.body.classList.add('is-resizing');
+            document.body.classList.remove('is-resizing');
             if (e && e.pointerId && resizer.hasPointerCapture(e.pointerId)) {
                 resizer.releasePointerCapture(e.pointerId);
             }
