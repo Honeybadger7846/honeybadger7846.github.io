@@ -1,0 +1,5052 @@
+[
+  {
+    "section": "main-stand_u3",
+    "row": "76",
+    "seat": "13",
+    "category": "main-stand",
+    "price": 361,
+    "ratingCount": 156,
+    "displaySectionName": "U3",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al2",
+    "row": "29",
+    "seat": "12",
+    "category": "anfield-road-stand",
+    "price": 493,
+    "ratingCount": 435,
+    "displaySectionName": "AL2",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_al2",
+    "row": "27",
+    "seat": "8",
+    "category": "anfield-road-stand",
+    "price": 345,
+    "ratingCount": 188,
+    "displaySectionName": "AL2",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l16",
+    "row": "39",
+    "seat": "16",
+    "category": "main-stand",
+    "price": 418,
+    "ratingCount": 260,
+    "displaySectionName": "L16",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_au1",
+    "row": "29",
+    "seat": "10",
+    "category": "anfield-road-stand",
+    "price": 469,
+    "ratingCount": 196,
+    "displaySectionName": "AU1",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_m5",
+    "row": "55",
+    "seat": "22",
+    "category": "main-stand",
+    "price": 514,
+    "ratingCount": 90,
+    "displaySectionName": "M5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l11",
+    "row": "38",
+    "seat": "9",
+    "category": "main-stand",
+    "price": 505,
+    "ratingCount": 729,
+    "displaySectionName": "L11",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_km",
+    "row": "12",
+    "seat": "12",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 447,
+    "ratingCount": 241,
+    "displaySectionName": "KM",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_l5",
+    "row": "6",
+    "seat": "5",
+    "category": "main-stand",
+    "price": 339,
+    "ratingCount": 515,
+    "displaySectionName": "L5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_208",
+    "row": "58",
+    "seat": "3",
+    "category": "the-kop",
+    "price": 366,
+    "ratingCount": 515,
+    "displaySectionName": "208",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce1",
+    "row": "13",
+    "seat": "14",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 457,
+    "ratingCount": 510,
+    "displaySectionName": "CE1",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kk",
+    "row": "13",
+    "seat": "16",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 459,
+    "ratingCount": 931,
+    "displaySectionName": "KK",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "anfield-road-stand_al2",
+    "row": "29",
+    "seat": "13",
+    "category": "anfield-road-stand",
+    "price": 488,
+    "ratingCount": 943,
+    "displaySectionName": "AL2",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u4",
+    "row": "72",
+    "seat": "4",
+    "category": "main-stand",
+    "price": 416,
+    "ratingCount": 204,
+    "displaySectionName": "U4",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_205",
+    "row": "36",
+    "seat": "7",
+    "category": "the-kop",
+    "price": 381,
+    "ratingCount": 12,
+    "displaySectionName": "205",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_al8",
+    "row": "31",
+    "seat": "16",
+    "category": "anfield-road-stand",
+    "price": 371,
+    "ratingCount": 760,
+    "displaySectionName": "AL8",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_au8",
+    "row": "36",
+    "seat": "11",
+    "category": "anfield-road-stand",
+    "price": 456,
+    "ratingCount": 133,
+    "displaySectionName": "AU8",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_au1",
+    "row": "29",
+    "seat": "11",
+    "category": "anfield-road-stand",
+    "price": 454,
+    "ratingCount": 119,
+    "displaySectionName": "AU1",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u8",
+    "row": "84",
+    "seat": "16",
+    "category": "main-stand",
+    "price": 388,
+    "ratingCount": 319,
+    "displaySectionName": "U8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am4",
+    "row": "12",
+    "seat": "12",
+    "category": "anfield-road-stand",
+    "price": 354,
+    "ratingCount": 193,
+    "displaySectionName": "AM4",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_al8",
+    "row": "3",
+    "seat": "17",
+    "category": "anfield-road-stand",
+    "price": 408,
+    "ratingCount": 82,
+    "displaySectionName": "AL8",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_103",
+    "row": "27",
+    "seat": "4",
+    "category": "the-kop",
+    "price": 469,
+    "ratingCount": 1001,
+    "displaySectionName": "103",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_u9",
+    "row": "87",
+    "seat": "12",
+    "category": "main-stand",
+    "price": 481,
+    "ratingCount": 515,
+    "displaySectionName": "U9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce4",
+    "row": "22",
+    "seat": "7",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 470,
+    "ratingCount": 574,
+    "displaySectionName": "CE4",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_l14",
+    "row": "32",
+    "seat": "14",
+    "category": "main-stand",
+    "price": 383,
+    "ratingCount": 648,
+    "displaySectionName": "L14",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m7",
+    "row": "50",
+    "seat": "23",
+    "category": "main-stand",
+    "price": 512,
+    "ratingCount": 364,
+    "displaySectionName": "M7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kh",
+    "row": "4",
+    "seat": "15",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 330,
+    "ratingCount": 760,
+    "displaySectionName": "KH",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_202",
+    "row": "40",
+    "seat": "2",
+    "category": "the-kop",
+    "price": 342,
+    "ratingCount": 240,
+    "displaySectionName": "202",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_u7",
+    "row": "75",
+    "seat": "18",
+    "category": "main-stand",
+    "price": 378,
+    "ratingCount": 444,
+    "displaySectionName": "U7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u2",
+    "row": "61",
+    "seat": "6",
+    "category": "main-stand",
+    "price": 369,
+    "ratingCount": 347,
+    "displaySectionName": "U2",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kl",
+    "row": "4",
+    "seat": "2",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 375,
+    "ratingCount": 386,
+    "displaySectionName": "KL",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_u8",
+    "row": "62",
+    "seat": "11",
+    "category": "main-stand",
+    "price": 400,
+    "ratingCount": 563,
+    "displaySectionName": "U8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce2",
+    "row": "16",
+    "seat": "1",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 387,
+    "ratingCount": 495,
+    "displaySectionName": "CE2",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_u7",
+    "row": "75",
+    "seat": "17",
+    "category": "main-stand",
+    "price": 383,
+    "ratingCount": 414,
+    "displaySectionName": "U7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am6",
+    "row": "9",
+    "seat": "2",
+    "category": "anfield-road-stand",
+    "price": 468,
+    "ratingCount": 237,
+    "displaySectionName": "AM6",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce6",
+    "row": "3",
+    "seat": "14",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 505,
+    "ratingCount": 191,
+    "displaySectionName": "CE6",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce5",
+    "row": "1",
+    "seat": "12",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 445,
+    "ratingCount": 755,
+    "displaySectionName": "CE5",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "anfield-road-stand_au5",
+    "row": "31",
+    "seat": "12",
+    "category": "anfield-road-stand",
+    "price": 326,
+    "ratingCount": 649,
+    "displaySectionName": "AU5",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_m9",
+    "row": "51",
+    "seat": "26",
+    "category": "main-stand",
+    "price": 363,
+    "ratingCount": 508,
+    "displaySectionName": "M9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u9",
+    "row": "78",
+    "seat": "21",
+    "category": "main-stand",
+    "price": 478,
+    "ratingCount": 614,
+    "displaySectionName": "U9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l12",
+    "row": "38",
+    "seat": "16",
+    "category": "main-stand",
+    "price": 352,
+    "ratingCount": 638,
+    "displaySectionName": "L12",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce9",
+    "row": "8",
+    "seat": "13",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 421,
+    "ratingCount": 211,
+    "displaySectionName": "CE9",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_109",
+    "row": "12",
+    "seat": "11",
+    "category": "the-kop",
+    "price": 498,
+    "ratingCount": 947,
+    "displaySectionName": "109",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce2",
+    "row": "15",
+    "seat": "10",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 384,
+    "ratingCount": 829,
+    "displaySectionName": "CE2",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "anfield-road-stand_au5",
+    "row": "42",
+    "seat": "20",
+    "category": "anfield-road-stand",
+    "price": 399,
+    "ratingCount": 29,
+    "displaySectionName": "AU5",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kl",
+    "row": "4",
+    "seat": "4",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 415,
+    "ratingCount": 9,
+    "displaySectionName": "KL",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_l16",
+    "row": "37",
+    "seat": "16",
+    "category": "main-stand",
+    "price": 347,
+    "ratingCount": 972,
+    "displaySectionName": "L16",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u9",
+    "row": "89",
+    "seat": "6",
+    "category": "main-stand",
+    "price": 376,
+    "ratingCount": 231,
+    "displaySectionName": "U9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kg",
+    "row": "5",
+    "seat": "34",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 384,
+    "ratingCount": 506,
+    "displaySectionName": "KG",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "anfield-road-stand_au8",
+    "row": "37",
+    "seat": "13",
+    "category": "anfield-road-stand",
+    "price": 514,
+    "ratingCount": 825,
+    "displaySectionName": "AU8",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l1",
+    "row": "41",
+    "seat": "2",
+    "category": "main-stand",
+    "price": 317,
+    "ratingCount": 116,
+    "displaySectionName": "L1",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m6",
+    "row": "45",
+    "seat": "21",
+    "category": "main-stand",
+    "price": 451,
+    "ratingCount": 570,
+    "displaySectionName": "M6",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m2",
+    "row": "57",
+    "seat": "3",
+    "category": "main-stand",
+    "price": 350,
+    "ratingCount": 899,
+    "displaySectionName": "M2",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m5",
+    "row": "45",
+    "seat": "30",
+    "category": "main-stand",
+    "price": 409,
+    "ratingCount": 574,
+    "displaySectionName": "M5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l15",
+    "row": "36",
+    "seat": "8",
+    "category": "main-stand",
+    "price": 335,
+    "ratingCount": 769,
+    "displaySectionName": "L15",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_202",
+    "row": "37",
+    "seat": "17",
+    "category": "the-kop",
+    "price": 454,
+    "ratingCount": 849,
+    "displaySectionName": "202",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_u7",
+    "row": "82",
+    "seat": "12",
+    "category": "main-stand",
+    "price": 507,
+    "ratingCount": 11,
+    "displaySectionName": "U7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce8",
+    "row": "23",
+    "seat": "11",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 364,
+    "ratingCount": 102,
+    "displaySectionName": "CE8",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_206",
+    "row": "49",
+    "seat": "7",
+    "category": "the-kop",
+    "price": 375,
+    "ratingCount": 658,
+    "displaySectionName": "206",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kl",
+    "row": "14",
+    "seat": "13",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 442,
+    "ratingCount": 912,
+    "displaySectionName": "KL",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kp",
+    "row": "14",
+    "seat": "11",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 473,
+    "ratingCount": 115,
+    "displaySectionName": "KP",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_306",
+    "row": "67",
+    "seat": "23",
+    "category": "the-kop",
+    "price": 351,
+    "ratingCount": 53,
+    "displaySectionName": "306",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_106",
+    "row": "25",
+    "seat": "3",
+    "category": "the-kop",
+    "price": 443,
+    "ratingCount": 838,
+    "displaySectionName": "106",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_m8",
+    "row": "51",
+    "seat": "17",
+    "category": "main-stand",
+    "price": 453,
+    "ratingCount": 665,
+    "displaySectionName": "M8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am3",
+    "row": "11",
+    "seat": "13",
+    "category": "anfield-road-stand",
+    "price": 357,
+    "ratingCount": 579,
+    "displaySectionName": "AM3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_108",
+    "row": "27",
+    "seat": "19",
+    "category": "the-kop",
+    "price": 491,
+    "ratingCount": 389,
+    "displaySectionName": "108",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_am6",
+    "row": "2",
+    "seat": "8",
+    "category": "anfield-road-stand",
+    "price": 305,
+    "ratingCount": 929,
+    "displaySectionName": "AM6",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce4",
+    "row": "2",
+    "seat": "6",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 490,
+    "ratingCount": 184,
+    "displaySectionName": "CE4",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "anfield-road-stand_au7",
+    "row": "33",
+    "seat": "8",
+    "category": "anfield-road-stand",
+    "price": 475,
+    "ratingCount": 533,
+    "displaySectionName": "AU7",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u5",
+    "row": "72",
+    "seat": "2",
+    "category": "main-stand",
+    "price": 423,
+    "ratingCount": 531,
+    "displaySectionName": "U5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_107",
+    "row": "8",
+    "seat": "7",
+    "category": "the-kop",
+    "price": 405,
+    "ratingCount": 90,
+    "displaySectionName": "107",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_km",
+    "row": "12",
+    "seat": "13",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 437,
+    "ratingCount": 619,
+    "displaySectionName": "KM",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_l7",
+    "row": "14",
+    "seat": "24",
+    "category": "main-stand",
+    "price": 384,
+    "ratingCount": 335,
+    "displaySectionName": "L7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u2",
+    "row": "61",
+    "seat": "8",
+    "category": "main-stand",
+    "price": 384,
+    "ratingCount": 611,
+    "displaySectionName": "U2",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_206",
+    "row": "42",
+    "seat": "4",
+    "category": "the-kop",
+    "price": 420,
+    "ratingCount": 712,
+    "displaySectionName": "206",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce9",
+    "row": "3",
+    "seat": "3",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 315,
+    "ratingCount": 510,
+    "displaySectionName": "CE9",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_203",
+    "row": "65",
+    "seat": "9",
+    "category": "the-kop",
+    "price": 482,
+    "ratingCount": 700,
+    "displaySectionName": "203",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce3",
+    "row": "14",
+    "seat": "20",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 437,
+    "ratingCount": 416,
+    "displaySectionName": "CE3",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_l7",
+    "row": "18",
+    "seat": "18",
+    "category": "main-stand",
+    "price": 428,
+    "ratingCount": 951,
+    "displaySectionName": "L7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u6",
+    "row": "76",
+    "seat": "14",
+    "category": "main-stand",
+    "price": 508,
+    "ratingCount": 33,
+    "displaySectionName": "U6",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al1",
+    "row": "5",
+    "seat": "5",
+    "category": "anfield-road-stand",
+    "price": 491,
+    "ratingCount": 341,
+    "displaySectionName": "AL1",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_m9",
+    "row": "49",
+    "seat": "17",
+    "category": "main-stand",
+    "price": 331,
+    "ratingCount": 253,
+    "displaySectionName": "M9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al9",
+    "row": "29",
+    "seat": "6",
+    "category": "anfield-road-stand",
+    "price": 380,
+    "ratingCount": 74,
+    "displaySectionName": "AL9",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_au1",
+    "row": "36",
+    "seat": "18",
+    "category": "anfield-road-stand",
+    "price": 356,
+    "ratingCount": 712,
+    "displaySectionName": "AU1",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce3",
+    "row": "23",
+    "seat": "14",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 441,
+    "ratingCount": 146,
+    "displaySectionName": "CE3",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_104",
+    "row": "17",
+    "seat": "17",
+    "category": "the-kop",
+    "price": 390,
+    "ratingCount": 150,
+    "displaySectionName": "104",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce1",
+    "row": "13",
+    "seat": "16",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 422,
+    "ratingCount": 129,
+    "displaySectionName": "CE1",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_305",
+    "row": "66",
+    "seat": "2",
+    "category": "the-kop",
+    "price": 478,
+    "ratingCount": 498,
+    "displaySectionName": "305",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_m8",
+    "row": "46",
+    "seat": "23",
+    "category": "main-stand",
+    "price": 318,
+    "ratingCount": 905,
+    "displaySectionName": "M8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u4",
+    "row": "74",
+    "seat": "15",
+    "category": "main-stand",
+    "price": 335,
+    "ratingCount": 945,
+    "displaySectionName": "U4",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l14",
+    "row": "32",
+    "seat": "12",
+    "category": "main-stand",
+    "price": 353,
+    "ratingCount": 504,
+    "displaySectionName": "L14",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce4",
+    "row": "11",
+    "seat": "12",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 303,
+    "ratingCount": 728,
+    "displaySectionName": "CE4",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_l16",
+    "row": "38",
+    "seat": "29",
+    "category": "main-stand",
+    "price": 369,
+    "ratingCount": 906,
+    "displaySectionName": "L16",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m7",
+    "row": "53",
+    "seat": "11",
+    "category": "main-stand",
+    "price": 441,
+    "ratingCount": 286,
+    "displaySectionName": "M7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u6",
+    "row": "62",
+    "seat": "16",
+    "category": "main-stand",
+    "price": 319,
+    "ratingCount": 508,
+    "displaySectionName": "U6",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l9",
+    "row": "29",
+    "seat": "20",
+    "category": "main-stand",
+    "price": 472,
+    "ratingCount": 150,
+    "displaySectionName": "L9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce7",
+    "row": "18",
+    "seat": "6",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 454,
+    "ratingCount": 17,
+    "displaySectionName": "CE7",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kj",
+    "row": "10",
+    "seat": "24",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 504,
+    "ratingCount": 255,
+    "displaySectionName": "KJ",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_l11",
+    "row": "39",
+    "seat": "12",
+    "category": "main-stand",
+    "price": 454,
+    "ratingCount": 634,
+    "displaySectionName": "L11",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m8",
+    "row": "48",
+    "seat": "25",
+    "category": "main-stand",
+    "price": 432,
+    "ratingCount": 891,
+    "displaySectionName": "M8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u6",
+    "row": "62",
+    "seat": "17",
+    "category": "main-stand",
+    "price": 304,
+    "ratingCount": 877,
+    "displaySectionName": "U6",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kk",
+    "row": "26",
+    "seat": "2",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 360,
+    "ratingCount": 376,
+    "displaySectionName": "KK",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_206",
+    "row": "45",
+    "seat": "12",
+    "category": "the-kop",
+    "price": 346,
+    "ratingCount": 22,
+    "displaySectionName": "206",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_au1",
+    "row": "38",
+    "seat": "9",
+    "category": "anfield-road-stand",
+    "price": 513,
+    "ratingCount": 581,
+    "displaySectionName": "AU1",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_106",
+    "row": "8",
+    "seat": "11",
+    "category": "the-kop",
+    "price": 321,
+    "ratingCount": 784,
+    "displaySectionName": "106",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_am6",
+    "row": "10",
+    "seat": "9",
+    "category": "anfield-road-stand",
+    "price": 521,
+    "ratingCount": 229,
+    "displaySectionName": "AM6",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_al5",
+    "row": "34",
+    "seat": "21",
+    "category": "anfield-road-stand",
+    "price": 448,
+    "ratingCount": 626,
+    "displaySectionName": "AL5",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u6",
+    "row": "67",
+    "seat": "23",
+    "category": "main-stand",
+    "price": 501,
+    "ratingCount": 257,
+    "displaySectionName": "U6",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l15",
+    "row": "36",
+    "seat": "9",
+    "category": "main-stand",
+    "price": 330,
+    "ratingCount": 925,
+    "displaySectionName": "L15",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_208",
+    "row": "58",
+    "seat": "5",
+    "category": "the-kop",
+    "price": 376,
+    "ratingCount": 572,
+    "displaySectionName": "208",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_al6",
+    "row": "28",
+    "seat": "1",
+    "category": "anfield-road-stand",
+    "price": 351,
+    "ratingCount": 519,
+    "displaySectionName": "AL6",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_au3",
+    "row": "34",
+    "seat": "11",
+    "category": "anfield-road-stand",
+    "price": 525,
+    "ratingCount": 610,
+    "displaySectionName": "AU3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_al9",
+    "row": "7",
+    "seat": "8",
+    "category": "anfield-road-stand",
+    "price": 345,
+    "ratingCount": 936,
+    "displaySectionName": "AL9",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u9",
+    "row": "89",
+    "seat": "2",
+    "category": "main-stand",
+    "price": 502,
+    "ratingCount": 703,
+    "displaySectionName": "U9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_au7",
+    "row": "33",
+    "seat": "7",
+    "category": "anfield-road-stand",
+    "price": 490,
+    "ratingCount": 656,
+    "displaySectionName": "AU7",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_am5",
+    "row": "20",
+    "seat": "6",
+    "category": "anfield-road-stand",
+    "price": 325,
+    "ratingCount": 821,
+    "displaySectionName": "AM5",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l4",
+    "row": "22",
+    "seat": "14",
+    "category": "main-stand",
+    "price": 479,
+    "ratingCount": 958,
+    "displaySectionName": "L4",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_107",
+    "row": "32",
+    "seat": "8",
+    "category": "the-kop",
+    "price": 342,
+    "ratingCount": 219,
+    "displaySectionName": "107",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_l9",
+    "row": "29",
+    "seat": "21",
+    "category": "main-stand",
+    "price": 462,
+    "ratingCount": 975,
+    "displaySectionName": "L9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u6",
+    "row": "67",
+    "seat": "21",
+    "category": "main-stand",
+    "price": 501,
+    "ratingCount": 465,
+    "displaySectionName": "U6",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kj",
+    "row": "29",
+    "seat": "6",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 391,
+    "ratingCount": 577,
+    "displaySectionName": "KJ",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_106",
+    "row": "10",
+    "seat": "2",
+    "category": "the-kop",
+    "price": 434,
+    "ratingCount": 756,
+    "displaySectionName": "106",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kh",
+    "row": "4",
+    "seat": "13",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 365,
+    "ratingCount": 93,
+    "displaySectionName": "KH",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "anfield-road-stand_al6",
+    "row": "32",
+    "seat": "7",
+    "category": "anfield-road-stand",
+    "price": 515,
+    "ratingCount": 45,
+    "displaySectionName": "AL6",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_m9",
+    "row": "47",
+    "seat": "14",
+    "category": "main-stand",
+    "price": 457,
+    "ratingCount": 43,
+    "displaySectionName": "M9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al5",
+    "row": "29",
+    "seat": "19",
+    "category": "anfield-road-stand",
+    "price": 399,
+    "ratingCount": 132,
+    "displaySectionName": "AL5",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_306",
+    "row": "71",
+    "seat": "13",
+    "category": "the-kop",
+    "price": 467,
+    "ratingCount": 739,
+    "displaySectionName": "306",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_208",
+    "row": "39",
+    "seat": "14",
+    "category": "the-kop",
+    "price": 409,
+    "ratingCount": 772,
+    "displaySectionName": "208",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_102",
+    "row": "1",
+    "seat": "5",
+    "category": "the-kop",
+    "price": 508,
+    "ratingCount": 731,
+    "displaySectionName": "102",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_203",
+    "row": "39",
+    "seat": "12",
+    "category": "the-kop",
+    "price": 447,
+    "ratingCount": 51,
+    "displaySectionName": "203",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_al9",
+    "row": "29",
+    "seat": "4",
+    "category": "anfield-road-stand",
+    "price": 365,
+    "ratingCount": 458,
+    "displaySectionName": "AL9",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_au3",
+    "row": "34",
+    "seat": "10",
+    "category": "anfield-road-stand",
+    "price": 545,
+    "ratingCount": 519,
+    "displaySectionName": "AU3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_al6",
+    "row": "32",
+    "seat": "8",
+    "category": "anfield-road-stand",
+    "price": 510,
+    "ratingCount": 134,
+    "displaySectionName": "AL6",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u3",
+    "row": "70",
+    "seat": "20",
+    "category": "main-stand",
+    "price": 396,
+    "ratingCount": 757,
+    "displaySectionName": "U3",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_304",
+    "row": "69",
+    "seat": "18",
+    "category": "the-kop",
+    "price": 456,
+    "ratingCount": 725,
+    "displaySectionName": "304",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce4",
+    "row": "22",
+    "seat": "8",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 465,
+    "ratingCount": 28,
+    "displaySectionName": "CE4",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "anfield-road-stand_au7",
+    "row": "42",
+    "seat": "5",
+    "category": "anfield-road-stand",
+    "price": 352,
+    "ratingCount": 922,
+    "displaySectionName": "AU7",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_am5",
+    "row": "19",
+    "seat": "2",
+    "category": "anfield-road-stand",
+    "price": 384,
+    "ratingCount": 10,
+    "displaySectionName": "AM5",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l16",
+    "row": "37",
+    "seat": "17",
+    "category": "main-stand",
+    "price": 342,
+    "ratingCount": 974,
+    "displaySectionName": "L16",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l6",
+    "row": "29",
+    "seat": "9",
+    "category": "main-stand",
+    "price": 300,
+    "ratingCount": 771,
+    "displaySectionName": "L6",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce4",
+    "row": "23",
+    "seat": "15",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 527,
+    "ratingCount": 443,
+    "displaySectionName": "CE4",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_m1",
+    "row": "51",
+    "seat": "23",
+    "category": "main-stand",
+    "price": 382,
+    "ratingCount": 772,
+    "displaySectionName": "M1",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al4",
+    "row": "33",
+    "seat": "5",
+    "category": "anfield-road-stand",
+    "price": 463,
+    "ratingCount": 85,
+    "displaySectionName": "AL4",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_m7",
+    "row": "56",
+    "seat": "9",
+    "category": "main-stand",
+    "price": 366,
+    "ratingCount": 645,
+    "displaySectionName": "M7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l12",
+    "row": "38",
+    "seat": "19",
+    "category": "main-stand",
+    "price": 397,
+    "ratingCount": 486,
+    "displaySectionName": "L12",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l10",
+    "row": "18",
+    "seat": "15",
+    "category": "main-stand",
+    "price": 406,
+    "ratingCount": 950,
+    "displaySectionName": "L10",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_204",
+    "row": "45",
+    "seat": "14",
+    "category": "the-kop",
+    "price": 399,
+    "ratingCount": 604,
+    "displaySectionName": "204",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_al2",
+    "row": "27",
+    "seat": "6",
+    "category": "anfield-road-stand",
+    "price": 375,
+    "ratingCount": 320,
+    "displaySectionName": "AL2",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l3",
+    "row": "5",
+    "seat": "12",
+    "category": "main-stand",
+    "price": 316,
+    "ratingCount": 728,
+    "displaySectionName": "L3",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_au3",
+    "row": "34",
+    "seat": "18",
+    "category": "anfield-road-stand",
+    "price": 320,
+    "ratingCount": 741,
+    "displaySectionName": "AU3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_102",
+    "row": "25",
+    "seat": "8",
+    "category": "the-kop",
+    "price": 442,
+    "ratingCount": 263,
+    "displaySectionName": "102",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_al8",
+    "row": "32",
+    "seat": "18",
+    "category": "anfield-road-stand",
+    "price": 490,
+    "ratingCount": 791,
+    "displaySectionName": "AL8",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_am3",
+    "row": "13",
+    "seat": "12",
+    "category": "anfield-road-stand",
+    "price": 433,
+    "ratingCount": 769,
+    "displaySectionName": "AM3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_305",
+    "row": "63",
+    "seat": "14",
+    "category": "the-kop",
+    "price": 476,
+    "ratingCount": 119,
+    "displaySectionName": "305",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_l7",
+    "row": "11",
+    "seat": "20",
+    "category": "main-stand",
+    "price": 398,
+    "ratingCount": 993,
+    "displaySectionName": "L7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_203",
+    "row": "57",
+    "seat": "20",
+    "category": "the-kop",
+    "price": 429,
+    "ratingCount": 729,
+    "displaySectionName": "203",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_m1",
+    "row": "51",
+    "seat": "21",
+    "category": "main-stand",
+    "price": 377,
+    "ratingCount": 304,
+    "displaySectionName": "M1",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_km",
+    "row": "20",
+    "seat": "17",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 420,
+    "ratingCount": 257,
+    "displaySectionName": "KM",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kj",
+    "row": "10",
+    "seat": "10",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 421,
+    "ratingCount": 866,
+    "displaySectionName": "KJ",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_u2",
+    "row": "61",
+    "seat": "7",
+    "category": "main-stand",
+    "price": 364,
+    "ratingCount": 517,
+    "displaySectionName": "U2",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l5",
+    "row": "25",
+    "seat": "17",
+    "category": "main-stand",
+    "price": 524,
+    "ratingCount": 581,
+    "displaySectionName": "L5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_207",
+    "row": "47",
+    "seat": "19",
+    "category": "the-kop",
+    "price": 428,
+    "ratingCount": 641,
+    "displaySectionName": "207",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_m4",
+    "row": "54",
+    "seat": "8",
+    "category": "main-stand",
+    "price": 458,
+    "ratingCount": 32,
+    "displaySectionName": "M4",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l9",
+    "row": "17",
+    "seat": "19",
+    "category": "main-stand",
+    "price": 474,
+    "ratingCount": 139,
+    "displaySectionName": "L9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_109",
+    "row": "26",
+    "seat": "8",
+    "category": "the-kop",
+    "price": 505,
+    "ratingCount": 72,
+    "displaySectionName": "109",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_al9",
+    "row": "20",
+    "seat": "16",
+    "category": "anfield-road-stand",
+    "price": 499,
+    "ratingCount": 509,
+    "displaySectionName": "AL9",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_al9",
+    "row": "14",
+    "seat": "4",
+    "category": "anfield-road-stand",
+    "price": 525,
+    "ratingCount": 940,
+    "displaySectionName": "AL9",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce6",
+    "row": "3",
+    "seat": "16",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 520,
+    "ratingCount": 139,
+    "displaySectionName": "CE6",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kl",
+    "row": "14",
+    "seat": "14",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 457,
+    "ratingCount": 929,
+    "displaySectionName": "KL",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_u4",
+    "row": "72",
+    "seat": "3",
+    "category": "main-stand",
+    "price": 401,
+    "ratingCount": 432,
+    "displaySectionName": "U4",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am6",
+    "row": "10",
+    "seat": "8",
+    "category": "anfield-road-stand",
+    "price": 511,
+    "ratingCount": 415,
+    "displaySectionName": "AM6",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_au1",
+    "row": "29",
+    "seat": "12",
+    "category": "anfield-road-stand",
+    "price": 449,
+    "ratingCount": 229,
+    "displaySectionName": "AU1",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_105",
+    "row": "18",
+    "seat": "14",
+    "category": "the-kop",
+    "price": 494,
+    "ratingCount": 765,
+    "displaySectionName": "105",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kk",
+    "row": "13",
+    "seat": "17",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 479,
+    "ratingCount": 966,
+    "displaySectionName": "KK",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce6",
+    "row": "4",
+    "seat": "4",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 470,
+    "ratingCount": 848,
+    "displaySectionName": "CE6",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "anfield-road-stand_au8",
+    "row": "37",
+    "seat": "14",
+    "category": "anfield-road-stand",
+    "price": 509,
+    "ratingCount": 424,
+    "displaySectionName": "AU8",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l14",
+    "row": "41",
+    "seat": "24",
+    "category": "main-stand",
+    "price": 542,
+    "ratingCount": 950,
+    "displaySectionName": "L14",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_106",
+    "row": "12",
+    "seat": "4",
+    "category": "the-kop",
+    "price": 465,
+    "ratingCount": 306,
+    "displaySectionName": "106",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_l6",
+    "row": "29",
+    "seat": "10",
+    "category": "main-stand",
+    "price": 320,
+    "ratingCount": 758,
+    "displaySectionName": "L6",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_106",
+    "row": "10",
+    "seat": "1",
+    "category": "the-kop",
+    "price": 454,
+    "ratingCount": 726,
+    "displaySectionName": "106",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_m8",
+    "row": "51",
+    "seat": "16",
+    "category": "main-stand",
+    "price": 468,
+    "ratingCount": 239,
+    "displaySectionName": "M8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u3",
+    "row": "70",
+    "seat": "21",
+    "category": "main-stand",
+    "price": 386,
+    "ratingCount": 559,
+    "displaySectionName": "U3",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l13",
+    "row": "38",
+    "seat": "7",
+    "category": "main-stand",
+    "price": 509,
+    "ratingCount": 458,
+    "displaySectionName": "L13",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l10",
+    "row": "36",
+    "seat": "7",
+    "category": "main-stand",
+    "price": 368,
+    "ratingCount": 296,
+    "displaySectionName": "L10",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kl",
+    "row": "4",
+    "seat": "3",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 395,
+    "ratingCount": 57,
+    "displaySectionName": "KL",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_u1",
+    "row": "60",
+    "seat": "13",
+    "category": "main-stand",
+    "price": 362,
+    "ratingCount": 404,
+    "displaySectionName": "U1",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_107",
+    "row": "8",
+    "seat": "9",
+    "category": "the-kop",
+    "price": 410,
+    "ratingCount": 733,
+    "displaySectionName": "107",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_al5",
+    "row": "16",
+    "seat": "8",
+    "category": "anfield-road-stand",
+    "price": 365,
+    "ratingCount": 587,
+    "displaySectionName": "AL5",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_m8",
+    "row": "47",
+    "seat": "6",
+    "category": "main-stand",
+    "price": 504,
+    "ratingCount": 857,
+    "displaySectionName": "M8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce1",
+    "row": "12",
+    "seat": "9",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 374,
+    "ratingCount": 343,
+    "displaySectionName": "CE1",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "anfield-road-stand_al3",
+    "row": "11",
+    "seat": "15",
+    "category": "anfield-road-stand",
+    "price": 519,
+    "ratingCount": 664,
+    "displaySectionName": "AL3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_m3",
+    "row": "44",
+    "seat": "12",
+    "category": "main-stand",
+    "price": 469,
+    "ratingCount": 710,
+    "displaySectionName": "M3",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_105",
+    "row": "28",
+    "seat": "1",
+    "category": "the-kop",
+    "price": 309,
+    "ratingCount": 362,
+    "displaySectionName": "105",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_l10",
+    "row": "36",
+    "seat": "8",
+    "category": "main-stand",
+    "price": 383,
+    "ratingCount": 368,
+    "displaySectionName": "L10",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_208",
+    "row": "39",
+    "seat": "13",
+    "category": "the-kop",
+    "price": 419,
+    "ratingCount": 625,
+    "displaySectionName": "208",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_am3",
+    "row": "18",
+    "seat": "16",
+    "category": "anfield-road-stand",
+    "price": 505,
+    "ratingCount": 276,
+    "displaySectionName": "AM3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_m2",
+    "row": "45",
+    "seat": "9",
+    "category": "main-stand",
+    "price": 428,
+    "ratingCount": 888,
+    "displaySectionName": "M2",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m6",
+    "row": "54",
+    "seat": "8",
+    "category": "main-stand",
+    "price": 470,
+    "ratingCount": 199,
+    "displaySectionName": "M6",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l5",
+    "row": "14",
+    "seat": "4",
+    "category": "main-stand",
+    "price": 320,
+    "ratingCount": 191,
+    "displaySectionName": "L5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l15",
+    "row": "36",
+    "seat": "7",
+    "category": "main-stand",
+    "price": 350,
+    "ratingCount": 12,
+    "displaySectionName": "L15",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_204",
+    "row": "52",
+    "seat": "16",
+    "category": "the-kop",
+    "price": 454,
+    "ratingCount": 483,
+    "displaySectionName": "204",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_u1",
+    "row": "61",
+    "seat": "11",
+    "category": "main-stand",
+    "price": 469,
+    "ratingCount": 269,
+    "displaySectionName": "U1",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_204",
+    "row": "45",
+    "seat": "15",
+    "category": "the-kop",
+    "price": 414,
+    "ratingCount": 831,
+    "displaySectionName": "204",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_206",
+    "row": "49",
+    "seat": "8",
+    "category": "the-kop",
+    "price": 360,
+    "ratingCount": 511,
+    "displaySectionName": "206",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_104",
+    "row": "17",
+    "seat": "18",
+    "category": "the-kop",
+    "price": 370,
+    "ratingCount": 602,
+    "displaySectionName": "104",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_102",
+    "row": "11",
+    "seat": "8",
+    "category": "the-kop",
+    "price": 519,
+    "ratingCount": 879,
+    "displaySectionName": "102",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_am3",
+    "row": "11",
+    "seat": "12",
+    "category": "anfield-road-stand",
+    "price": 347,
+    "ratingCount": 408,
+    "displaySectionName": "AM3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_m2",
+    "row": "54",
+    "seat": "21",
+    "category": "main-stand",
+    "price": 356,
+    "ratingCount": 879,
+    "displaySectionName": "M2",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce8",
+    "row": "23",
+    "seat": "12",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 374,
+    "ratingCount": 660,
+    "displaySectionName": "CE8",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "anfield-road-stand_au5",
+    "row": "31",
+    "seat": "11",
+    "category": "anfield-road-stand",
+    "price": 321,
+    "ratingCount": 12,
+    "displaySectionName": "AU5",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_au1",
+    "row": "39",
+    "seat": "3",
+    "category": "anfield-road-stand",
+    "price": 341,
+    "ratingCount": 301,
+    "displaySectionName": "AU1",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_102",
+    "row": "4",
+    "seat": "3",
+    "category": "the-kop",
+    "price": 322,
+    "ratingCount": 559,
+    "displaySectionName": "102",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kg",
+    "row": "27",
+    "seat": "32",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 355,
+    "ratingCount": 964,
+    "displaySectionName": "KG",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_m3",
+    "row": "44",
+    "seat": "11",
+    "category": "main-stand",
+    "price": 523,
+    "ratingCount": 765,
+    "displaySectionName": "M3",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u2",
+    "row": "86",
+    "seat": "20",
+    "category": "main-stand",
+    "price": 404,
+    "ratingCount": 233,
+    "displaySectionName": "U2",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al3",
+    "row": "22",
+    "seat": "3",
+    "category": "anfield-road-stand",
+    "price": 375,
+    "ratingCount": 169,
+    "displaySectionName": "AL3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u9",
+    "row": "88",
+    "seat": "6",
+    "category": "main-stand",
+    "price": 510,
+    "ratingCount": 48,
+    "displaySectionName": "U9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce1",
+    "row": "22",
+    "seat": "2",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 337,
+    "ratingCount": 639,
+    "displaySectionName": "CE1",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_202",
+    "row": "58",
+    "seat": "2",
+    "category": "the-kop",
+    "price": 386,
+    "ratingCount": 340,
+    "displaySectionName": "202",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_u5",
+    "row": "72",
+    "seat": "1",
+    "category": "main-stand",
+    "price": 418,
+    "ratingCount": 66,
+    "displaySectionName": "U5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m5",
+    "row": "55",
+    "seat": "23",
+    "category": "main-stand",
+    "price": 494,
+    "ratingCount": 220,
+    "displaySectionName": "M5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l5",
+    "row": "6",
+    "seat": "6",
+    "category": "main-stand",
+    "price": 329,
+    "ratingCount": 408,
+    "displaySectionName": "L5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_202",
+    "row": "37",
+    "seat": "18",
+    "category": "the-kop",
+    "price": 439,
+    "ratingCount": 185,
+    "displaySectionName": "202",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_au2",
+    "row": "26",
+    "seat": "10",
+    "category": "anfield-road-stand",
+    "price": 506,
+    "ratingCount": 766,
+    "displaySectionName": "AU2",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_m5",
+    "row": "45",
+    "seat": "29",
+    "category": "main-stand",
+    "price": 389,
+    "ratingCount": 282,
+    "displaySectionName": "M5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am2",
+    "row": "6",
+    "seat": "12",
+    "category": "anfield-road-stand",
+    "price": 365,
+    "ratingCount": 61,
+    "displaySectionName": "AM2",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l7",
+    "row": "11",
+    "seat": "19",
+    "category": "main-stand",
+    "price": 408,
+    "ratingCount": 787,
+    "displaySectionName": "L7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al5",
+    "row": "29",
+    "seat": "18",
+    "category": "anfield-road-stand",
+    "price": 394,
+    "ratingCount": 287,
+    "displaySectionName": "AL5",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l13",
+    "row": "35",
+    "seat": "22",
+    "category": "main-stand",
+    "price": 466,
+    "ratingCount": 989,
+    "displaySectionName": "L13",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m5",
+    "row": "45",
+    "seat": "28",
+    "category": "main-stand",
+    "price": 369,
+    "ratingCount": 987,
+    "displaySectionName": "M5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al6",
+    "row": "28",
+    "seat": "2",
+    "category": "anfield-road-stand",
+    "price": 341,
+    "ratingCount": 18,
+    "displaySectionName": "AL6",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l12",
+    "row": "32",
+    "seat": "12",
+    "category": "main-stand",
+    "price": 475,
+    "ratingCount": 660,
+    "displaySectionName": "L12",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_107",
+    "row": "10",
+    "seat": "16",
+    "category": "the-kop",
+    "price": 471,
+    "ratingCount": 903,
+    "displaySectionName": "107",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_u2",
+    "row": "91",
+    "seat": "13",
+    "category": "main-stand",
+    "price": 427,
+    "ratingCount": 548,
+    "displaySectionName": "U2",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al9",
+    "row": "14",
+    "seat": "3",
+    "category": "anfield-road-stand",
+    "price": 520,
+    "ratingCount": 946,
+    "displaySectionName": "AL9",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_104",
+    "row": "19",
+    "seat": "2",
+    "category": "the-kop",
+    "price": 497,
+    "ratingCount": 864,
+    "displaySectionName": "104",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_203",
+    "row": "39",
+    "seat": "11",
+    "category": "the-kop",
+    "price": 467,
+    "ratingCount": 709,
+    "displaySectionName": "203",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_u8",
+    "row": "66",
+    "seat": "4",
+    "category": "main-stand",
+    "price": 358,
+    "ratingCount": 608,
+    "displaySectionName": "U8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l3",
+    "row": "6",
+    "seat": "8",
+    "category": "main-stand",
+    "price": 400,
+    "ratingCount": 153,
+    "displaySectionName": "L3",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l14",
+    "row": "32",
+    "seat": "1",
+    "category": "main-stand",
+    "price": 481,
+    "ratingCount": 998,
+    "displaySectionName": "L14",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_203",
+    "row": "50",
+    "seat": "9",
+    "category": "the-kop",
+    "price": 324,
+    "ratingCount": 43,
+    "displaySectionName": "203",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_304",
+    "row": "70",
+    "seat": "18",
+    "category": "the-kop",
+    "price": 324,
+    "ratingCount": 530,
+    "displaySectionName": "304",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_al8",
+    "row": "32",
+    "seat": "17",
+    "category": "anfield-road-stand",
+    "price": 500,
+    "ratingCount": 660,
+    "displaySectionName": "AL8",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_al8",
+    "row": "31",
+    "seat": "17",
+    "category": "anfield-road-stand",
+    "price": 376,
+    "ratingCount": 357,
+    "displaySectionName": "AL8",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_am7",
+    "row": "11",
+    "seat": "5",
+    "category": "anfield-road-stand",
+    "price": 424,
+    "ratingCount": 218,
+    "displaySectionName": "AM7",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u1",
+    "row": "60",
+    "seat": "14",
+    "category": "main-stand",
+    "price": 377,
+    "ratingCount": 493,
+    "displaySectionName": "U1",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m4",
+    "row": "54",
+    "seat": "7",
+    "category": "main-stand",
+    "price": 478,
+    "ratingCount": 893,
+    "displaySectionName": "M4",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am3",
+    "row": "18",
+    "seat": "21",
+    "category": "anfield-road-stand",
+    "price": 498,
+    "ratingCount": 186,
+    "displaySectionName": "AM3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l15",
+    "row": "39",
+    "seat": "17",
+    "category": "main-stand",
+    "price": 550,
+    "ratingCount": 847,
+    "displaySectionName": "L15",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_204",
+    "row": "52",
+    "seat": "15",
+    "category": "the-kop",
+    "price": 434,
+    "ratingCount": 296,
+    "displaySectionName": "204",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_al3",
+    "row": "25",
+    "seat": "4",
+    "category": "anfield-road-stand",
+    "price": 380,
+    "ratingCount": 855,
+    "displaySectionName": "AL3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce3",
+    "row": "23",
+    "seat": "12",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 416,
+    "ratingCount": 463,
+    "displaySectionName": "CE3",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_109",
+    "row": "12",
+    "seat": "10",
+    "category": "the-kop",
+    "price": 388,
+    "ratingCount": 85,
+    "displaySectionName": "109",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_204",
+    "row": "52",
+    "seat": "6",
+    "category": "the-kop",
+    "price": 393,
+    "ratingCount": 121,
+    "displaySectionName": "204",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_u5",
+    "row": "69",
+    "seat": "22",
+    "category": "main-stand",
+    "price": 470,
+    "ratingCount": 758,
+    "displaySectionName": "U5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al7",
+    "row": "16",
+    "seat": "2",
+    "category": "anfield-road-stand",
+    "price": 482,
+    "ratingCount": 876,
+    "displaySectionName": "AL7",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_am7",
+    "row": "11",
+    "seat": "17",
+    "category": "anfield-road-stand",
+    "price": 479,
+    "ratingCount": 657,
+    "displaySectionName": "AM7",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l2",
+    "row": "41",
+    "seat": "5",
+    "category": "main-stand",
+    "price": 518,
+    "ratingCount": 740,
+    "displaySectionName": "L2",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_au1",
+    "row": "39",
+    "seat": "4",
+    "category": "anfield-road-stand",
+    "price": 336,
+    "ratingCount": 544,
+    "displaySectionName": "AU1",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_206",
+    "row": "45",
+    "seat": "13",
+    "category": "the-kop",
+    "price": 356,
+    "ratingCount": 246,
+    "displaySectionName": "206",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_107",
+    "row": "32",
+    "seat": "6",
+    "category": "the-kop",
+    "price": 332,
+    "ratingCount": 215,
+    "displaySectionName": "107",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_u2",
+    "row": "86",
+    "seat": "19",
+    "category": "main-stand",
+    "price": 414,
+    "ratingCount": 859,
+    "displaySectionName": "U2",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al2",
+    "row": "27",
+    "seat": "7",
+    "category": "anfield-road-stand",
+    "price": 360,
+    "ratingCount": 605,
+    "displaySectionName": "AL2",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_al8",
+    "row": "32",
+    "seat": "19",
+    "category": "anfield-road-stand",
+    "price": 475,
+    "ratingCount": 406,
+    "displaySectionName": "AL8",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce5",
+    "row": "1",
+    "seat": "14",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 485,
+    "ratingCount": 941,
+    "displaySectionName": "CE5",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_u4",
+    "row": "89",
+    "seat": "9",
+    "category": "main-stand",
+    "price": 300,
+    "ratingCount": 984,
+    "displaySectionName": "U4",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al3",
+    "row": "22",
+    "seat": "4",
+    "category": "anfield-road-stand",
+    "price": 355,
+    "ratingCount": 860,
+    "displaySectionName": "AL3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_109",
+    "row": "27",
+    "seat": "8",
+    "category": "the-kop",
+    "price": 394,
+    "ratingCount": 619,
+    "displaySectionName": "109",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_304",
+    "row": "69",
+    "seat": "16",
+    "category": "the-kop",
+    "price": 456,
+    "ratingCount": 654,
+    "displaySectionName": "304",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_l1",
+    "row": "41",
+    "seat": "3",
+    "category": "main-stand",
+    "price": 337,
+    "ratingCount": 929,
+    "displaySectionName": "L1",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_207",
+    "row": "36",
+    "seat": "23",
+    "category": "the-kop",
+    "price": 394,
+    "ratingCount": 87,
+    "displaySectionName": "207",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_l12",
+    "row": "32",
+    "seat": "13",
+    "category": "main-stand",
+    "price": 490,
+    "ratingCount": 448,
+    "displaySectionName": "L12",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l5",
+    "row": "6",
+    "seat": "7",
+    "category": "main-stand",
+    "price": 349,
+    "ratingCount": 968,
+    "displaySectionName": "L5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kp",
+    "row": "14",
+    "seat": "12",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 453,
+    "ratingCount": 350,
+    "displaySectionName": "KP",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_km",
+    "row": "12",
+    "seat": "14",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 427,
+    "ratingCount": 876,
+    "displaySectionName": "KM",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_102",
+    "row": "16",
+    "seat": "11",
+    "category": "the-kop",
+    "price": 339,
+    "ratingCount": 846,
+    "displaySectionName": "102",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_107",
+    "row": "8",
+    "seat": "8",
+    "category": "the-kop",
+    "price": 390,
+    "ratingCount": 159,
+    "displaySectionName": "107",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce6",
+    "row": "3",
+    "seat": "15",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 515,
+    "ratingCount": 406,
+    "displaySectionName": "CE6",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_m2",
+    "row": "54",
+    "seat": "22",
+    "category": "main-stand",
+    "price": 376,
+    "ratingCount": 79,
+    "displaySectionName": "M2",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_au4",
+    "row": "31",
+    "seat": "13",
+    "category": "anfield-road-stand",
+    "price": 391,
+    "ratingCount": 363,
+    "displaySectionName": "AU4",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_102",
+    "row": "11",
+    "seat": "7",
+    "category": "the-kop",
+    "price": 504,
+    "ratingCount": 248,
+    "displaySectionName": "102",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_m7",
+    "row": "50",
+    "seat": "24",
+    "category": "main-stand",
+    "price": 517,
+    "ratingCount": 937,
+    "displaySectionName": "M7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m3",
+    "row": "44",
+    "seat": "13",
+    "category": "main-stand",
+    "price": 454,
+    "ratingCount": 967,
+    "displaySectionName": "M3",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am6",
+    "row": "2",
+    "seat": "7",
+    "category": "anfield-road-stand",
+    "price": 310,
+    "ratingCount": 621,
+    "displaySectionName": "AM6",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u6",
+    "row": "80",
+    "seat": "1",
+    "category": "main-stand",
+    "price": 491,
+    "ratingCount": 316,
+    "displaySectionName": "U6",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am4",
+    "row": "6",
+    "seat": "2",
+    "category": "anfield-road-stand",
+    "price": 476,
+    "ratingCount": 503,
+    "displaySectionName": "AM4",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_205",
+    "row": "57",
+    "seat": "16",
+    "category": "the-kop",
+    "price": 365,
+    "ratingCount": 907,
+    "displaySectionName": "205",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_204",
+    "row": "52",
+    "seat": "17",
+    "category": "the-kop",
+    "price": 434,
+    "ratingCount": 460,
+    "displaySectionName": "204",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_m6",
+    "row": "54",
+    "seat": "9",
+    "category": "main-stand",
+    "price": 450,
+    "ratingCount": 329,
+    "displaySectionName": "M6",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al3",
+    "row": "25",
+    "seat": "3",
+    "category": "anfield-road-stand",
+    "price": 365,
+    "ratingCount": 879,
+    "displaySectionName": "AL3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_203",
+    "row": "65",
+    "seat": "7",
+    "category": "the-kop",
+    "price": 457,
+    "ratingCount": 56,
+    "displaySectionName": "203",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_208",
+    "row": "39",
+    "seat": "15",
+    "category": "the-kop",
+    "price": 389,
+    "ratingCount": 806,
+    "displaySectionName": "208",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce7",
+    "row": "4",
+    "seat": "2",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 507,
+    "ratingCount": 118,
+    "displaySectionName": "CE7",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "anfield-road-stand_am5",
+    "row": "20",
+    "seat": "12",
+    "category": "anfield-road-stand",
+    "price": 441,
+    "ratingCount": 588,
+    "displaySectionName": "AM5",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kh",
+    "row": "4",
+    "seat": "14",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 345,
+    "ratingCount": 231,
+    "displaySectionName": "KH",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_103",
+    "row": "22",
+    "seat": "8",
+    "category": "the-kop",
+    "price": 478,
+    "ratingCount": 548,
+    "displaySectionName": "103",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_am7",
+    "row": "11",
+    "seat": "18",
+    "category": "anfield-road-stand",
+    "price": 464,
+    "ratingCount": 876,
+    "displaySectionName": "AM7",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_304",
+    "row": "66",
+    "seat": "10",
+    "category": "the-kop",
+    "price": 369,
+    "ratingCount": 816,
+    "displaySectionName": "304",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_al3",
+    "row": "25",
+    "seat": "2",
+    "category": "anfield-road-stand",
+    "price": 350,
+    "ratingCount": 530,
+    "displaySectionName": "AL3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_m6",
+    "row": "45",
+    "seat": "22",
+    "category": "main-stand",
+    "price": 446,
+    "ratingCount": 485,
+    "displaySectionName": "M6",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_106",
+    "row": "8",
+    "seat": "10",
+    "category": "the-kop",
+    "price": 316,
+    "ratingCount": 157,
+    "displaySectionName": "106",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_au6",
+    "row": "40",
+    "seat": "8",
+    "category": "anfield-road-stand",
+    "price": 542,
+    "ratingCount": 795,
+    "displaySectionName": "AU6",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce9",
+    "row": "3",
+    "seat": "2",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 335,
+    "ratingCount": 517,
+    "displaySectionName": "CE9",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_l8",
+    "row": "7",
+    "seat": "10",
+    "category": "main-stand",
+    "price": 442,
+    "ratingCount": 546,
+    "displaySectionName": "L8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m9",
+    "row": "53",
+    "seat": "3",
+    "category": "main-stand",
+    "price": 319,
+    "ratingCount": 586,
+    "displaySectionName": "M9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al4",
+    "row": "9",
+    "seat": "3",
+    "category": "anfield-road-stand",
+    "price": 475,
+    "ratingCount": 601,
+    "displaySectionName": "AL4",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l4",
+    "row": "22",
+    "seat": "15",
+    "category": "main-stand",
+    "price": 459,
+    "ratingCount": 320,
+    "displaySectionName": "L4",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_au4",
+    "row": "35",
+    "seat": "18",
+    "category": "anfield-road-stand",
+    "price": 445,
+    "ratingCount": 616,
+    "displaySectionName": "AU4",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u8",
+    "row": "66",
+    "seat": "3",
+    "category": "main-stand",
+    "price": 348,
+    "ratingCount": 415,
+    "displaySectionName": "U8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_au7",
+    "row": "42",
+    "seat": "4",
+    "category": "anfield-road-stand",
+    "price": 347,
+    "ratingCount": 137,
+    "displaySectionName": "AU7",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce8",
+    "row": "18",
+    "seat": "18",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 336,
+    "ratingCount": 567,
+    "displaySectionName": "CE8",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_u2",
+    "row": "88",
+    "seat": "25",
+    "category": "main-stand",
+    "price": 369,
+    "ratingCount": 199,
+    "displaySectionName": "U2",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u7",
+    "row": "69",
+    "seat": "6",
+    "category": "main-stand",
+    "price": 384,
+    "ratingCount": 417,
+    "displaySectionName": "U7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l15",
+    "row": "37",
+    "seat": "23",
+    "category": "main-stand",
+    "price": 427,
+    "ratingCount": 623,
+    "displaySectionName": "L15",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce1",
+    "row": "20",
+    "seat": "3",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 530,
+    "ratingCount": 889,
+    "displaySectionName": "CE1",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "anfield-road-stand_am4",
+    "row": "12",
+    "seat": "14",
+    "category": "anfield-road-stand",
+    "price": 334,
+    "ratingCount": 375,
+    "displaySectionName": "AM4",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_206",
+    "row": "45",
+    "seat": "15",
+    "category": "the-kop",
+    "price": 385,
+    "ratingCount": 380,
+    "displaySectionName": "206",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_l13",
+    "row": "38",
+    "seat": "6",
+    "category": "main-stand",
+    "price": 489,
+    "ratingCount": 83,
+    "displaySectionName": "L13",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l16",
+    "row": "39",
+    "seat": "28",
+    "category": "main-stand",
+    "price": 381,
+    "ratingCount": 87,
+    "displaySectionName": "L16",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_203",
+    "row": "65",
+    "seat": "8",
+    "category": "the-kop",
+    "price": 467,
+    "ratingCount": 181,
+    "displaySectionName": "203",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce1",
+    "row": "20",
+    "seat": "2",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 525,
+    "ratingCount": 23,
+    "displaySectionName": "CE1",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_102",
+    "row": "4",
+    "seat": "4",
+    "category": "the-kop",
+    "price": 307,
+    "ratingCount": 466,
+    "displaySectionName": "102",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce3",
+    "row": "16",
+    "seat": "12",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 458,
+    "ratingCount": 942,
+    "displaySectionName": "CE3",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "anfield-road-stand_am5",
+    "row": "20",
+    "seat": "5",
+    "category": "anfield-road-stand",
+    "price": 315,
+    "ratingCount": 465,
+    "displaySectionName": "AM5",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u8",
+    "row": "62",
+    "seat": "10",
+    "category": "main-stand",
+    "price": 385,
+    "ratingCount": 654,
+    "displaySectionName": "U8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u6",
+    "row": "67",
+    "seat": "22",
+    "category": "main-stand",
+    "price": 486,
+    "ratingCount": 244,
+    "displaySectionName": "U6",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kj",
+    "row": "29",
+    "seat": "5",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 376,
+    "ratingCount": 748,
+    "displaySectionName": "KJ",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_l3",
+    "row": "5",
+    "seat": "11",
+    "category": "main-stand",
+    "price": 331,
+    "ratingCount": 954,
+    "displaySectionName": "L3",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_304",
+    "row": "70",
+    "seat": "17",
+    "category": "the-kop",
+    "price": 304,
+    "ratingCount": 149,
+    "displaySectionName": "304",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_304",
+    "row": "70",
+    "seat": "16",
+    "category": "the-kop",
+    "price": 314,
+    "ratingCount": 360,
+    "displaySectionName": "304",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_l13",
+    "row": "38",
+    "seat": "19",
+    "category": "main-stand",
+    "price": 424,
+    "ratingCount": 605,
+    "displaySectionName": "L13",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_304",
+    "row": "66",
+    "seat": "12",
+    "category": "the-kop",
+    "price": 350,
+    "ratingCount": 40,
+    "displaySectionName": "304",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_205",
+    "row": "57",
+    "seat": "15",
+    "category": "the-kop",
+    "price": 355,
+    "ratingCount": 109,
+    "displaySectionName": "205",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_108",
+    "row": "27",
+    "seat": "21",
+    "category": "the-kop",
+    "price": 516,
+    "ratingCount": 852,
+    "displaySectionName": "108",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_am6",
+    "row": "12",
+    "seat": "12",
+    "category": "anfield-road-stand",
+    "price": 382,
+    "ratingCount": 557,
+    "displaySectionName": "AM6",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l2",
+    "row": "41",
+    "seat": "4",
+    "category": "main-stand",
+    "price": 508,
+    "ratingCount": 463,
+    "displaySectionName": "L2",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am3",
+    "row": "18",
+    "seat": "17",
+    "category": "anfield-road-stand",
+    "price": 510,
+    "ratingCount": 957,
+    "displaySectionName": "AM3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_m8",
+    "row": "47",
+    "seat": "5",
+    "category": "main-stand",
+    "price": 499,
+    "ratingCount": 265,
+    "displaySectionName": "M8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am6",
+    "row": "2",
+    "seat": "6",
+    "category": "anfield-road-stand",
+    "price": 315,
+    "ratingCount": 466,
+    "displaySectionName": "AM6",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_al4",
+    "row": "17",
+    "seat": "1",
+    "category": "anfield-road-stand",
+    "price": 409,
+    "ratingCount": 402,
+    "displaySectionName": "AL4",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_105",
+    "row": "18",
+    "seat": "16",
+    "category": "the-kop",
+    "price": 499,
+    "ratingCount": 941,
+    "displaySectionName": "105",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_108",
+    "row": "1",
+    "seat": "5",
+    "category": "the-kop",
+    "price": 486,
+    "ratingCount": 568,
+    "displaySectionName": "108",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_am2",
+    "row": "11",
+    "seat": "5",
+    "category": "anfield-road-stand",
+    "price": 453,
+    "ratingCount": 981,
+    "displaySectionName": "AM2",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l15",
+    "row": "39",
+    "seat": "16",
+    "category": "main-stand",
+    "price": 532,
+    "ratingCount": 797,
+    "displaySectionName": "L15",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u5",
+    "row": "93",
+    "seat": "9",
+    "category": "main-stand",
+    "price": 341,
+    "ratingCount": 124,
+    "displaySectionName": "U5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_au7",
+    "row": "42",
+    "seat": "6",
+    "category": "anfield-road-stand",
+    "price": 337,
+    "ratingCount": 787,
+    "displaySectionName": "AU7",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l16",
+    "row": "39",
+    "seat": "17",
+    "category": "main-stand",
+    "price": 423,
+    "ratingCount": 324,
+    "displaySectionName": "L16",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_109",
+    "row": "26",
+    "seat": "6",
+    "category": "the-kop",
+    "price": 525,
+    "ratingCount": 926,
+    "displaySectionName": "109",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce8",
+    "row": "15",
+    "seat": "14",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 376,
+    "ratingCount": 292,
+    "displaySectionName": "CE8",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kn",
+    "row": "4",
+    "seat": "4",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 446,
+    "ratingCount": 878,
+    "displaySectionName": "KN",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_105",
+    "row": "23",
+    "seat": "2",
+    "category": "the-kop",
+    "price": 409,
+    "ratingCount": 983,
+    "displaySectionName": "105",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_al3",
+    "row": "31",
+    "seat": "8",
+    "category": "anfield-road-stand",
+    "price": 379,
+    "ratingCount": 815,
+    "displaySectionName": "AL3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_al4",
+    "row": "11",
+    "seat": "6",
+    "category": "anfield-road-stand",
+    "price": 507,
+    "ratingCount": 267,
+    "displaySectionName": "AL4",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce8",
+    "row": "15",
+    "seat": "13",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 356,
+    "ratingCount": 406,
+    "displaySectionName": "CE8",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_l6",
+    "row": "29",
+    "seat": "8",
+    "category": "main-stand",
+    "price": 309,
+    "ratingCount": 518,
+    "displaySectionName": "L6",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u8",
+    "row": "84",
+    "seat": "15",
+    "category": "main-stand",
+    "price": 393,
+    "ratingCount": 322,
+    "displaySectionName": "U8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l9",
+    "row": "17",
+    "seat": "20",
+    "category": "main-stand",
+    "price": 454,
+    "ratingCount": 135,
+    "displaySectionName": "L9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_103",
+    "row": "27",
+    "seat": "5",
+    "category": "the-kop",
+    "price": 484,
+    "ratingCount": 804,
+    "displaySectionName": "103",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_au7",
+    "row": "36",
+    "seat": "18",
+    "category": "anfield-road-stand",
+    "price": 356,
+    "ratingCount": 748,
+    "displaySectionName": "AU7",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_107",
+    "row": "32",
+    "seat": "7",
+    "category": "the-kop",
+    "price": 327,
+    "ratingCount": 999,
+    "displaySectionName": "107",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_u8",
+    "row": "84",
+    "seat": "17",
+    "category": "main-stand",
+    "price": 408,
+    "ratingCount": 569,
+    "displaySectionName": "U8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_102",
+    "row": "1",
+    "seat": "6",
+    "category": "the-kop",
+    "price": 503,
+    "ratingCount": 833,
+    "displaySectionName": "102",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_103",
+    "row": "22",
+    "seat": "9",
+    "category": "the-kop",
+    "price": 473,
+    "ratingCount": 219,
+    "displaySectionName": "103",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_am2",
+    "row": "11",
+    "seat": "6",
+    "category": "anfield-road-stand",
+    "price": 468,
+    "ratingCount": 26,
+    "displaySectionName": "AM2",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u4",
+    "row": "74",
+    "seat": "16",
+    "category": "main-stand",
+    "price": 350,
+    "ratingCount": 241,
+    "displaySectionName": "U4",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l4",
+    "row": "22",
+    "seat": "16",
+    "category": "main-stand",
+    "price": 474,
+    "ratingCount": 636,
+    "displaySectionName": "L4",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_202",
+    "row": "37",
+    "seat": "19",
+    "category": "the-kop",
+    "price": 444,
+    "ratingCount": 445,
+    "displaySectionName": "202",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_m8",
+    "row": "45",
+    "seat": "23",
+    "category": "main-stand",
+    "price": 351,
+    "ratingCount": 895,
+    "displaySectionName": "M8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l11",
+    "row": "38",
+    "seat": "8",
+    "category": "main-stand",
+    "price": 500,
+    "ratingCount": 301,
+    "displaySectionName": "L11",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l8",
+    "row": "7",
+    "seat": "11",
+    "category": "main-stand",
+    "price": 427,
+    "ratingCount": 539,
+    "displaySectionName": "L8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce7",
+    "row": "4",
+    "seat": "1",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 512,
+    "ratingCount": 274,
+    "displaySectionName": "CE7",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_m9",
+    "row": "47",
+    "seat": "13",
+    "category": "main-stand",
+    "price": 462,
+    "ratingCount": 549,
+    "displaySectionName": "M9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kk",
+    "row": "26",
+    "seat": "1",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 380,
+    "ratingCount": 154,
+    "displaySectionName": "KK",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_m7",
+    "row": "56",
+    "seat": "10",
+    "category": "main-stand",
+    "price": 351,
+    "ratingCount": 439,
+    "displaySectionName": "M7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_au4",
+    "row": "35",
+    "seat": "20",
+    "category": "anfield-road-stand",
+    "price": 430,
+    "ratingCount": 911,
+    "displaySectionName": "AU4",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce4",
+    "row": "23",
+    "seat": "16",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 547,
+    "ratingCount": 470,
+    "displaySectionName": "CE4",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_u2",
+    "row": "91",
+    "seat": "14",
+    "category": "main-stand",
+    "price": 447,
+    "ratingCount": 471,
+    "displaySectionName": "U2",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kg",
+    "row": "27",
+    "seat": "31",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 375,
+    "ratingCount": 249,
+    "displaySectionName": "KG",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_106",
+    "row": "32",
+    "seat": "5",
+    "category": "the-kop",
+    "price": 538,
+    "ratingCount": 337,
+    "displaySectionName": "106",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_l16",
+    "row": "37",
+    "seat": "11",
+    "category": "main-stand",
+    "price": 490,
+    "ratingCount": 922,
+    "displaySectionName": "L16",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u8",
+    "row": "62",
+    "seat": "9",
+    "category": "main-stand",
+    "price": 405,
+    "ratingCount": 618,
+    "displaySectionName": "U8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_208",
+    "row": "58",
+    "seat": "4",
+    "category": "the-kop",
+    "price": 386,
+    "ratingCount": 67,
+    "displaySectionName": "208",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_am8",
+    "row": "18",
+    "seat": "16",
+    "category": "anfield-road-stand",
+    "price": 454,
+    "ratingCount": 85,
+    "displaySectionName": "AM8",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_207",
+    "row": "47",
+    "seat": "20",
+    "category": "the-kop",
+    "price": 413,
+    "ratingCount": 419,
+    "displaySectionName": "207",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_l10",
+    "row": "18",
+    "seat": "14",
+    "category": "main-stand",
+    "price": 391,
+    "ratingCount": 470,
+    "displaySectionName": "L10",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_104",
+    "row": "17",
+    "seat": "19",
+    "category": "the-kop",
+    "price": 365,
+    "ratingCount": 780,
+    "displaySectionName": "104",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kj",
+    "row": "5",
+    "seat": "14",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 438,
+    "ratingCount": 82,
+    "displaySectionName": "KJ",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce1",
+    "row": "13",
+    "seat": "15",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 442,
+    "ratingCount": 718,
+    "displaySectionName": "CE1",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "anfield-road-stand_al1",
+    "row": "5",
+    "seat": "4",
+    "category": "anfield-road-stand",
+    "price": 486,
+    "ratingCount": 770,
+    "displaySectionName": "AL1",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce1",
+    "row": "20",
+    "seat": "1",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 515,
+    "ratingCount": 651,
+    "displaySectionName": "CE1",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kk",
+    "row": "1",
+    "seat": "10",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 391,
+    "ratingCount": 681,
+    "displaySectionName": "KK",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_m1",
+    "row": "51",
+    "seat": "22",
+    "category": "main-stand",
+    "price": 397,
+    "ratingCount": 642,
+    "displaySectionName": "M1",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce6",
+    "row": "7",
+    "seat": "15",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 360,
+    "ratingCount": 431,
+    "displaySectionName": "CE6",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_205",
+    "row": "38",
+    "seat": "14",
+    "category": "the-kop",
+    "price": 418,
+    "ratingCount": 970,
+    "displaySectionName": "205",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_207",
+    "row": "38",
+    "seat": "11",
+    "category": "the-kop",
+    "price": 529,
+    "ratingCount": 896,
+    "displaySectionName": "207",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_l4",
+    "row": "8",
+    "seat": "15",
+    "category": "main-stand",
+    "price": 302,
+    "ratingCount": 621,
+    "displaySectionName": "L4",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al5",
+    "row": "29",
+    "seat": "17",
+    "category": "anfield-road-stand",
+    "price": 404,
+    "ratingCount": 796,
+    "displaySectionName": "AL5",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u1",
+    "row": "77",
+    "seat": "8",
+    "category": "main-stand",
+    "price": 435,
+    "ratingCount": 584,
+    "displaySectionName": "U1",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_206",
+    "row": "45",
+    "seat": "16",
+    "category": "the-kop",
+    "price": 405,
+    "ratingCount": 811,
+    "displaySectionName": "206",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_203",
+    "row": "50",
+    "seat": "8",
+    "category": "the-kop",
+    "price": 339,
+    "ratingCount": 730,
+    "displaySectionName": "203",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_207",
+    "row": "38",
+    "seat": "13",
+    "category": "the-kop",
+    "price": 524,
+    "ratingCount": 870,
+    "displaySectionName": "207",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_103",
+    "row": "22",
+    "seat": "7",
+    "category": "the-kop",
+    "price": 463,
+    "ratingCount": 158,
+    "displaySectionName": "103",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_u1",
+    "row": "77",
+    "seat": "7",
+    "category": "main-stand",
+    "price": 450,
+    "ratingCount": 684,
+    "displaySectionName": "U1",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l1",
+    "row": "27",
+    "seat": "6",
+    "category": "main-stand",
+    "price": 347,
+    "ratingCount": 255,
+    "displaySectionName": "L1",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l10",
+    "row": "20",
+    "seat": "4",
+    "category": "main-stand",
+    "price": 457,
+    "ratingCount": 452,
+    "displaySectionName": "L10",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al9",
+    "row": "20",
+    "seat": "17",
+    "category": "anfield-road-stand",
+    "price": 489,
+    "ratingCount": 722,
+    "displaySectionName": "AL9",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_am4",
+    "row": "6",
+    "seat": "1",
+    "category": "anfield-road-stand",
+    "price": 456,
+    "ratingCount": 762,
+    "displaySectionName": "AM4",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u5",
+    "row": "69",
+    "seat": "23",
+    "category": "main-stand",
+    "price": 480,
+    "ratingCount": 674,
+    "displaySectionName": "U5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_208",
+    "row": "30",
+    "seat": "21",
+    "category": "the-kop",
+    "price": 386,
+    "ratingCount": 314,
+    "displaySectionName": "208",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce2",
+    "row": "19",
+    "seat": "6",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 521,
+    "ratingCount": 221,
+    "displaySectionName": "CE2",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_u1",
+    "row": "60",
+    "seat": "15",
+    "category": "main-stand",
+    "price": 367,
+    "ratingCount": 12,
+    "displaySectionName": "U1",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m7",
+    "row": "55",
+    "seat": "27",
+    "category": "main-stand",
+    "price": 490,
+    "ratingCount": 477,
+    "displaySectionName": "M7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am3",
+    "row": "18",
+    "seat": "15",
+    "category": "anfield-road-stand",
+    "price": 500,
+    "ratingCount": 407,
+    "displaySectionName": "AM3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_al7",
+    "row": "12",
+    "seat": "7",
+    "category": "anfield-road-stand",
+    "price": 527,
+    "ratingCount": 935,
+    "displaySectionName": "AL7",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kn",
+    "row": "27",
+    "seat": "19",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 320,
+    "ratingCount": 822,
+    "displaySectionName": "KN",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "anfield-road-stand_am7",
+    "row": "11",
+    "seat": "6",
+    "category": "anfield-road-stand",
+    "price": 404,
+    "ratingCount": 860,
+    "displaySectionName": "AM7",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce7",
+    "row": "18",
+    "seat": "5",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 444,
+    "ratingCount": 788,
+    "displaySectionName": "CE7",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_108",
+    "row": "1",
+    "seat": "4",
+    "category": "the-kop",
+    "price": 481,
+    "ratingCount": 244,
+    "displaySectionName": "108",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_l10",
+    "row": "38",
+    "seat": "10",
+    "category": "main-stand",
+    "price": 375,
+    "ratingCount": 212,
+    "displaySectionName": "L10",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_305",
+    "row": "63",
+    "seat": "13",
+    "category": "the-kop",
+    "price": 496,
+    "ratingCount": 245,
+    "displaySectionName": "305",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_al1",
+    "row": "5",
+    "seat": "6",
+    "category": "anfield-road-stand",
+    "price": 476,
+    "ratingCount": 530,
+    "displaySectionName": "AL1",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kj",
+    "row": "10",
+    "seat": "9",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 441,
+    "ratingCount": 332,
+    "displaySectionName": "KJ",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_l12",
+    "row": "38",
+    "seat": "20",
+    "category": "main-stand",
+    "price": 377,
+    "ratingCount": 940,
+    "displaySectionName": "L12",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l12",
+    "row": "38",
+    "seat": "18",
+    "category": "main-stand",
+    "price": 402,
+    "ratingCount": 551,
+    "displaySectionName": "L12",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m4",
+    "row": "54",
+    "seat": "6",
+    "category": "main-stand",
+    "price": 498,
+    "ratingCount": 276,
+    "displaySectionName": "M4",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m3",
+    "row": "44",
+    "seat": "14",
+    "category": "main-stand",
+    "price": 439,
+    "ratingCount": 402,
+    "displaySectionName": "M3",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l11",
+    "row": "38",
+    "seat": "7",
+    "category": "main-stand",
+    "price": 495,
+    "ratingCount": 289,
+    "displaySectionName": "L11",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kp",
+    "row": "26",
+    "seat": "4",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 353,
+    "ratingCount": 738,
+    "displaySectionName": "KP",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "anfield-road-stand_au6",
+    "row": "40",
+    "seat": "9",
+    "category": "anfield-road-stand",
+    "price": 550,
+    "ratingCount": 656,
+    "displaySectionName": "AU6",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l5",
+    "row": "14",
+    "seat": "3",
+    "category": "main-stand",
+    "price": 340,
+    "ratingCount": 169,
+    "displaySectionName": "L5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m6",
+    "row": "54",
+    "seat": "10",
+    "category": "main-stand",
+    "price": 440,
+    "ratingCount": 616,
+    "displaySectionName": "M6",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l7",
+    "row": "27",
+    "seat": "3",
+    "category": "main-stand",
+    "price": 498,
+    "ratingCount": 873,
+    "displaySectionName": "L7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_m7",
+    "row": "55",
+    "seat": "26",
+    "category": "main-stand",
+    "price": 475,
+    "ratingCount": 885,
+    "displaySectionName": "M7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l10",
+    "row": "20",
+    "seat": "3",
+    "category": "main-stand",
+    "price": 437,
+    "ratingCount": 284,
+    "displaySectionName": "L10",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_202",
+    "row": "40",
+    "seat": "3",
+    "category": "the-kop",
+    "price": 337,
+    "ratingCount": 843,
+    "displaySectionName": "202",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_208",
+    "row": "30",
+    "seat": "22",
+    "category": "the-kop",
+    "price": 396,
+    "ratingCount": 439,
+    "displaySectionName": "208",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce8",
+    "row": "18",
+    "seat": "19",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 346,
+    "ratingCount": 196,
+    "displaySectionName": "CE8",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce2",
+    "row": "15",
+    "seat": "11",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 404,
+    "ratingCount": 527,
+    "displaySectionName": "CE2",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_u4",
+    "row": "92",
+    "seat": "5",
+    "category": "main-stand",
+    "price": 354,
+    "ratingCount": 221,
+    "displaySectionName": "U4",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_106",
+    "row": "8",
+    "seat": "9",
+    "category": "the-kop",
+    "price": 321,
+    "ratingCount": 320,
+    "displaySectionName": "106",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_am1",
+    "row": "6",
+    "seat": "6",
+    "category": "anfield-road-stand",
+    "price": 319,
+    "ratingCount": 425,
+    "displaySectionName": "AM1",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_al4",
+    "row": "17",
+    "seat": "2",
+    "category": "anfield-road-stand",
+    "price": 389,
+    "ratingCount": 581,
+    "displaySectionName": "AL4",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l16",
+    "row": "37",
+    "seat": "15",
+    "category": "main-stand",
+    "price": 342,
+    "ratingCount": 940,
+    "displaySectionName": "L16",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am7",
+    "row": "11",
+    "seat": "7",
+    "category": "anfield-road-stand",
+    "price": 389,
+    "ratingCount": 582,
+    "displaySectionName": "AM7",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l4",
+    "row": "8",
+    "seat": "16",
+    "category": "main-stand",
+    "price": 322,
+    "ratingCount": 865,
+    "displaySectionName": "L4",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_306",
+    "row": "64",
+    "seat": "18",
+    "category": "the-kop",
+    "price": 338,
+    "ratingCount": 863,
+    "displaySectionName": "306",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_l2",
+    "row": "6",
+    "seat": "13",
+    "category": "main-stand",
+    "price": 383,
+    "ratingCount": 103,
+    "displaySectionName": "L2",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_au8",
+    "row": "36",
+    "seat": "10",
+    "category": "anfield-road-stand",
+    "price": 446,
+    "ratingCount": 527,
+    "displaySectionName": "AU8",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u9",
+    "row": "88",
+    "seat": "5",
+    "category": "main-stand",
+    "price": 490,
+    "ratingCount": 138,
+    "displaySectionName": "U9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_109",
+    "row": "26",
+    "seat": "7",
+    "category": "the-kop",
+    "price": 510,
+    "ratingCount": 872,
+    "displaySectionName": "109",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_m8",
+    "row": "51",
+    "seat": "15",
+    "category": "main-stand",
+    "price": 473,
+    "ratingCount": 888,
+    "displaySectionName": "M8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_207",
+    "row": "47",
+    "seat": "21",
+    "category": "the-kop",
+    "price": 398,
+    "ratingCount": 801,
+    "displaySectionName": "207",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_u4",
+    "row": "89",
+    "seat": "7",
+    "category": "main-stand",
+    "price": 313,
+    "ratingCount": 760,
+    "displaySectionName": "U4",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al6",
+    "row": "21",
+    "seat": "2",
+    "category": "anfield-road-stand",
+    "price": 386,
+    "ratingCount": 194,
+    "displaySectionName": "AL6",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_am4",
+    "row": "12",
+    "seat": "13",
+    "category": "anfield-road-stand",
+    "price": 339,
+    "ratingCount": 553,
+    "displaySectionName": "AM4",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce3",
+    "row": "23",
+    "seat": "13",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 421,
+    "ratingCount": 663,
+    "displaySectionName": "CE3",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_l1",
+    "row": "41",
+    "seat": "4",
+    "category": "main-stand",
+    "price": 347,
+    "ratingCount": 555,
+    "displaySectionName": "L1",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_202",
+    "row": "47",
+    "seat": "2",
+    "category": "the-kop",
+    "price": 509,
+    "ratingCount": 576,
+    "displaySectionName": "202",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_m3",
+    "row": "50",
+    "seat": "8",
+    "category": "main-stand",
+    "price": 419,
+    "ratingCount": 894,
+    "displaySectionName": "M3",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u3",
+    "row": "60",
+    "seat": "18",
+    "category": "main-stand",
+    "price": 486,
+    "ratingCount": 428,
+    "displaySectionName": "U3",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_au5",
+    "row": "24",
+    "seat": "4",
+    "category": "anfield-road-stand",
+    "price": 465,
+    "ratingCount": 118,
+    "displaySectionName": "AU5",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u9",
+    "row": "89",
+    "seat": "7",
+    "category": "main-stand",
+    "price": 371,
+    "ratingCount": 301,
+    "displaySectionName": "U9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_al7",
+    "row": "16",
+    "seat": "1",
+    "category": "anfield-road-stand",
+    "price": 497,
+    "ratingCount": 257,
+    "displaySectionName": "AL7",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_105",
+    "row": "23",
+    "seat": "3",
+    "category": "the-kop",
+    "price": 419,
+    "ratingCount": 417,
+    "displaySectionName": "105",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_l9",
+    "row": "17",
+    "seat": "21",
+    "category": "main-stand",
+    "price": 469,
+    "ratingCount": 414,
+    "displaySectionName": "L9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am1",
+    "row": "6",
+    "seat": "5",
+    "category": "anfield-road-stand",
+    "price": 329,
+    "ratingCount": 698,
+    "displaySectionName": "AM1",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_al9",
+    "row": "29",
+    "seat": "5",
+    "category": "anfield-road-stand",
+    "price": 385,
+    "ratingCount": 412,
+    "displaySectionName": "AL9",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce8",
+    "row": "23",
+    "seat": "13",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 384,
+    "ratingCount": 675,
+    "displaySectionName": "CE8",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_u7",
+    "row": "69",
+    "seat": "7",
+    "category": "main-stand",
+    "price": 364,
+    "ratingCount": 915,
+    "displaySectionName": "U7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce9",
+    "row": "8",
+    "seat": "12",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 406,
+    "ratingCount": 290,
+    "displaySectionName": "CE9",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_207",
+    "row": "38",
+    "seat": "12",
+    "category": "the-kop",
+    "price": 514,
+    "ratingCount": 162,
+    "displaySectionName": "207",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_105",
+    "row": "18",
+    "seat": "15",
+    "category": "the-kop",
+    "price": 479,
+    "ratingCount": 626,
+    "displaySectionName": "105",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce5",
+    "row": "1",
+    "seat": "13",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 465,
+    "ratingCount": 452,
+    "displaySectionName": "CE5",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "the-kop_108",
+    "row": "27",
+    "seat": "20",
+    "category": "the-kop",
+    "price": 501,
+    "ratingCount": 507,
+    "displaySectionName": "108",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "main-stand_l15",
+    "row": "37",
+    "seat": "22",
+    "category": "main-stand",
+    "price": 417,
+    "ratingCount": 477,
+    "displaySectionName": "L15",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce4",
+    "row": "12",
+    "seat": "11",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 386,
+    "ratingCount": 431,
+    "displaySectionName": "CE4",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_m2",
+    "row": "44",
+    "seat": "2",
+    "category": "main-stand",
+    "price": 421,
+    "ratingCount": 596,
+    "displaySectionName": "M2",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am8",
+    "row": "18",
+    "seat": "14",
+    "category": "anfield-road-stand",
+    "price": 459,
+    "ratingCount": 831,
+    "displaySectionName": "AM8",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l8",
+    "row": "30",
+    "seat": "10",
+    "category": "main-stand",
+    "price": 529,
+    "ratingCount": 272,
+    "displaySectionName": "L8",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am8",
+    "row": "18",
+    "seat": "15",
+    "category": "anfield-road-stand",
+    "price": 444,
+    "ratingCount": 839,
+    "displaySectionName": "AM8",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_au2",
+    "row": "26",
+    "seat": "11",
+    "category": "anfield-road-stand",
+    "price": 501,
+    "ratingCount": 843,
+    "displaySectionName": "AU2",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_206",
+    "row": "45",
+    "seat": "11",
+    "category": "the-kop",
+    "price": 356,
+    "ratingCount": 885,
+    "displaySectionName": "206",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_kn",
+    "row": "4",
+    "seat": "5",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 456,
+    "ratingCount": 423,
+    "displaySectionName": "KN",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_l7",
+    "row": "27",
+    "seat": "4",
+    "category": "main-stand",
+    "price": 493,
+    "ratingCount": 20,
+    "displaySectionName": "L7",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am2",
+    "row": "6",
+    "seat": "13",
+    "category": "anfield-road-stand",
+    "price": 350,
+    "ratingCount": 134,
+    "displaySectionName": "AM2",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_m9",
+    "row": "53",
+    "seat": "4",
+    "category": "main-stand",
+    "price": 304,
+    "ratingCount": 506,
+    "displaySectionName": "M9",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l14",
+    "row": "41",
+    "seat": "23",
+    "category": "main-stand",
+    "price": 537,
+    "ratingCount": 87,
+    "displaySectionName": "L14",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_u4",
+    "row": "89",
+    "seat": "8",
+    "category": "main-stand",
+    "price": 308,
+    "ratingCount": 673,
+    "displaySectionName": "U4",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "main-stand_l14",
+    "row": "32",
+    "seat": "13",
+    "category": "main-stand",
+    "price": 368,
+    "ratingCount": 970,
+    "displaySectionName": "L14",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am1",
+    "row": "6",
+    "seat": "4",
+    "category": "anfield-road-stand",
+    "price": 339,
+    "ratingCount": 682,
+    "displaySectionName": "AM1",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_l12",
+    "row": "38",
+    "seat": "17",
+    "category": "main-stand",
+    "price": 372,
+    "ratingCount": 509,
+    "displaySectionName": "L12",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "the-kop_205",
+    "row": "38",
+    "seat": "20",
+    "category": "the-kop",
+    "price": 344,
+    "ratingCount": 977,
+    "displaySectionName": "205",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "sir-kenny-dalglish-stand_ce4",
+    "row": "5",
+    "seat": "8",
+    "category": "sir-kenny-dalglish-stand",
+    "price": 324,
+    "ratingCount": 521,
+    "displaySectionName": "CE4",
+    "displayCategoryName": "Sir Kenny Dalglish Stand"
+  },
+  {
+    "section": "main-stand_m5",
+    "row": "47",
+    "seat": "24",
+    "category": "main-stand",
+    "price": 376,
+    "ratingCount": 38,
+    "displaySectionName": "M5",
+    "displayCategoryName": "Main Stand"
+  },
+  {
+    "section": "anfield-road-stand_am3",
+    "row": "18",
+    "seat": "7",
+    "category": "anfield-road-stand",
+    "price": 502,
+    "ratingCount": 35,
+    "displaySectionName": "AM3",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_306",
+    "row": "65",
+    "seat": "4",
+    "category": "the-kop",
+    "price": 401,
+    "ratingCount": 202,
+    "displaySectionName": "306",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_au2",
+    "row": "26",
+    "seat": "11",
+    "category": "anfield-road-stand",
+    "price": 536,
+    "ratingCount": 758,
+    "displaySectionName": "AU2",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_au6",
+    "row": "40",
+    "seat": "7",
+    "category": "anfield-road-stand",
+    "price": 522,
+    "ratingCount": 410,
+    "displaySectionName": "AU6",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_am5",
+    "row": "20",
+    "seat": "4",
+    "category": "anfield-road-stand",
+    "price": 335,
+    "ratingCount": 339,
+    "displaySectionName": "AM5",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_al5",
+    "row": "16",
+    "seat": "7",
+    "category": "anfield-road-stand",
+    "price": 350,
+    "ratingCount": 14,
+    "displaySectionName": "AL5",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "the-kop_108",
+    "row": "1",
+    "seat": "3",
+    "category": "the-kop",
+    "price": 461,
+    "ratingCount": 318,
+    "displaySectionName": "108",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "the-kop_304",
+    "row": "69",
+    "seat": "17",
+    "category": "the-kop",
+    "price": 476,
+    "ratingCount": 69,
+    "displaySectionName": "304",
+    "displayCategoryName": "The Kop"
+  },
+  {
+    "section": "anfield-road-stand_au4",
+    "row": "35",
+    "seat": "19",
+    "category": "anfield-road-stand",
+    "price": 450,
+    "ratingCount": 255,
+    "displaySectionName": "AU4",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "anfield-road-stand_am4",
+    "row": "12",
+    "seat": "20",
+    "category": "anfield-road-stand",
+    "price": 447,
+    "ratingCount": 67,
+    "displaySectionName": "AM4",
+    "displayCategoryName": "Anfield Road Stand"
+  },
+  {
+    "section": "main-stand_u1",
+    "row": "77",
+    "seat": "6",
+    "category": "main-stand",
+    "price": 455,
+    "ratingCount": 211,
+    "displaySectionName": "U1",
+    "displayCategoryName": "Main Stand"
+  }
+]
