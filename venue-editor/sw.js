@@ -1,9 +1,11 @@
 // Offline support: pages are fetched network-first, everything else
 // (hashed JS/CSS, icons, wasm) is served from the cache and refreshed in the background.
-const CACHE = 'venue-editor-v5';
+const CACHE = 'venue-editor-v6';
+// The app's own folder (e.g. /<repo>/ on GitHub Pages), so it works from any path.
+const ROOT = self.registration.scope;
 
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(['/'])));
+  e.waitUntil(caches.open(CACHE).then((c) => c.addAll([ROOT])));
   self.skipWaiting();
 });
 
@@ -25,7 +27,7 @@ self.addEventListener('fetch', (e) => {
     return res;
   };
   if (request.mode === 'navigate') {
-    e.respondWith(fetch(request).then(store).catch(() => caches.match(request).then((r) => r || caches.match('/'))));
+    e.respondWith(fetch(request).then(store).catch(() => caches.match(request).then((r) => r || caches.match(ROOT))));
     return;
   }
   e.respondWith(
