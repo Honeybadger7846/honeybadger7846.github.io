@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seat View Studio</title>
+<meta name="theme-color" content="#1f1e1d">
+<meta name="application-name" content="Seat View Studio">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+<link rel="icon" href="./icons/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <script type="module" crossorigin src="./assets/index-CvMXG9_f.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-C0Y95bWF.css">
+</head>
+<body>
+<div id="main">
+  <div id="stage">
+    <div id="viewport">
+      <canvas id="glcanvas"></canvas>
+      <!-- Guides (seat dots, names, mini-map): a separate layer, never exported -->
+      <canvas id="guides-canvas"></canvas>
+      <button type="button" id="btn-focus" class="btn btn-primary overlay-btn">Focus camera · V</button>
+      <!-- Shift+drag target stem (overlay only, never in the export) -->
+      <svg id="target-stem-svg"></svg>
+
+      <!-- Seat HUD (overlay only, never in the export) -->
+      <div id="seat-hud-overlay">
+        <div id="seat-hud-title">Section —</div>
+        <div id="seat-hud-sub">—</div>
+      </div>
+
+      <div id="drop-hint">
+        <div class="big">Drop the COLMAP folder and the splat .ply here</div>
+        <div class="sub">or click to browse. Both can be dropped together or one after the other.</div>
+      </div>
+      <div id="overlay"></div>
+      <div id="toast"></div>
+      <input autocomplete="off" type="file" id="file-input" multiple accept=".ply,.obj,.gltf,.glb,.stl,.bin,.mtl,.png,.jpg,.jpeg,.json,.xml,.psx,.txt" style="display:none">
+    </div>
+  </div>
+
+  <div id="panel">
+    <!-- 1. INPUTS -->
+    <div class="section">
+      <div class="section-title">1 · Scene</div>
+      <div class="step" id="step-cams"><span class="dot"></span><span class="step-label">Cameras</span><span class="step-val" id="st-cams">drop COLMAP folder</span></div>
+      <div class="step" id="step-splat"><span class="dot"></span><span class="step-label">Splat</span><span class="step-val" id="st-splat">drop .ply</span></div>
+      <div class="step" id="step-target"><span class="dot"></span><span class="step-label">Target</span><span class="step-val" id="st-target">required · Shift+drag</span>
+        <button type="button" class="mini-btn" id="btn-clear-target" title="Clear target" hidden>✕</button></div>
+      <div class="row" id="ds-component-row" style="display:none">
+        <div class="label"><span>Component</span></div>
+        <select autocomplete="off" id="ds-component"></select>
+      </div>
+      <div class="btn-group" id="project-row">
+        <button type="button" class="btn" id="btn-save-project" title="Download camera.json: target, width, FOV, level horizon and all offsets">Export camera</button>
+        <button type="button" class="btn" id="btn-load-project" title="Load a camera.json (or an exported ZIP). You can also drop it on the viewport.">Import camera</button>
+      </div>
+      <input autocomplete="off" type="file" id="project-input" accept=".json,.zip,application/json,application/zip" hidden>
+    </div>
+
+    <!-- 2. EXPORT SETTINGS (live during a session) -->
+    <div class="section" id="sec-output">
+      <div class="section-title">2 · Output</div>
+      <div class="field"><label for="exp-width">Width</label>
+        <input autocomplete="off" type="number" id="exp-width" class="num" value="2078" step="2" min="64">
+        <span class="unit" id="exp-size">× 1039</span></div>
+      <div class="field"><label for="exp-fov">FOV</label>
+        <input autocomplete="off" type="number" id="exp-fov" class="num" value="180" step="1" min="10" max="360">
+        <span class="unit">°</span></div>
+      <div class="field"><label for="exp-height">Height</label>
+        <button type="button" class="step-btn" data-target="exp-height" data-dir="-1">−</button>
+        <input autocomplete="off" type="number" id="exp-height" class="num" value="0.000" step="0.001">
+        <button type="button" class="step-btn" data-target="exp-height" data-dir="1">+</button></div>
+      <div class="field"><label for="exp-right">Right</label>
+        <button type="button" class="step-btn" data-target="exp-right" data-dir="-1">−</button>
+        <input autocomplete="off" type="number" id="exp-right" class="num" value="0.000" step="0.001">
+        <button type="button" class="step-btn" data-target="exp-right" data-dir="1">+</button></div>
+      <div class="field"><label for="exp-forward">Forward</label>
+        <button type="button" class="step-btn" data-target="exp-forward" data-dir="-1">−</button>
+        <input autocomplete="off" type="number" id="exp-forward" class="num" value="0.000" step="0.001">
+        <button type="button" class="step-btn" data-target="exp-forward" data-dir="1">+</button></div>
+      <div class="toggle-row hint-row"><span title="Offsets for the current section only; the others keep the global ones">This section only</span>
+        <label class="toggle" title="Tick to give the current section its own Height / Right / Forward. Untick to go back to the global offsets."><input autocomplete="off" type="checkbox" id="own-offsets" disabled><span class="track"></span></label></div>
+      <button type="button" class="btn" id="btn-offsets-from-cam" title="Set Height / Right / Forward to where the camera is now, relative to its section (P)">Use camera position · P</button>
+      <div class="toggle-row hint-row"><span>Level horizon</span>
+        <label class="toggle" title="On: sections and Focus camera use a perfectly level horizon. Off: keep the slight tilt of each COLMAP section camera."><input autocomplete="off" type="checkbox" id="level-horizon"><span class="track"></span></label>
+        <span class="hint" id="step-hint">step 0.001</span></div>
+    </div>
+
+    <!-- 3. SESSION -->
+    <div class="section" id="sec-session">
+      <div class="section-title">3 · Export</div>
+      <button type="button" class="btn btn-primary" id="btn-start-export">Start export session</button>
+      <div id="session-controls" hidden>
+        <div class="session-info" id="session-info">Section 1 / 1 · 0 saved</div>
+        <div class="btn-group">
+          <button type="button" class="btn" id="btn-nav-prev" title="Previous section (←)">◀ Prev</button>
+          <button type="button" class="btn btn-save" id="btn-step-export" title="Save and go to next section (R)">Save · R</button>
+          <button type="button" class="btn" id="btn-nav-next" title="Next section without saving (→)">Next ▶</button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn" id="btn-tuner-reset" title="Back to the section pose (U)">Reset · U</button>
+          <button type="button" class="btn btn-primary" id="btn-finish-export" title="Download the saved sections as a ZIP and end the session">Download</button>
+          <button type="button" class="btn btn-danger" id="btn-cancel-export" title="End the session and discard the saved sections">Cancel</button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn" id="btn-export-all" title="Render every section with its offsets. Sections saved by hand (R) are kept. Esc stops.">Export all</button>
+          <button type="button" class="btn" id="btn-next-unsaved" title="Go to the next section without an image (N)">Unsaved · N</button>
+          <button type="button" class="btn" id="btn-review" title="All sections as thumbnails, before you download">Review</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAMERA MOVEMENT -->
+    <div class="section">
+      <div class="section-title">Camera</div>
+      <div class="row">
+        <div class="label"><span>Fly speed</span><span class="val" id="v-speed">1.00×</span></div>
+        <input autocomplete="off" type="range" id="move-speed" min="-2" max="2" step="0.1" value="0" title="The mouse wheel changes it too">
+      </div>
+      <div class="section-title guides-title">Guides · G <span class="title-note">never exported</span></div>
+      <label class="chip chip-all" title="Show / hide all guides (G)"><input type="checkbox" id="guides-all" checked><span>Show guides</span></label>
+    </div>
+
+  </div>
+</div>
+
+<div id="statusbar">
+  <div id="nav-legend"></div>
+  <button type="button" id="btn-copy-image" class="hdr-btn help-btn" title="Render the current view and copy it to the clipboard, ready to paste (B)"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-6A1.5 1.5 0 0 0 2 3.5v6A1.5 1.5 0 0 0 3.5 11H5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg><span>Copy image · B</span></button>
+  <button type="button" id="btn-show-help" class="hdr-btn help-btn" title="Manual (H)"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M6.2 6.3a1.9 1.9 0 1 1 2.6 1.8c-.5.2-.8.6-.8 1.1v.4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="11.4" r=".8" fill="currentColor"/></svg><span>Manual · H</span></button>
+</div>
+
+<!-- Review sheet: every section as a thumbnail (export session only) -->
+<div id="review-modal" hidden>
+  <div class="guide-card review-card">
+    <div class="guide-header">
+      <h2 id="review-title">Review</h2>
+      <div class="review-actions">
+        <button type="button" class="btn" id="btn-review-project" title="Download camera.json on its own (it is also inside every ZIP)">Export camera</button>
+        <button type="button" class="btn btn-primary" id="btn-review-download" title="Download the saved sections as a ZIP and end the session">Download ZIP</button>
+        <button type="button" class="hdr-btn" id="btn-close-review" title="Close (Esc)">✕</button>
+      </div>
+    </div>
+    <div class="review-hint">Click a section to go back to it, fix it and save it again with <b>R</b>.</div>
+    <div id="review-grid"></div>
+  </div>
+</div>
+
+<!-- Manual (opens from the ? button or H; on its own only on the first visit) -->
+<div id="guide-modal" hidden>
+  <div class="guide-card">
+    <div class="guide-header">
+      <h2>Seat View Studio · Manual</h2>
+      <button type="button" class="hdr-btn" id="btn-close-guide" title="Close (Esc)">✕</button>
+    </div>
+    <div class="guide-body">
+      <nav class="guide-nav">
+        <button type="button" data-page="start" class="active">Quick start</button>
+        <button type="button" data-page="move">Moving the camera</button>
+        <button type="button" data-page="export">Export session</button>
+        <button type="button" data-page="target">Target &amp; offsets</button>
+        <button type="button" data-page="guides">Guides</button>
+        <button type="button" data-page="keys">All shortcuts</button>
+        <button type="button" data-page="help">Troubleshooting</button>
+      </nav>
+      <div class="guide-pages">
+
+        <section data-page="start" class="active">
+          <h3>Quick start</h3>
+          <ol>
+            <li><b>Start the app</b> with <code>npm run dev</code> (or open the built <code>dist/</code> through any local web server). Opening <code>index.html</code> directly from disk does not work.</li>
+            <li><b>Load the scene.</b> Drop the COLMAP <code>sparse</code> folder and the splat <code>.ply</code> on the viewport, together or one after the other. The <b>Scene</b> panel turns green for Cameras and Splat.</li>
+            <li><b>Set the target (required).</b> Hold <span class="kbd">Shift</span>, click the pitch and drag up to raise the point. Every section will look at it. The export does not start without it.</li>
+            <li><b>Check the Output settings:</b> width (height is always half), FOV, and the height / right offsets.</li>
+            <li><b>Start export session.</b> The viewport now shows exactly the image that will be saved, starting at section 1.</li>
+            <li><b>Fast way:</b> press <b>Export all</b>. Every section is rendered with the offsets, then the <b>Review</b> sheet opens. Click any section that looks wrong, fix it and press <span class="kbd">R</span>.</li>
+            <li><b>By hand:</b> for each section, fine-tune if needed and press <span class="kbd">R</span> to save it and go to the next one. Use <span class="kbd">←</span> / <span class="kbd">→</span> to go back or skip, <span class="kbd">N</span> for the next section without an image.</li>
+            <li><b>Download ZIP</b> (in the review, or <b>Download</b> in the panel) saves the images plus <code>camera.json</code>. Drop that ZIP again next time to get the same target and offsets back.</li>
+          </ol>
+          <p class="tip">Press <span class="kbd">H</span> or the <b>Manual</b> button in the bottom-right corner any time to open this manual again.</p>
+        </section>
+
+        <section data-page="move">
+          <h3>Moving the camera</h3>
+          <p>The camera works like a first-person game where you can fly.</p>
+          <table class="keys">
+            <tr><td><span class="kbd">W</span> <span class="kbd">S</span></td><td>Forward / back, in the direction you look</td></tr>
+            <tr><td><span class="kbd">A</span> <span class="kbd">D</span></td><td>Strafe left / right</td></tr>
+            <tr><td><span class="kbd">Space</span> or <span class="kbd">E</span></td><td>Straight up</td></tr>
+            <tr><td><span class="kbd">C</span> or <span class="kbd">Q</span></td><td>Straight down</td></tr>
+            <tr><td>hold <span class="kbd">Shift</span></td><td>Fast (×4)</td></tr>
+            <tr><td>hold <span class="kbd">X</span></td><td>Slow, for precise moves (×0.2)</td></tr>
+            <tr><td>Left or right drag</td><td>Look around (the horizon stays level)</td></tr>
+            <tr><td>Middle drag</td><td>Pan sideways</td></tr>
+            <tr><td><span class="kbd">F</span></td><td>Lock the mouse: look without holding a button, like a shooter. <span class="kbd">F</span> or <span class="kbd">Esc</span> releases it.</td></tr>
+            <tr><td>Mouse wheel</td><td>Change the fly speed</td></tr>
+            <tr><td><span class="kbd">↑</span> <span class="kbd">↓</span></td><td>Same as W / S</td></tr>
+            <tr><td><span class="kbd">←</span> <span class="kbd">→</span></td><td>Previous / next section (they do not move the camera)</td></tr>
+          </table>
+          <h4>Speed</h4>
+          <p>The base speed is 3% of the scene size per second, so a big stadium and a small room both feel slow and controllable. The <b>Fly speed</b> slider (or the wheel) multiplies it from 0.01× to 100×. The panel shows the result in scene units per second (metres, if your COLMAP model is in metres). The speed is remembered the next time you open the page.</p>
+          <h4>Also</h4>
+          <p><b>Double-click</b> centers the view on the point under the cursor.</p>
+        </section>
+
+        <section data-page="export">
+          <h3>Export session</h3>
+          <ul>
+            <li><b>Sections</b> are the COLMAP cameras with <code>_center</code> in the image name, in file order. The PNG for a section is named after the camera without <code>_center</code> and the extension, so <code>section_12_center.jpg</code> → <code>section_12.png</code>.</li>
+            <li><b>What is saved:</b> a full-frame equidistant fisheye, 2:1, at the Output width. The FOV spans the image width. The viewport is the export, so what you see is what you get. Overlays (section label, target stem, text) are never saved.</li>
+            <li><b>How a section is framed:</b> the camera goes to the section camera's position. It looks at the target if one is set, otherwise it keeps the COLMAP orientation. Then the <b>Right</b> offset moves it sideways along its own right direction and <b>Height</b> moves it straight up, and it re-aims at the target.</li>
+            <li><b>Manual adjustments:</b> you can also fly or look around before pressing <span class="kbd">R</span>; R saves the current view. <span class="kbd">U</span> throws away your manual move and returns to the computed section pose. Changing an offset, the FOV or the target also re-frames the section.</li>
+            <li><b>Saving again:</b> the session line says "this section saved". Press <span class="kbd">R</span> again on it to replace the image.</li>
+            <li><b>Export all</b> renders every section with its offsets, one after the other, in a few seconds. Sections you saved by hand with <span class="kbd">R</span> are kept as they are; auto-rendered ones are rendered again, so after changing an offset just press Export all again. <span class="kbd">Esc</span> or <b>Stop</b> ends it early. The panel is locked while it runs.</li>
+            <li><b>Next unsaved</b> (<span class="kbd">N</span>) jumps to the next section without an image, wrapping around.</li>
+            <li><b>Review</b> shows every section as a thumbnail with a badge: <b>auto</b> (Export all), <b>by hand</b> (R) and <b>own offsets</b>. Missing ones are striped. Click a tile to go to that section. It also opens on its own after Export all and after saving the last section.</li>
+            <li><b>Camera file:</b> <code>camera.json</code> holds the target, width, FOV, level horizon and all offsets (global and per section). It has no camera positions, splat or images: those still come from the files you drop. It is inside every ZIP; <b>Export camera</b> (Scene panel, any time, also in the review) downloads it on its own. <b>Import camera</b> or dropping the JSON or the ZIP on the viewport restores everything, before or after loading the scene, also during a session.</li>
+            <li><b>Copy image</b> (<span class="kbd">B</span>, or the button in the bottom bar) renders the current view and puts it on the clipboard, so you can paste it into a chat or an AI tool with Ctrl+V. In a session it is exactly the export image (same size, FOV and fisheye); outside a session it is the viewport as you see it. Guides are never in it.</li>
+            <li><b>Ending:</b> <b>Download</b> downloads what is saved (plus <code>camera.json</code>) and ends the session. <b>Cancel</b> ends it and discards the images (it asks first). The width is locked while a session runs.</li>
+          </ul>
+        </section>
+
+        <section data-page="target">
+          <h3>Target &amp; offsets</h3>
+          <h4>Target</h4>
+          <ul>
+            <li><b>Required before exporting.</b> Until it is set, the Target row is orange and <b>Start export session</b> only reminds you how to set it.</li>
+            <li>Hold <span class="kbd">Shift</span>, press the left button on visible ground (there must be splats under the cursor), move the mouse up: the top of the dashed stem stays under the cursor, so the target is where you point. Release to set it.</li>
+            <li>A dashed stem shows the height while you drag. The Scene panel then shows "set" with the height.</li>
+            <li>Setting a target during a session re-aims the current section right away. <b>✕</b> next to it clears it, and sections go back to their COLMAP orientation.</li>
+          </ul>
+          <h4>Level horizon</h4>
+          <ul>
+            <li>Off (default): each section keeps the slight sideways tilt of its COLMAP camera, exactly as before. Looking around with the mouse keeps that tilt.</li>
+            <li>On: sections and <b>Focus camera</b> use a perfectly level horizon. Changing it during a session re-frames the current section.</li>
+          </ul>
+          <h4>Offsets</h4>
+          <ul>
+            <li><b>Height</b> moves the eye straight up (negative = down). <b>Right</b> moves it sideways (negative = left). <b>Forward</b> moves it level toward where the section looks (negative = back).</li>
+            <li>The step is 1% of the drawn target height, or 1% of the scene size without a target. The current step is shown under the fields.</li>
+            <li>Change them with the <b>−</b> / <b>+</b> buttons, <span class="kbd">I</span>/<span class="kbd">K</span> (height) and <span class="kbd">J</span>/<span class="kbd">L</span> (right), <span class="kbd">O</span>/<span class="kbd">;</span> (forward). Hold <span class="kbd">Shift</span> for 10 steps at once. You can also type a value.</li>
+            <li>Offsets stay the same for all following sections until you change them.</li>
+            <li><b>This section only:</b> tick it during a session to give the current section its own Height / Right / Forward. The fields turn amber and the section's dot on the mini-map is amber. All other sections keep the global offsets. Untick it to send the section back to the global ones. Own offsets are kept by section name, also in <code>camera.json</code>.</li>
+            <li><b>Use camera position</b> (<span class="kbd">P</span>): fly the camera freely to the spot you want, then press it. Height, Right and Forward are set to where the camera is now, relative to its section (the current section in a session, otherwise the nearest one), so every following section gets the same move. Only the position is taken: the camera is still aimed at the target, so where you looked does not matter.</li>
+          </ul>
+        </section>
+
+        <section data-page="guides">
+          <h3>Guides</h3>
+          <p>Guides are drawn on a separate layer above the image. <b>They are never in the exported PNGs</b>, so leave them on while you work. Switch them with the <b>Show guides</b> button or <span class="kbd">G</span>. Your choice is remembered.</p>
+          <h4>Section dots &amp; names</h4>
+          <ul>
+            <li>A <b style="color:#4ecb71">green dot</b> marks every <code>_center</code> camera, with its section name next to it (the image name without <code>_center</code>).</li>
+            <li>The <b style="color:#ffd34d">yellow dot with a ring</b> is the reference section: the current section during an export session, otherwise the section nearest to you.</li>
+            <li><b>Click a dot or its name</b> to jump to that section. During an export session this switches the session to that section (with your offsets), like pressing ← / → several times. Outside a session ← / → also step through the sections.</li>
+            <li>When names would overlap, the nearer ones win and the others are hidden until you get closer.</li>
+          </ul>
+          <h4>Target line</h4>
+          <ul>
+            <li>While a target is set (Shift + drag), a <b style="color:#ffd34d">yellow line</b> always runs from the centre of the view (small cross) to the target point.</li>
+            <li>When the cross sits on the target, you are looking straight at it. If the target is outside the view, the line runs to the edge and ends in an arrow pointing toward it.</li>
+          </ul>
+          <h4>Focus camera</h4>
+          <ul>
+            <li>The <b>Focus camera</b> button under the mini-map (or <span class="kbd">V</span>) turns the camera, without moving it, so it looks exactly at the target. The target then sits on the centre cross.</li>
+            <li>Handy after flying or looking around: one click and you are aimed again. During a session it uses the same horizon as the section framing.</li>
+          </ul>
+          <h4>Mini-map (top right)</h4>
+          <ul>
+            <li>During a session it shows your progress: a <b>solid dot</b> is saved, a <b>ring</b> still needs an image, <b style="color:#f0a020">amber</b> has its own offsets.</li>
+            <li>A top-down map of all sections. The small <b style="color:#ff3b30">red dot</b> is your camera; the dashed yellow line goes back to the reference section.</li>
+            <li>The map keeps the same framing while you move. If you fly outside the section area the red dot stays pinned to the edge.</li>
+          </ul>
+          <h4>Offset readout (under the map)</h4>
+          <ul>
+            <li>How far the camera is from the reference section, in that section's own directions: <b>R</b> right (negative = left), <b>F</b> forward and <b>H</b> height, in the same directions as the offsets, plus the straight distance.</li>
+            <li>With only a Right offset set, you should see that value after <b>R</b> and close to 0 for F and H. <b>Use camera position</b> copies exactly these numbers into the offsets.</li>
+            <li>If another section is closer than the reference section, the box turns red and says <b>closer to …</b>. That usually means the offset pushed you into the next section.</li>
+          </ul>
+        </section>
+
+        <section data-page="keys">
+          <h3>All shortcuts</h3>
+          <h4>Export session</h4>
+          <table class="keys">
+            <tr><td><span class="kbd">R</span></td><td>Save this section and go to the next one</td></tr>
+            <tr><td><span class="kbd">←</span></td><td>Previous section</td></tr>
+            <tr><td><span class="kbd">→</span></td><td>Next section without saving</td></tr>
+            <tr><td><span class="kbd">U</span></td><td>Reset to the section pose</td></tr>
+            <tr><td><span class="kbd">N</span></td><td>Next section without an image</td></tr>
+            <tr><td><span class="kbd">Esc</span></td><td>Stop Export all · close the review</td></tr>
+          </table>
+          <h4>Offsets (any time)</h4>
+          <table class="keys">
+            <tr><td><span class="kbd">I</span> / <span class="kbd">K</span></td><td>Height up / down by one step</td></tr>
+            <tr><td><span class="kbd">L</span> / <span class="kbd">J</span></td><td>Right / left by one step</td></tr>
+            <tr><td><span class="kbd">O</span> / <span class="kbd">;</span></td><td>Forward / back by one step</td></tr>
+            <tr><td><span class="kbd">P</span></td><td>Use camera position: set the offsets from where the camera is</td></tr>
+            <tr><td>+ <span class="kbd">Shift</span></td><td>10 steps</td></tr>
+          </table>
+          <h4>Camera</h4>
+          <table class="keys">
+            <tr><td><span class="kbd">W</span><span class="kbd">A</span><span class="kbd">S</span><span class="kbd">D</span> · <span class="kbd">↑</span><span class="kbd">↓</span></td><td>Move</td></tr>
+            <tr><td><span class="kbd">Space</span>/<span class="kbd">E</span> · <span class="kbd">C</span>/<span class="kbd">Q</span></td><td>Up · down</td></tr>
+            <tr><td><span class="kbd">Shift</span> · <span class="kbd">X</span></td><td>Fast · slow (hold)</td></tr>
+            <tr><td><span class="kbd">F</span></td><td>Lock / release the mouse</td></tr>
+            <tr><td>Wheel</td><td>Fly speed</td></tr>
+            <tr><td>Drag · middle drag</td><td>Look · pan</td></tr>
+            <tr><td><span class="kbd">Shift</span> + drag</td><td>Set the target</td></tr>
+            <tr><td>Double-click</td><td>Center on the point under the cursor</td></tr>
+            <tr><td>Click a section dot / name</td><td>Jump to that section</td></tr>
+          </table>
+          <h4>General</h4>
+          <table class="keys">
+            <tr><td><span class="kbd">H</span> or <b>Manual</b></td><td>This manual</td></tr>
+            <tr><td><span class="kbd">G</span></td><td>Show / hide guides</td></tr>
+            <tr><td><span class="kbd">←</span> / <span class="kbd">→</span></td><td>Previous / next section (outside a session too)</td></tr>
+            <tr><td><span class="kbd">V</span></td><td>Focus camera: look exactly at the target</td></tr>
+            <tr><td><span class="kbd">B</span></td><td>Copy image: render the view and copy it to the clipboard (paste with Ctrl+V)</td></tr>
+            <tr><td><span class="kbd">Enter</span> / <span class="kbd">Esc</span></td><td>Leave a number field so the keys work again</td></tr>
+          </table>
+        </section>
+
+        <section data-page="help">
+          <h3>Troubleshooting</h3>
+          <dl>
+            <dt>The keys do nothing</dt>
+            <dd>A number field still has the keyboard. Press <span class="kbd">Enter</span> or <span class="kbd">Esc</span>, or click the viewport.</dd>
+            <dt>"Start export session" does not start</dt>
+            <dd>It needs the cameras (with <code>_center</code> names), the splat and the target. The Scene panel shows which one is missing; the message tells you what to do.</dd>
+            <dt>"JSZip did not load"</dt>
+            <dd>The ZIP library comes from the internet (cdnjs). Connect and reload the page.</dd>
+            <dt>"No splat under the cursor" when setting the target</dt>
+            <dd>Shift-click on ground that has splats, not on the background.</dd>
+            <dt>Moving is too fast or too slow</dt>
+            <dd>Turn the mouse wheel in game mode, or use the Fly speed slider. Hold <span class="kbd">X</span> for fine moves.</dd>
+            <dt>The point cloud and frustums are not shown</dt>
+            <dd>Normal when the cameras are loaded with the splat: only their poses are needed.</dd>
+            <dt>The page stays blank or says it cannot load</dt>
+            <dd>Serve the folder over HTTP (see Quick start). Browsers block the engine when the file is opened directly.</dd>
+          </dl>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

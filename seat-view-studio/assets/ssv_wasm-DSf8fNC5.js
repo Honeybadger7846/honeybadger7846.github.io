@@ -1,0 +1,1 @@
+var e=new URL(`ssv_wasm-BHSuokP2.wasm`,import.meta.url).href;export{e as default};
